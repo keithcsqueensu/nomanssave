@@ -38,8 +38,8 @@ public final class SaveStorage {
         return delegate.bS();
     }
 
-    public fr accountData() {
-        return delegate.bT();
+    public AccountDataFile accountData() {
+        return AccountDataFile.wrap(delegate.bT());
     }
 
     public List<GameSlot> slots(boolean includeEmpty) {

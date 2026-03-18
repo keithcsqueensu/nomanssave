@@ -39,7 +39,7 @@ public class gW {
       System.out.println(var1.toString());
    }
 
-   public static void a(long[] var0) {
+   public static void AboutDialog(long[] var0) {
       byte[] var1 = new byte[var0.length * 4];
 
       for(int var2 = 0; var2 < var0.length; ++var2) {

@@ -4,9 +4,9 @@ import javax.swing.JComboBox;
 
 class dJ extends JComboBox {
    // $FF: synthetic field
-   final dE hE;
+   final SettlementsPanel hE;
 
-   dJ(dE var1) {
+   dJ(SettlementsPanel var1) {
       this.hE = var1;
       this.setModel(new dK(this));
       this.setRenderer(new dL(this));

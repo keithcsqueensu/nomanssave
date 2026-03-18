@@ -6,10 +6,10 @@ import javax.swing.filechooser.FileView;
 
 class cw extends FileView {
    // $FF: synthetic field
-   final cv fR;
+   final cv SaveChangeListener;
 
    cw(cv var1) {
-      this.fR = var1;
+      this.SaveChangeListener = var1;
    }
 
    public Icon getIcon(File var1) {

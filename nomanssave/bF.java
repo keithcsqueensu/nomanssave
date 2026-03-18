@@ -2,10 +2,10 @@ package nomanssave;
 
 class bF implements bK {
    // $FF: synthetic field
-   final bE ey;
+   final MilestonesPanel ItemDefinition;
 
-   bF(bE var1) {
-      this.ey = var1;
+   bF(MilestonesPanel var1) {
+      this.ItemDefinition = var1;
    }
 
    public String getID() {
@@ -17,11 +17,11 @@ class bF implements bK {
    }
 
    public String ab() {
-      return Double.toString(bE.a(this.ey).dT());
+      return Double.toString(MilestonesPanel.AboutDialog(this.ItemDefinition).dT());
    }
 
    public void l(String var1) {
       double var2 = Double.parseDouble(var1);
-      bE.a(this.ey).g(var2);
+      MilestonesPanel.AboutDialog(this.ItemDefinition).g(var2);
    }
 }

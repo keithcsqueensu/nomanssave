@@ -5,9 +5,9 @@ public interface fo {
 
    boolean V(String var1);
 
-   fn L();
+   GameMode L();
 
    fp[] bR();
 
-   String j(eY var1);
+   String j(JsonObject var1);
 }

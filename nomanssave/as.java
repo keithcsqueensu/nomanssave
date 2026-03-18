@@ -6,26 +6,26 @@ import java.awt.event.ActionListener;
 
 class as implements ActionListener {
    // $FF: synthetic field
-   final ap cu;
+   final DiscoveryPanel cu;
 
-   as(ap var1) {
+   as(DiscoveryPanel var1) {
       this.cu = var1;
    }
 
    public void actionPerformed(ActionEvent var1) {
-      String[] var2 = p.b((Container)this.cu);
+      String[] var2 = p.AboutDialogCloseListener((Container)this.cu);
       boolean var3 = false;
 
       for(int var4 = 0; var4 < var2.length; ++var4) {
-         if (!ap.a(this.cu).hasValue(var2[var4])) {
-            ap.a(this.cu).f(var2[var4]);
+         if (!DiscoveryPanel.AboutDialog(this.cu).hasValue(var2[var4])) {
+            DiscoveryPanel.AboutDialog(this.cu).f(var2[var4]);
             var3 = true;
          }
       }
 
       if (var3) {
-         ap.b(this.cu).sort();
-         ap.c(this.cu).updateUI();
+         DiscoveryPanel.AboutDialogCloseListener(this.cu).sort();
+         DiscoveryPanel.AccountPanel(this.cu).updateUI();
       }
 
    }

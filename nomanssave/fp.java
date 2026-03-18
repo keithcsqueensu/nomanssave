@@ -5,7 +5,7 @@ public interface fp {
 
    long lastModified();
 
-   eY M();
+   JsonObject M();
 
-   String b(eY var1);
+   String AboutDialogCloseListener(JsonObject var1);
 }

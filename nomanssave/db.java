@@ -5,13 +5,13 @@ import java.awt.event.ActionListener;
 
 class db implements ActionListener {
    // $FF: synthetic field
-   final cY gR;
+   final cY TemplateLoader;
 
    db(cY var1) {
-      this.gR = var1;
+      this.TemplateLoader = var1;
    }
 
    public void actionPerformed(ActionEvent var1) {
-      this.gR.setVisible(false);
+      this.TemplateLoader.setVisible(false);
    }
 }

@@ -5,66 +5,66 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.border.LineBorder;
 
-class ec extends ba {
+class ec extends FormPanel {
    private final int index;
    private JCheckBox if;
    private JComboBox ig;
-   private G bj;
+   private ValidatedTextField bj;
    private JComboBox ih;
-   private G hO;
-   private G ii;
+   private ValidatedTextField hO;
+   private ValidatedTextField ii;
    // $FF: synthetic field
-   final eb ij;
+   final SquadronPanel ij;
 
-   ec(eb var1, int var2) {
-      super(aH.cH, aH.cH * 2);
+   ec(SquadronPanel var1, int var2) {
+      super(AppSettings.cH, AppSettings.cH * 2);
       this.ij = var1;
       this.index = var2;
       this.k("Wingman " + (var2 + 1));
       this.if = new JCheckBox("Enabled");
       this.if.addActionListener(new ed(this, var2));
-      this.a((String)null, this.if);
+      this.AboutDialog((String)null, this.if);
       this.setBorder(new LineBorder(Color.DARK_GRAY));
       this.ig = new JComboBox();
       this.ig.setModel(new ee(this, var2));
-      this.a("NPC Race", this.ig);
+      this.AboutDialog("NPC Race", this.ig);
       this.bj = new ef(this, var2);
-      this.a("NPC Seed", this.bj);
+      this.AboutDialog("NPC Seed", this.bj);
       this.ih = new JComboBox();
       this.ih.setModel(new eg(this, var2));
-      this.a("Ship Type", this.ih);
+      this.AboutDialog("Ship Type", this.ih);
       this.hO = new eh(this, var2);
-      this.a("Ship Seed", this.hO);
+      this.AboutDialog("Ship Seed", this.hO);
       this.ii = new ei(this, var2);
-      this.a("Pilot Rank", this.ii);
+      this.AboutDialog("Pilot Rank", this.ii);
    }
 
    private void aQ() {
-      this.if.setSelected(eb.a(this.ij)[this.index].isEnabled());
-      this.ig.setEnabled(eb.a(this.ij)[this.index].isEnabled());
-      this.ig.setSelectedItem(eb.a(this.ij)[this.index].ed());
-      this.bj.setEnabled(eb.a(this.ij)[this.index].isEnabled());
-      this.bj.setText(eb.a(this.ij)[this.index].ee());
-      this.ih.setEnabled(eb.a(this.ij)[this.index].isEnabled());
-      this.ih.setSelectedItem(eb.a(this.ij)[this.index].ef());
-      this.hO.setEnabled(eb.a(this.ij)[this.index].isEnabled());
-      this.hO.setText(eb.a(this.ij)[this.index].eg());
-      this.ii.setEnabled(eb.a(this.ij)[this.index].isEnabled());
-      this.ii.setText(Integer.toString(eb.a(this.ij)[this.index].eh()));
+      this.if.setSelected(SquadronPanel.AboutDialog(this.ij)[this.index].isEnabled());
+      this.ig.setEnabled(SquadronPanel.AboutDialog(this.ij)[this.index].isEnabled());
+      this.ig.setSelectedItem(SquadronPanel.AboutDialog(this.ij)[this.index].ed());
+      this.bj.setEnabled(SquadronPanel.AboutDialog(this.ij)[this.index].isEnabled());
+      this.bj.setText(SquadronPanel.AboutDialog(this.ij)[this.index].ee());
+      this.ih.setEnabled(SquadronPanel.AboutDialog(this.ij)[this.index].isEnabled());
+      this.ih.setSelectedItem(SquadronPanel.AboutDialog(this.ij)[this.index].ef());
+      this.hO.setEnabled(SquadronPanel.AboutDialog(this.ij)[this.index].isEnabled());
+      this.hO.setText(SquadronPanel.AboutDialog(this.ij)[this.index].eg());
+      this.ii.setEnabled(SquadronPanel.AboutDialog(this.ij)[this.index].isEnabled());
+      this.ii.setText(Integer.toString(SquadronPanel.AboutDialog(this.ij)[this.index].eh()));
    }
 
    // $FF: synthetic method
-   static JCheckBox a(ec var0) {
+   static JCheckBox AboutDialog(ec var0) {
       return var0.if;
    }
 
    // $FF: synthetic method
-   static JComboBox b(ec var0) {
+   static JComboBox AboutDialogCloseListener(ec var0) {
       return var0.ig;
    }
 
    // $FF: synthetic method
-   static G c(ec var0) {
+   static ValidatedTextField AccountPanel(ec var0) {
       return var0.bj;
    }
 
@@ -74,12 +74,12 @@ class ec extends ba {
    }
 
    // $FF: synthetic method
-   static G e(ec var0) {
+   static ValidatedTextField e(ec var0) {
       return var0.hO;
    }
 
    // $FF: synthetic method
-   static G f(ec var0) {
+   static ValidatedTextField f(ec var0) {
       return var0.ii;
    }
 
@@ -89,7 +89,7 @@ class ec extends ba {
    }
 
    // $FF: synthetic method
-   static eb h(ec var0) {
+   static SquadronPanel h(ec var0) {
       return var0.ij;
    }
 }

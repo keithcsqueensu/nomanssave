@@ -3,10 +3,10 @@ package nomanssave;
 class cQ {
    final String value;
    // $FF: synthetic field
-   final cN gt;
+   final cN Inventory;
 
    cQ(cN var1, String var2) {
-      this.gt = var1;
+      this.Inventory = var1;
       this.value = var2;
    }
 

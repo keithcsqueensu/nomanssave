@@ -15,7 +15,7 @@ import javax.swing.KeyStroke;
 
 public class dz extends JDialog {
    private final JList hr;
-   private ft[] hs;
+   private SaveSlot[] hs;
    private int gU;
    private static dz ht = null;
 
@@ -48,7 +48,7 @@ public class dz extends JDialog {
       this.getRootPane().registerKeyboardAction(new dD(this), KeyStroke.getKeyStroke(27, 0), 2);
    }
 
-   private int a(ft[] var1, int var2) {
+   private int AboutDialog(SaveSlot[] var1, int var2) {
       this.hs = var1;
       this.hr.updateUI();
       this.hr.setSelectedIndex(var2);
@@ -58,27 +58,27 @@ public class dz extends JDialog {
       return this.gU;
    }
 
-   public static int a(Container var0, ft[] var1, int var2) {
+   public static int AboutDialog(Container var0, SaveSlot[] var1, int var2) {
       if (ht == null) {
          Frame var3 = JOptionPane.getFrameForComponent(var0);
          ht = new dz(var3);
       }
 
-      return ht.a(var1, var2);
+      return ht.AboutDialog(var1, var2);
    }
 
    // $FF: synthetic method
-   static ft[] a(dz var0) {
+   static SaveSlot[] AboutDialog(dz var0) {
       return var0.hs;
    }
 
    // $FF: synthetic method
-   static JList b(dz var0) {
+   static JList AboutDialogCloseListener(dz var0) {
       return var0.hr;
    }
 
    // $FF: synthetic method
-   static void a(dz var0, int var1) {
+   static void AboutDialog(dz var0, int var1) {
       var0.gU = var1;
    }
 }

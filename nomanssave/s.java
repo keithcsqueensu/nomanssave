@@ -5,13 +5,13 @@ import java.awt.event.ActionListener;
 
 class s implements ActionListener {
    // $FF: synthetic field
-   final p I;
+   final p BasesStoragePanel;
 
    s(p var1) {
-      this.I = var1;
+      this.BasesStoragePanel = var1;
    }
 
    public void actionPerformed(ActionEvent var1) {
-      this.I.setVisible(false);
+      this.BasesStoragePanel.setVisible(false);
    }
 }

@@ -1,5 +1,5 @@
 package nomanssave;
 
 public interface eo {
-   void a(boolean var1);
+   void AboutDialog(boolean var1);
 }

@@ -13,26 +13,26 @@ class aF implements ActionListener {
    }
 
    public void actionPerformed(ActionEvent var1) {
-      String var2 = aH.getProperty("LookAndFeel");
+      String var2 = AppSettings.getProperty("LookAndFeel");
       aI var3 = (aI)Stream.of(aI.values()).filter((var1x) -> {
          return var1x.name().equalsIgnoreCase(var2);
       }).findFirst().orElse(aI.cN);
-      aI var4 = (aI)aD.a(this.cB).getSelectedItem();
-      aD.a(this.cB, false);
+      aI var4 = (aI)aD.AboutDialog(this.cB).getSelectedItem();
+      aD.AboutDialog(this.cB, false);
       if (var4 == null) {
          if (var3 != null) {
-            aH.setProperty("LookAndFeel", (String)null);
-            aD.a(this.cB, true);
+            AppSettings.setProperty("LookAndFeel", (String)null);
+            aD.AboutDialog(this.cB, true);
          }
       } else if (var3 == null || var3 != var4) {
-         aH.setProperty("LookAndFeel", var4.name());
-         aD.a(this.cB, true);
+         AppSettings.setProperty("LookAndFeel", var4.name());
+         aD.AboutDialog(this.cB, true);
       }
 
-      double var5 = Double.parseDouble(aD.b(this.cB).getText());
-      if (var5 != aH.a("InventoryScaling", 1.0D)) {
-         aH.b("InventoryScaling", var5);
-         aD.a(this.cB, true);
+      double var5 = Double.parseDouble(aD.AboutDialogCloseListener(this.cB).getText());
+      if (var5 != AppSettings.AboutDialog("InventoryScaling", 1.0D)) {
+         AppSettings.AboutDialogCloseListener("InventoryScaling", var5);
+         aD.AboutDialog(this.cB, true);
       }
 
       this.cB.setVisible(false);

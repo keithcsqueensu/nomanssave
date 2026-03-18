@@ -28,7 +28,7 @@ public class ha extends FilterInputStream {
       this.eof = false;
    }
 
-   private void aJ(int var1) {
+   private void ExosuitPanel(int var1) {
       if (this.sg + var1 > this.buffer.length) {
          if (!this.sj) {
             throw new IOException("buffer exceeded");
@@ -76,7 +76,7 @@ public class ha extends FilterInputStream {
             int var4;
             if (var2 > 0) {
                var4 = var2;
-               this.aJ(var2);
+               this.ExosuitPanel(var2);
 
                while((var1 = super.read(this.buffer, this.sg, var4)) > 0) {
                   this.sg += var1;
@@ -126,7 +126,7 @@ public class ha extends FilterInputStream {
                      } else if (var4 > this.sg) {
                         throw new EOFException("Buffer too small");
                      } else {
-                        this.aJ(var3);
+                        this.ExosuitPanel(var3);
                         if (var3 > var4) {
                            int var6 = this.sg - var4;
 

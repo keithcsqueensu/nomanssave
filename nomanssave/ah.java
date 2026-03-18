@@ -5,17 +5,17 @@ import java.awt.event.ActionListener;
 
 class ah implements ActionListener {
    // $FF: synthetic field
-   final X bV;
+   final CompanionsPanel bV;
 
-   ah(X var1) {
+   ah(CompanionsPanel var1) {
       this.bV = var1;
    }
 
    public void actionPerformed(ActionEvent var1) {
-      gj var2 = (gj)X.k(this.bV).getSelectedItem();
+      Companion var2 = (Companion)CompanionsPanel.k(this.bV).getSelectedItem();
       if (var2 != null) {
-         if (X.h(this.bV).isSelected() ^ var2.cQ()) {
-            var2.d(X.h(this.bV).isSelected());
+         if (CompanionsPanel.h(this.bV).isSelected() ^ var2.cQ()) {
+            var2.d(CompanionsPanel.h(this.bV).isSelected());
          }
 
       }

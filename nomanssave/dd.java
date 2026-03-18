@@ -15,8 +15,8 @@ import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 
 public class dd extends JDialog {
-   private final JList gS;
-   private List gT;
+   private final JList BackupUtil;
+   private List CoordinateTransform;
    private int gU;
    private static dd gV = null;
 
@@ -31,11 +31,11 @@ public class dd extends JDialog {
       this.setContentPane(var2);
       var2.setLayout(new BorderLayout(0, 0));
       JScrollPane var3 = new JScrollPane();
-      this.gS = new JList();
-      this.gS.setSelectionMode(0);
-      this.gS.setModel(new de(this));
-      this.gS.addMouseListener(new df(this));
-      var3.setViewportView(this.gS);
+      this.BackupUtil = new JList();
+      this.BackupUtil.setSelectionMode(0);
+      this.BackupUtil.setModel(new de(this));
+      this.BackupUtil.addMouseListener(new df(this));
+      var3.setViewportView(this.BackupUtil);
       var2.add(var3);
       JPanel var4 = new JPanel();
       var4.setLayout(new FlowLayout(2));
@@ -50,37 +50,37 @@ public class dd extends JDialog {
       this.getRootPane().registerKeyboardAction(new di(this), KeyStroke.getKeyStroke(27, 0), 2);
    }
 
-   private int a(List var1, int var2) {
-      this.gT = var1;
-      this.gS.updateUI();
-      this.gS.setSelectedIndex(this.gU);
+   private int AboutDialog(List var1, int var2) {
+      this.CoordinateTransform = var1;
+      this.BackupUtil.updateUI();
+      this.BackupUtil.setSelectedIndex(this.gU);
       this.gU = var2;
       this.setLocationRelativeTo(this.getParent());
       this.setVisible(true);
       return this.gU;
    }
 
-   public static int a(Container var0, List var1, int var2) {
+   public static int AboutDialog(Container var0, List var1, int var2) {
       if (gV == null) {
          Frame var3 = JOptionPane.getFrameForComponent(var0);
          gV = new dd(var3);
       }
 
-      return gV.a(var1, var2);
+      return gV.AboutDialog(var1, var2);
    }
 
    // $FF: synthetic method
-   static List a(dd var0) {
-      return var0.gT;
+   static List AboutDialog(dd var0) {
+      return var0.CoordinateTransform;
    }
 
    // $FF: synthetic method
-   static JList b(dd var0) {
-      return var0.gS;
+   static JList AboutDialogCloseListener(dd var0) {
+      return var0.BackupUtil;
    }
 
    // $FF: synthetic method
-   static void a(dd var0, int var1) {
+   static void AboutDialog(dd var0, int var1) {
       var0.gU = var1;
    }
 }

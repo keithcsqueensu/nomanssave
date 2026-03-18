@@ -16,7 +16,7 @@ class dw implements ActionListener {
 
    public void actionPerformed(ActionEvent var1) {
       if (this.hq != null) {
-         dt.a(du.d(this.hp), this.hp);
+         dt.AboutDialog(du.d(this.hp), this.hp);
       }
 
    }

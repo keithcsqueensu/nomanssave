@@ -6,19 +6,19 @@ import javax.swing.event.ListDataListener;
 class J implements ComboBoxModel {
    gh bs;
    // $FF: synthetic field
-   final I bt;
+   final BasesStoragePanel bt;
 
-   J(I var1) {
+   J(BasesStoragePanel var1) {
       this.bt = var1;
       this.bs = null;
    }
 
    public int getSize() {
-      return I.a(this.bt) == null ? 0 : I.a(this.bt).cD().size();
+      return BasesStoragePanel.AboutDialog(this.bt) == null ? 0 : BasesStoragePanel.AboutDialog(this.bt).cD().size();
    }
 
    public gh o(int var1) {
-      return I.a(this.bt) == null ? null : (gh)I.a(this.bt).cD().get(var1);
+      return BasesStoragePanel.AboutDialog(this.bt) == null ? null : (gh)BasesStoragePanel.AboutDialog(this.bt).cD().get(var1);
    }
 
    public void addListDataListener(ListDataListener var1) {
@@ -30,14 +30,14 @@ class J implements ComboBoxModel {
    public void setSelectedItem(Object var1) {
       this.bs = (gh)var1;
       if (this.bs == null) {
-         I.b(this.bt).setText("");
-         I.c(this.bt).setText("");
-         I.c(this.bt).setEnabled(false);
+         BasesStoragePanel.AboutDialogCloseListener(this.bt).setText("");
+         BasesStoragePanel.AccountPanel(this.bt).setText("");
+         BasesStoragePanel.AccountPanel(this.bt).setEnabled(false);
       } else {
-         gy var2 = this.bs.cJ();
-         I.b(this.bt).setText(var2 == null ? "" : var2.toString());
-         I.c(this.bt).setText(this.bs.cK());
-         I.c(this.bt).setEnabled(true);
+         NpcType var2 = this.bs.cJ();
+         BasesStoragePanel.AboutDialogCloseListener(this.bt).setText(var2 == null ? "" : var2.toString());
+         BasesStoragePanel.AccountPanel(this.bt).setText(this.bs.cK());
+         BasesStoragePanel.AccountPanel(this.bt).setEnabled(true);
       }
 
    }

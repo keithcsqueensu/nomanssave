@@ -6,13 +6,13 @@ import javax.swing.JButton;
 
 class bc implements PropertyChangeListener {
    // $FF: synthetic field
-   final ba dB;
+   final FormPanel dB;
    // $FF: synthetic field
    private final JButton dD;
    // $FF: synthetic field
-   private final G dC;
+   private final ValidatedTextField dC;
 
-   bc(ba var1, JButton var2, G var3) {
+   bc(FormPanel var1, JButton var2, ValidatedTextField var3) {
       this.dB = var1;
       this.dD = var2;
       this.dC = var3;

@@ -4,21 +4,21 @@ import javax.swing.ComboBoxModel;
 import javax.swing.event.ListDataListener;
 
 class Y implements ComboBoxModel {
-   private gj bU;
+   private Companion bU;
    // $FF: synthetic field
-   final X bV;
+   final CompanionsPanel bV;
 
-   Y(X var1) {
+   Y(CompanionsPanel var1) {
       this.bV = var1;
       this.bU = null;
    }
 
    public int getSize() {
-      return X.a(this.bV) == null ? 0 : X.a(this.bV).length;
+      return CompanionsPanel.AboutDialog(this.bV) == null ? 0 : CompanionsPanel.AboutDialog(this.bV).length;
    }
 
-   public gj q(int var1) {
-      return X.a(this.bV)[var1];
+   public Companion q(int var1) {
+      return CompanionsPanel.AboutDialog(this.bV)[var1];
    }
 
    public void addListDataListener(ListDataListener var1) {
@@ -28,43 +28,43 @@ class Y implements ComboBoxModel {
    }
 
    public void setSelectedItem(Object var1) {
-      this.bU = (gj)var1;
+      this.bU = (Companion)var1;
       if (this.bU == null) {
-         X.b(this.bV).setSelectedIndex(-1);
-         X.c(this.bV).setText("");
-         X.c(this.bV).setEnabled(false);
-         X.d(this.bV).setText("");
-         X.d(this.bV).setEnabled(false);
-         X.e(this.bV).setText("");
-         X.e(this.bV).setEnabled(false);
-         X.f(this.bV).setText("");
-         X.f(this.bV).setEnabled(false);
-         X.g(this.bV).setText("");
-         X.g(this.bV).setEnabled(false);
-         X.h(this.bV).setSelected(false);
-         X.h(this.bV).setEnabled(false);
-         X.i(this.bV).setSelectedIndex(-1);
-         X.i(this.bV).setEnabled(false);
-         X.j(this.bV).setSelectedIndex(-1);
-         X.j(this.bV).setEnabled(false);
+         CompanionsPanel.AboutDialogCloseListener(this.bV).setSelectedIndex(-1);
+         CompanionsPanel.AccountPanel(this.bV).setText("");
+         CompanionsPanel.AccountPanel(this.bV).setEnabled(false);
+         CompanionsPanel.d(this.bV).setText("");
+         CompanionsPanel.d(this.bV).setEnabled(false);
+         CompanionsPanel.e(this.bV).setText("");
+         CompanionsPanel.e(this.bV).setEnabled(false);
+         CompanionsPanel.f(this.bV).setText("");
+         CompanionsPanel.f(this.bV).setEnabled(false);
+         CompanionsPanel.g(this.bV).setText("");
+         CompanionsPanel.g(this.bV).setEnabled(false);
+         CompanionsPanel.h(this.bV).setSelected(false);
+         CompanionsPanel.h(this.bV).setEnabled(false);
+         CompanionsPanel.i(this.bV).setSelectedIndex(-1);
+         CompanionsPanel.i(this.bV).setEnabled(false);
+         CompanionsPanel.j(this.bV).setSelectedIndex(-1);
+         CompanionsPanel.j(this.bV).setEnabled(false);
       } else {
-         X.b(this.bV).setSelectedIndex(this.bU.cL().ordinal());
-         X.c(this.bV).setText(this.bU.getName());
-         X.c(this.bV).setEnabled(true);
-         X.d(this.bV).setText(this.bU.cK());
-         X.d(this.bV).setEnabled(true);
-         X.e(this.bV).setText(this.bU.cN());
-         X.e(this.bV).setEnabled(true);
-         X.f(this.bV).setText(this.bU.cO());
-         X.f(this.bV).setEnabled(true);
-         X.g(this.bV).setText(this.bU.cP());
-         X.g(this.bV).setEnabled(true);
-         X.h(this.bV).setSelected(this.bU.cQ());
-         X.h(this.bV).setEnabled(true);
-         X.i(this.bV).m(this.bU.cR());
-         X.i(this.bV).setEnabled(true);
-         X.j(this.bV).m(this.bU.cS());
-         X.j(this.bV).setEnabled(true);
+         CompanionsPanel.AboutDialogCloseListener(this.bV).setSelectedIndex(this.bU.cL().ordinal());
+         CompanionsPanel.AccountPanel(this.bV).setText(this.bU.getName());
+         CompanionsPanel.AccountPanel(this.bV).setEnabled(true);
+         CompanionsPanel.d(this.bV).setText(this.bU.cK());
+         CompanionsPanel.d(this.bV).setEnabled(true);
+         CompanionsPanel.e(this.bV).setText(this.bU.cN());
+         CompanionsPanel.e(this.bV).setEnabled(true);
+         CompanionsPanel.f(this.bV).setText(this.bU.cO());
+         CompanionsPanel.f(this.bV).setEnabled(true);
+         CompanionsPanel.g(this.bV).setText(this.bU.cP());
+         CompanionsPanel.g(this.bV).setEnabled(true);
+         CompanionsPanel.h(this.bV).setSelected(this.bU.cQ());
+         CompanionsPanel.h(this.bV).setEnabled(true);
+         CompanionsPanel.i(this.bV).m(this.bU.cR());
+         CompanionsPanel.i(this.bV).setEnabled(true);
+         CompanionsPanel.j(this.bV).m(this.bU.cS());
+         CompanionsPanel.j(this.bV).setEnabled(true);
       }
 
    }

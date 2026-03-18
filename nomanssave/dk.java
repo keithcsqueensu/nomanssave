@@ -5,21 +5,21 @@ import javax.swing.ComboBoxModel;
 import javax.swing.event.ListDataListener;
 
 class dk implements ComboBoxModel {
-   private gv hk;
+   private Multitool hk;
    // $FF: synthetic field
-   final dj hl;
+   final MultitoolPanel GalacticAddress;
 
-   dk(dj var1) {
-      this.hl = var1;
+   dk(MultitoolPanel var1) {
+      this.GalacticAddress = var1;
       this.hk = null;
    }
 
    public int getSize() {
-      return dj.a(this.hl) == null ? 0 : dj.a(this.hl).length;
+      return MultitoolPanel.AboutDialog(this.GalacticAddress) == null ? 0 : MultitoolPanel.AboutDialog(this.GalacticAddress).length;
    }
 
-   public gv D(int var1) {
-      return dj.a(this.hl)[var1];
+   public Multitool SlotComboBoxModel(int var1) {
+      return MultitoolPanel.AboutDialog(this.GalacticAddress)[var1];
    }
 
    public void addListDataListener(ListDataListener var1) {
@@ -29,25 +29,25 @@ class dk implements ComboBoxModel {
    }
 
    public void setSelectedItem(Object var1) {
-      this.hk = (gv)var1;
+      this.hk = (Multitool)var1;
       if (this.hk == null) {
-         dj.b(this.hl).setText("");
-         dj.c(this.hl).setSelectedIndex(-1);
-         dj.d(this.hl).setSelectedIndex(-1);
-         dj.e(this.hl).setText("");
-         dj.f(this.hl).setText("");
-         dj.g(this.hl).setText("");
-         dj.h(this.hl).setText("");
-         dj.i(this.hl).a(Collections.emptyList());
+         MultitoolPanel.AboutDialogCloseListener(this.GalacticAddress).setText("");
+         MultitoolPanel.AccountPanel(this.GalacticAddress).setSelectedIndex(-1);
+         MultitoolPanel.d(this.GalacticAddress).setSelectedIndex(-1);
+         MultitoolPanel.e(this.GalacticAddress).setText("");
+         MultitoolPanel.f(this.GalacticAddress).setText("");
+         MultitoolPanel.g(this.GalacticAddress).setText("");
+         MultitoolPanel.h(this.GalacticAddress).setText("");
+         MultitoolPanel.i(this.GalacticAddress).AboutDialog(Collections.emptyList());
       } else {
-         dj.b(this.hl).setText(this.hk.getName());
-         dj.c(this.hl).m(this.hk.cT());
-         dj.d(this.hl).m(this.hk.cW());
-         dj.e(this.hl).setText(this.hk.cK());
-         dj.f(this.hl).setText(Double.toString(this.hk.dF()));
-         dj.g(this.hl).setText(Double.toString(this.hk.dG()));
-         dj.h(this.hl).setText(Double.toString(this.hk.dH()));
-         dj.i(this.hl).a(Collections.singletonList(this.hk.dE()));
+         MultitoolPanel.AboutDialogCloseListener(this.GalacticAddress).setText(this.hk.getName());
+         MultitoolPanel.AccountPanel(this.GalacticAddress).m(this.hk.cT());
+         MultitoolPanel.d(this.GalacticAddress).m(this.hk.LineNumberPanel());
+         MultitoolPanel.e(this.GalacticAddress).setText(this.hk.cK());
+         MultitoolPanel.f(this.GalacticAddress).setText(Double.toString(this.hk.dF()));
+         MultitoolPanel.g(this.GalacticAddress).setText(Double.toString(this.hk.dG()));
+         MultitoolPanel.h(this.GalacticAddress).setText(Double.toString(this.hk.dH()));
+         MultitoolPanel.i(this.GalacticAddress).AboutDialog(Collections.singletonList(this.hk.SettlementsPanel()));
       }
    }
 
@@ -57,6 +57,6 @@ class dk implements ComboBoxModel {
 
    // $FF: synthetic method
    public Object getElementAt(int var1) {
-      return this.D(var1);
+      return this.SlotComboBoxModel(var1);
    }
 }

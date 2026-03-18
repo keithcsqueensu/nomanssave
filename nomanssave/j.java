@@ -4,21 +4,21 @@ import javax.swing.ComboBoxModel;
 import javax.swing.event.ListDataListener;
 
 class j implements ComboBoxModel {
-   private eB A;
+   private eB ShowWarningRunnable;
    // $FF: synthetic field
-   final h z;
+   final h ShowErrorRunnable;
 
    j(h var1) {
-      this.z = var1;
-      this.A = null;
+      this.ShowErrorRunnable = var1;
+      this.ShowWarningRunnable = null;
    }
 
    public int getSize() {
-      return h.e(this.z).size();
+      return h.e(this.ShowErrorRunnable).size();
    }
 
-   public eB b(int var1) {
-      return (eB)h.e(this.z).get(var1);
+   public eB AboutDialogCloseListener(int var1) {
+      return (eB)h.e(this.ShowErrorRunnable).get(var1);
    }
 
    public void addListDataListener(ListDataListener var1) {
@@ -28,16 +28,16 @@ class j implements ComboBoxModel {
    }
 
    public void setSelectedItem(Object var1) {
-      this.A = (eB)var1;
-      h.f(this.z);
+      this.ShowWarningRunnable = (eB)var1;
+      h.f(this.ShowErrorRunnable);
    }
 
    public Object getSelectedItem() {
-      return this.A;
+      return this.ShowWarningRunnable;
    }
 
    // $FF: synthetic method
    public Object getElementAt(int var1) {
-      return this.b(var1);
+      return this.AboutDialogCloseListener(var1);
    }
 }

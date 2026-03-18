@@ -5,9 +5,9 @@ import javax.swing.table.TableModel;
 
 class bs implements TableModel {
    // $FF: synthetic field
-   final bl er;
+   final FrigatesPanel er;
 
-   bs(bl var1) {
+   bs(FrigatesPanel var1) {
       this.er = var1;
    }
 
@@ -36,18 +36,18 @@ class bs implements TableModel {
    }
 
    public int getRowCount() {
-      return bl.c(this.er) == null ? 0 : bl.c(this.er).length;
+      return FrigatesPanel.AccountPanel(this.er) == null ? 0 : FrigatesPanel.AccountPanel(this.er).length;
    }
 
    public Object getValueAt(int var1, int var2) {
       switch(var2) {
       case 0:
-         return bl.c(this.er) == null ? null : bl.c(this.er)[var1].toString();
+         return FrigatesPanel.AccountPanel(this.er) == null ? null : FrigatesPanel.AccountPanel(this.er)[var1].toString();
       case 1:
-         gr var3 = bl.c(this.er) == null ? null : bl.c(this.er)[var1].da();
+         FrigateClass var3 = FrigatesPanel.AccountPanel(this.er) == null ? null : FrigatesPanel.AccountPanel(this.er)[var1].da();
          return var3 == null ? "Unknown" : var3.toString();
       case 2:
-         return bl.c(this.er) == null ? null : bl.c(this.er)[var1].cW().toString();
+         return FrigatesPanel.AccountPanel(this.er) == null ? null : FrigatesPanel.AccountPanel(this.er)[var1].LineNumberPanel().toString();
       default:
          return null;
       }

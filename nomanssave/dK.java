@@ -16,7 +16,7 @@ class dK implements ComboBoxModel {
       return 1 + eM.getCount();
    }
 
-   public eM F(int var1) {
+   public eM InMemorySaveFile(int var1) {
       return var1 == 0 ? null : eM.S(var1 - 1);
    }
 
@@ -36,6 +36,6 @@ class dK implements ComboBoxModel {
 
    // $FF: synthetic method
    public Object getElementAt(int var1) {
-      return this.F(var1);
+      return this.InMemorySaveFile(var1);
    }
 }

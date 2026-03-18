@@ -17,8 +17,8 @@ class dy extends MouseAdapter {
 
    public void mouseClicked(MouseEvent var1) {
       if (var1.getClickCount() == 2 && this.hq != null) {
-         cg.a((Container)du.d(this.hp), (gQ)this.hq);
-         du.c(this.hp);
+         ItemDetailsDialog.AboutDialog((Container)du.d(this.hp), (ItemData)this.hq);
+         du.AccountPanel(this.hp);
       }
 
    }

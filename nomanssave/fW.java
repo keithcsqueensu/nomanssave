@@ -18,67 +18,67 @@ class fW {
    final long mV;
    long mW;
    // $FF: synthetic field
-   final fT mN;
+   final XboxSaveLocation mN;
 
-   fW(fT var1, InputStream var2) {
+   fW(XboxSaveLocation var1, InputStream var2) {
       this.mN = var1;
-      this.name = gc.c(var2);
-      hc.info("  " + this.name);
-      this.filename = gc.c(var2);
-      hc.debug("    filename: " + this.filename);
-      this.id = gc.c(var2);
-      hc.debug("    id: " + this.id);
+      this.name = gc.AccountPanel(var2);
+      Logger.info("  " + this.name);
+      this.filename = gc.AccountPanel(var2);
+      Logger.debug("    filename: " + this.filename);
+      this.id = gc.AccountPanel(var2);
+      Logger.debug("    id: " + this.id);
       this.mT = var2.read();
       if (this.mT < 0) {
          throw new IOException("short read");
       } else {
-         hc.debug("    suffix: " + this.mT);
+         Logger.debug("    suffix: " + this.mT);
          this.lL = hk.readInt(var2);
          if (this.lL != 0) {
-            hc.debug("    unknown1: " + Integer.toHexString(this.lL));
+            Logger.debug("    unknown1: " + Integer.toHexString(this.lL));
          }
 
-         this.mU = gc.a(var2);
-         hc.debug("    containerPath: " + this.mU);
-         this.timestamp = gc.b(var2);
-         hc.debug("    timestamp: " + new Date(this.timestamp));
+         this.mU = gc.AboutDialog(var2);
+         Logger.debug("    containerPath: " + this.mU);
+         this.timestamp = gc.AboutDialogCloseListener(var2);
+         Logger.debug("    timestamp: " + new Date(this.timestamp));
          this.mV = hk.f(var2);
          if (this.mV != 0L) {
-            hc.debug("    unknown2: " + Long.toHexString(this.mV));
+            Logger.debug("    unknown2: " + Long.toHexString(this.mV));
          }
 
          this.mW = hk.f(var2);
-         hc.debug("    totalSize: " + this.mW);
+         Logger.debug("    totalSize: " + this.mW);
       }
    }
 
-   fW(fT var1, String var2) {
+   fW(XboxSaveLocation var1, String var2) {
       this(var1, (InputStream)(new ByteArrayInputStream(hk.aD(var2))));
    }
 
-   fW(fT var1, fW var2) {
+   fW(XboxSaveLocation var1, fW var2) {
       this.mN = var1;
       this.name = var2.name;
       this.filename = var2.filename;
       this.id = var2.id;
       this.mT = var2.mT;
       this.lL = var2.lL;
-      this.mU = fT.a(var1);
+      this.mU = XboxSaveLocation.AboutDialog(var1);
       this.timestamp = var2.timestamp;
       this.mV = var2.mV;
       this.mW = var2.mW;
    }
 
    void write(OutputStream var1) {
-      gc.b(var1, this.name);
-      gc.b(var1, this.filename);
-      gc.b(var1, this.id);
+      gc.AboutDialogCloseListener(var1, this.name);
+      gc.AboutDialogCloseListener(var1, this.filename);
+      gc.AboutDialogCloseListener(var1, this.id);
       var1.write(this.mT);
-      hk.a(var1, this.lL);
-      gc.a(var1, this.mU);
-      gc.a(var1, this.timestamp);
-      hk.b(var1, this.mV);
-      hk.b(var1, this.mW);
+      hk.AboutDialog(var1, this.lL);
+      gc.AboutDialog(var1, this.mU);
+      gc.AboutDialog(var1, this.timestamp);
+      hk.AboutDialogCloseListener(var1, this.mV);
+      hk.AboutDialogCloseListener(var1, this.mW);
    }
 
    String cz() {

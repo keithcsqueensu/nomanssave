@@ -10,13 +10,13 @@ import java.io.OutputStream;
 import java.util.Date;
 
 class fw {
-   public fn be;
+   public GameMode be;
    final byte[] lK;
    final int lL;
    final int lM;
    final int lN;
    final int lO;
-   long bd;
+   long FreighterPanel;
    long length;
    long lP;
    final int lQ;
@@ -33,7 +33,7 @@ class fw {
       this.lM = hk.readInt(var2);
       this.lN = hk.readInt(var2);
       this.lO = hk.readInt(var2);
-      this.bd = 1000L * (long)hk.readInt(var2);
+      this.FreighterPanel = 1000L * (long)hk.readInt(var2);
       this.length = 4294967295L & (long)hk.readInt(var2);
       this.lP = 4294967295L & (long)hk.readInt(var2);
       this.lQ = hk.readInt(var2);
@@ -42,21 +42,21 @@ class fw {
    }
 
    boolean isValid() {
-      return fu.b(this.lK, fu.bY()) && this.lO >= 0;
+      return fu.AboutDialogCloseListener(this.lK, fu.bY()) && this.lO >= 0;
    }
 
-   int a(OutputStream var1) {
+   int AboutDialog(OutputStream var1) {
       var1.write(this.lK);
-      hk.a(var1, this.lL);
-      hk.a(var1, this.lM);
-      hk.a(var1, this.lN);
-      hk.a(var1, this.lO);
-      hk.a(var1, (int)(this.bd / 1000L));
-      hk.a(var1, (int)this.length);
-      hk.a(var1, (int)this.lP);
-      hk.a(var1, this.lQ);
-      hk.a(var1, this.lR);
-      hk.a(var1, this.lS);
+      hk.AboutDialog(var1, this.lL);
+      hk.AboutDialog(var1, this.lM);
+      hk.AboutDialog(var1, this.lN);
+      hk.AboutDialog(var1, this.lO);
+      hk.AboutDialog(var1, (int)(this.FreighterPanel / 1000L));
+      hk.AboutDialog(var1, (int)this.length);
+      hk.AboutDialog(var1, (int)this.lP);
+      hk.AboutDialog(var1, this.lQ);
+      hk.AboutDialog(var1, this.lR);
+      hk.AboutDialog(var1, this.lS);
       return 48;
    }
 
@@ -65,7 +65,7 @@ class fw {
       System.out.println("  unknown2 = " + this.lM + " 0x" + Integer.toHexString(this.lM) + " " + Integer.toBinaryString(this.lM));
       System.out.println("  fileType = " + this.lN + " 0x" + Integer.toHexString(this.lN) + " " + Integer.toBinaryString(this.lN));
       System.out.println("  archiveNumber = " + this.lO + " 0x" + Integer.toHexString(this.lO) + " " + Integer.toBinaryString(this.lO));
-      System.out.println("  modified = " + new Date(this.bd));
+      System.out.println("  modified = " + new Date(this.FreighterPanel));
       System.out.println("  length = " + this.length);
       System.out.println("  startPos = 0x" + Long.toHexString(this.lP));
       System.out.println("  valid = " + this.lQ);
@@ -83,7 +83,7 @@ class fw {
       if (!this.isValid()) {
          return null;
       } else {
-         FileInputStream var1 = new FileInputStream(fu.b(this.lJ));
+         FileInputStream var1 = new FileInputStream(fu.AboutDialogCloseListener(this.lJ));
 
          byte[] var8;
          try {
@@ -117,8 +117,8 @@ class fw {
       } else {
          int var2 = -1;
 
-         for(int var3 = 0; var3 < fu.c(this.lJ).length; ++var3) {
-            if (fu.c(this.lJ)[var3] == this) {
+         for(int var3 = 0; var3 < fu.AccountPanel(this.lJ).length; ++var3) {
+            if (fu.AccountPanel(this.lJ)[var3] == this) {
                var2 = var3;
                break;
             }
@@ -128,46 +128,46 @@ class fw {
             throw new IOException("header not valid");
          } else {
             long var25 = System.currentTimeMillis();
-            File var5 = new File(fu.b(this.lJ).getParentFile(), "~" + fu.b(this.lJ).getName());
+            File var5 = new File(fu.AboutDialogCloseListener(this.lJ).getParentFile(), "~" + fu.AboutDialogCloseListener(this.lJ).getName());
             FileOutputStream var6 = new FileOutputStream(var5);
 
             try {
-               FileInputStream var7 = new FileInputStream(fu.b(this.lJ));
+               FileInputStream var7 = new FileInputStream(fu.AboutDialogCloseListener(this.lJ));
 
                try {
                   System.out.println("Reading header");
                   byte[] var8 = new byte[64];
                   hk.readFully(var7, var8);
                   var6.write(var8);
-                  long var9 = (long)var1.length - fu.c(this.lJ)[var2].length;
+                  long var9 = (long)var1.length - fu.AccountPanel(this.lJ)[var2].length;
                   long var11 = 64L;
 
                   int var13;
                   fw var10000;
                   for(var13 = 0; var13 < var2; ++var13) {
-                     if (fu.c(this.lJ)[var13].lP < fu.c(this.lJ)[var2].lP) {
-                        var10000 = fu.c(this.lJ)[var13];
+                     if (fu.AccountPanel(this.lJ)[var13].lP < fu.AccountPanel(this.lJ)[var2].lP) {
+                        var10000 = fu.AccountPanel(this.lJ)[var13];
                         var10000.lP += var9;
                      }
 
-                     var11 += (long)fu.c(this.lJ)[var13].a(var6);
+                     var11 += (long)fu.AccountPanel(this.lJ)[var13].AboutDialog(var6);
                   }
 
                   var6.write(fu.bY());
-                  fu.c(this.lJ)[var2].length = (long)var1.length;
-                  fu.c(this.lJ)[var2].bd = var25;
-                  var11 += (long)fu.c(this.lJ)[var2].a(var6);
+                  fu.AccountPanel(this.lJ)[var2].length = (long)var1.length;
+                  fu.AccountPanel(this.lJ)[var2].FreighterPanel = var25;
+                  var11 += (long)fu.AccountPanel(this.lJ)[var2].AboutDialog(var6);
 
-                  for(var13 = var2 + 1; var13 < fu.c(this.lJ).length; ++var13) {
-                     if (fu.c(this.lJ)[var13].lP < fu.c(this.lJ)[var2].lP) {
-                        var10000 = fu.c(this.lJ)[var13];
+                  for(var13 = var2 + 1; var13 < fu.AccountPanel(this.lJ).length; ++var13) {
+                     if (fu.AccountPanel(this.lJ)[var13].lP < fu.AccountPanel(this.lJ)[var2].lP) {
+                        var10000 = fu.AccountPanel(this.lJ)[var13];
                         var10000.lP += var9;
                      }
 
-                     var11 += (long)fu.c(this.lJ)[var13].a(var6);
+                     var11 += (long)fu.AccountPanel(this.lJ)[var13].AboutDialog(var6);
                   }
 
-                  long var26 = fu.c(this.lJ)[var2].lP - var11;
+                  long var26 = fu.AccountPanel(this.lJ)[var2].lP - var11;
 
                   byte[] var15;
                   int var16;

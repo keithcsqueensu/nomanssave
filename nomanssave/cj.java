@@ -5,13 +5,13 @@ import java.awt.event.ActionListener;
 
 class cj implements ActionListener {
    // $FF: synthetic field
-   final cg fF;
+   final ItemDetailsDialog fF;
 
-   cj(cg var1) {
+   cj(ItemDetailsDialog var1) {
       this.fF = var1;
    }
 
    public void actionPerformed(ActionEvent var1) {
-      cg.fE.setVisible(false);
+      ItemDetailsDialog.fE.setVisible(false);
    }
 }

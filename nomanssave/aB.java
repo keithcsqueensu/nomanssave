@@ -8,9 +8,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 class aB extends DefaultTableCellRenderer {
    // $FF: synthetic field
-   final ap cu;
+   final DiscoveryPanel cu;
 
-   private aB(ap var1) {
+   private aB(DiscoveryPanel var1) {
       this.cu = var1;
    }
 
@@ -21,7 +21,7 @@ class aB extends DefaultTableCellRenderer {
    }
 
    // $FF: synthetic method
-   aB(ap var1, aB var2) {
+   aB(DiscoveryPanel var1, aB var2) {
       this(var1);
    }
 }

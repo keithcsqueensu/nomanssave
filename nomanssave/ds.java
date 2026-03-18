@@ -5,26 +5,26 @@ import java.awt.event.ActionListener;
 
 class ds implements ActionListener {
    // $FF: synthetic field
-   final dj hl;
+   final MultitoolPanel GalacticAddress;
    // $FF: synthetic field
    private final Application bv;
 
-   ds(dj var1, Application var2) {
-      this.hl = var1;
+   ds(MultitoolPanel var1, Application var2) {
+      this.GalacticAddress = var1;
       this.bv = var2;
    }
 
    public void actionPerformed(ActionEvent var1) {
-      gv var2 = this.bv.i();
+      Multitool var2 = this.bv.i();
       if (var2 != null) {
-         gv[] var3 = new gv[dj.a(this.hl).length + 1];
+         Multitool[] var3 = new Multitool[MultitoolPanel.AboutDialog(this.GalacticAddress).length + 1];
          int var4 = -1;
 
-         for(int var5 = 0; var5 < dj.a(this.hl).length; ++var5) {
-            if (dj.a(this.hl)[var5].getIndex() < var2.getIndex()) {
-               var3[var5] = dj.a(this.hl)[var5];
+         for(int var5 = 0; var5 < MultitoolPanel.AboutDialog(this.GalacticAddress).length; ++var5) {
+            if (MultitoolPanel.AboutDialog(this.GalacticAddress)[var5].getIndex() < var2.getIndex()) {
+               var3[var5] = MultitoolPanel.AboutDialog(this.GalacticAddress)[var5];
             } else {
-               var3[var5 + 1] = dj.a(this.hl)[var5];
+               var3[var5 + 1] = MultitoolPanel.AboutDialog(this.GalacticAddress)[var5];
                if (var4 < 0) {
                   var4 = var5;
                }
@@ -32,13 +32,13 @@ class ds implements ActionListener {
          }
 
          if (var4 < 0) {
-            var4 = dj.a(this.hl).length;
+            var4 = MultitoolPanel.AboutDialog(this.GalacticAddress).length;
          }
 
          var3[var4] = var2;
-         dj.a(this.hl, var3);
-         dj.j(this.hl).setSelectedIndex(var4);
-         dj.j(this.hl).updateUI();
+         MultitoolPanel.AboutDialog(this.GalacticAddress, var3);
+         MultitoolPanel.j(this.GalacticAddress).setSelectedIndex(var4);
+         MultitoolPanel.j(this.GalacticAddress).updateUI();
       }
 
    }

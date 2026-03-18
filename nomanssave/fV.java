@@ -8,7 +8,7 @@ import java.util.Properties;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-class fV implements fs {
+class fV implements SaveFile {
    final fW mO;
    final int mb;
    final File mc;
@@ -16,14 +16,14 @@ class fV implements fs {
    final fS mQ;
    final String mR;
    final String mS;
-   final fn be;
+   final GameMode be;
    // $FF: synthetic field
-   final fT mN;
+   final XboxSaveLocation mN;
 
-   fV(fT var1, String var2, int var3) {
+   fV(XboxSaveLocation var1, String var2, int var3) {
       this.mN = var1;
       this.mb = var3;
-      this.mc = new File(aH.cG, var2);
+      this.mc = new File(AppSettings.cG, var2);
       ZipFile var4 = new ZipFile(this.mc);
 
       try {
@@ -43,7 +43,7 @@ class fV implements fs {
          }
 
          String var8 = var6.getProperty("GameMode");
-         this.be = var8 == null ? null : fn.valueOf(var8);
+         this.be = var8 == null ? null : GameMode.valueOf(var8);
          this.mO = new fW(var1, var7);
          var5 = var4.getEntry(this.mP);
          if (var5 == null) {
@@ -60,7 +60,7 @@ class fV implements fs {
 
    }
 
-   void a(FileOutputStream var1) {
+   void AboutDialog(FileOutputStream var1) {
       ZipFile var2 = new ZipFile(this.mc);
 
       try {
@@ -91,26 +91,26 @@ class fV implements fs {
       return this.mO.filename;
    }
 
-   public fn L() {
+   public GameMode L() {
       return this.be;
    }
 
-   public eY M() {
+   public JsonObject M() {
       // $FF: Couldn't be decompiled
    }
 
-   public String b(eY var1) {
-      hc.info("Writing new save file...");
+   public String AboutDialogCloseListener(JsonObject var1) {
+      Logger.info("Writing new save file...");
       String var2;
-      if (fT.b(this.mN)[this.mb] != null) {
-         fT.b(this.mN)[this.mb].mZ.a(this.mQ);
-         var2 = fT.b(this.mN)[this.mb].b(var1);
+      if (XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.mb] != null) {
+         XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.mb].mZ.AboutDialog(this.mQ);
+         var2 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.mb].AboutDialogCloseListener(var1);
       } else {
-         fT.b(this.mN)[this.mb] = new fY(this.mN, this, var1);
-         var2 = fT.b(this.mN)[this.mb].K();
+         XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.mb] = new fY(this.mN, this, var1);
+         var2 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.mb].K();
       }
 
-      hc.info("Finished.");
+      Logger.info("Finished.");
       return var2;
    }
 

@@ -3,7 +3,7 @@ package nomanssave;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
-class fx implements fs {
+class fx implements SaveFile {
    final fw lI;
    // $FF: synthetic field
    final fu lJ;
@@ -17,24 +17,24 @@ class fx implements fs {
       return "savedata" + this.lI.lO;
    }
 
-   public fn L() {
+   public GameMode L() {
       return this.lI.be;
    }
 
-   public eY M() {
+   public JsonObject M() {
       byte[] var1 = this.lI.ca();
       Throwable var2 = null;
       Object var3 = null;
 
       try {
-         ff var4 = new ff(new ByteArrayInputStream(var1), 2);
+         BinaryReader var4 = new BinaryReader(new ByteArrayInputStream(var1), 2);
 
          Throwable var10000;
          label173: {
-            eY var17;
+            JsonObject var17;
             boolean var10001;
             try {
-               var17 = var4.a(eG.jV);
+               var17 = var4.AboutDialog(eG.jV);
             } catch (Throwable var15) {
                var10000 = var15;
                var10001 = false;
@@ -72,13 +72,13 @@ class fx implements fs {
       }
    }
 
-   public String b(eY var1) {
+   public String AboutDialogCloseListener(JsonObject var1) {
       ByteArrayOutputStream var2 = new ByteArrayOutputStream();
       Throwable var3 = null;
       Object var4 = null;
 
       try {
-         fj var5 = new fj(var2, 2);
+         JsonWriter var5 = new JsonWriter(var2, 2);
 
          try {
             var5.h(var1);
@@ -103,7 +103,7 @@ class fx implements fs {
    }
 
    public long lastModified() {
-      return this.lI.bd;
+      return this.lI.FreighterPanel;
    }
 
    public String toString() {

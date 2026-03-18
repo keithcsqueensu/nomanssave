@@ -13,7 +13,7 @@ class df extends MouseAdapter {
 
    public void mouseClicked(MouseEvent var1) {
       if (var1.getClickCount() == 2) {
-         dd.a(this.gW, dd.b(this.gW).getSelectedIndex());
+         dd.AboutDialog(this.gW, dd.AboutDialogCloseListener(this.gW).getSelectedIndex());
          this.gW.setVisible(false);
       }
 

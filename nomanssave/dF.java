@@ -4,21 +4,21 @@ import javax.swing.ComboBoxModel;
 import javax.swing.event.ListDataListener;
 
 class dF implements ComboBoxModel {
-   private gE hD;
+   private SettlementState hD;
    // $FF: synthetic field
-   final dE hE;
+   final SettlementsPanel hE;
 
-   dF(dE var1) {
+   dF(SettlementsPanel var1) {
       this.hE = var1;
       this.hD = null;
    }
 
    public int getSize() {
-      return dE.b(this.hE) == null ? 0 : dE.b(this.hE).length;
+      return SettlementsPanel.AboutDialogCloseListener(this.hE) == null ? 0 : SettlementsPanel.AboutDialogCloseListener(this.hE).length;
    }
 
-   public gE E(int var1) {
-      return dE.b(this.hE)[var1];
+   public SettlementState FileComboBoxModel(int var1) {
+      return SettlementsPanel.AboutDialogCloseListener(this.hE)[var1];
    }
 
    public void addListDataListener(ListDataListener var1) {
@@ -28,29 +28,29 @@ class dF implements ComboBoxModel {
    }
 
    public void setSelectedItem(Object var1) {
-      this.hD = (gE)var1;
+      this.hD = (SettlementState)var1;
       int var2;
       if (this.hD == null) {
-         dE.c(this.hE).setText("");
-         dE.d(this.hE).setText("");
+         SettlementsPanel.AccountPanel(this.hE).setText("");
+         SettlementsPanel.d(this.hE).setText("");
 
-         for(var2 = 0; var2 < dE.e(this.hE).length; ++var2) {
-            dE.e(this.hE)[var2].setText("");
+         for(var2 = 0; var2 < SettlementsPanel.e(this.hE).length; ++var2) {
+            SettlementsPanel.e(this.hE)[var2].setText("");
          }
 
-         dE.f(this.hE).a(new gF[0]);
+         SettlementsPanel.f(this.hE).AboutDialog(new gF[0]);
       } else {
-         dE.c(this.hE).setText(this.hD.getName());
-         dE.d(this.hE).setText(this.hD.cK());
+         SettlementsPanel.AccountPanel(this.hE).setText(this.hD.getName());
+         SettlementsPanel.d(this.hE).setText(this.hD.cK());
 
-         for(var2 = 0; var2 < dE.e(this.hE).length; ++var2) {
-            dE.e(this.hE)[var2].setText(Integer.toString(this.hD.aq(var2)));
+         for(var2 = 0; var2 < SettlementsPanel.e(this.hE).length; ++var2) {
+            SettlementsPanel.e(this.hE)[var2].setText(Integer.toString(this.hD.aq(var2)));
          }
 
-         dE.f(this.hE).a(this.hD.dX());
+         SettlementsPanel.f(this.hE).AboutDialog(this.hD.dX());
       }
 
-      dE.g(this.hE).revalidate();
+      SettlementsPanel.g(this.hE).revalidate();
    }
 
    public Object getSelectedItem() {
@@ -59,6 +59,6 @@ class dF implements ComboBoxModel {
 
    // $FF: synthetic method
    public Object getElementAt(int var1) {
-      return this.E(var1);
+      return this.FileComboBoxModel(var1);
    }
 }

@@ -7,7 +7,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class eQ extends ey {
+public class eQ extends ItemDefinition {
    private static final String gc = "0123456789ABCDEFabcdef";
    final boolean jY;
    final String name;
@@ -56,7 +56,7 @@ public class eQ extends ey {
          if (var7 instanceof Element) {
             Element var8 = (Element)var7;
             if (var8.getNodeName().equals("description")) {
-               var3 = a(var8);
+               var3 = AboutDialog(var8);
             } else if (var8.getNodeName().equals("requirement")) {
                var4.add(new ez(this, var8));
             } else if (var8.getNodeName().equals("techbox")) {
@@ -70,7 +70,7 @@ public class eQ extends ey {
       this.km = var5;
    }
 
-   public eB ba() {
+   public eB FormPanel() {
       return eB.jN;
    }
 
@@ -86,7 +86,7 @@ public class eQ extends ey {
       return this.jZ;
    }
 
-   public boolean bd() {
+   public boolean FreighterPanel() {
       return !this.jY && this.jZ != ex.ja && this.jZ != ex.iZ;
    }
 

@@ -10,9 +10,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 public class ej extends JFileChooser {
-   private static final ImageIcon im = Application.a("UI-FILEICON.PNG", 16, 16);
-   private static final ImageIcon io = Application.a("UI-GAMEPASS.PNG", 16, 16);
-   private static final ImageIcon ip = Application.a("UI-STEAMLOGO.PNG", 16, 16);
+   private static final ImageIcon im = Application.loadScaledIcon("UI-FILEICON.PNG", 16, 16);
+   private static final ImageIcon io = Application.loadScaledIcon("UI-GAMEPASS.PNG", 16, 16);
+   private static final ImageIcon ip = Application.loadScaledIcon("UI-STEAMLOGO.PNG", 16, 16);
    private static final Pattern iq = Pattern.compile("st_(\\d*)");
    private static ej ir = null;
 
@@ -30,7 +30,7 @@ public class ej extends JFileChooser {
       });
    }
 
-   private String a(File var1) {
+   private String AboutDialog(File var1) {
       Matcher var2 = iq.matcher(var1.getName());
       if (var2.matches()) {
          long var3 = Long.parseLong(var2.group(1));
@@ -40,7 +40,7 @@ public class ej extends JFileChooser {
       }
    }
 
-   public static File b(File var0) {
+   public static File AboutDialogCloseListener(File var0) {
       if (ir == null) {
          ir = new ej();
       }
@@ -78,8 +78,8 @@ public class ej extends JFileChooser {
    }
 
    // $FF: synthetic method
-   static String a(ej var0, File var1) {
-      return var0.a(var1);
+   static String AboutDialog(ej var0, File var1) {
+      return var0.AboutDialog(var1);
    }
 
    // $FF: synthetic method

@@ -5,13 +5,13 @@ import java.awt.event.ActionListener;
 
 class o implements ActionListener {
    // $FF: synthetic field
-   final h z;
+   final h ShowErrorRunnable;
 
    o(h var1) {
-      this.z = var1;
+      this.ShowErrorRunnable = var1;
    }
 
    public void actionPerformed(ActionEvent var1) {
-      this.z.setVisible(false);
+      this.ShowErrorRunnable.setVisible(false);
    }
 }

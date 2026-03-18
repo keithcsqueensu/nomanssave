@@ -4,7 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.List;
 import org.w3c.dom.Element;
 
-public class eR extends ey {
+public class eR extends ItemDefinition {
    final String kc;
    final eA kn;
    // $FF: synthetic field
@@ -14,7 +14,7 @@ public class eR extends ey {
       super(var2.getAttribute("id"));
       this.ko = var1;
       this.kc = var2.hasAttribute("icon") ? var2.getAttribute("icon") : null;
-      this.kn = ey.p(var2.getAttribute("template"));
+      this.kn = ItemDefinition.p(var2.getAttribute("template"));
    }
 
    public Object aZ() {
@@ -63,7 +63,7 @@ public class eR extends ey {
       }
    }
 
-   public eB ba() {
+   public eB FormPanel() {
       return eB.jO;
    }
 
@@ -71,7 +71,7 @@ public class eR extends ey {
       return this.ko.jY;
    }
 
-   private String y(String var1) {
+   private String UpdateDownloadRunnable(String var1) {
       if ("NAME".equals(var1)) {
          return this.ko.name;
       } else {
@@ -80,14 +80,14 @@ public class eR extends ey {
    }
 
    public String getName() {
-      return this.kn.a(this::y);
+      return this.kn.AboutDialog(this::UpdateDownloadRunnable);
    }
 
    public ex bc() {
       return ex.jd;
    }
 
-   public boolean bd() {
+   public boolean FreighterPanel() {
       return false;
    }
 
@@ -100,7 +100,7 @@ public class eR extends ey {
    }
 
    public String bg() {
-      return this.kn.b(this::y);
+      return this.kn.AboutDialogCloseListener(this::UpdateDownloadRunnable);
    }
 
    public boolean bh() {
@@ -116,7 +116,7 @@ public class eR extends ey {
    }
 
    public String getDescription() {
-      return this.kn.c(this::y);
+      return this.kn.AccountPanel(this::UpdateDownloadRunnable);
    }
 
    public List bk() {

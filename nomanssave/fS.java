@@ -53,23 +53,23 @@ public class fS {
    void read(InputStream var1) {
       this.lL = hk.readInt(var1);
       if (this.lL != 0) {
-         hc.debug("  unknown1: " + Integer.toHexString(this.lL));
+         Logger.debug("  unknown1: " + Integer.toHexString(this.lL));
       }
 
       this.version = hk.readInt(var1);
       if (this.version != 0) {
-         hc.info("  version: " + this.version);
+         Logger.info("  version: " + this.version);
       }
 
       this.my = hk.f(var1);
       if (this.my != 0L) {
-         hc.info("  totalPlayTime: " + fq.c(this.my));
+         Logger.info("  totalPlayTime: " + SaveLocation.AccountPanel(this.my));
       }
 
       if (this.lL == 1) {
          this.mz = hk.readInt(var1);
          if (this.mz != 0) {
-            hc.debug("  decompressed: " + this.mz);
+            Logger.debug("  decompressed: " + this.mz);
          }
 
          this.mA = 0;
@@ -79,24 +79,24 @@ public class fS {
          this.mz = 0;
          this.mA = hk.readInt(var1);
          if (this.mA != 0) {
-            hc.debug("  compressed: " + this.mA);
+            Logger.debug("  compressed: " + this.mA);
          }
 
          this.mB = null;
          this.name = gc.e(var1);
          if (this.name.length() != 0) {
-            hc.debug("  name: " + this.name);
+            Logger.debug("  name: " + this.name);
          }
 
          this.description = gc.e(var1);
          if (this.description.length() != 0) {
-            hc.debug("  description: " + this.description);
+            Logger.debug("  description: " + this.description);
          }
       }
 
       this.lM = hk.readInt(var1);
       if (this.lM != 0) {
-         hc.debug("  unknown2: " + Integer.toHexString(this.lM));
+         Logger.debug("  unknown2: " + Integer.toHexString(this.lM));
       }
 
    }
@@ -129,19 +129,19 @@ public class fS {
    }
 
    void write(OutputStream var1) {
-      hk.a(var1, this.lL);
-      hk.a(var1, this.version);
-      hk.b(var1, this.my);
+      hk.AboutDialog(var1, this.lL);
+      hk.AboutDialog(var1, this.version);
+      hk.AboutDialogCloseListener(var1, this.my);
       if (this.mB != null) {
-         hk.a(var1, this.mz);
+         hk.AboutDialog(var1, this.mz);
          var1.write(this.mB);
       } else {
-         hk.a(var1, this.mA);
-         gc.c(var1, this.name);
-         gc.c(var1, this.description);
+         hk.AboutDialog(var1, this.mA);
+         gc.AccountPanel(var1, this.name);
+         gc.AccountPanel(var1, this.description);
       }
 
-      hk.a(var1, this.lM);
+      hk.AboutDialog(var1, this.lM);
    }
 
    byte[] co() {
@@ -212,7 +212,7 @@ public class fS {
       return this.mh.length();
    }
 
-   void a(fS var1) {
+   void AboutDialog(fS var1) {
       this.lL = var1.lL;
       this.version = var1.version;
       this.my = var1.my;

@@ -6,9 +6,9 @@ import javax.swing.table.TableModel;
 
 class au implements TableModel {
    // $FF: synthetic field
-   final ap cu;
+   final DiscoveryPanel cu;
 
-   au(ap var1) {
+   au(DiscoveryPanel var1) {
       this.cu = var1;
    }
 
@@ -39,12 +39,12 @@ class au implements TableModel {
    }
 
    public int getRowCount() {
-      return ap.d(this.cu) == null ? 0 : ap.d(this.cu).size();
+      return DiscoveryPanel.d(this.cu) == null ? 0 : DiscoveryPanel.d(this.cu).size();
    }
 
    public Object getValueAt(int var1, int var2) {
-      String var3 = (String)ap.d(this.cu).get(var1);
-      ey var4 = ey.d(var3);
+      String var3 = (String)DiscoveryPanel.d(this.cu).get(var1);
+      ItemDefinition var4 = ItemDefinition.d(var3);
       switch(var2) {
       case 0:
          return var4 == null ? null : var4.N(3);

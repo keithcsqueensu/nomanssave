@@ -1,20 +1,20 @@
 package nomanssave;
 
-class fK extends fQ implements fr {
+class fK extends SteamSaveFileMetadata implements AccountData {
    // $FF: synthetic field
-   final fJ mt;
+   final SteamSaveLocation mt;
 
-   fK(fJ var1) {
+   fK(SteamSaveLocation var1) {
       super(var1, "accountdata.hg", -1, true);
       this.mt = var1;
    }
 
-   public eY M() {
-      return this.a(eG.jW);
+   public JsonObject M() {
+      return this.AboutDialog(eG.jW);
    }
 
-   public void k(eY var1) {
-      this.a("accountdata", (fn)null, (String)null, (String)null);
-      this.a(var1, false);
+   public void k(JsonObject var1) {
+      this.AboutDialog("accountdata", (GameMode)null, (String)null, (String)null);
+      this.AboutDialog(var1, false);
    }
 }

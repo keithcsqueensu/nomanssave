@@ -1,23 +1,23 @@
 package nomanssave;
 
-class aK extends G {
+class aK extends ValidatedTextField {
    // $FF: synthetic field
-   final aJ dj;
+   final ExosuitPanel MultitoolPanel;
 
-   aK(aJ var1) {
-      this.dj = var1;
+   aK(ExosuitPanel var1) {
+      this.MultitoolPanel = var1;
    }
 
    protected String g(String var1) {
-      if (aJ.a(this.dj) == null) {
+      if (ExosuitPanel.AboutDialog(this.MultitoolPanel) == null) {
          return "";
       } else {
-         int var2 = aJ.a(this.dj).dM();
+         int var2 = ExosuitPanel.AboutDialog(this.MultitoolPanel).dM();
 
          try {
-            int var3 = hf.b(var1, 1, 200);
+            int var3 = hf.AboutDialogCloseListener(var1, 1, 200);
             if (var3 != var2) {
-               aJ.a(this.dj).aB(var3);
+               ExosuitPanel.AboutDialog(this.MultitoolPanel).aB(var3);
             }
 
             return Integer.toString(var3);

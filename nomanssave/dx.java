@@ -16,7 +16,7 @@ class dx implements ActionListener {
 
    public void actionPerformed(ActionEvent var1) {
       if (this.hq != null) {
-         dt.b(du.d(this.hp), this.hp);
+         dt.AboutDialogCloseListener(du.d(this.hp), this.hp);
       }
 
    }

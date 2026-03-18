@@ -5,14 +5,14 @@ import java.awt.event.ActionListener;
 
 class m implements ActionListener {
    // $FF: synthetic field
-   final h z;
+   final h ShowErrorRunnable;
 
    m(h var1) {
-      this.z = var1;
+      this.ShowErrorRunnable = var1;
    }
 
    public void actionPerformed(ActionEvent var1) {
-      h.a(this.z, (ey)h.j(this.z).getSelectedItem());
-      this.z.setVisible(false);
+      h.AboutDialog(this.ShowErrorRunnable, (ItemDefinition)h.j(this.ShowErrorRunnable).getSelectedItem());
+      this.ShowErrorRunnable.setVisible(false);
    }
 }

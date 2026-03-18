@@ -27,7 +27,7 @@ public class aW extends JDialog {
    private JRadioButton dw;
    private static aW dx;
 
-   private aW(cy var1) {
+   private aW(JsonEditorDialog var1) {
       super(var1);
       this.setSize(400, 250);
       this.setResizable(false);
@@ -81,7 +81,7 @@ public class aW extends JDialog {
       this.pack();
    }
 
-   public static void a(cy var0, String var1) {
+   public static void AboutDialog(JsonEditorDialog var0, String var1) {
       if (dx == null) {
          dx = new aW(var0);
       }
@@ -98,17 +98,17 @@ public class aW extends JDialog {
    }
 
    // $FF: synthetic method
-   static JTextField a(aW var0) {
+   static JTextField AboutDialog(aW var0) {
       return var0.ds;
    }
 
    // $FF: synthetic method
-   static JRadioButton b(aW var0) {
+   static JRadioButton AboutDialogCloseListener(aW var0) {
       return var0.dw;
    }
 
    // $FF: synthetic method
-   static JCheckBox c(aW var0) {
+   static JCheckBox AccountPanel(aW var0) {
       return var0.dt;
    }
 

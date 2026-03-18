@@ -12,11 +12,11 @@ class dA implements ListModel {
    }
 
    public int getSize() {
-      return dz.a(this.hu).length;
+      return dz.AboutDialog(this.hu).length;
    }
 
-   public ft m(int var1) {
-      return dz.a(this.hu)[var1];
+   public SaveSlot m(int var1) {
+      return dz.AboutDialog(this.hu)[var1];
    }
 
    public void addListDataListener(ListDataListener var1) {

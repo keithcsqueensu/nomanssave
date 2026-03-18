@@ -46,7 +46,7 @@ class eE extends ArrayList {
       return null;
    }
 
-   public eF v(String var1) {
+   public eF RefreshRunnable(String var1) {
       Iterator var3 = this.iterator();
 
       while(var3.hasNext()) {

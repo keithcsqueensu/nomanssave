@@ -17,7 +17,7 @@ class gY extends InputStream {
       if (this.sc == 0) {
          return -1;
       } else {
-         int var1 = gX.a(this.sd).read();
+         int var1 = gX.AboutDialog(this.sd).read();
          if (var1 < 0) {
             throw new IOException("short read");
          } else {
@@ -39,7 +39,7 @@ class gY extends InputStream {
             var3 = this.sc;
          }
 
-         var3 = gX.a(this.sd).read(var1, var2, var3);
+         var3 = gX.AboutDialog(this.sd).read(var1, var2, var3);
          if (var3 <= 0) {
             throw new IOException("short read");
          } else {

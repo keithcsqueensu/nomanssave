@@ -14,7 +14,7 @@ import javax.swing.UIManager;
 public class cs extends JFileChooser {
    private static cs fN = null;
    private static final String name = "Freighter Backup File";
-   private static final ImageIcon fH = Application.a("UI-FREIGHTERICON.PNG", 16, 16);
+   private static final ImageIcon fH = Application.loadScaledIcon("UI-FREIGHTERICON.PNG", 16, 16);
    private JCheckBox fO;
 
    public static cs av() {

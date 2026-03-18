@@ -12,7 +12,7 @@ class T implements ActionListener {
    }
 
    public void actionPerformed(ActionEvent var1) {
-      Q.a(this.bD, new W(Integer.parseInt(Q.a(this.bD).getText()), Integer.parseInt(Q.d(this.bD).getText())));
+      Q.AboutDialog(this.bD, new W(Integer.parseInt(Q.AboutDialog(this.bD).getText()), Integer.parseInt(Q.d(this.bD).getText())));
       this.bD.setVisible(false);
    }
 }

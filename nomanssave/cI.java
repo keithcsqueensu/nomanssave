@@ -10,19 +10,19 @@ import javax.swing.tree.TreePath;
 class cI implements TreeModel {
    private ArrayList gh;
    // $FF: synthetic field
-   final cy gg;
+   final JsonEditorDialog gg;
 
-   private cI(cy var1) {
+   private cI(JsonEditorDialog var1) {
       this.gg = var1;
       this.gh = new ArrayList();
    }
 
    public Object getRoot() {
-      return new cJ(this.gg, (cJ)null, 0, cy.a(this.gg), cy.b(this.gg));
+      return new cJ(this.gg, (cJ)null, 0, JsonEditorDialog.AboutDialog(this.gg), JsonEditorDialog.AboutDialogCloseListener(this.gg));
    }
 
    public Object getChild(Object var1, int var2) {
-      return ((cJ)var1).x(var2);
+      return ((cJ)var1).UpdateCheckThread(var2);
    }
 
    public int getChildCount(Object var1) {
@@ -48,7 +48,7 @@ class cI implements TreeModel {
       this.gh.remove(var1);
    }
 
-   public void a(cJ var1) {
+   public void AboutDialog(cJ var1) {
       ArrayList var2 = new ArrayList();
       var2.add(var1);
 
@@ -67,7 +67,7 @@ class cI implements TreeModel {
    }
 
    // $FF: synthetic method
-   cI(cy var1, cI var2) {
+   cI(JsonEditorDialog var1, cI var2) {
       this(var1);
    }
 }

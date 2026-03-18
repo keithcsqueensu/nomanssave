@@ -6,18 +6,18 @@ import javax.swing.event.ListDataListener;
 class bB implements ComboBoxModel {
    er eu;
    // $FF: synthetic field
-   final bl er;
+   final FrigatesPanel er;
 
-   private bB(bl var1) {
+   private bB(FrigatesPanel var1) {
       this.er = var1;
    }
 
    public int getSize() {
-      return bl.a(this.er) == null ? 0 : bl.a(this.er).length;
+      return FrigatesPanel.AboutDialog(this.er) == null ? 0 : FrigatesPanel.AboutDialog(this.er).length;
    }
 
-   public er v(int var1) {
-      return bl.a(this.er) == null ? null : bl.a(this.er)[var1];
+   public er RefreshRunnable(int var1) {
+      return FrigatesPanel.AboutDialog(this.er) == null ? null : FrigatesPanel.AboutDialog(this.er)[var1];
    }
 
    public void addListDataListener(ListDataListener var1) {
@@ -28,37 +28,37 @@ class bB implements ComboBoxModel {
 
    public void setSelectedItem(Object var1) {
       this.eu = (er)var1;
-      if (bl.b(this.er) >= 0) {
-         er var2 = bl.c(this.er)[bl.b(this.er)].ar(0);
+      if (FrigatesPanel.AboutDialogCloseListener(this.er) >= 0) {
+         er var2 = FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].ar(0);
          if (this.eu != var2) {
             int var3;
             int var4;
             if (var2 != null) {
                var3 = var2.aU().ordinal();
-               var4 = bl.c(this.er)[bl.b(this.er)].aq(var3) - var2.aV();
+               var4 = FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].aq(var3) - var2.aV();
                if (var4 < 0) {
                   var4 = 0;
                }
 
-               bl.c(this.er)[bl.b(this.er)].e(var3, var4);
-               bl.d(this.er)[var3].setText(Integer.toString(var4));
+               FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].e(var3, var4);
+               FrigatesPanel.d(this.er)[var3].setText(Integer.toString(var4));
             }
 
             if (this.eu == null) {
-               bl.c(this.er)[bl.b(this.er)].a(0, (er)null);
+               FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].AboutDialog(0, (er)null);
             } else {
-               bl.c(this.er)[bl.b(this.er)].a(0, this.eu);
+               FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].AboutDialog(0, this.eu);
                var3 = this.eu.aU().ordinal();
-               var4 = bl.c(this.er)[bl.b(this.er)].aq(var3) + this.eu.aV();
+               var4 = FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].aq(var3) + this.eu.aV();
                if (var4 < 0) {
                   var4 = 0;
                }
 
-               bl.c(this.er)[bl.b(this.er)].e(var3, var4);
-               bl.d(this.er)[var3].setText(Integer.toString(var4));
+               FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].e(var3, var4);
+               FrigatesPanel.d(this.er)[var3].setText(Integer.toString(var4));
             }
 
-            bl.e(this.er).updateUI();
+            FrigatesPanel.e(this.er).updateUI();
          }
       }
 
@@ -70,11 +70,11 @@ class bB implements ComboBoxModel {
 
    // $FF: synthetic method
    public Object getElementAt(int var1) {
-      return this.v(var1);
+      return this.RefreshRunnable(var1);
    }
 
    // $FF: synthetic method
-   bB(bl var1, bB var2) {
+   bB(FrigatesPanel var1, bB var2) {
       this(var1);
    }
 }

@@ -5,25 +5,25 @@ import java.awt.event.ActionListener;
 
 class at implements ActionListener {
    // $FF: synthetic field
-   final ap cu;
+   final DiscoveryPanel cu;
 
-   at(ap var1) {
+   at(DiscoveryPanel var1) {
       this.cu = var1;
    }
 
    public void actionPerformed(ActionEvent var1) {
-      int[] var2 = ap.c(this.cu).getSelectedRows();
+      int[] var2 = DiscoveryPanel.AccountPanel(this.cu).getSelectedRows();
       boolean var3 = false;
 
       for(int var4 = var2.length - 1; var4 >= 0; --var4) {
-         ap.a(this.cu).ac(ap.c(this.cu).convertRowIndexToModel(var2[var4]));
+         DiscoveryPanel.AboutDialog(this.cu).ac(DiscoveryPanel.AccountPanel(this.cu).convertRowIndexToModel(var2[var4]));
          var3 = true;
       }
 
       if (var3) {
-         ap.c(this.cu).clearSelection();
-         ap.b(this.cu).sort();
-         ap.c(this.cu).updateUI();
+         DiscoveryPanel.AccountPanel(this.cu).clearSelection();
+         DiscoveryPanel.AboutDialogCloseListener(this.cu).sort();
+         DiscoveryPanel.AccountPanel(this.cu).updateUI();
       }
 
    }

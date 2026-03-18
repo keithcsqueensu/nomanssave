@@ -12,11 +12,11 @@ class fH {
    final File mh;
    byte[] lK;
    // $FF: synthetic field
-   final fA ma;
+   final PS4SaveLocation ma;
 
-   fH(fA var1, String var2, boolean var3) {
+   fH(PS4SaveLocation var1, String var2, boolean var3) {
       this.ma = var1;
-      this.mh = new File(fA.a(var1), var2);
+      this.mh = new File(PS4SaveLocation.AboutDialog(var1), var2);
       if (var3) {
          FileInputStream var4 = new FileInputStream(this.mh);
 
@@ -24,8 +24,8 @@ class fH {
             this.lK = new byte[112];
             hk.readFully(var4, this.lK);
 
-            for(int var5 = 0; var5 < fA.bY().length; ++var5) {
-               if (this.lK[var5] != fA.bY()[var5]) {
+            for(int var5 = 0; var5 < PS4SaveLocation.bY().length; ++var5) {
+               if (this.lK[var5] != PS4SaveLocation.bY()[var5]) {
                   throw new IOException("Invalid header");
                }
             }
@@ -38,7 +38,7 @@ class fH {
 
    byte[] readBytes() {
       long var1 = (255L & (long)this.lK[95]) << 24 | (255L & (long)this.lK[94]) << 16 | (255L & (long)this.lK[93]) << 8 | 255L & (long)this.lK[92];
-      FileInputStream var3 = new FileInputStream(new File(fA.a(this.ma), this.K()));
+      FileInputStream var3 = new FileInputStream(new File(PS4SaveLocation.AboutDialog(this.ma), this.K()));
 
       byte[] var6;
       try {
@@ -55,7 +55,7 @@ class fH {
 
    byte[] ah(int var1) {
       long var2 = (255L & (long)this.lK[95]) << 24 | (255L & (long)this.lK[94]) << 16 | (255L & (long)this.lK[93]) << 8 | 255L & (long)this.lK[92];
-      FileInputStream var4 = new FileInputStream(new File(fA.a(this.ma), this.K()));
+      FileInputStream var4 = new FileInputStream(new File(PS4SaveLocation.AboutDialog(this.ma), this.K()));
 
       byte[] var7;
       try {
@@ -76,7 +76,7 @@ class fH {
       this.lK[93] = (byte)(var1.length >> 8);
       this.lK[94] = (byte)(var1.length >> 16);
       this.lK[95] = (byte)(var1.length >> 24);
-      FileOutputStream var2 = new FileOutputStream(new File(fA.a(this.ma), this.K()));
+      FileOutputStream var2 = new FileOutputStream(new File(PS4SaveLocation.AboutDialog(this.ma), this.K()));
 
       try {
          var2.write(this.lK);
@@ -87,7 +87,7 @@ class fH {
 
    }
 
-   void a(String var1, fn var2, String var3, String var4) {
+   void AboutDialog(String var1, GameMode var2, String var3, String var4) {
       Properties var5 = new Properties();
       var5.setProperty("StorageFile", this.mh.getName());
       var5.setProperty("LastModified", Long.toString(this.mh.lastModified()));
@@ -104,7 +104,7 @@ class fH {
       }
 
       String var6 = var1 + "." + System.currentTimeMillis() + ".zip";
-      File var7 = new File(aH.cG, var6);
+      File var7 = new File(AppSettings.cG, var6);
       ZipOutputStream var8 = new ZipOutputStream(new FileOutputStream(var7));
 
       try {

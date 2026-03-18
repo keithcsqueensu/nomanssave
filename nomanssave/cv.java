@@ -6,16 +6,16 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 public class cv extends JFileChooser {
-   private static cv fQ = null;
+   private static cv SteamSaveFileMetadata = null;
    private static final String name = "Weapon Export File";
-   private static final ImageIcon fH = Application.a("UI-WEAPONICON.PNG", 16, 16);
+   private static final ImageIcon fH = Application.loadScaledIcon("UI-WEAPONICON.PNG", 16, 16);
 
    public static cv ax() {
-      if (fQ == null) {
-         fQ = new cv();
+      if (SteamSaveFileMetadata == null) {
+         SteamSaveFileMetadata = new cv();
       }
 
-      return fQ;
+      return SteamSaveFileMetadata;
    }
 
    private cv() {

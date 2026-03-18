@@ -12,11 +12,11 @@ class de implements ListModel {
    }
 
    public int getSize() {
-      return dd.a(this.gW).size();
+      return dd.AboutDialog(this.gW).size();
    }
 
-   public gt w(int var1) {
-      return (gt)dd.a(this.gW).get(var1);
+   public Inventory AppStartupRunnable(int var1) {
+      return (Inventory)dd.AboutDialog(this.gW).get(var1);
    }
 
    public void addListDataListener(ListDataListener var1) {
@@ -27,6 +27,6 @@ class de implements ListModel {
 
    // $FF: synthetic method
    public Object getElementAt(int var1) {
-      return this.w(var1);
+      return this.AppStartupRunnable(var1);
    }
 }

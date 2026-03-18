@@ -1,26 +1,26 @@
 package nomanssave;
 
-class aN extends G {
+class aN extends ValidatedTextField {
    // $FF: synthetic field
-   final aJ dj;
+   final ExosuitPanel MultitoolPanel;
    // $FF: synthetic field
    private final Application bv;
 
-   aN(aJ var1, Application var2) {
-      this.dj = var1;
+   aN(ExosuitPanel var1, Application var2) {
+      this.MultitoolPanel = var1;
       this.bv = var2;
    }
 
    protected String g(String var1) {
-      if (aJ.a(this.dj) == null) {
+      if (ExosuitPanel.AboutDialog(this.MultitoolPanel) == null) {
          return "";
       } else {
-         long var2 = aJ.a(this.dj).dJ();
+         long var2 = ExosuitPanel.AboutDialog(this.MultitoolPanel).dJ();
 
          try {
-            long var4 = hf.a(var1, 0L, 4294967295L);
+            long var4 = hf.AboutDialog(var1, 0L, 4294967295L);
             if (var4 != var2) {
-               aJ.a(this.dj).e(var4);
+               ExosuitPanel.AboutDialog(this.MultitoolPanel).e(var4);
                this.bv.C();
             }
 

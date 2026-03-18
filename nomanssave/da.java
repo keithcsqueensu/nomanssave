@@ -5,14 +5,14 @@ import java.awt.event.ActionListener;
 
 class da implements ActionListener {
    // $FF: synthetic field
-   final cY gR;
+   final cY TemplateLoader;
 
    da(cY var1) {
-      this.gR = var1;
+      this.TemplateLoader = var1;
    }
 
    public void actionPerformed(ActionEvent var1) {
-      cY.a(this.gR, cY.b(this.gR).getSelectedIndex());
-      this.gR.setVisible(false);
+      cY.AboutDialog(this.TemplateLoader, cY.AboutDialogCloseListener(this.TemplateLoader).getSelectedIndex());
+      this.TemplateLoader.setVisible(false);
    }
 }

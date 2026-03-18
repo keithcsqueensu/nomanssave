@@ -2,12 +2,12 @@ package nomanssave;
 
 import java.util.ArrayList;
 
-class fZ implements ft {
+class fZ implements SaveSlot {
    final int lT;
    // $FF: synthetic field
-   final fT mN;
+   final XboxSaveLocation mN;
 
-   fZ(fT var1, int var2) {
+   fZ(XboxSaveLocation var1, int var2) {
       this.mN = var1;
       this.lT = var2;
    }
@@ -17,37 +17,37 @@ class fZ implements ft {
    }
 
    public boolean isEmpty() {
-      return fT.b(this.mN)[this.lT * 2] == null && fT.b(this.mN)[this.lT * 2 + 1] == null;
+      return XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2] == null && XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2 + 1] == null;
    }
 
-   public fs[] bX() {
-      hc.info("Loading saves for Slot " + (this.lT + 1) + "...");
+   public SaveFile[] bX() {
+      Logger.info("Loading saves for Slot " + (this.lT + 1) + "...");
       ArrayList var1 = new ArrayList();
-      if (fT.b(this.mN)[this.lT * 2] != null) {
-         var1.add(fT.b(this.mN)[this.lT * 2]);
+      if (XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2] != null) {
+         var1.add(XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2]);
       }
 
-      if (fT.b(this.mN)[this.lT * 2 + 1] != null) {
-         var1.add(fT.b(this.mN)[this.lT * 2 + 1]);
+      if (XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2 + 1] != null) {
+         var1.add(XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2 + 1]);
       }
 
-      aH.cG.listFiles(new ga(this, var1));
+      AppSettings.cG.listFiles(new ga(this, var1));
       var1.sort(new gb(this));
-      return (fs[])var1.toArray(new fs[0]);
+      return (SaveFile[])var1.toArray(new SaveFile[0]);
    }
 
-   public fn L() {
+   public GameMode L() {
       long var1 = Long.MIN_VALUE;
-      fn var3 = null;
-      if (fT.b(this.mN)[this.lT * 2] != null) {
-         var3 = fT.b(this.mN)[this.lT * 2].L();
-         var1 = fT.b(this.mN)[this.lT * 2].lastModified();
+      GameMode var3 = null;
+      if (XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2] != null) {
+         var3 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2].L();
+         var1 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2].lastModified();
       }
 
-      if (fT.b(this.mN)[this.lT * 2 + 1] != null) {
-         long var4 = fT.b(this.mN)[this.lT * 2 + 1].lastModified();
+      if (XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2 + 1] != null) {
+         long var4 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2 + 1].lastModified();
          if (var4 > var1) {
-            var3 = fT.b(this.mN)[this.lT * 2 + 1].L();
+            var3 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2 + 1].L();
          }
       }
 
@@ -58,23 +58,23 @@ class fZ implements ft {
       StringBuilder var1 = new StringBuilder();
       var1.append("Slot " + (this.lT + 1) + " - ");
       long var2 = Long.MIN_VALUE;
-      fn var4 = null;
-      if (fT.b(this.mN)[this.lT * 2] != null) {
-         var4 = fT.b(this.mN)[this.lT * 2].L();
-         var2 = fT.b(this.mN)[this.lT * 2].lastModified();
+      GameMode var4 = null;
+      if (XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2] != null) {
+         var4 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2].L();
+         var2 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2].lastModified();
       }
 
-      if (fT.b(this.mN)[this.lT * 2 + 1] != null) {
-         long var5 = fT.b(this.mN)[this.lT * 2 + 1].lastModified();
+      if (XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2 + 1] != null) {
+         long var5 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2 + 1].lastModified();
          if (var5 > var2) {
-            var4 = fT.b(this.mN)[this.lT * 2 + 1].L();
+            var4 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2 + 1].L();
             var2 = var5;
          }
       }
 
       if (var4 != null) {
          var1.append(var4.toString());
-         var1.append(" - " + Application.b(var2));
+         var1.append(" - " + Application.formatDateShort(var2));
       } else {
          var1.append("[EMPTY]");
       }
@@ -83,7 +83,7 @@ class fZ implements ft {
    }
 
    // $FF: synthetic method
-   static fT a(fZ var0) {
+   static XboxSaveLocation AboutDialog(fZ var0) {
       return var0.mN;
    }
 }

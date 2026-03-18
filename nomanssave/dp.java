@@ -1,22 +1,22 @@
 package nomanssave;
 
-class dp extends G {
+class dp extends ValidatedTextField {
    // $FF: synthetic field
-   final dj hl;
+   final MultitoolPanel GalacticAddress;
 
-   dp(dj var1) {
-      this.hl = var1;
+   dp(MultitoolPanel var1) {
+      this.GalacticAddress = var1;
    }
 
    protected String g(String var1) {
-      gv var2 = (gv)dj.j(this.hl).getSelectedItem();
+      Multitool var2 = (Multitool)MultitoolPanel.j(this.GalacticAddress).getSelectedItem();
       if (var2 == null) {
          return "";
       } else {
          double var3 = var2.dH();
 
          try {
-            double var5 = hf.a(var1, 0.0D, 1000.0D);
+            double var5 = hf.AboutDialog(var1, 0.0D, 1000.0D);
             if (var5 != var3) {
                var2.f(var5);
             }

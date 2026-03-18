@@ -3,20 +3,20 @@ package nomanssave;
 class fb extends fc {
    final String name;
    // $FF: synthetic field
-   final eY kL;
+   final JsonObject kL;
 
-   fb(eY var1, String var2, fc var3) {
+   fb(JsonObject var1, String var2, fc var3) {
       super(var1, var3);
       this.kL = var1;
       this.name = var2;
    }
 
-   Object a(Class var1, boolean var2) {
-      eY var3;
+   Object AboutDialog(Class var1, boolean var2) {
+      JsonObject var3;
       if (this.kN == null) {
          var3 = this.kL;
       } else {
-         var3 = (eY)this.kN.a(eY.class, var2);
+         var3 = (JsonObject)this.kN.AboutDialog(JsonObject.class, var2);
       }
 
       int var4 = var3.indexOf(this.name);
@@ -42,53 +42,53 @@ class fb extends fc {
    }
 
    Object getValue() {
-      eY var1;
+      JsonObject var1;
       if (this.kN == null) {
          var1 = this.kL;
       } else {
-         var1 = (eY)this.kN.a(eY.class, false);
+         var1 = (JsonObject)this.kN.AboutDialog(JsonObject.class, false);
       }
 
       return var1.get(this.name);
    }
 
-   Object a(Object var1, boolean var2) {
-      eY var3;
+   Object AboutDialog(Object var1, boolean var2) {
+      JsonObject var3;
       if (this.kN == null) {
          var3 = this.kL;
       } else {
-         var3 = (eY)this.kN.a(eY.class, var2);
+         var3 = (JsonObject)this.kN.AboutDialog(JsonObject.class, var2);
       }
 
       return var3.put(this.name, var1);
    }
 
    Object bG() {
-      eY var1;
+      JsonObject var1;
       if (this.kN == null) {
          var1 = this.kL;
       } else {
-         var1 = (eY)this.kN.a(eY.class, false);
+         var1 = (JsonObject)this.kN.AboutDialog(JsonObject.class, false);
       }
 
-      return var1.F(this.name);
+      return var1.InMemorySaveFile(this.name);
    }
 
-   eY e(eY var1) {
-      eY var2;
+   JsonObject e(JsonObject var1) {
+      JsonObject var2;
       if (this.kN == null) {
          var2 = this.kL;
       } else {
-         var2 = (eY)this.kN.a(eY.class, false);
+         var2 = (JsonObject)this.kN.AboutDialog(JsonObject.class, false);
       }
 
       Object var3 = var2.get(this.name);
       if (var3 == null) {
          var2.put(this.name, var1);
          return null;
-      } else if (var3 instanceof eY) {
-         ((eY)var3).c(var1);
-         return (eY)var3;
+      } else if (var3 instanceof JsonObject) {
+         ((JsonObject)var3).AccountPanel(var1);
+         return (JsonObject)var3;
       } else {
          throw new RuntimeException("Unsupported type: " + var3.getClass().getSimpleName());
       }

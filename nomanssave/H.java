@@ -5,9 +5,9 @@ import java.awt.event.FocusListener;
 
 class H implements FocusListener {
    // $FF: synthetic field
-   final G bg;
+   final ValidatedTextField bg;
 
-   H(G var1) {
+   H(ValidatedTextField var1) {
       this.bg = var1;
    }
 

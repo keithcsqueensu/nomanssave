@@ -52,7 +52,7 @@ public class gX extends FilterInputStream {
    }
 
    // $FF: synthetic method
-   static InputStream a(gX var0) {
+   static InputStream AboutDialog(gX var0) {
       return var0.in;
    }
 }

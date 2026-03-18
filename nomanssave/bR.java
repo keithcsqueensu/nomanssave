@@ -6,17 +6,17 @@ import java.awt.event.ActionListener;
 
 class bR implements ActionListener {
    // $FF: synthetic field
-   final bO eX;
+   final InventoryPanel JsonParseException;
 
-   bR(bO var1) {
-      this.eX = var1;
+   bR(InventoryPanel var1) {
+      this.JsonParseException = var1;
    }
 
    public void actionPerformed(ActionEvent var1) {
-      if (bO.a(this.eX) != null) {
-         Dimension var2 = aQ.a(this.eX, bO.a(this.eX).getSize(), bO.a(this.eX).dm(), bO.a(this.eX).dn());
-         if (var2 != null && bO.a(this.eX).a(var2)) {
-            bO.c(this.eX);
+      if (InventoryPanel.AboutDialog(this.JsonParseException) != null) {
+         Dimension var2 = aQ.AboutDialog(this.JsonParseException, InventoryPanel.AboutDialog(this.JsonParseException).getSize(), InventoryPanel.AboutDialog(this.JsonParseException).dm(), InventoryPanel.AboutDialog(this.JsonParseException).dn());
+         if (var2 != null && InventoryPanel.AboutDialog(this.JsonParseException).AboutDialog(var2)) {
+            InventoryPanel.AccountPanel(this.JsonParseException);
          }
 
       }

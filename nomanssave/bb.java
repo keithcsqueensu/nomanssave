@@ -5,11 +5,11 @@ import java.awt.event.ActionListener;
 
 class bb implements ActionListener {
    // $FF: synthetic field
-   final ba dB;
+   final FormPanel dB;
    // $FF: synthetic field
-   private final G dC;
+   private final ValidatedTextField dC;
 
-   bb(ba var1, G var2) {
+   bb(FormPanel var1, ValidatedTextField var2) {
       this.dB = var1;
       this.dC = var2;
    }

@@ -5,10 +5,10 @@ import javax.swing.filechooser.FileFilter;
 
 class cx extends FileFilter {
    // $FF: synthetic field
-   final cv fR;
+   final cv SaveChangeListener;
 
    cx(cv var1) {
-      this.fR = var1;
+      this.SaveChangeListener = var1;
    }
 
    public String getDescription() {

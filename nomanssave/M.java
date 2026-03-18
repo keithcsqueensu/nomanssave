@@ -1,22 +1,22 @@
 package nomanssave;
 
-class M extends G {
+class M extends ValidatedTextField {
    // $FF: synthetic field
-   final I bt;
+   final BasesStoragePanel bt;
 
-   M(I var1) {
+   M(BasesStoragePanel var1) {
       this.bt = var1;
    }
 
    protected String g(String var1) {
-      gf var2 = (gf)I.j(this.bt).getSelectedItem();
+      Base var2 = (Base)BasesStoragePanel.j(this.bt).getSelectedItem();
       if (var2 == null) {
          return "";
       } else {
          var1 = var1.trim();
          if (!var1.equals(var2.getName())) {
             var2.setName(var1);
-            I.f(this.bt).setText(var1);
+            BasesStoragePanel.f(this.bt).setText(var1);
          }
 
          return var1;

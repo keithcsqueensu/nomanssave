@@ -5,14 +5,14 @@ import javax.swing.table.TableModel;
 
 class ax implements TableModel {
    // $FF: synthetic field
-   final ap cu;
+   final DiscoveryPanel cu;
 
-   ax(ap var1) {
+   ax(DiscoveryPanel var1) {
       this.cu = var1;
    }
 
    public int getRowCount() {
-      return eS.bx();
+      return AlienWord.bx();
    }
 
    public int getColumnCount() {
@@ -26,15 +26,15 @@ class ax implements TableModel {
       case 1:
          return "ID";
       case 2:
-         return eU.kr.toString();
+         return Race.kr.toString();
       case 3:
-         return eU.ks.toString();
+         return Race.ks.toString();
       case 4:
-         return eU.kt.toString();
+         return Race.kt.toString();
       case 5:
-         return eU.kv.toString();
+         return Race.kv.toString();
       case 6:
-         return eU.kz.toString();
+         return Race.kz.toString();
       default:
          return null;
       }
@@ -52,21 +52,21 @@ class ax implements TableModel {
 
    public boolean isCellEditable(int var1, int var2) {
       if (var2 >= 2 && var2 < this.getColumnCount()) {
-         eS var3 = eS.T(var1);
+         AlienWord var3 = AlienWord.T(var1);
          if (var3 == null) {
             return false;
          } else {
             switch(var2) {
             case 2:
-               return var3.a(eU.kr);
+               return var3.AboutDialog(Race.kr);
             case 3:
-               return var3.a(eU.ks);
+               return var3.AboutDialog(Race.ks);
             case 4:
-               return var3.a(eU.kt);
+               return var3.AboutDialog(Race.kt);
             case 5:
-               return var3.a(eU.kv);
+               return var3.AboutDialog(Race.kv);
             case 6:
-               return var3.a(eU.kz);
+               return var3.AboutDialog(Race.kz);
             default:
                return false;
             }
@@ -77,46 +77,46 @@ class ax implements TableModel {
    }
 
    public Object getValueAt(int var1, int var2) {
-      eS var3 = eS.T(var1);
-      gA var4 = ap.i(this.cu).a(var3);
+      AlienWord var3 = AlienWord.T(var1);
+      gA var4 = DiscoveryPanel.i(this.cu).AboutDialog(var3);
       switch(var2) {
       case 0:
          return var3 == null ? "" : var3.getText();
       case 1:
          return var4.getID();
       case 2:
-         return var4.c(eU.kr);
+         return var4.AccountPanel(Race.kr);
       case 3:
-         return var4.c(eU.ks);
+         return var4.AccountPanel(Race.ks);
       case 4:
-         return var4.c(eU.kt);
+         return var4.AccountPanel(Race.kt);
       case 5:
-         return var4.c(eU.kv);
+         return var4.AccountPanel(Race.kv);
       case 6:
-         return var4.c(eU.kz);
+         return var4.AccountPanel(Race.kz);
       default:
          return null;
       }
    }
 
    public void setValueAt(Object var1, int var2, int var3) {
-      eS var4 = eS.T(var2);
-      gA var5 = ap.i(this.cu).a(var4);
+      AlienWord var4 = AlienWord.T(var2);
+      gA var5 = DiscoveryPanel.i(this.cu).AboutDialog(var4);
       switch(var3) {
       case 2:
-         var5.a(eU.kr, Boolean.TRUE.equals(var1));
+         var5.AboutDialog(Race.kr, Boolean.TRUE.equals(var1));
          break;
       case 3:
-         var5.a(eU.ks, Boolean.TRUE.equals(var1));
+         var5.AboutDialog(Race.ks, Boolean.TRUE.equals(var1));
          break;
       case 4:
-         var5.a(eU.kt, Boolean.TRUE.equals(var1));
+         var5.AboutDialog(Race.kt, Boolean.TRUE.equals(var1));
          break;
       case 5:
-         var5.a(eU.kv, Boolean.TRUE.equals(var1));
+         var5.AboutDialog(Race.kv, Boolean.TRUE.equals(var1));
          break;
       case 6:
-         var5.a(eU.kz, Boolean.TRUE.equals(var1));
+         var5.AboutDialog(Race.kz, Boolean.TRUE.equals(var1));
       }
 
    }

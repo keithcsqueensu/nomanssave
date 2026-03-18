@@ -18,14 +18,14 @@ class fO implements FileFilter {
    }
 
    public boolean accept(File var1) {
-      Matcher var2 = fJ.cl().matcher(var1.getName());
+      Matcher var2 = SteamSaveLocation.cl().matcher(var1.getName());
       if (var2.matches()) {
          int var3 = var2.group(1).length() == 0 ? 0 : Integer.parseInt(var2.group(1)) - 1;
          if (var3 / 2 == this.mw.lT) {
             try {
-               this.mg.add(new fL(fN.a(this.mw), var1.getName(), var3));
+               this.mg.add(new fL(fN.AboutDialog(this.mw), var1.getName(), var3));
             } catch (IOException var5) {
-               hc.a("Cannot load " + var1.getName(), var5);
+               Logger.AboutDialog("Cannot load " + var1.getName(), var5);
             }
          }
       }

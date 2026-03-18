@@ -6,25 +6,25 @@ import java.util.Iterator;
 
 class az implements ActionListener {
    // $FF: synthetic field
-   final ap cu;
+   final DiscoveryPanel cu;
 
-   az(ap var1) {
+   az(DiscoveryPanel var1) {
       this.cu = var1;
    }
 
    public void actionPerformed(ActionEvent var1) {
-      Iterator var4 = eS.by().iterator();
+      Iterator var4 = AlienWord.by().iterator();
 
       while(var4.hasNext()) {
-         eS var3 = (eS)var4.next();
-         gA var2 = ap.i(this.cu).a(var3);
-         var2.a(eU.kr, false);
-         var2.a(eU.ks, false);
-         var2.a(eU.kt, false);
-         var2.a(eU.kv, false);
-         var2.a(eU.kz, false);
+         AlienWord var3 = (AlienWord)var4.next();
+         gA var2 = DiscoveryPanel.i(this.cu).AboutDialog(var3);
+         var2.AboutDialog(Race.kr, false);
+         var2.AboutDialog(Race.ks, false);
+         var2.AboutDialog(Race.kt, false);
+         var2.AboutDialog(Race.kv, false);
+         var2.AboutDialog(Race.kz, false);
       }
 
-      ap.j(this.cu).updateUI();
+      DiscoveryPanel.j(this.cu).updateUI();
    }
 }

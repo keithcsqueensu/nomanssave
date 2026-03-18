@@ -7,18 +7,18 @@ import javax.swing.JOptionPane;
 
 class ak implements ActionListener {
    // $FF: synthetic field
-   final aj cg;
+   final aj ItemDetailsDialog;
 
    ak(aj var1) {
-      this.cg = var1;
+      this.ItemDetailsDialog = var1;
    }
 
    public void actionPerformed(ActionEvent var1) {
       try {
-         aj.a(this.cg, hl.e(aj.a(this.cg).getText().trim(), aj.b(this.cg).getSelectedIndex()));
-         aj.c(this.cg);
+         aj.AboutDialog(this.ItemDetailsDialog, GalacticAddress.e(aj.AboutDialog(this.ItemDetailsDialog).getText().trim(), aj.AboutDialogCloseListener(this.ItemDetailsDialog).getSelectedIndex()));
+         aj.AccountPanel(this.ItemDetailsDialog);
       } catch (RuntimeException var3) {
-         JOptionPane.showOptionDialog(this.cg, "Invalid address value, please try again.", "Error", 0, 0, (Icon)null, new Object[]{"Cancel"}, (Object)null);
+         JOptionPane.showOptionDialog(this.ItemDetailsDialog, "Invalid address value, please try again.", "Error", 0, 0, (Icon)null, new Object[]{"Cancel"}, (Object)null);
       }
    }
 }

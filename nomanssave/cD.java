@@ -5,13 +5,13 @@ import java.beans.PropertyChangeListener;
 
 class cD implements PropertyChangeListener {
    // $FF: synthetic field
-   final cy gg;
+   final JsonEditorDialog gg;
 
-   cD(cy var1) {
+   cD(JsonEditorDialog var1) {
       this.gg = var1;
    }
 
    public void propertyChange(PropertyChangeEvent var1) {
-      aH.b("JSONEditor.Divider", (Integer)var1.getNewValue());
+      AppSettings.AboutDialogCloseListener("JSONEditor.Divider", (Integer)var1.getNewValue());
    }
 }

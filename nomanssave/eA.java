@@ -24,7 +24,7 @@ class eA {
          if (var4 instanceof Element) {
             var1 = (Element)var4;
             if (var1.getNodeName().equals("description")) {
-               var2 = ey.a(var1);
+               var2 = ItemDefinition.AboutDialog(var1);
             }
          }
       }
@@ -32,11 +32,11 @@ class eA {
       this.description = var2;
    }
 
-   private String a(String var1, Function var2) {
+   private String AboutDialog(String var1, Function var2) {
       StringBuilder var3 = new StringBuilder();
       int var4 = 0;
 
-      for(Matcher var5 = ey.bn().matcher(var1); var5.find(); var4 = var5.end()) {
+      for(Matcher var5 = ItemDefinition.bn().matcher(var1); var5.find(); var4 = var5.end()) {
          var3.append(var1.substring(var4, var5.start()));
          var3.append((String)var2.apply(var5.group(1)));
       }
@@ -45,15 +45,15 @@ class eA {
       return var3.toString();
    }
 
-   String a(Function var1) {
-      return this.a(this.name, var1);
+   String AboutDialog(Function var1) {
+      return this.AboutDialog(this.name, var1);
    }
 
-   String b(Function var1) {
-      return this.a(this.jM, var1);
+   String AboutDialogCloseListener(Function var1) {
+      return this.AboutDialog(this.jM, var1);
    }
 
-   String c(Function var1) {
-      return this.description == null ? null : this.a(this.description, var1);
+   String AccountPanel(Function var1) {
+      return this.description == null ? null : this.AboutDialog(this.description, var1);
    }
 }

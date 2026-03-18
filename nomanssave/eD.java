@@ -23,7 +23,7 @@ class eD extends eE {
                if (var5.length() != 0) {
                   int var9 = var5.indexOf("\t");
                   if (var9 < 0) {
-                     hc.debug("Mapping not available: " + var5);
+                     Logger.debug("Mapping not available: " + var5);
                      var3.add(var5);
                   } else {
                      String var6 = var5.substring(0, var9);
@@ -34,20 +34,20 @@ class eD extends eE {
                            throw new IOException("Mapping error: " + var6);
                         }
 
-                        hc.debug("Mapping duplicated: " + var6);
+                        Logger.debug("Mapping duplicated: " + var6);
                      } else if ((var8 = this.u(var7)) != null) {
                         if (!var6.equals(var8.key)) {
                            throw new IOException("Reverse error: " + var7);
                         }
 
-                        hc.debug("Reverse duplicated: " + var7);
+                        Logger.debug("Reverse duplicated: " + var7);
                      } else {
                         this.add(var6, var7);
                      }
                   }
                }
             } catch (RuntimeException var13) {
-               hc.a("Ignoring: " + var5, var13);
+               Logger.AboutDialog("Ignoring: " + var5, var13);
             }
          }
       } finally {

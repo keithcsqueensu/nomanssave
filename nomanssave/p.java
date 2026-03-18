@@ -17,15 +17,15 @@ import javax.swing.KeyStroke;
 import javax.swing.table.TableRowSorter;
 
 public class p extends JDialog {
-   private final JTable D;
-   private final TableRowSorter E;
-   private List F;
-   private List G = null;
+   private final JTable table;
+   private final TableRowSorter rowSorter;
+   private List rowList;
+   private List ValidatedTextField = null;
    private static p H = null;
 
    private p(Frame var1) {
       super(var1);
-      this.setSize(aH.cI * 2, aH.cI + aH.cH);
+      this.setSize(AppSettings.cI * 2, AppSettings.cI + AppSettings.cH);
       this.setResizable(false);
       this.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
       this.setModal(true);
@@ -33,14 +33,14 @@ public class p extends JDialog {
       this.setContentPane(var2);
       var2.setLayout(new BorderLayout(0, 0));
       JScrollPane var3 = new JScrollPane();
-      this.D = new JTable();
-      this.D.setSelectionMode(2);
-      this.D.setModel(new q(this));
-      this.D.getColumnModel().getColumn(0).setMaxWidth(24);
-      this.E = new TableRowSorter(this.D.getModel());
-      this.E.setSortable(0, false);
-      this.D.setRowSorter(this.E);
-      var3.setViewportView(this.D);
+      this.table = new JTable();
+      this.table.setSelectionMode(2);
+      this.table.setModel(new q(this));
+      this.table.getColumnModel().getColumn(0).setMaxWidth(24);
+      this.rowSorter = new TableRowSorter(this.table.getModel());
+      this.rowSorter.setSortable(0, false);
+      this.table.setRowSorter(this.rowSorter);
+      var3.setViewportView(this.table);
       var2.add(var3);
       JPanel var4 = new JPanel();
       var4.setLayout(new FlowLayout(2));
@@ -56,55 +56,55 @@ public class p extends JDialog {
    }
 
    private String[] d() {
-      this.D.clearSelection();
-      this.E.setSortKeys(Collections.emptyList());
-      this.E.sort();
-      this.D.updateUI();
-      this.G = null;
+      this.table.clearSelection();
+      this.rowSorter.setSortKeys(Collections.emptyList());
+      this.rowSorter.sort();
+      this.table.updateUI();
+      this.ValidatedTextField = null;
       this.setLocationRelativeTo(this.getParent());
       this.setVisible(true);
-      return this.G == null ? new String[0] : (String[])this.G.toArray(new String[0]);
+      return this.ValidatedTextField == null ? new String[0] : (String[])this.ValidatedTextField.toArray(new String[0]);
    }
 
-   public static String[] b(Container var0) {
+   public static String[] AboutDialogCloseListener(Container var0) {
       if (H == null) {
          Frame var1 = JOptionPane.getFrameForComponent(var0);
          H = new p(var1);
       }
 
-      H.F = ey.bl();
+      H.rowList = ItemDefinition.FrigatesPanel();
       H.setTitle("Add Known Technologies");
       return H.d();
    }
 
-   public static String[] c(Container var0) {
+   public static String[] AccountPanel(Container var0) {
       if (H == null) {
          Frame var1 = JOptionPane.getFrameForComponent(var0);
          H = new p(var1);
       }
 
-      H.F = ey.bm();
+      H.rowList = ItemDefinition.bm();
       H.setTitle("Add Known Products");
       return H.d();
    }
 
    // $FF: synthetic method
-   static List a(p var0) {
-      return var0.F;
+   static List AboutDialog(p var0) {
+      return var0.rowList;
    }
 
    // $FF: synthetic method
-   static JTable b(p var0) {
-      return var0.D;
+   static JTable AboutDialogCloseListener(p var0) {
+      return var0.table;
    }
 
    // $FF: synthetic method
-   static void a(p var0, List var1) {
-      var0.G = var1;
+   static void AboutDialog(p var0, List var1) {
+      var0.ValidatedTextField = var1;
    }
 
    // $FF: synthetic method
-   static List c(p var0) {
-      return var0.G;
+   static List AccountPanel(p var0) {
+      return var0.ValidatedTextField;
    }
 }

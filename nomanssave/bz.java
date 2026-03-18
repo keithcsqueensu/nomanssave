@@ -5,19 +5,19 @@ import java.awt.event.ActionListener;
 
 class bz implements ActionListener {
    // $FF: synthetic field
-   final bl er;
+   final FrigatesPanel er;
 
-   bz(bl var1) {
+   bz(FrigatesPanel var1) {
       this.er = var1;
    }
 
    public void actionPerformed(ActionEvent var1) {
-      if (bl.b(this.er) >= 0) {
-         hc.info("Repairing frigate damage");
-         bl.c(this.er)[bl.b(this.er)].aw(0);
-         bl.c(this.er)[bl.b(this.er)].ax(0);
-         bl.y(this.er).setText("");
-         bl.z(this.er).setVisible(false);
+      if (FrigatesPanel.AboutDialogCloseListener(this.er) >= 0) {
+         Logger.info("Repairing frigate damage");
+         FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].aw(0);
+         FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].ax(0);
+         FrigatesPanel.UpdateDownloadRunnable(this.er).setText("");
+         FrigatesPanel.ShowErrorRunnable(this.er).setVisible(false);
       }
    }
 }

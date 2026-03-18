@@ -1,22 +1,22 @@
 package nomanssave;
 
-class dP extends G {
+class dP extends ValidatedTextField {
    // $FF: synthetic field
-   final dN ia;
+   final ShipsPanel ia;
 
-   dP(dN var1) {
+   dP(ShipsPanel var1) {
       this.ia = var1;
    }
 
    protected String g(String var1) {
-      gH var2 = (gH)dN.p(this.ia).getSelectedItem();
+      Starship var2 = (Starship)ShipsPanel.p(this.ia).getSelectedItem();
       if (var2 == null) {
          return "";
       } else {
          double var3 = var2.ec();
 
          try {
-            double var5 = hf.a(var1, 0.0D, 1000.0D);
+            double var5 = hf.AboutDialog(var1, 0.0D, 1000.0D);
             if (var5 != var3) {
                var2.i(var5);
             }

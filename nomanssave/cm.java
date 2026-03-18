@@ -6,10 +6,10 @@ import javax.swing.filechooser.FileView;
 
 class cm extends FileView {
    // $FF: synthetic field
-   final cl fI;
+   final cl SaveFileMetadata;
 
    cm(cl var1) {
-      this.fI = var1;
+      this.SaveFileMetadata = var1;
    }
 
    public Icon getIcon(File var1) {

@@ -5,10 +5,10 @@ import javax.swing.filechooser.FileFilter;
 
 class cn extends FileFilter {
    // $FF: synthetic field
-   final cl fI;
+   final cl SaveFileMetadata;
 
    cn(cl var1) {
-      this.fI = var1;
+      this.SaveFileMetadata = var1;
    }
 
    public String getDescription() {

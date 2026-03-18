@@ -18,9 +18,9 @@ public class er {
    final String name;
    final gq iB;
    final int iC;
-   final gr iD;
+   final FrigateClass iD;
    final boolean iE;
-   final gr[] iF;
+   final FrigateClass[] iF;
    private static final List iG = new ArrayList();
 
    static {
@@ -53,23 +53,23 @@ public class er {
       this.iB = var2 == null ? null : gq.valueOf(var2);
       this.iC = Integer.parseInt(var1.getAttribute("strength"));
       var2 = var1.getAttribute("primary");
-      this.iD = var2 == null ? null : gr.an(var2);
+      this.iD = var2 == null ? null : FrigateClass.an(var2);
       this.iE = Boolean.parseBoolean(var1.getAttribute("beneficial"));
       this.iF = n(var1.getAttribute("secondary"));
    }
 
-   private static gr[] n(String var0) {
+   private static FrigateClass[] n(String var0) {
       ArrayList var1 = new ArrayList();
       int var2 = 0;
 
       while(var2 < var0.length()) {
          int var4 = var0.indexOf(",", var2);
-         gr var3;
+         FrigateClass var3;
          if (var4 >= 0) {
-            var3 = gr.an(var0.substring(var2, var4));
+            var3 = FrigateClass.an(var0.substring(var2, var4));
             var2 = var4 + 1;
          } else {
-            var3 = gr.an(var0.substring(var2));
+            var3 = FrigateClass.an(var0.substring(var2));
             var2 = var0.length();
          }
 
@@ -78,7 +78,7 @@ public class er {
          }
       }
 
-      return (gr[])var1.toArray(new gr[0]);
+      return (FrigateClass[])var1.toArray(new FrigateClass[0]);
    }
 
    public String getID() {
@@ -106,7 +106,7 @@ public class er {
       return this.name + " (" + var1 + " " + this.iB + ")";
    }
 
-   public static er[] a(gr var0) {
+   public static er[] AboutDialog(FrigateClass var0) {
       return (er[])iG.stream().filter((var1) -> {
          return var1.iD == var0;
       }).toArray((var0x) -> {
@@ -114,7 +114,7 @@ public class er {
       });
    }
 
-   public static er[] b(gr var0) {
+   public static er[] AboutDialogCloseListener(FrigateClass var0) {
       return (er[])iG.stream().filter((var1) -> {
          return Arrays.stream(var1.iF).anyMatch((var1x) -> {
             return var1x == var0;

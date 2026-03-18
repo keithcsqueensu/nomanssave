@@ -1,24 +1,24 @@
 package nomanssave;
 
-class dM extends G {
+class dM extends ValidatedTextField {
    private final gG hH;
    // $FF: synthetic field
-   final dE hE;
+   final SettlementsPanel hE;
 
-   private dM(dE var1, gG var2) {
+   private dM(SettlementsPanel var1, gG var2) {
       this.hE = var1;
       this.hH = var2;
    }
 
    protected String g(String var1) {
-      gE var2 = (gE)dE.a(this.hE).getSelectedItem();
+      SettlementState var2 = (SettlementState)SettlementsPanel.AboutDialog(this.hE).getSelectedItem();
       if (var2 == null) {
          return "";
       } else {
          int var3 = var2.aq(this.hH.ordinal());
 
          try {
-            int var4 = hf.b(var1, 0, this.hH.dY());
+            int var4 = hf.AboutDialogCloseListener(var1, 0, this.hH.dY());
             if (var4 != var3) {
                var2.e(this.hH.ordinal(), var4);
             }
@@ -31,7 +31,7 @@ class dM extends G {
    }
 
    // $FF: synthetic method
-   dM(dE var1, gG var2, dM var3) {
+   dM(SettlementsPanel var1, gG var2, dM var3) {
       this(var1, var2);
    }
 }

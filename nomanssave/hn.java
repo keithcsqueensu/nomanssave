@@ -17,7 +17,7 @@ class hn extends InputStream {
       if (this.sc == 0) {
          return -1;
       } else {
-         int var1 = hm.a(this.sW).read();
+         int var1 = hm.AboutDialog(this.sW).read();
          if (var1 < 0) {
             throw new IOException("short read");
          } else {
@@ -39,7 +39,7 @@ class hn extends InputStream {
             var3 = this.sc;
          }
 
-         var3 = hm.a(this.sW).read(var1, var2, var3);
+         var3 = hm.AboutDialog(this.sW).read(var1, var2, var3);
          if (var3 <= 0) {
             throw new IOException("short read");
          } else {

@@ -44,7 +44,7 @@ public class hm extends FilterInputStream {
    }
 
    // $FF: synthetic method
-   static InputStream a(hm var0) {
+   static InputStream AboutDialog(hm var0) {
       return var0.in;
    }
 }

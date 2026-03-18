@@ -7,7 +7,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class eH extends ey {
+public class eH extends ItemDefinition {
    final boolean jY;
    final String name;
    final ex jZ;
@@ -50,7 +50,7 @@ public class eH extends ey {
          if (var5 instanceof Element) {
             var1 = (Element)var5;
             if (var1.getNodeName().equals("description")) {
-               var3 = a(var1);
+               var3 = AboutDialog(var1);
             } else if (var1.getNodeName().equals("requirement")) {
                var6.add(new ez(this, var1));
             }
@@ -61,7 +61,7 @@ public class eH extends ey {
       this.ke = Collections.unmodifiableList(var6);
    }
 
-   public eB ba() {
+   public eB FormPanel() {
       return eB.jO;
    }
 
@@ -77,7 +77,7 @@ public class eH extends ey {
       return this.jZ;
    }
 
-   public boolean bd() {
+   public boolean FreighterPanel() {
       return !this.jY && this.jZ != ex.ja && this.jZ != ex.iZ;
    }
 

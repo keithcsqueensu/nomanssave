@@ -1,11 +1,11 @@
 package nomanssave;
 
-public class gF implements gQ {
-   private final eY kM;
+public class gF implements ItemData {
+   private final JsonObject kM;
    // $FF: synthetic field
-   final gE rf;
+   final SettlementState rf;
 
-   private gF(gE var1, eY var2) {
+   private gF(SettlementState var1, JsonObject var2) {
       this.rf = var1;
       this.kM = var2;
    }
@@ -24,8 +24,8 @@ public class gF implements gQ {
    }
 
    public void m(Object var1) {
-      this.kM.b("ElementId", var1);
-      this.kM.b("LastChangeTimestamp", (Object)((int)(System.currentTimeMillis() / 1000L)));
+      this.kM.AboutDialogCloseListener("ElementId", var1);
+      this.kM.AboutDialogCloseListener("LastChangeTimestamp", (Object)((int)(System.currentTimeMillis() / 1000L)));
    }
 
    public int dA() {
@@ -33,8 +33,8 @@ public class gF implements gQ {
    }
 
    public void aA(int var1) {
-      this.kM.b("Amount", (Object)var1);
-      this.kM.b("LastChangeTimestamp", (Object)((int)(System.currentTimeMillis() / 1000L)));
+      this.kM.AboutDialogCloseListener("Amount", (Object)var1);
+      this.kM.AboutDialogCloseListener("LastChangeTimestamp", (Object)((int)(System.currentTimeMillis() / 1000L)));
    }
 
    public int dB() {
@@ -42,7 +42,7 @@ public class gF implements gQ {
    }
 
    // $FF: synthetic method
-   gF(gE var1, eY var2, gF var3) {
+   gF(SettlementState var1, JsonObject var2, gF var3) {
       this(var1, var2);
    }
 }

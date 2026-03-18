@@ -32,7 +32,7 @@ public class aj extends JDialog {
    private JLabel[] ca;
    private JTextField m;
    private ImageIcon[] cb;
-   private hl cc = null;
+   private GalacticAddress cc = null;
    private boolean cd = false;
    private static final String ce = "0123456789ABCDEF";
    private static aj cf = null;
@@ -83,7 +83,7 @@ public class aj extends JDialog {
 
       int var11;
       for(var11 = 0; var11 < 16; ++var11) {
-         this.cb[var11] = Application.a("UI-GLYPH" + (var11 + 1) + ".PNG");
+         this.cb[var11] = Application.loadIcon("UI-GLYPH" + (var11 + 1) + ".PNG");
       }
 
       this.ca = new JLabel[12];
@@ -113,7 +113,7 @@ public class aj extends JDialog {
       this.bX.setSelectedIndex(this.cc.es() >= bW.size() ? -1 : this.cc.es());
       this.bX.updateUI();
       this.bY.setText(this.cc.ez());
-      String var1 = this.cc.ey();
+      String var1 = this.cc.ItemDefinition();
       this.bZ.setText(var1);
 
       for(int var2 = 0; var2 < 12; ++var2) {
@@ -123,7 +123,7 @@ public class aj extends JDialog {
 
    }
 
-   private hl a(hl var1) {
+   private GalacticAddress AboutDialog(GalacticAddress var1) {
       this.cc = var1;
       this.m.setText("");
       this.P();
@@ -133,32 +133,32 @@ public class aj extends JDialog {
       return this.cd ? this.cc : null;
    }
 
-   public static hl a(Container var0, hl var1) {
+   public static GalacticAddress AboutDialog(Container var0, GalacticAddress var1) {
       if (cf == null) {
          Frame var2 = JOptionPane.getFrameForComponent(var0);
          cf = new aj(var2);
       }
 
-      return cf.a(var1);
+      return cf.AboutDialog(var1);
    }
 
    // $FF: synthetic method
-   static JTextField a(aj var0) {
+   static JTextField AboutDialog(aj var0) {
       return var0.m;
    }
 
    // $FF: synthetic method
-   static JComboBox b(aj var0) {
+   static JComboBox AboutDialogCloseListener(aj var0) {
       return var0.bX;
    }
 
    // $FF: synthetic method
-   static void a(aj var0, hl var1) {
+   static void AboutDialog(aj var0, GalacticAddress var1) {
       var0.cc = var1;
    }
 
    // $FF: synthetic method
-   static void c(aj var0) {
+   static void AccountPanel(aj var0) {
       var0.P();
    }
 
@@ -168,7 +168,7 @@ public class aj extends JDialog {
    }
 
    // $FF: synthetic method
-   static void a(aj var0, boolean var1) {
+   static void AboutDialog(aj var0, boolean var1) {
       var0.cd = var1;
    }
 }

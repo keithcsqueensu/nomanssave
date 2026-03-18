@@ -17,8 +17,8 @@ class dv implements ActionListener {
 
    public void actionPerformed(ActionEvent var1) {
       if (this.hq != null) {
-         cg.a((Container)du.d(this.hp), (gQ)this.hq);
-         du.c(this.hp);
+         ItemDetailsDialog.AboutDialog((Container)du.d(this.hp), (ItemData)this.hq);
+         du.AccountPanel(this.hp);
       }
 
    }

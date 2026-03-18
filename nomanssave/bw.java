@@ -4,20 +4,20 @@ import javax.swing.ComboBoxModel;
 import javax.swing.event.ListDataListener;
 
 class bw implements ComboBoxModel {
-   gr et;
+   FrigateClass et;
    // $FF: synthetic field
-   final bl er;
+   final FrigatesPanel er;
 
-   bw(bl var1) {
+   bw(FrigatesPanel var1) {
       this.er = var1;
    }
 
    public int getSize() {
-      return gr.values().length;
+      return FrigateClass.values().length;
    }
 
-   public gr u(int var1) {
-      return gr.values()[var1];
+   public FrigateClass u(int var1) {
+      return FrigateClass.values()[var1];
    }
 
    public void addListDataListener(ListDataListener var1) {
@@ -27,30 +27,30 @@ class bw implements ComboBoxModel {
    }
 
    public void setSelectedItem(Object var1) {
-      this.et = (gr)var1;
-      bl.a(this.er, bl.b(this.er) < 0 ? null : nomanssave.er.a(this.et));
-      bl.b(this.er, bl.b(this.er) < 0 ? null : nomanssave.er.b(this.et));
-      if (bl.b(this.er) >= 0 && this.et != null && !this.et.equals(bl.c(this.er)[bl.b(this.er)].da())) {
-         bl.c(this.er)[bl.b(this.er)].c(this.et);
-         if (bl.a(this.er) != null && bl.a(this.er).length > 0) {
-            bl.c(this.er)[bl.b(this.er)].a(0, bl.a(this.er)[0]);
-            bl.p(this.er).setSelectedItem(bl.a(this.er)[0]);
+      this.et = (FrigateClass)var1;
+      FrigatesPanel.AboutDialog(this.er, FrigatesPanel.AboutDialogCloseListener(this.er) < 0 ? null : nomanssave.er.AboutDialog(this.et));
+      FrigatesPanel.AboutDialogCloseListener(this.er, FrigatesPanel.AboutDialogCloseListener(this.er) < 0 ? null : nomanssave.er.AboutDialogCloseListener(this.et));
+      if (FrigatesPanel.AboutDialogCloseListener(this.er) >= 0 && this.et != null && !this.et.equals(FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].da())) {
+         FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].AccountPanel(this.et);
+         if (FrigatesPanel.AboutDialog(this.er) != null && FrigatesPanel.AboutDialog(this.er).length > 0) {
+            FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].AboutDialog(0, FrigatesPanel.AboutDialog(this.er)[0]);
+            FrigatesPanel.p(this.er).setSelectedItem(FrigatesPanel.AboutDialog(this.er)[0]);
          } else {
-            bl.p(this.er).setSelectedItem((Object)null);
+            FrigatesPanel.p(this.er).setSelectedItem((Object)null);
          }
 
-         bl.q(this.er).setSelectedItem((Object)null);
-         bl.r(this.er).setSelectedItem((Object)null);
-         bl.s(this.er).setSelectedItem((Object)null);
-         bl.t(this.er).setSelectedItem((Object)null);
+         FrigatesPanel.q(this.er).setSelectedItem((Object)null);
+         FrigatesPanel.r(this.er).setSelectedItem((Object)null);
+         FrigatesPanel.s(this.er).setSelectedItem((Object)null);
+         FrigatesPanel.t(this.er).setSelectedItem((Object)null);
       }
 
-      bl.e(this.er).updateUI();
-      bl.p(this.er).updateUI();
-      bl.q(this.er).updateUI();
-      bl.r(this.er).updateUI();
-      bl.s(this.er).updateUI();
-      bl.t(this.er).updateUI();
+      FrigatesPanel.e(this.er).updateUI();
+      FrigatesPanel.p(this.er).updateUI();
+      FrigatesPanel.q(this.er).updateUI();
+      FrigatesPanel.r(this.er).updateUI();
+      FrigatesPanel.s(this.er).updateUI();
+      FrigatesPanel.t(this.er).updateUI();
    }
 
    public Object getSelectedItem() {

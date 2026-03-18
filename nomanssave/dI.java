@@ -5,9 +5,9 @@ import javax.swing.table.TableModel;
 
 class dI implements TableModel {
    // $FF: synthetic field
-   final dE hE;
+   final SettlementsPanel hE;
 
-   dI(dE var1) {
+   dI(SettlementsPanel var1) {
       this.hE = var1;
    }
 
@@ -36,14 +36,14 @@ class dI implements TableModel {
    }
 
    public int getRowCount() {
-      gE var1 = (gE)dE.a(this.hE).getSelectedItem();
+      SettlementState var1 = (SettlementState)SettlementsPanel.AboutDialog(this.hE).getSelectedItem();
       return var1 == null ? 0 : var1.dW();
    }
 
    public Object getValueAt(int var1, int var2) {
-      gE var3 = (gE)dE.a(this.hE).getSelectedItem();
-      String var4 = var3 == null ? null : var3.aH(var1);
-      eM var5 = eM.x(var4);
+      SettlementState var3 = (SettlementState)SettlementsPanel.AboutDialog(this.hE).getSelectedItem();
+      String var4 = var3 == null ? null : var3.AppSettings(var1);
+      eM var5 = eM.UpdateCheckThread(var4);
       switch(var2) {
       case 0:
          return var4;
@@ -64,10 +64,10 @@ class dI implements TableModel {
    }
 
    public void setValueAt(Object var1, int var2, int var3) {
-      gE var4 = (gE)dE.a(this.hE).getSelectedItem();
+      SettlementState var4 = (SettlementState)SettlementsPanel.AboutDialog(this.hE).getSelectedItem();
       if (var4 != null && var3 == 1) {
          eM var5 = (eM)var1;
-         String var6 = var4.aH(var2);
+         String var6 = var4.AppSettings(var2);
          if (var5.bb()) {
             int var7 = var6.indexOf("#");
             if (var7 >= 0 && var6.substring(0, var7).equals(var5.getID())) {
@@ -75,13 +75,13 @@ class dI implements TableModel {
             }
 
             String var8 = "#" + (int)Math.floor(Math.random() * 100000.0D);
-            var4.c(var2, var5.getID() + var8);
+            var4.AccountPanel(var2, var5.getID() + var8);
          } else {
             if (var6.endsWith(var5.getID())) {
                return;
             }
 
-            var4.c(var2, var5.getID());
+            var4.AccountPanel(var2, var5.getID());
          }
 
       }

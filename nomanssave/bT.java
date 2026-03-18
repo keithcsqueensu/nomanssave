@@ -5,33 +5,33 @@ import java.awt.event.ActionListener;
 
 class bT implements ActionListener {
    // $FF: synthetic field
-   final bS fk;
+   final InventorySlotPanel fk;
    // $FF: synthetic field
-   private final int fl;
+   private final int FileWatcher;
    // $FF: synthetic field
-   private final int fm;
+   private final int FileWatcherThread;
 
-   bT(bS var1, int var2, int var3) {
+   bT(InventorySlotPanel var1, int var2, int var3) {
       this.fk = var1;
-      this.fl = var2;
-      this.fm = var3;
+      this.FileWatcher = var2;
+      this.FileWatcherThread = var3;
    }
 
    public void actionPerformed(ActionEvent var1) {
-      if (bO.a(bS.j(this.fk)).dp() || en.aS()) {
-         if (bS.b(this.fk).isSelected()) {
-            bO.a(bS.j(this.fk)).i(this.fl, this.fm);
+      if (InventoryPanel.AboutDialog(InventorySlotPanel.j(this.fk)).dp() || en.aS()) {
+         if (InventorySlotPanel.AboutDialogCloseListener(this.fk).isSelected()) {
+            InventoryPanel.AboutDialog(InventorySlotPanel.j(this.fk)).i(this.FileWatcher, this.FileWatcherThread);
          } else {
-            if (bO.a(bS.j(this.fk)).f(this.fl, this.fm) != null) {
-               bS.b(this.fk).setSelected(true);
-               bO.b(bS.j(this.fk)).c("Cannot disable slots that are in use!");
+            if (InventoryPanel.AboutDialog(InventorySlotPanel.j(this.fk)).f(this.FileWatcher, this.FileWatcherThread) != null) {
+               InventorySlotPanel.AboutDialogCloseListener(this.fk).setSelected(true);
+               InventoryPanel.AboutDialogCloseListener(InventorySlotPanel.j(this.fk)).AccountPanel("Cannot disable slots that are in use!");
                return;
             }
 
-            bO.a(bS.j(this.fk)).j(this.fl, this.fm);
+            InventoryPanel.AboutDialog(InventorySlotPanel.j(this.fk)).j(this.FileWatcher, this.FileWatcherThread);
          }
 
-         bS.c(this.fk);
+         InventorySlotPanel.AccountPanel(this.fk);
       }
    }
 }

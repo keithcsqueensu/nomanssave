@@ -5,9 +5,9 @@ import javax.swing.event.ListDataListener;
 
 class ab implements ComboBoxModel {
    // $FF: synthetic field
-   final X bV;
+   final CompanionsPanel bV;
 
-   ab(X var1) {
+   ab(CompanionsPanel var1) {
       this.bV = var1;
    }
 

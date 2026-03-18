@@ -6,23 +6,23 @@ import java.util.List;
 import javax.swing.JComboBox;
 
 public class cN extends JComboBox {
-   private final boolean gm;
-   private final Enum[] gn;
-   private final List go;
-   private cR gp;
+   private final boolean Freighter;
+   private final Enum[] FreighterBase;
+   private final List FreighterType;
+   private cR Frigate;
    private Object gq;
-   private static final Color gr;
+   private static final Color FrigateClass;
    private static final Color gs;
 
    static {
-      gr = Color.RED;
+      FrigateClass = Color.RED;
       gs = new Color(255, 100, 100);
    }
 
    public cN(Class var1) {
-      this.gm = gD.class.isAssignableFrom(var1);
-      this.gn = (Enum[])var1.getEnumConstants();
-      this.go = new ArrayList();
+      this.Freighter = gD.class.isAssignableFrom(var1);
+      this.FreighterBase = (Enum[])var1.getEnumConstants();
+      this.FreighterType = new ArrayList();
       this.setModel(new cO(this, var1));
       this.setRenderer(new cP(this));
    }
@@ -31,11 +31,11 @@ public class cN extends JComboBox {
       Object var2 = null;
       if (var1 != null) {
          Enum[] var6;
-         int var5 = (var6 = this.gn).length;
+         int var5 = (var6 = this.FreighterBase).length;
 
          for(int var4 = 0; var4 < var5; ++var4) {
             Enum var3 = var6[var4];
-            if (this.gm) {
+            if (this.Freighter) {
                if (((gD)var3).K().equals(var1)) {
                   var2 = var3;
                   break;
@@ -47,12 +47,12 @@ public class cN extends JComboBox {
          }
 
          if (var2 == null) {
-            int var7 = this.go.indexOf(new cQ(this, var1));
+            int var7 = this.FreighterType.indexOf(new cQ(this, var1));
             if (var7 >= 0) {
-               var2 = this.go.get(var7);
+               var2 = this.FreighterType.get(var7);
             } else {
-               var2 = this.gm ? new cS(this, var1) : var1;
-               this.go.add(var2);
+               var2 = this.Freighter ? new cS(this, var1) : var1;
+               this.FreighterType.add(var2);
             }
          }
       }
@@ -62,38 +62,38 @@ public class cN extends JComboBox {
       this.updateUI();
    }
 
-   public void a(cR var1) {
-      this.gp = var1;
+   public void AboutDialog(cR var1) {
+      this.Frigate = var1;
    }
 
    // $FF: synthetic method
-   static List a(cN var0) {
-      return var0.go;
+   static List AboutDialog(cN var0) {
+      return var0.FreighterType;
    }
 
    // $FF: synthetic method
-   static Object b(cN var0) {
+   static Object AboutDialogCloseListener(cN var0) {
       return var0.gq;
    }
 
    // $FF: synthetic method
-   static void a(cN var0, Object var1) {
+   static void AboutDialog(cN var0, Object var1) {
       var0.gq = var1;
    }
 
    // $FF: synthetic method
-   static cR c(cN var0) {
-      return var0.gp;
+   static cR AccountPanel(cN var0) {
+      return var0.Frigate;
    }
 
    // $FF: synthetic method
    static boolean d(cN var0) {
-      return var0.gm;
+      return var0.Freighter;
    }
 
    // $FF: synthetic method
    static Enum[] e(cN var0) {
-      return var0.gn;
+      return var0.FreighterBase;
    }
 
    // $FF: synthetic method
@@ -103,6 +103,6 @@ public class cN extends JComboBox {
 
    // $FF: synthetic method
    static Color aB() {
-      return gr;
+      return FrigateClass;
    }
 }

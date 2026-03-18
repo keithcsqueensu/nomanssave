@@ -14,86 +14,86 @@ class bu implements Runnable {
    }
 
    public void run() {
-      bl.a(bt.a(this.es), bl.e(bt.a(this.es)).getSelectedRow());
+      FrigatesPanel.AboutDialog(bt.AboutDialog(this.es), FrigatesPanel.e(bt.AboutDialog(this.es)).getSelectedRow());
       int var1;
-      if (bl.b(bt.a(this.es)) < 0) {
-         bl.a(bt.a(this.es), new er[0]);
-         bl.b(bt.a(this.es), new er[0]);
-         bl.h(bt.a(this.es)).setVisible(false);
-         bl.i(bt.a(this.es)).setVisible(false);
-         bl.j(bt.a(this.es)).setText("");
-         bl.k(bt.a(this.es)).setSelectedIndex(-1);
-         bl.l(bt.a(this.es)).setText("");
-         bl.m(bt.a(this.es)).setSelectedIndex(-1);
-         bl.n(bt.a(this.es)).setText("");
-         bl.o(bt.a(this.es)).setText("");
+      if (FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es)) < 0) {
+         FrigatesPanel.AboutDialog(bt.AboutDialog(this.es), new er[0]);
+         FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es), new er[0]);
+         FrigatesPanel.h(bt.AboutDialog(this.es)).setVisible(false);
+         FrigatesPanel.i(bt.AboutDialog(this.es)).setVisible(false);
+         FrigatesPanel.j(bt.AboutDialog(this.es)).setText("");
+         FrigatesPanel.k(bt.AboutDialog(this.es)).setSelectedIndex(-1);
+         FrigatesPanel.l(bt.AboutDialog(this.es)).setText("");
+         FrigatesPanel.m(bt.AboutDialog(this.es)).setSelectedIndex(-1);
+         FrigatesPanel.n(bt.AboutDialog(this.es)).setText("");
+         FrigatesPanel.o(bt.AboutDialog(this.es)).setText("");
 
-         for(var1 = 0; var1 < bl.d(bt.a(this.es)).length; ++var1) {
-            bl.d(bt.a(this.es))[var1].setText("");
+         for(var1 = 0; var1 < FrigatesPanel.d(bt.AboutDialog(this.es)).length; ++var1) {
+            FrigatesPanel.d(bt.AboutDialog(this.es))[var1].setText("");
          }
 
-         bl.p(bt.a(this.es)).setSelectedIndex(-1);
-         bl.q(bt.a(this.es)).setSelectedIndex(-1);
-         bl.r(bt.a(this.es)).setSelectedIndex(-1);
-         bl.s(bt.a(this.es)).setSelectedIndex(-1);
-         bl.t(bt.a(this.es)).setSelectedIndex(-1);
-         bl.u(bt.a(this.es)).setText("");
-         bl.v(bt.a(this.es)).setText("");
-         bl.w(bt.a(this.es)).setText("");
-         bl.x(bt.a(this.es)).setText("");
-         bl.h(bt.a(this.es)).updateUI();
-         bl.i(bt.a(this.es)).updateUI();
-         bl.y(bt.a(this.es)).setText("");
-         bl.z(bt.a(this.es)).setVisible(false);
-         bl.A(bt.a(this.es)).setEnabled(false);
-         bl.g(bt.a(this.es)).setEnabled(false);
+         FrigatesPanel.p(bt.AboutDialog(this.es)).setSelectedIndex(-1);
+         FrigatesPanel.q(bt.AboutDialog(this.es)).setSelectedIndex(-1);
+         FrigatesPanel.r(bt.AboutDialog(this.es)).setSelectedIndex(-1);
+         FrigatesPanel.s(bt.AboutDialog(this.es)).setSelectedIndex(-1);
+         FrigatesPanel.t(bt.AboutDialog(this.es)).setSelectedIndex(-1);
+         FrigatesPanel.u(bt.AboutDialog(this.es)).setText("");
+         FrigatesPanel.RefreshRunnable(bt.AboutDialog(this.es)).setText("");
+         FrigatesPanel.AppStartupRunnable(bt.AboutDialog(this.es)).setText("");
+         FrigatesPanel.UpdateCheckThread(bt.AboutDialog(this.es)).setText("");
+         FrigatesPanel.h(bt.AboutDialog(this.es)).updateUI();
+         FrigatesPanel.i(bt.AboutDialog(this.es)).updateUI();
+         FrigatesPanel.UpdateDownloadRunnable(bt.AboutDialog(this.es)).setText("");
+         FrigatesPanel.ShowErrorRunnable(bt.AboutDialog(this.es)).setVisible(false);
+         FrigatesPanel.ShowWarningRunnable(bt.AboutDialog(this.es)).setEnabled(false);
+         FrigatesPanel.g(bt.AboutDialog(this.es)).setEnabled(false);
       } else {
-         bl.a(bt.a(this.es), er.a(bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].da()));
-         bl.b(bt.a(this.es), er.b(bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].da()));
-         bl.h(bt.a(this.es)).setVisible(true);
-         bl.i(bt.a(this.es)).setVisible(true);
-         bl.j(bt.a(this.es)).setText(bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].getName());
-         bl.k(bt.a(this.es)).setSelectedItem(bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].da());
-         bl.l(bt.a(this.es)).setText(bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].cW().toString());
-         bl.m(bt.a(this.es)).m(bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].db());
-         bl.n(bt.a(this.es)).setText(bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].cU());
-         bl.o(bt.a(this.es)).setText(bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].cV());
+         FrigatesPanel.AboutDialog(bt.AboutDialog(this.es), er.AboutDialog(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].da()));
+         FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es), er.AboutDialogCloseListener(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].da()));
+         FrigatesPanel.h(bt.AboutDialog(this.es)).setVisible(true);
+         FrigatesPanel.i(bt.AboutDialog(this.es)).setVisible(true);
+         FrigatesPanel.j(bt.AboutDialog(this.es)).setText(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].getName());
+         FrigatesPanel.k(bt.AboutDialog(this.es)).setSelectedItem(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].da());
+         FrigatesPanel.l(bt.AboutDialog(this.es)).setText(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].LineNumberPanel().toString());
+         FrigatesPanel.m(bt.AboutDialog(this.es)).m(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].db());
+         FrigatesPanel.n(bt.AboutDialog(this.es)).setText(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].cU());
+         FrigatesPanel.o(bt.AboutDialog(this.es)).setText(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].cV());
 
-         for(var1 = 0; var1 < bl.d(bt.a(this.es)).length; ++var1) {
-            bl.d(bt.a(this.es))[var1].setText(Integer.toString(bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].aq(var1)));
+         for(var1 = 0; var1 < FrigatesPanel.d(bt.AboutDialog(this.es)).length; ++var1) {
+            FrigatesPanel.d(bt.AboutDialog(this.es))[var1].setText(Integer.toString(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].aq(var1)));
          }
 
-         bl.p(bt.a(this.es)).setSelectedItem(bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].ar(0));
-         bl.q(bt.a(this.es)).setSelectedItem(bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].ar(1));
-         bl.r(bt.a(this.es)).setSelectedItem(bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].ar(2));
-         bl.s(bt.a(this.es)).setSelectedItem(bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].ar(3));
-         bl.t(bt.a(this.es)).setSelectedItem(bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].ar(4));
-         bl.u(bt.a(this.es)).setText(Integer.toString(bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].dc()));
-         bl.v(bt.a(this.es)).setText(Integer.toString(bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].dd()));
-         bl.w(bt.a(this.es)).setText(Integer.toString(bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].de()));
-         bl.x(bt.a(this.es)).setText(Integer.toString(bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].df()));
-         if (this.bv.j(bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].getIndex())) {
-            bl.y(bt.a(this.es)).setText("Status: On Mission");
-            bl.y(bt.a(this.es)).setForeground(Color.BLUE);
-            bl.z(bt.a(this.es)).setVisible(false);
-         } else if (bl.c(bt.a(this.es))[bl.b(bt.a(this.es))].dh() > 0) {
-            bl.y(bt.a(this.es)).setText("Status: Damaged!");
-            bl.y(bt.a(this.es)).setForeground(Color.RED);
-            bl.z(bt.a(this.es)).setVisible(true);
+         FrigatesPanel.p(bt.AboutDialog(this.es)).setSelectedItem(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].ar(0));
+         FrigatesPanel.q(bt.AboutDialog(this.es)).setSelectedItem(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].ar(1));
+         FrigatesPanel.r(bt.AboutDialog(this.es)).setSelectedItem(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].ar(2));
+         FrigatesPanel.s(bt.AboutDialog(this.es)).setSelectedItem(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].ar(3));
+         FrigatesPanel.t(bt.AboutDialog(this.es)).setSelectedItem(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].ar(4));
+         FrigatesPanel.u(bt.AboutDialog(this.es)).setText(Integer.toString(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].dc()));
+         FrigatesPanel.RefreshRunnable(bt.AboutDialog(this.es)).setText(Integer.toString(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].dd()));
+         FrigatesPanel.AppStartupRunnable(bt.AboutDialog(this.es)).setText(Integer.toString(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].de()));
+         FrigatesPanel.UpdateCheckThread(bt.AboutDialog(this.es)).setText(Integer.toString(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].df()));
+         if (this.bv.j(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].getIndex())) {
+            FrigatesPanel.UpdateDownloadRunnable(bt.AboutDialog(this.es)).setText("Status: On Mission");
+            FrigatesPanel.UpdateDownloadRunnable(bt.AboutDialog(this.es)).setForeground(Color.BLUE);
+            FrigatesPanel.ShowErrorRunnable(bt.AboutDialog(this.es)).setVisible(false);
+         } else if (FrigatesPanel.AccountPanel(bt.AboutDialog(this.es))[FrigatesPanel.AboutDialogCloseListener(bt.AboutDialog(this.es))].dh() > 0) {
+            FrigatesPanel.UpdateDownloadRunnable(bt.AboutDialog(this.es)).setText("Status: Damaged!");
+            FrigatesPanel.UpdateDownloadRunnable(bt.AboutDialog(this.es)).setForeground(Color.RED);
+            FrigatesPanel.ShowErrorRunnable(bt.AboutDialog(this.es)).setVisible(true);
          } else {
-            bl.y(bt.a(this.es)).setText("");
-            bl.z(bt.a(this.es)).setVisible(false);
+            FrigatesPanel.UpdateDownloadRunnable(bt.AboutDialog(this.es)).setText("");
+            FrigatesPanel.ShowErrorRunnable(bt.AboutDialog(this.es)).setVisible(false);
          }
 
-         bl.h(bt.a(this.es)).updateUI();
-         bl.i(bt.a(this.es)).updateUI();
-         bl.p(bt.a(this.es)).updateUI();
-         bl.q(bt.a(this.es)).updateUI();
-         bl.r(bt.a(this.es)).updateUI();
-         bl.s(bt.a(this.es)).updateUI();
-         bl.t(bt.a(this.es)).updateUI();
-         bl.A(bt.a(this.es)).setEnabled(bl.c(bt.a(this.es)).length > 1);
-         bl.g(bt.a(this.es)).setEnabled(bl.c(bt.a(this.es)).length < 30 || en.aS());
+         FrigatesPanel.h(bt.AboutDialog(this.es)).updateUI();
+         FrigatesPanel.i(bt.AboutDialog(this.es)).updateUI();
+         FrigatesPanel.p(bt.AboutDialog(this.es)).updateUI();
+         FrigatesPanel.q(bt.AboutDialog(this.es)).updateUI();
+         FrigatesPanel.r(bt.AboutDialog(this.es)).updateUI();
+         FrigatesPanel.s(bt.AboutDialog(this.es)).updateUI();
+         FrigatesPanel.t(bt.AboutDialog(this.es)).updateUI();
+         FrigatesPanel.ShowWarningRunnable(bt.AboutDialog(this.es)).setEnabled(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es)).length > 1);
+         FrigatesPanel.g(bt.AboutDialog(this.es)).setEnabled(FrigatesPanel.AccountPanel(bt.AboutDialog(this.es)).length < 30 || en.aS());
       }
    }
 }

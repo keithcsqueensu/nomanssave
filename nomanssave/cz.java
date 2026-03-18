@@ -7,21 +7,21 @@ import java.awt.event.ComponentEvent;
 
 class cz extends ComponentAdapter {
    // $FF: synthetic field
-   final cy gg;
+   final JsonEditorDialog gg;
 
-   cz(cy var1) {
+   cz(JsonEditorDialog var1) {
       this.gg = var1;
    }
 
    public void componentMoved(ComponentEvent var1) {
       Point var2 = this.gg.getBounds().getLocation();
-      aH.b("JSONEditor.X", var2.x);
-      aH.b("JSONEditor.Y", var2.y);
+      AppSettings.AboutDialogCloseListener("JSONEditor.X", var2.UpdateCheckThread);
+      AppSettings.AboutDialogCloseListener("JSONEditor.Y", var2.UpdateDownloadRunnable);
    }
 
    public void componentResized(ComponentEvent var1) {
       Dimension var2 = this.gg.getBounds().getSize();
-      aH.b("JSONEditor.Width", var2.width);
-      aH.b("JSONEditor.Height", var2.height);
+      AppSettings.AboutDialogCloseListener("JSONEditor.Width", var2.width);
+      AppSettings.AboutDialogCloseListener("JSONEditor.Height", var2.height);
    }
 }

@@ -6,26 +6,26 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class fu implements fq {
+public class fu implements SaveLocation {
    private static final byte[] lA = "NOMANSKY".getBytes();
    private static final byte[] lB = new byte[]{126, -25, 85, -54, -47, 7, 0, 0};
    private static final Pattern lC = Pattern.compile("\\{\"Version\":(\\d*),.*");
    private final File lD;
-   private fR lE;
+   private SaveChangeListener lE;
    private fw[] lF;
    private fv lG;
    private fx[] lH;
 
-   public static fn ag(int var0) {
+   public static GameMode ag(int var0) {
       int var1 = (3584 & var0) >> 9;
-      if (var1 <= 0 && var1 > fn.values().length) {
+      if (var1 <= 0 && var1 > GameMode.values().length) {
          throw new RuntimeException("Unsupported version: " + var0);
       } else {
-         return fn.values()[var1 - 1];
+         return GameMode.values()[var1 - 1];
       }
    }
 
-   fu(File var1, fR var2) {
+   fu(File var1, SaveChangeListener var2) {
       this.lD = var1.isFile() ? var1 : new File(var1, "memory.dat");
       this.lE = var2;
       System.out.println(this.lD.getAbsolutePath());
@@ -37,7 +37,7 @@ public class fu implements fq {
          byte[] var6 = new byte[8];
          hk.readFully(var3, var6);
          var4 += (long)var6.length;
-         if (!a(var6, lA)) {
+         if (!AboutDialog(var6, lA)) {
             throw new IOException("Invalid header");
          }
 
@@ -102,19 +102,19 @@ public class fu implements fq {
          }
       }
 
-      fl.a(this, this.lD.getParentFile());
+      FileWatcher.AboutDialog(this, this.lD.getParentFile());
    }
 
-   public File bS() {
+   public File InventorySlotPanel() {
       return this.lD;
    }
 
-   public fr bT() {
+   public AccountData bT() {
       return this.lG;
    }
 
-   public ft[] bU() {
-      ft[] var1 = new ft[15];
+   public SaveSlot[] bU() {
+      SaveSlot[] var1 = new SaveSlot[15];
 
       for(int var2 = 0; var2 < 15; ++var2) {
          var1[var2] = new fy(this, var2);
@@ -127,15 +127,15 @@ public class fu implements fq {
       return -1;
    }
 
-   public void X(String var1) {
+   public void CompanionsPanel(String var1) {
       var1.equals(this.lD.getName());
    }
 
    public static void main(String[] var0) {
-      new fu(new File("D:\\Temp\\PS4_NEW"), (fR)null);
+      new fu(new File("D:\\Temp\\PS4_NEW"), (SaveChangeListener)null);
    }
 
-   private static boolean a(byte[] var0, byte[] var1) {
+   private static boolean AboutDialog(byte[] var0, byte[] var1) {
       for(int var2 = 0; var2 < var0.length; ++var2) {
          if (var0[var2] != var1[var2]) {
             return false;
@@ -146,7 +146,7 @@ public class fu implements fq {
    }
 
    // $FF: synthetic method
-   static fx[] a(fu var0) {
+   static fx[] AboutDialog(fu var0) {
       return var0.lH;
    }
 
@@ -156,17 +156,17 @@ public class fu implements fq {
    }
 
    // $FF: synthetic method
-   static boolean b(byte[] var0, byte[] var1) {
-      return a(var0, var1);
+   static boolean AboutDialogCloseListener(byte[] var0, byte[] var1) {
+      return AboutDialog(var0, var1);
    }
 
    // $FF: synthetic method
-   static File b(fu var0) {
+   static File AboutDialogCloseListener(fu var0) {
       return var0.lD;
    }
 
    // $FF: synthetic method
-   static fw[] c(fu var0) {
+   static fw[] AccountPanel(fu var0) {
       return var0.lF;
    }
 }

@@ -1,6 +1,6 @@
 package nomanssave;
 
-class eh extends G {
+class eh extends ValidatedTextField {
    // $FF: synthetic field
    final ec ik;
    // $FF: synthetic field
@@ -14,13 +14,13 @@ class eh extends G {
    protected String g(String var1) {
       try {
          var1 = hg.aB(var1).toString();
-         if (!var1.equals(eb.a(ec.h(this.ik))[this.il].eg())) {
-            eb.a(ec.h(this.ik))[this.il].ay(var1);
+         if (!var1.equals(SquadronPanel.AboutDialog(ec.h(this.ik))[this.il].eg())) {
+            SquadronPanel.AboutDialog(ec.h(this.ik))[this.il].ay(var1);
          }
 
          return var1;
       } catch (RuntimeException var3) {
-         return eb.a(ec.h(this.ik))[this.il].eg();
+         return SquadronPanel.AboutDialog(ec.h(this.ik))[this.il].eg();
       }
    }
 }

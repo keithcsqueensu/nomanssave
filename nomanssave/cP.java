@@ -7,10 +7,10 @@ import javax.swing.JList;
 
 class cP extends DefaultListCellRenderer {
    // $FF: synthetic field
-   final cN gt;
+   final cN Inventory;
 
    cP(cN var1) {
-      this.gt = var1;
+      this.Inventory = var1;
    }
 
    public Component getListCellRendererComponent(JList var1, Object var2, int var3, boolean var4, boolean var5) {
@@ -23,7 +23,7 @@ class cP extends DefaultListCellRenderer {
       if (var6 instanceof JLabel) {
          boolean var12 = false;
          Enum[] var11;
-         int var10 = (var11 = cN.e(this.gt)).length;
+         int var10 = (var11 = cN.e(this.Inventory)).length;
 
          for(int var9 = 0; var9 < var10; ++var9) {
             Enum var8 = var11[var9];

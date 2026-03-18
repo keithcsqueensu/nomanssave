@@ -19,7 +19,7 @@ class bM implements FocusListener {
    }
 
    public void focusLost(FocusEvent var1) {
-      if (bE.a(bL.a(this.eC)) != null) {
+      if (MilestonesPanel.AboutDialog(bL.AboutDialog(this.eC)) != null) {
          JTextField var2 = (JTextField)var1.getComponent();
          String var3 = this.eD.ab();
          String var4 = var2.getText();

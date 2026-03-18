@@ -1,20 +1,20 @@
 package nomanssave;
 
-class fB extends fH implements fr {
+class fB extends fH implements AccountData {
    // $FF: synthetic field
-   final fA ma;
+   final PS4SaveLocation ma;
 
-   fB(fA var1) {
+   fB(PS4SaveLocation var1) {
       super(var1, "savedata00.hg", true);
       this.ma = var1;
    }
 
-   public eY M() {
-      return fA.b(this.readBytes(), eG.jW);
+   public JsonObject M() {
+      return PS4SaveLocation.AboutDialogCloseListener(this.readBytes(), eG.jW);
    }
 
-   public void k(eY var1) {
-      this.a("ps4_accountdata", (fn)null, (String)null, (String)null);
-      this.writeBytes(fA.l(var1));
+   public void k(JsonObject var1) {
+      this.AboutDialog("ps4_accountdata", (GameMode)null, (String)null, (String)null);
+      this.writeBytes(PS4SaveLocation.l(var1));
    }
 }

@@ -3,19 +3,19 @@ package nomanssave;
 class eZ extends fc {
    final int index;
    // $FF: synthetic field
-   final eY kL;
+   final JsonObject kL;
 
-   eZ(eY var1, int var2, fc var3) {
+   eZ(JsonObject var1, int var2, fc var3) {
       super(var1, var3);
       this.kL = var1;
       this.index = var2;
    }
 
-   Object a(Class var1, boolean var2) {
+   Object AboutDialog(Class var1, boolean var2) {
       if (this.kN == null) {
          throw new RuntimeException("Unexpected path");
       } else {
-         eV var3 = (eV)this.kN.a(eV.class, var2);
+         JsonArray var3 = (JsonArray)this.kN.AboutDialog(JsonArray.class, var2);
          if (this.index >= 0 && this.index <= var3.length) {
             if (this.index == var3.length) {
                if (!var2) {
@@ -46,16 +46,16 @@ class eZ extends fc {
       if (this.kN == null) {
          throw new RuntimeException("Unexpected path");
       } else {
-         eV var1 = (eV)this.kN.a(eV.class, false);
+         JsonArray var1 = (JsonArray)this.kN.AboutDialog(JsonArray.class, false);
          return var1.get(this.index);
       }
    }
 
-   Object a(Object var1, boolean var2) {
+   Object AboutDialog(Object var1, boolean var2) {
       if (this.kN == null) {
          throw new RuntimeException("Unexpected path");
       } else {
-         eV var3 = (eV)this.kN.a(eV.class, var2);
+         JsonArray var3 = (JsonArray)this.kN.AboutDialog(JsonArray.class, var2);
          if (this.index == var3.length) {
             var3.add(var1);
             return null;
@@ -69,23 +69,23 @@ class eZ extends fc {
       if (this.kN == null) {
          throw new RuntimeException("Unexpected path");
       } else {
-         eV var1 = (eV)this.kN.a(eV.class, false);
+         JsonArray var1 = (JsonArray)this.kN.AboutDialog(JsonArray.class, false);
          return var1.remove(this.index);
       }
    }
 
-   eY e(eY var1) {
+   JsonObject e(JsonObject var1) {
       if (this.kN == null) {
          throw new RuntimeException("Unexpected path");
       } else {
-         eV var2 = (eV)this.kN.a(eV.class, false);
+         JsonArray var2 = (JsonArray)this.kN.AboutDialog(JsonArray.class, false);
          Object var3 = var2.get(this.index);
          if (var3 == null) {
             var2.set(this.index, var1);
             return null;
-         } else if (var3 instanceof eY) {
-            ((eY)var3).c(var1);
-            return (eY)var3;
+         } else if (var3 instanceof JsonObject) {
+            ((JsonObject)var3).AccountPanel(var1);
+            return (JsonObject)var3;
          } else {
             throw new RuntimeException("Unsupported type: " + var3.getClass().getSimpleName());
          }

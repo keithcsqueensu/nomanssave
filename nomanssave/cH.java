@@ -9,15 +9,15 @@ import javax.swing.text.TextAction;
 
 class cH extends TextAction implements ClipboardOwner {
    // $FF: synthetic field
-   final cy gg;
+   final JsonEditorDialog gg;
 
-   public cH(cy var1) {
+   public cH(JsonEditorDialog var1) {
       super("Paste From Clipboard");
       this.gg = var1;
    }
 
    public void actionPerformed(ActionEvent var1) {
-      String var2 = cy.az();
+      String var2 = JsonEditorDialog.az();
       ((JTextArea)var1.getSource()).replaceSelection(var2);
    }
 

@@ -8,7 +8,7 @@ import javax.swing.UIManager;
 public class cl extends JFileChooser {
    private static cl fG = null;
    private static final String name = "Planetary Base Backup File";
-   private static final ImageIcon fH = Application.a("UI-BASEICON.PNG", 16, 16);
+   private static final ImageIcon fH = Application.loadScaledIcon("UI-BASEICON.PNG", 16, 16);
 
    public static cl ar() {
       if (fG == null) {

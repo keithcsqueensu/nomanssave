@@ -1,22 +1,22 @@
 package nomanssave;
 
-class bv extends G {
+class bv extends ValidatedTextField {
    // $FF: synthetic field
-   final bl er;
+   final FrigatesPanel er;
 
-   bv(bl var1) {
+   bv(FrigatesPanel var1) {
       this.er = var1;
    }
 
    protected String g(String var1) {
-      if (bl.b(this.er) < 0) {
+      if (FrigatesPanel.AboutDialogCloseListener(this.er) < 0) {
          return "";
       } else {
          var1 = var1.trim();
-         if (!var1.equals(bl.c(this.er)[bl.b(this.er)].getName())) {
-            bl.c(this.er)[bl.b(this.er)].setName(var1);
-            bl.j(this.er).setText(var1);
-            bl.e(this.er).updateUI();
+         if (!var1.equals(FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].getName())) {
+            FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].setName(var1);
+            FrigatesPanel.j(this.er).setText(var1);
+            FrigatesPanel.e(this.er).updateUI();
          }
 
          return var1;

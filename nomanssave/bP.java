@@ -5,18 +5,18 @@ import javax.swing.event.ListDataListener;
 
 class bP implements ComboBoxModel {
    // $FF: synthetic field
-   final bO eX;
+   final InventoryPanel JsonParseException;
 
-   bP(bO var1) {
-      this.eX = var1;
+   bP(InventoryPanel var1) {
+      this.JsonParseException = var1;
    }
 
    public int getSize() {
-      return bO.d(this.eX).size();
+      return InventoryPanel.d(this.JsonParseException).size();
    }
 
-   public gt w(int var1) {
-      return (gt)bO.d(this.eX).get(var1);
+   public Inventory AppStartupRunnable(int var1) {
+      return (Inventory)InventoryPanel.d(this.JsonParseException).get(var1);
    }
 
    public void addListDataListener(ListDataListener var1) {
@@ -26,17 +26,17 @@ class bP implements ComboBoxModel {
    }
 
    public void setSelectedItem(Object var1) {
-      bO.a(this.eX, (gt)var1);
-      bO.e(this.eX).setVisible(bO.a(this.eX) == null ? false : en.aS() || bO.a(this.eX).dk());
-      bO.c(this.eX);
+      InventoryPanel.AboutDialog(this.JsonParseException, (Inventory)var1);
+      InventoryPanel.e(this.JsonParseException).setVisible(InventoryPanel.AboutDialog(this.JsonParseException) == null ? false : en.aS() || InventoryPanel.AboutDialog(this.JsonParseException).dk());
+      InventoryPanel.AccountPanel(this.JsonParseException);
    }
 
    public Object getSelectedItem() {
-      return bO.a(this.eX);
+      return InventoryPanel.AboutDialog(this.JsonParseException);
    }
 
    // $FF: synthetic method
    public Object getElementAt(int var1) {
-      return this.w(var1);
+      return this.AppStartupRunnable(var1);
    }
 }

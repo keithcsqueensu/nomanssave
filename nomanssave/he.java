@@ -19,10 +19,10 @@ class he extends OutputStream {
       this.ss.write(var1);
       this.su.write(var1);
       if (var1 == 10) {
-         if (hc.en() != null) {
-            synchronized(hc.en()) {
-               hc.en().write(this.st.getBytes());
-               hc.en().write(this.su.toByteArray());
+         if (Logger.en() != null) {
+            synchronized(Logger.en()) {
+               Logger.en().write(this.st.getBytes());
+               Logger.en().write(this.su.toByteArray());
             }
          }
 
@@ -39,10 +39,10 @@ class he extends OutputStream {
       for(int var4 = 0; var4 < var3; ++var4) {
          if (var1[var2 + var4] == 10) {
             this.su.write(var1, var2, var4 + 1);
-            if (hc.en() != null) {
-               synchronized(hc.en()) {
-                  hc.en().write(this.st.getBytes());
-                  hc.en().write(this.su.toByteArray());
+            if (Logger.en() != null) {
+               synchronized(Logger.en()) {
+                  Logger.en().write(this.st.getBytes());
+                  Logger.en().write(this.su.toByteArray());
                }
             }
 
@@ -59,10 +59,10 @@ class he extends OutputStream {
    public void flush() {
       if (this.su.size() > 0) {
          this.su.write(System.lineSeparator().getBytes());
-         if (hc.en() != null) {
-            synchronized(hc.en()) {
-               hc.en().write(this.st.getBytes());
-               hc.en().write(this.su.toByteArray());
+         if (Logger.en() != null) {
+            synchronized(Logger.en()) {
+               Logger.en().write(this.st.getBytes());
+               Logger.en().write(this.su.toByteArray());
             }
          }
 

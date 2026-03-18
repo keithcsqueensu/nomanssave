@@ -9,9 +9,9 @@ import javax.swing.text.TextAction;
 
 class cG extends TextAction implements ClipboardOwner {
    // $FF: synthetic field
-   final cy gg;
+   final JsonEditorDialog gg;
 
-   public cG(cy var1) {
+   public cG(JsonEditorDialog var1) {
       super("Copy From Clipboard");
       this.gg = var1;
    }
@@ -19,7 +19,7 @@ class cG extends TextAction implements ClipboardOwner {
    public void actionPerformed(ActionEvent var1) {
       String var2 = ((JTextArea)var1.getSource()).getSelectedText();
       if (var2 != null) {
-         cy.b(var2, this);
+         JsonEditorDialog.AboutDialogCloseListener(var2, this);
       }
 
    }

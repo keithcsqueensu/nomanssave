@@ -5,23 +5,23 @@ import java.awt.event.ActionListener;
 
 class bZ implements ActionListener {
    // $FF: synthetic field
-   final bS fk;
+   final InventorySlotPanel fk;
    // $FF: synthetic field
-   private final int fl;
+   private final int FileWatcher;
    // $FF: synthetic field
-   private final int fm;
+   private final int FileWatcherThread;
 
-   bZ(bS var1, int var2, int var3) {
+   bZ(InventorySlotPanel var1, int var2, int var3) {
       this.fk = var1;
-      this.fl = var2;
-      this.fm = var3;
+      this.FileWatcher = var2;
+      this.FileWatcherThread = var3;
    }
 
    public void actionPerformed(ActionEvent var1) {
-      if (bO.a(bS.j(this.fk)).dq()) {
-         if (bO.a(bS.j(this.fk)).l(this.fl, this.fm)) {
-            bO.a(bS.j(this.fk)).m(this.fl, this.fm);
-            bS.c(this.fk);
+      if (InventoryPanel.AboutDialog(InventorySlotPanel.j(this.fk)).dq()) {
+         if (InventoryPanel.AboutDialog(InventorySlotPanel.j(this.fk)).l(this.FileWatcher, this.FileWatcherThread)) {
+            InventoryPanel.AboutDialog(InventorySlotPanel.j(this.fk)).m(this.FileWatcher, this.FileWatcherThread);
+            InventorySlotPanel.AccountPanel(this.fk);
          }
       }
    }

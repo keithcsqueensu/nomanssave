@@ -4,21 +4,21 @@ import javax.swing.ComboBoxModel;
 import javax.swing.event.ListDataListener;
 
 class L implements ComboBoxModel {
-   gf bu;
+   Base bu;
    // $FF: synthetic field
-   final I bt;
+   final BasesStoragePanel bt;
 
-   L(I var1) {
+   L(BasesStoragePanel var1) {
       this.bt = var1;
       this.bu = null;
    }
 
    public int getSize() {
-      return I.a(this.bt) == null ? 0 : I.a(this.bt).cE().size();
+      return BasesStoragePanel.AboutDialog(this.bt) == null ? 0 : BasesStoragePanel.AboutDialog(this.bt).cE().size();
    }
 
-   public gf p(int var1) {
-      return I.a(this.bt) == null ? null : (gf)I.a(this.bt).cE().get(var1);
+   public Base p(int var1) {
+      return BasesStoragePanel.AboutDialog(this.bt) == null ? null : (Base)BasesStoragePanel.AboutDialog(this.bt).cE().get(var1);
    }
 
    public void addListDataListener(ListDataListener var1) {
@@ -28,21 +28,21 @@ class L implements ComboBoxModel {
    }
 
    public void setSelectedItem(Object var1) {
-      this.bu = (gf)var1;
+      this.bu = (Base)var1;
       if (this.bu == null) {
-         I.e(this.bt).setText("");
-         I.f(this.bt).setText("");
-         I.f(this.bt).setEnabled(false);
-         I.g(this.bt).setEnabled(false);
-         I.h(this.bt).setEnabled(false);
-         I.i(this.bt).setEnabled(false);
+         BasesStoragePanel.e(this.bt).setText("");
+         BasesStoragePanel.f(this.bt).setText("");
+         BasesStoragePanel.f(this.bt).setEnabled(false);
+         BasesStoragePanel.g(this.bt).setEnabled(false);
+         BasesStoragePanel.h(this.bt).setEnabled(false);
+         BasesStoragePanel.i(this.bt).setEnabled(false);
       } else {
-         I.e(this.bt).setText(Integer.toString(this.bu.cG()));
-         I.f(this.bt).setText(this.bu.getName());
-         I.f(this.bt).setEnabled(true);
-         I.g(this.bt).setEnabled(true);
-         I.h(this.bt).setEnabled(true);
-         I.i(this.bt).setEnabled(true);
+         BasesStoragePanel.e(this.bt).setText(Integer.toString(this.bu.cG()));
+         BasesStoragePanel.f(this.bt).setText(this.bu.getName());
+         BasesStoragePanel.f(this.bt).setEnabled(true);
+         BasesStoragePanel.g(this.bt).setEnabled(true);
+         BasesStoragePanel.h(this.bt).setEnabled(true);
+         BasesStoragePanel.i(this.bt).setEnabled(true);
       }
 
    }

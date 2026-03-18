@@ -15,13 +15,13 @@ class C extends ComponentAdapter {
 
    public void componentMoved(ComponentEvent var1) {
       Point var2 = Application.h(this.aZ).getBounds().getLocation();
-      aH.b("MainFrame.X", var2.x);
-      aH.b("MainFrame.Y", var2.y);
+      AppSettings.AboutDialogCloseListener("MainFrame.X", var2.UpdateCheckThread);
+      AppSettings.AboutDialogCloseListener("MainFrame.Y", var2.UpdateDownloadRunnable);
    }
 
    public void componentResized(ComponentEvent var1) {
       Dimension var2 = Application.h(this.aZ).getBounds().getSize();
-      aH.b("MainFrame.Width", var2.width);
-      aH.b("MainFrame.Height", var2.height);
+      AppSettings.AboutDialogCloseListener("MainFrame.Width", var2.width);
+      AppSettings.AboutDialogCloseListener("MainFrame.Height", var2.height);
    }
 }

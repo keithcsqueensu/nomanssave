@@ -28,7 +28,7 @@ class fi extends StringReader {
       try {
          var1 = super.read();
       } catch (IOException var3) {
-         throw new eX("stream error", var3, this.kF, this.kG);
+         throw new JsonParseException("stream error", var3, this.kF, this.kG);
       }
 
       if (var1 == 10) {
@@ -39,7 +39,7 @@ class fi extends StringReader {
       return var1;
    }
 
-   private int a(Predicate var1) {
+   private int AboutDialog(Predicate var1) {
       try {
          this.mark(1);
          int var2 = super.read();
@@ -55,12 +55,12 @@ class fi extends StringReader {
             return -1;
          }
       } catch (IOException var3) {
-         throw new eX("stream error", var3, this.kF, this.kG);
+         throw new JsonParseException("stream error", var3, this.kF, this.kG);
       }
    }
 
    // $FF: synthetic method
-   static int a(fi var0, Predicate var1) {
-      return var0.a(var1);
+   static int AboutDialog(fi var0, Predicate var1) {
+      return var0.AboutDialog(var1);
    }
 }

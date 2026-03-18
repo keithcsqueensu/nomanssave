@@ -8,9 +8,9 @@ import javax.swing.UIManager;
 
 class bD extends DefaultListCellRenderer {
    // $FF: synthetic field
-   final bl er;
+   final FrigatesPanel er;
 
-   private bD(bl var1) {
+   private bD(FrigatesPanel var1) {
       this.er = var1;
    }
 
@@ -41,7 +41,7 @@ class bD extends DefaultListCellRenderer {
    }
 
    // $FF: synthetic method
-   bD(bl var1, bD var2) {
+   bD(FrigatesPanel var1, bD var2) {
       this(var1);
    }
 }

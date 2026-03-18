@@ -1,15 +1,15 @@
 package nomanssave;
 
-class dH extends G {
+class dH extends ValidatedTextField {
    // $FF: synthetic field
-   final dE hE;
+   final SettlementsPanel hE;
 
-   dH(dE var1) {
+   dH(SettlementsPanel var1) {
       this.hE = var1;
    }
 
    protected String g(String var1) {
-      gE var2 = (gE)dE.a(this.hE).getSelectedItem();
+      SettlementState var2 = (SettlementState)SettlementsPanel.AboutDialog(this.hE).getSelectedItem();
       if (var2 == null) {
          return "";
       } else {

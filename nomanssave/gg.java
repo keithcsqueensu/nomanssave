@@ -1,11 +1,11 @@
 package nomanssave;
 
 public class gg {
-   final eY nl;
+   final JsonObject nl;
    // $FF: synthetic field
-   final gf nm;
+   final Base nm;
 
-   public gg(gf var1, eY var2) {
+   public gg(Base var1, JsonObject var2) {
       this.nm = var1;
       this.nl = var2;
    }

@@ -12,17 +12,17 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 public class cT extends JFileChooser {
-   private static cT gv = null;
+   private static cT Multitool = null;
    private static final String name = "Ship Export File";
-   private static final ImageIcon fH = Application.a("UI-SHIPICON.PNG", 16, 16);
+   private static final ImageIcon fH = Application.loadScaledIcon("UI-SHIPICON.PNG", 16, 16);
    private JCheckBox fO;
 
    public static cT aC() {
-      if (gv == null) {
-         gv = new cT();
+      if (Multitool == null) {
+         Multitool = new cT();
       }
 
-      return gv;
+      return Multitool;
    }
 
    private cT() {

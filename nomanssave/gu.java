@@ -1,11 +1,11 @@
 package nomanssave;
 
-public class gu implements gQ {
-   private final eY qD;
+public class gu implements ItemData {
+   private final JsonObject qD;
    // $FF: synthetic field
-   final gt qE;
+   final Inventory qE;
 
-   private gu(gt var1, eY var2) {
+   private gu(Inventory var1, JsonObject var2) {
       this.qE = var1;
       this.qD = var2;
    }
@@ -19,7 +19,7 @@ public class gu implements gQ {
    }
 
    public void m(Object var1) {
-      this.qD.b("Id", var1);
+      this.qD.AboutDialogCloseListener("Id", var1);
    }
 
    public int dA() {
@@ -27,7 +27,7 @@ public class gu implements gQ {
    }
 
    public void aA(int var1) {
-      this.qD.b("Amount", (Object)(new Integer(var1)));
+      this.qD.AboutDialogCloseListener("Amount", (Object)(new Integer(var1)));
    }
 
    public int dB() {
@@ -38,8 +38,8 @@ public class gu implements gQ {
       return this.qD.L("DamageFactor");
    }
 
-   public void c(double var1) {
-      this.qD.b("DamageFactor", (Object)(new Double(var1)));
+   public void AccountPanel(double var1) {
+      this.qD.AboutDialogCloseListener("DamageFactor", (Object)(new Double(var1)));
    }
 
    public boolean dD() {
@@ -47,11 +47,11 @@ public class gu implements gQ {
    }
 
    public void e(boolean var1) {
-      this.qD.b("FullyInstalled", (Object)(new Boolean(var1)));
+      this.qD.AboutDialogCloseListener("FullyInstalled", (Object)(new Boolean(var1)));
    }
 
    // $FF: synthetic method
-   gu(gt var1, eY var2, gu var3) {
+   gu(Inventory var1, JsonObject var2, gu var3) {
       this(var1, var2);
    }
 }

@@ -5,10 +5,10 @@ import javax.swing.JTextField;
 class bL extends JTextField {
    final bK eB;
    // $FF: synthetic field
-   final bE ey;
+   final MilestonesPanel ItemDefinition;
 
-   bL(bE var1, bK var2, boolean var3) {
-      this.ey = var1;
+   bL(MilestonesPanel var1, bK var2, boolean var3) {
+      this.ItemDefinition = var1;
       this.eB = var2;
       this.setEnabled(var3);
       this.addFocusListener(new bM(this, var2));
@@ -16,7 +16,7 @@ class bL extends JTextField {
 
    void ac() {
       String var1;
-      if (bE.a(this.ey) == null) {
+      if (MilestonesPanel.AboutDialog(this.ItemDefinition) == null) {
          var1 = "";
       } else {
          var1 = this.eB.ab();
@@ -26,7 +26,7 @@ class bL extends JTextField {
    }
 
    // $FF: synthetic method
-   static bE a(bL var0) {
-      return var0.ey;
+   static MilestonesPanel AboutDialog(bL var0) {
+      return var0.ItemDefinition;
    }
 }

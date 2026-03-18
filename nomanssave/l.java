@@ -4,21 +4,21 @@ import javax.swing.ComboBoxModel;
 import javax.swing.event.ListDataListener;
 
 class l implements ComboBoxModel {
-   private ey C;
+   private ItemDefinition C;
    // $FF: synthetic field
-   final h z;
+   final h ShowErrorRunnable;
 
    l(h var1) {
-      this.z = var1;
+      this.ShowErrorRunnable = var1;
       this.C = null;
    }
 
    public int getSize() {
-      return h.i(this.z).size();
+      return h.i(this.ShowErrorRunnable).size();
    }
 
-   public ey d(int var1) {
-      return (ey)h.i(this.z).get(var1);
+   public ItemDefinition d(int var1) {
+      return (ItemDefinition)h.i(this.ShowErrorRunnable).get(var1);
    }
 
    public void addListDataListener(ListDataListener var1) {
@@ -28,7 +28,7 @@ class l implements ComboBoxModel {
    }
 
    public void setSelectedItem(Object var1) {
-      this.C = (ey)var1;
+      this.C = (ItemDefinition)var1;
    }
 
    public Object getSelectedItem() {

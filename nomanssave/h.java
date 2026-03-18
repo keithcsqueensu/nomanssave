@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
 public class h extends JDialog {
-   private ey l = null;
+   private ItemDefinition l = null;
    private JTextField m;
    private JButton n;
    private JComboBox o;
@@ -32,8 +32,8 @@ public class h extends JDialog {
    private List s = new ArrayList();
    private List t = new ArrayList();
    private List u = new ArrayList();
-   private List v = new ArrayList();
-   private static h w = null;
+   private List RefreshRunnable = new ArrayList();
+   private static h AppStartupRunnable = null;
 
    private h(Frame var1) {
       super(var1);
@@ -87,76 +87,76 @@ public class h extends JDialog {
       this.pack();
    }
 
-   private void a() {
-      this.t = (List)this.s.stream().map(ey::ba).distinct().sorted((var0, var1) -> {
+   private void AboutDialog() {
+      this.t = (List)this.s.stream().map(ItemDefinition::FormPanel).distinct().sorted((var0, var1) -> {
          return var0.name().compareTo(var1.name());
       }).collect(Collectors.toList());
       this.o.setSelectedIndex(this.t.size() == 1 ? 0 : -1);
       this.o.updateUI();
-      this.b();
+      this.AboutDialogCloseListener();
    }
 
-   private void b() {
+   private void AboutDialogCloseListener() {
       eB var1 = (eB)this.o.getSelectedItem();
       this.u = (List)this.s.stream().filter((var1x) -> {
-         return var1x.ba() == var1;
-      }).map(ey::bc).distinct().sorted((var0, var1x) -> {
+         return var1x.FormPanel() == var1;
+      }).map(ItemDefinition::bc).distinct().sorted((var0, var1x) -> {
          return var0.name().compareTo(var1x.name());
       }).collect(Collectors.toList());
       this.p.setSelectedIndex(this.u.size() == 1 ? 0 : -1);
       this.p.updateUI();
-      this.c();
+      this.AccountPanel();
    }
 
-   private void c() {
+   private void AccountPanel() {
       eB var1 = (eB)this.o.getSelectedItem();
       ex var2 = (ex)this.p.getSelectedItem();
-      this.v = (List)this.s.stream().filter((var2x) -> {
-         return var2x.ba() == var1 && var2x.bc() == var2 && (var2 != ex.iZ || !var2x.be());
+      this.RefreshRunnable = (List)this.s.stream().filter((var2x) -> {
+         return var2x.FormPanel() == var1 && var2x.bc() == var2 && (var2 != ex.iZ || !var2x.be());
       }).sorted((var0, var1x) -> {
          return var0.getName().compareTo(var1x.getName());
       }).collect(Collectors.toList());
-      this.q.setSelectedIndex(this.v.size() == 1 ? 0 : -1);
+      this.q.setSelectedIndex(this.RefreshRunnable.size() == 1 ? 0 : -1);
       this.q.updateUI();
    }
 
-   private ey a(int var1) {
+   private ItemDefinition AboutDialog(int var1) {
       this.r = var1;
-      this.s = ey.b(var1, this.m.getText());
-      this.a();
+      this.s = ItemDefinition.AboutDialogCloseListener(var1, this.m.getText());
+      this.AboutDialog();
       this.l = null;
       this.setLocationRelativeTo(this.getParent());
       this.setVisible(true);
       return this.l;
    }
 
-   public static ey a(Container var0, int var1) {
-      if (w == null) {
+   public static ItemDefinition AboutDialog(Container var0, int var1) {
+      if (AppStartupRunnable == null) {
          Frame var2 = JOptionPane.getFrameForComponent(var0);
-         w = new h(var2);
+         AppStartupRunnable = new h(var2);
       }
 
-      return w.a(var1);
+      return AppStartupRunnable.AboutDialog(var1);
    }
 
    // $FF: synthetic method
-   static JTextField a(h var0) {
+   static JTextField AboutDialog(h var0) {
       return var0.m;
    }
 
    // $FF: synthetic method
-   static int b(h var0) {
+   static int AboutDialogCloseListener(h var0) {
       return var0.r;
    }
 
    // $FF: synthetic method
-   static void a(h var0, List var1) {
+   static void AboutDialog(h var0, List var1) {
       var0.s = var1;
    }
 
    // $FF: synthetic method
-   static void c(h var0) {
-      var0.a();
+   static void AccountPanel(h var0) {
+      var0.AboutDialog();
    }
 
    // $FF: synthetic method
@@ -171,7 +171,7 @@ public class h extends JDialog {
 
    // $FF: synthetic method
    static void f(h var0) {
-      var0.b();
+      var0.AboutDialogCloseListener();
    }
 
    // $FF: synthetic method
@@ -181,12 +181,12 @@ public class h extends JDialog {
 
    // $FF: synthetic method
    static void h(h var0) {
-      var0.c();
+      var0.AccountPanel();
    }
 
    // $FF: synthetic method
    static List i(h var0) {
-      return var0.v;
+      return var0.RefreshRunnable;
    }
 
    // $FF: synthetic method
@@ -195,7 +195,7 @@ public class h extends JDialog {
    }
 
    // $FF: synthetic method
-   static void a(h var0, ey var1) {
+   static void AboutDialog(h var0, ItemDefinition var1) {
       var0.l = var1;
    }
 }

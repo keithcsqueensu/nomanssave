@@ -4,21 +4,21 @@ import javax.swing.ComboBoxModel;
 import javax.swing.event.ListDataListener;
 
 class cZ implements ComboBoxModel {
-   private gg gQ;
+   private gg ItemData;
    // $FF: synthetic field
-   final cY gR;
+   final cY TemplateLoader;
 
    cZ(cY var1) {
-      this.gR = var1;
-      this.gQ = null;
+      this.TemplateLoader = var1;
+      this.ItemData = null;
    }
 
    public int getSize() {
-      return cY.a(this.gR).size();
+      return cY.AboutDialog(this.TemplateLoader).size();
    }
 
    public gg C(int var1) {
-      return (gg)cY.a(this.gR).get(var1);
+      return (gg)cY.AboutDialog(this.TemplateLoader).get(var1);
    }
 
    public void addListDataListener(ListDataListener var1) {
@@ -28,11 +28,11 @@ class cZ implements ComboBoxModel {
    }
 
    public void setSelectedItem(Object var1) {
-      this.gQ = (gg)var1;
+      this.ItemData = (gg)var1;
    }
 
    public Object getSelectedItem() {
-      return this.gQ;
+      return this.ItemData;
    }
 
    // $FF: synthetic method

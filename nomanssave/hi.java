@@ -29,11 +29,11 @@ public class hi {
    }
 
    private static String i(long var0) {
-      eY var2 = aC("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9710BD8FCF192837DC6DEF6037AB2837&steamids=" + var0);
-      eV var3 = var2.d("response.players");
+      JsonObject var2 = aC("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9710BD8FCF192837DC6DEF6037AB2837&steamids=" + var0);
+      JsonArray var3 = var2.d("response.players");
       if (var3 != null && var3.size() != 0) {
          for(int var4 = 0; var4 < var3.size(); ++var4) {
-            eY var5 = var3.V(var4);
+            JsonObject var5 = var3.V(var4);
             if (Long.toString(var0).equals(var5.getValueAsString("steamid"))) {
                return var5.getValueAsString("personaname");
             }
@@ -45,7 +45,7 @@ public class hi {
       }
    }
 
-   private static eY aC(String var0) {
+   private static JsonObject aC(String var0) {
       URLConnection var1 = (new URL(var0)).openConnection();
       int var2 = var1.getContentLength();
       int var3 = 0;
@@ -62,12 +62,12 @@ public class hi {
       } else {
          String var7 = var1.getContentEncoding();
          String var8 = new String(var5, var7 == null ? "UTF-8" : var7);
-         return eY.E(var8);
+         return JsonObject.FileComboBoxModel(var8);
       }
    }
 
    // $FF: synthetic method
-   static HashMap ep() {
+   static HashMap VehiclesPanel() {
       return sJ;
    }
 

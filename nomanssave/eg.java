@@ -15,11 +15,11 @@ class eg implements ComboBoxModel {
    }
 
    public int getSize() {
-      return gL.values().length;
+      return ShipType.values().length;
    }
 
-   public gL I(int var1) {
-      return gL.values()[var1];
+   public ShipType BasesStoragePanel(int var1) {
+      return ShipType.values()[var1];
    }
 
    public void addListDataListener(ListDataListener var1) {
@@ -29,19 +29,19 @@ class eg implements ComboBoxModel {
    }
 
    public void setSelectedItem(Object var1) {
-      gL var2 = (gL)var1;
-      if (var2 != null && !var2.equals(eb.a(ec.h(this.ik))[this.il].ef())) {
-         eb.a(ec.h(this.ik))[this.il].a(var2);
+      ShipType var2 = (ShipType)var1;
+      if (var2 != null && !var2.equals(SquadronPanel.AboutDialog(ec.h(this.ik))[this.il].ef())) {
+         SquadronPanel.AboutDialog(ec.h(this.ik))[this.il].AboutDialog(var2);
       }
 
    }
 
    public Object getSelectedItem() {
-      return eb.a(ec.h(this.ik))[this.il].ef();
+      return SquadronPanel.AboutDialog(ec.h(this.ik))[this.il].ef();
    }
 
    // $FF: synthetic method
    public Object getElementAt(int var1) {
-      return this.I(var1);
+      return this.BasesStoragePanel(var1);
    }
 }

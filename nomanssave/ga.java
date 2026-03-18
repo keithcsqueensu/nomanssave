@@ -18,14 +18,14 @@ class ga implements FileFilter {
    }
 
    public boolean accept(File var1) {
-      Matcher var2 = fT.cu().matcher(var1.getName());
+      Matcher var2 = XboxSaveLocation.cu().matcher(var1.getName());
       if (var2.matches()) {
          int var3 = var2.group(1).length() == 0 ? 0 : Integer.parseInt(var2.group(1)) - 1;
          if (var3 / 2 == this.nb.lT) {
             try {
-               this.mg.add(new fV(fZ.a(this.nb), var1.getName(), var3));
+               this.mg.add(new fV(fZ.AboutDialog(this.nb), var1.getName(), var3));
             } catch (IOException var5) {
-               hc.a("Cannot load " + var1.getName(), var5);
+               Logger.AboutDialog("Cannot load " + var1.getName(), var5);
             }
          }
       }

@@ -91,11 +91,11 @@ public class eM {
       return (eM)kl.get(var0);
    }
 
-   public static int w(String var0) {
+   public static int AppStartupRunnable(String var0) {
       return kl.indexOf(new eO(var0));
    }
 
-   public static eM x(String var0) {
+   public static eM UpdateCheckThread(String var0) {
       int var1 = kl.indexOf(new eO(var0));
       return var1 >= 0 ? (eM)kl.get(var1) : null;
    }

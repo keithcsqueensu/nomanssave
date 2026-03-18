@@ -8,16 +8,16 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 
 class cA extends DefaultTreeCellRenderer {
    // $FF: synthetic field
-   final cy gg;
+   final JsonEditorDialog gg;
 
-   cA(cy var1) {
+   cA(JsonEditorDialog var1) {
       this.gg = var1;
    }
 
    public Component getTreeCellRendererComponent(JTree var1, Object var2, boolean var3, boolean var4, boolean var5, int var6, boolean var7) {
       JLabel var8 = (JLabel)super.getTreeCellRendererComponent(var1, var2, var3, var4, var5, var6, var7);
       if (((cJ)var2).gi == null) {
-         var8.setIcon(Application.a("UI-FILEICON.PNG", 20, 20));
+         var8.setIcon(Application.loadScaledIcon("UI-FILEICON.PNG", 20, 20));
       } else if (var5) {
          var8.setIcon(UIManager.getIcon("Tree.leafIcon"));
       } else if (var4) {

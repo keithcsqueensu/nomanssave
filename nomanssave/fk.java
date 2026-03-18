@@ -2,7 +2,7 @@ package nomanssave;
 
 import java.util.Map;
 
-public class fk extends eY {
+public class fk extends JsonObject {
    final eC li;
 
    fk(eC var1) {

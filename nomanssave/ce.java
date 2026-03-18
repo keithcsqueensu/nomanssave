@@ -5,21 +5,21 @@ import java.awt.event.ActionListener;
 
 class ce implements ActionListener {
    // $FF: synthetic field
-   final bS fk;
+   final InventorySlotPanel fk;
    // $FF: synthetic field
-   private final int fl;
+   private final int FileWatcher;
    // $FF: synthetic field
-   private final int fm;
+   private final int FileWatcherThread;
 
-   ce(bS var1, int var2, int var3) {
+   ce(InventorySlotPanel var1, int var2, int var3) {
       this.fk = var1;
-      this.fl = var2;
-      this.fm = var3;
+      this.FileWatcher = var2;
+      this.FileWatcherThread = var3;
    }
 
    public void actionPerformed(ActionEvent var1) {
-      if (bO.a(bS.j(this.fk)).f(this.fl, this.fm) == null) {
-         bO.a(bS.j(this.fk), this.fk);
+      if (InventoryPanel.AboutDialog(InventorySlotPanel.j(this.fk)).f(this.FileWatcher, this.FileWatcherThread) == null) {
+         InventoryPanel.AboutDialog(InventorySlotPanel.j(this.fk), this.fk);
       }
 
    }

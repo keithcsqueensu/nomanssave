@@ -6,21 +6,21 @@ import java.util.Properties;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-class fL implements fs {
+class fL implements SaveFile {
    final int mb;
    final File mc;
    final String mu;
    final String md;
-   final fn be;
+   final GameMode be;
    final String mv;
    final String description;
    // $FF: synthetic field
-   final fJ mt;
+   final SteamSaveLocation mt;
 
-   fL(fJ var1, String var2, int var3) {
+   fL(SteamSaveLocation var1, String var2, int var3) {
       this.mt = var1;
       this.mb = var3;
-      this.mc = new File(aH.cG, var2);
+      this.mc = new File(AppSettings.cG, var2);
       ZipFile var4 = new ZipFile(this.mc);
 
       try {
@@ -38,7 +38,7 @@ class fL implements fs {
          }
 
          String var7 = var6.getProperty("GameMode");
-         this.be = var7 == null ? null : fn.valueOf(var7);
+         this.be = var7 == null ? null : GameMode.valueOf(var7);
          this.mv = var6.getProperty("SaveName");
          this.description = var6.getProperty("Description");
       } catch (NumberFormatException var11) {
@@ -49,7 +49,7 @@ class fL implements fs {
 
    }
 
-   public fn L() {
+   public GameMode L() {
       return this.be;
    }
 
@@ -69,21 +69,21 @@ class fL implements fs {
       return this.description;
    }
 
-   public eY M() {
+   public JsonObject M() {
       // $FF: Couldn't be decompiled
    }
 
-   public String b(eY var1) {
-      hc.info("Writing new save file...");
+   public String AboutDialogCloseListener(JsonObject var1) {
+      Logger.info("Writing new save file...");
       String var2;
-      if (fJ.b(this.mt)[this.mb] != null) {
-         var2 = fJ.b(this.mt)[this.mb].b(var1);
+      if (SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.mb] != null) {
+         var2 = SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.mb].AboutDialogCloseListener(var1);
       } else {
-         fJ.b(this.mt)[this.mb] = new fM(this.mt, this.mb, var1);
-         var2 = fJ.b(this.mt)[this.mb].filename;
+         SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.mb] = new fM(this.mt, this.mb, var1);
+         var2 = SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.mb].filename;
       }
 
-      hc.info("Finished.");
+      Logger.info("Finished.");
       return var2;
    }
 

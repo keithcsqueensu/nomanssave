@@ -6,17 +6,17 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 public class cp extends JFileChooser {
-   private static cp fJ = null;
+   private static cp SteamSaveLocation = null;
    private static final String name = "Companion Export File";
-   private static final ImageIcon fK = Application.a("UI-PET.PNG", 16, 16);
-   private static final ImageIcon fL = Application.a("UI-EGG.PNG", 16, 16);
+   private static final ImageIcon fK = Application.loadScaledIcon("UI-PET.PNG", 16, 16);
+   private static final ImageIcon fL = Application.loadScaledIcon("UI-EGG.PNG", 16, 16);
 
    public static cp at() {
-      if (fJ == null) {
-         fJ = new cp();
+      if (SteamSaveLocation == null) {
+         SteamSaveLocation = new cp();
       }
 
-      return fJ;
+      return SteamSaveLocation;
    }
 
    private cp() {

@@ -8,7 +8,7 @@ import java.security.SecureRandom;
 public class gc {
    private static final long nc = -11644473600000L;
 
-   public static String a(InputStream var0) {
+   public static String AboutDialog(InputStream var0) {
       byte[] var1 = new byte[16];
       hk.readFully(var0, var1);
       return h(var1);
@@ -22,33 +22,33 @@ public class gc {
 
    private static String h(byte[] var0) {
       StringBuilder var1 = new StringBuilder();
-      a(var0[3], var1);
-      a(var0[2], var1);
-      a(var0[1], var1);
-      a(var0[0], var1);
-      a(var0[5], var1);
-      a(var0[4], var1);
-      a(var0[7], var1);
-      a(var0[6], var1);
-      a(var0[8], var1);
-      a(var0[9], var1);
-      a(var0[10], var1);
-      a(var0[11], var1);
-      a(var0[12], var1);
-      a(var0[13], var1);
-      a(var0[14], var1);
-      a(var0[15], var1);
+      AboutDialog(var0[3], var1);
+      AboutDialog(var0[2], var1);
+      AboutDialog(var0[1], var1);
+      AboutDialog(var0[0], var1);
+      AboutDialog(var0[5], var1);
+      AboutDialog(var0[4], var1);
+      AboutDialog(var0[7], var1);
+      AboutDialog(var0[6], var1);
+      AboutDialog(var0[8], var1);
+      AboutDialog(var0[9], var1);
+      AboutDialog(var0[10], var1);
+      AboutDialog(var0[11], var1);
+      AboutDialog(var0[12], var1);
+      AboutDialog(var0[13], var1);
+      AboutDialog(var0[14], var1);
+      AboutDialog(var0[15], var1);
       return var1.toString();
    }
 
-   private static void a(byte var0, StringBuilder var1) {
+   private static void AboutDialog(byte var0, StringBuilder var1) {
       int var2 = (240 & var0) >> 4;
       int var3 = 15 & var0;
       var1.append("0123456789ABCDEF".charAt(var2));
       var1.append("0123456789ABCDEF".charAt(var3));
    }
 
-   public static void a(OutputStream var0, String var1) {
+   public static void AboutDialog(OutputStream var0, String var1) {
       if (var1.length() > 32) {
          throw new IOException("invalid container path");
       } else {
@@ -62,15 +62,15 @@ public class gc {
       }
    }
 
-   public static long b(InputStream var0) {
+   public static long AboutDialogCloseListener(InputStream var0) {
       return hk.f(var0) / 10000L + -11644473600000L;
    }
 
-   public static void a(OutputStream var0, long var1) {
-      hk.b(var0, (var1 - -11644473600000L) * 10000L);
+   public static void AboutDialog(OutputStream var0, long var1) {
+      hk.AboutDialogCloseListener(var0, (var1 - -11644473600000L) * 10000L);
    }
 
-   public static String c(InputStream var0) {
+   public static String AccountPanel(InputStream var0) {
       int var1 = hk.readInt(var0);
       if (var1 < 0) {
          throw new IOException("negative length");
@@ -81,8 +81,8 @@ public class gc {
       }
    }
 
-   public static void b(OutputStream var0, String var1) {
-      hk.a(var0, var1.length());
+   public static void AboutDialogCloseListener(OutputStream var0, String var1) {
+      hk.AboutDialog(var0, var1.length());
       var0.write(var1.getBytes("UTF-16LE"));
    }
 
@@ -108,7 +108,7 @@ public class gc {
       return new String(var1, 0, var2, "UTF-8");
    }
 
-   public static void c(OutputStream var0, String var1) {
+   public static void AccountPanel(OutputStream var0, String var1) {
       byte[] var2 = var1.getBytes("UTF-8");
       if (var2.length < 128) {
          byte[] var3 = new byte[128];

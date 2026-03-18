@@ -22,7 +22,7 @@ class el extends FileView {
             return var2.equals("containers.index") ? ej.au() : null;
          }
       } else {
-         var2 = ej.a(this.is, var1);
+         var2 = ej.AboutDialog(this.is, var1);
          return var2 == null ? null : ej.aR();
       }
    }
@@ -31,7 +31,7 @@ class el extends FileView {
       if (var1.isFile()) {
          return var1.getName();
       } else {
-         String var2 = ej.a(this.is, var1);
+         String var2 = ej.AboutDialog(this.is, var1);
          return var2 == null ? var1.getName() : "[" + var2 + "] " + var1.getName();
       }
    }

@@ -1,27 +1,27 @@
 package nomanssave;
 
-class bx extends G {
+class bx extends ValidatedTextField {
    // $FF: synthetic field
-   final bl er;
+   final FrigatesPanel er;
 
-   bx(bl var1) {
+   bx(FrigatesPanel var1) {
       this.er = var1;
    }
 
    protected String g(String var1) {
-      if (bl.b(this.er) < 0) {
+      if (FrigatesPanel.AboutDialogCloseListener(this.er) < 0) {
          return "";
       } else {
          try {
             var1 = var1.trim();
-            if (!var1.equals(bl.c(this.er)[bl.b(this.er)].cU())) {
-               bl.c(this.er)[bl.b(this.er)].ah(var1);
-               bl.n(this.er).setText(var1);
+            if (!var1.equals(FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].cU())) {
+               FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].ah(var1);
+               FrigatesPanel.n(this.er).setText(var1);
             }
 
             return var1;
          } catch (RuntimeException var3) {
-            return bl.c(this.er)[bl.b(this.er)].cU();
+            return FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].cU();
          }
       }
    }

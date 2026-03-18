@@ -22,7 +22,7 @@ class S implements FocusListener {
             var2 = Q.e(this.bD);
          }
       } catch (RuntimeException var4) {
-         var2 = Q.c(this.bD).bF;
+         var2 = Q.AccountPanel(this.bD).bF;
       }
 
       Q.d(this.bD).setText(Integer.toString(var2));

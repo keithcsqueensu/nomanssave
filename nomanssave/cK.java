@@ -3,15 +3,15 @@ package nomanssave;
 import javax.swing.JFileChooser;
 
 public class cK extends JFileChooser {
-   private static cK gk = null;
+   private static cK CompanionGenus = null;
    private static final String name = "JSON File";
 
    public static cK aA() {
-      if (gk == null) {
-         gk = new cK();
+      if (CompanionGenus == null) {
+         CompanionGenus = new cK();
       }
 
-      return gk;
+      return CompanionGenus;
    }
 
    private cK() {

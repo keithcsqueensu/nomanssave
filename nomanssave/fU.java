@@ -1,20 +1,20 @@
 package nomanssave;
 
-class fU extends fX implements fr {
+class fU extends XboxContainerWriter implements AccountData {
    // $FF: synthetic field
-   final fT mN;
+   final XboxSaveLocation mN;
 
-   fU(fT var1) {
+   fU(XboxSaveLocation var1) {
       super(var1, "AccountData");
       this.mN = var1;
    }
 
-   public eY M() {
-      return this.a(eG.jW);
+   public JsonObject M() {
+      return this.AboutDialog(eG.jW);
    }
 
-   public void k(eY var1) {
-      this.a("msaccountdata", (fn)null);
+   public void k(JsonObject var1) {
+      this.AboutDialog("msaccountdata", (GameMode)null);
       this.h(var1);
    }
 }

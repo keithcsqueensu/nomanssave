@@ -6,10 +6,10 @@ import javax.swing.event.ListDataListener;
 class al implements ComboBoxModel {
    String ch;
    // $FF: synthetic field
-   final aj cg;
+   final aj ItemDetailsDialog;
 
    al(aj var1) {
-      this.cg = var1;
+      this.ItemDetailsDialog = var1;
       this.ch = null;
    }
 

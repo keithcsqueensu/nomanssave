@@ -46,25 +46,25 @@ public class Application {
    public static final String RELEASE = "BREACH";
    private static final String J = "https://github.com/goatfungus/NMSSaveEditor";
    private static final String K = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_";
-   private static Application L;
-   private static HashMap M = new HashMap();
-   private JFrame N;
-   private JTabbedPane O;
-   private JLabel P;
-   private JLabel Q;
-   private JComboBox R;
-   private JComboBox S;
-   private JLabel T;
-   private JLabel U;
-   private JLabel V;
-   private JButton W;
-   private JButton X;
-   private JButton Y;
-   private JMenuItem Z;
-   private JMenuItem aa;
-   private JMenuItem ab;
-   private List ac;
-   private JMenuItem ad;
+   private static Application instance;
+   private static HashMap iconCache = new HashMap();
+   private JFrame mainWindow;
+   private JTabbedPane tabbedPane;
+   private JLabel storageLabel;
+   private JLabel savePathLabel;
+   private JComboBox slotComboBox;
+   private JComboBox fileComboBox;
+   private JLabel modifiedLabel;
+   private JLabel saveNameLabel;
+   private JLabel descriptionLabel;
+   private JButton reloadButton;
+   private JButton CompanionsPanel;
+   private JButton saveAsButton;
+   private JMenuItem reloadMenuItem;
+   private JMenuItem saveMenuItem;
+   private JMenuItem saveAsMenuItem;
+   private List editMenuItems;
+   private JMenuItem editAccountJsonMenuItem;
    private static final int ae = 0;
    private static final int af = 1;
    private static final int ag = 2;
@@ -76,55 +76,55 @@ public class Application {
    private static final int am = 8;
    private static final int an = 9;
    private static final int ao = 10;
-   private static final int ap = 11;
+   private static final int DiscoveryPanel = 11;
    private static final int aq = 12;
    private static final int ar = 13;
-   private aJ as;
-   private dj at;
-   private dN au;
-   private eb av;
-   private bd aw;
-   private bl ax;
-   private ep ay;
-   private X az;
-   private I aA;
-   private dE aB;
-   private ap aC;
-   private bE aD;
-   private c aE;
-   private fq aF;
-   private ft[] aG;
-   private int aH;
-   private fs[] aI;
-   private int aJ;
-   private eY aK;
-   private boolean aL;
-   private fr aM;
-   private eY aN;
-   private boolean aO;
+   private ExosuitPanel exosuitPanel;
+   private MultitoolPanel multitoolPanel;
+   private ShipsPanel shipsPanel;
+   private SquadronPanel squadronPanel;
+   private FreighterPanel freighterPanel;
+   private FrigatesPanel frigatesPanel;
+   private VehiclesPanel vehiclesPanel;
+   private CompanionsPanel companionsPanel;
+   private BasesStoragePanel basesStoragePanel;
+   private SettlementsPanel settlementsPanel;
+   private DiscoveryPanel discoveryPanel;
+   private MilestonesPanel milestonesPanel;
+   private AccountPanel accountPanel;
+   private SaveLocation saveLocation;
+   private SaveSlot[] saveSlots;
+   private int AppSettings;
+   private SaveFile[] saveFiles;
+   private int ExosuitPanel;
+   private JsonObject currentSave;
+   private boolean saveModified;
+   private AccountData accountData;
+   private JsonObject accountJson;
+   private boolean accountModified;
    private boolean aP;
    private boolean aQ;
    private boolean aR;
    private boolean aS;
    private boolean aT;
    private boolean aU;
-   private fe aV;
-   private fe aW;
-   private fR aX;
+   private PropertyChangeListener accountChangeListener;
+   private PropertyChangeListener saveChangeListener;
+   private SaveChangeListener fileChangeHandler;
    // $FF: synthetic field
    private static int[] aY;
 
-   public static String a(long var0) {
+   public static String formatDateTime(long var0) {
       SimpleDateFormat var2 = new SimpleDateFormat("h:mm a, E MMM d, yyyy");
       return var2.format(new Date(var0));
    }
 
-   public static String b(long var0) {
+   public static String formatDateShort(long var0) {
       SimpleDateFormat var2 = new SimpleDateFormat("MMM d, HH:mm");
       return var2.format(new Date(var0));
    }
 
-   private static String a(String var0, String var1) {
+   private static String AboutDialog(String var0, String var1) {
       if (var0 == null) {
          return var1;
       } else {
@@ -143,8 +143,8 @@ public class Application {
       }
    }
 
-   public static Application e() {
-      return L;
+   public static Application getInstance() {
+      return instance;
    }
 
    public static void main(String[] var0) {
@@ -157,26 +157,26 @@ public class Application {
          var2 = false;
       }
 
-      nomanssave.aH.init(!var2);
-      hc.info("Starting Editor...");
+      nomanssave.AppSettings.init(!var2);
+      Logger.info("Starting Editor...");
       (new Thread(() -> {
-         cK.aA();
+         cK.basesStoragePanel();
       })).start();
-      EventQueue.invokeLater(new w(var2));
+      EventQueue.invokeLater(new AppStartupRunnable(var2));
    }
 
-   public static ImageIcon a(String var0) {
-      BufferedImage var1 = (BufferedImage)M.get(var0);
+   public static ImageIcon loadIcon(String var0) {
+      BufferedImage var1 = (BufferedImage)iconCache.get(var0);
       if (var1 == null) {
          InputStream var2 = Application.class.getResourceAsStream("icons/" + var0);
          if (var2 != null) {
             try {
                var1 = ImageIO.read(var2);
-               M.put(var0, var1);
+               iconCache.put(var0, var1);
             } catch (IOException var4) {
-               hc.info("Error loading icon: " + var0);
+               Logger.info("Error loading icon: " + var0);
             } catch (RuntimeException var5) {
-               hc.info("Error loading icon: " + var0);
+               Logger.info("Error loading icon: " + var0);
             }
          }
       }
@@ -184,18 +184,18 @@ public class Application {
       return var1 == null ? null : new ImageIcon(var1);
    }
 
-   public static ImageIcon a(String var0, int var1, int var2) {
-      BufferedImage var3 = (BufferedImage)M.get(var0);
+   public static ImageIcon loadScaledIcon(String var0, int var1, int var2) {
+      BufferedImage var3 = (BufferedImage)iconCache.get(var0);
       if (var3 == null) {
          InputStream var4 = Application.class.getResourceAsStream("icons/" + var0);
          if (var4 != null) {
             try {
                var3 = ImageIO.read(var4);
-               M.put(var0, var3);
+               iconCache.put(var0, var3);
             } catch (IOException var6) {
-               hc.info("Error loading icon: " + var0);
+               Logger.info("Error loading icon: " + var0);
             } catch (RuntimeException var7) {
-               hc.info("Error loading icon: " + var0);
+               Logger.info("Error loading icon: " + var0);
             }
          }
       }
@@ -203,7 +203,7 @@ public class Application {
       return var3 == null ? null : new ImageIcon(var3.getScaledInstance(var1, var2, 4));
    }
 
-   private void f() {
+   private void checkExternalChanges() {
       if (this.aR) {
          this.aR = false;
       }
@@ -211,73 +211,73 @@ public class Application {
       int var1;
       if (this.aS) {
          this.aS = false;
-         var1 = this.aH < 0 ? -1 : this.aG[this.aH].getIndex();
-         this.aG = (ft[])Arrays.asList(this.aF.bU()).stream().filter((var1x) -> {
+         var1 = this.AppSettings < 0 ? -1 : this.saveSlots[this.AppSettings].getIndex();
+         this.saveSlots = (SaveSlot[])Arrays.asList(this.saveLocation.bU()).stream().filter((var1x) -> {
             return var1x.getIndex() == var1 || !var1x.isEmpty();
          }).toArray((var0) -> {
-            return new ft[var0];
+            return new SaveSlot[var0];
          });
-         this.aH = -1;
+         this.AppSettings = -1;
 
-         for(int var2 = 0; var2 < this.aG.length; ++var2) {
-            if (this.aG[var2].getIndex() == var1) {
-               this.aH = var2;
+         for(int var2 = 0; var2 < this.saveSlots.length; ++var2) {
+            if (this.saveSlots[var2].getIndex() == var1) {
+               this.AppSettings = var2;
                break;
             }
          }
 
-         if (var1 >= 0 && this.aH < 0) {
-            hc.warn("Slot " + (var1 + 1) + " was not reloaded!");
-            this.aI = new fs[0];
-            this.aJ = -1;
+         if (var1 >= 0 && this.AppSettings < 0) {
+            Logger.warn("Slot " + (var1 + 1) + " was not reloaded!");
+            this.saveFiles = new SaveFile[0];
+            this.ExosuitPanel = -1;
          }
 
-         this.R.updateUI();
+         this.slotComboBox.updateUI();
       }
 
-      this.aT &= this.aH >= 0;
+      this.aT &= this.AppSettings >= 0;
       if (this.aT) {
          this.aT = false;
-         String var7 = this.aJ < 0 ? null : this.aI[this.aJ].K();
-         long var8 = this.aJ < 0 ? Long.MIN_VALUE : this.aI[this.aJ].lastModified();
-         fn var4 = this.aJ < 0 ? null : this.aI[this.aJ].L();
-         this.aI = this.aG[this.aH].bX();
-         this.aJ = -1;
+         String var7 = this.ExosuitPanel < 0 ? null : this.saveFiles[this.ExosuitPanel].K();
+         long var8 = this.ExosuitPanel < 0 ? Long.MIN_VALUE : this.saveFiles[this.ExosuitPanel].lastModified();
+         GameMode var4 = this.ExosuitPanel < 0 ? null : this.saveFiles[this.ExosuitPanel].instance();
+         this.saveFiles = this.saveSlots[this.AppSettings].bX();
+         this.ExosuitPanel = -1;
 
          int var5;
-         for(var5 = 0; var5 < this.aI.length; ++var5) {
-            if (this.aI[var5].K().equals(var7)) {
-               this.aJ = var5;
+         for(var5 = 0; var5 < this.saveFiles.length; ++var5) {
+            if (this.saveFiles[var5].K().equals(var7)) {
+               this.ExosuitPanel = var5;
                break;
             }
          }
 
-         if (var7 != null && this.aJ < 0) {
+         if (var7 != null && this.ExosuitPanel < 0) {
             this.aU = false;
-            var5 = JOptionPane.showConfirmDialog(this.N, "Save file has been deleted externally. Would you like to reload?\nNOTE: All changes made in the editor will be lost.", "Reload File", 0);
+            var5 = JOptionPane.showConfirmDialog(this.mainWindow, "Save file has been deleted externally. Would you like to reload?\nNOTE: All changes made in the editor will be lost.", "Reload File", 0);
             if (var5 == 0) {
-               this.aJ = 0;
-               this.l();
+               this.ExosuitPanel = 0;
+               this.loadSave();
             } else {
-               fs[] var6 = new fs[this.aI.length + 1];
-               var6[0] = new F(this, var7, var8, var4, this.aK);
-               System.arraycopy(this.aI, 0, var6, 1, this.aI.length);
-               this.aI = var6;
-               this.aJ = 0;
+               SaveFile[] var6 = new SaveFile[this.saveFiles.length + 1];
+               var6[0] = new InMemorySaveFile(this, var7, var8, var4, this.currentSave);
+               System.arraycopy(this.saveFiles, 0, var6, 1, this.saveFiles.length);
+               this.saveFiles = var6;
+               this.ExosuitPanel = 0;
             }
          }
 
-         this.S.updateUI();
+         this.fileComboBox.updateUI();
       }
 
-      this.aU &= this.aJ >= 0;
+      this.aU &= this.ExosuitPanel >= 0;
       if (this.aU) {
          this.aU = false;
-         var1 = JOptionPane.showConfirmDialog(this.N, "Save file has been modified externally. Would you like to reload?\nNOTE: All changes made in the editor will be lost.", "Reload File", 0);
+         var1 = JOptionPane.showConfirmDialog(this.mainWindow, "Save file has been modified externally. Would you like to reload?\nNOTE: All changes made in the editor will be lost.", "Reload File", 0);
          if (var1 == 0) {
-            this.l();
+            this.loadSave();
          } else {
-            this.aL = true;
+            this.saveModified = true;
          }
       }
 
@@ -289,205 +289,205 @@ public class Application {
       this.aS = false;
       this.aT = false;
       this.aU = false;
-      this.aV = (var1x, var2x, var3x) -> {
-         this.aO = true;
+      this.accountChangeListener = (var1x, var2x, var3x) -> {
+         this.accountModified = true;
          this.aP = true;
          if (var3x == null) {
-            hc.info("Removing " + var1x);
+            Logger.info("Removing " + var1x);
          } else {
             String var4;
-            if (var3x instanceof eY) {
+            if (var3x instanceof JsonObject) {
                var4 = "[OBJECT]";
-            } else if (var3x instanceof eV) {
+            } else if (var3x instanceof JsonArray) {
                var4 = "[ARRAY]";
             } else {
                var4 = var3x.toString();
             }
 
-            hc.info("Setting " + var1x + ": " + var4);
+            Logger.info("Setting " + var1x + ": " + var4);
          }
       };
-      this.aW = (var1x, var2x, var3x) -> {
-         this.aL = true;
+      this.saveChangeListener = (var1x, var2x, var3x) -> {
+         this.saveModified = true;
          if (var1x.startsWith("PlayerStateData.Multitools")) {
-            int var4 = this.aK.J("PlayerStateData.ActiveMultioolIndex");
+            int var4 = this.currentSave.J("PlayerStateData.ActiveMultioolIndex");
             if (var1x.startsWith("PlayerStateData.Multitools[" + var4 + "].Store.")) {
-               eY var5 = this.aK.H("PlayerStateData.Multitools[" + var4 + "].Store");
-               this.aK.b("PlayerStateData.WeaponInventory", (Object)var5.bE());
+               JsonObject var5 = this.currentSave.H("PlayerStateData.Multitools[" + var4 + "].Store");
+               this.currentSave.AboutDialogCloseListener("PlayerStateData.WeaponInventory", (Object)var5.MilestonesPanel());
             } else if (var1x.equals("PlayerStateData.Multitools[" + var4 + "].Seed[1]")) {
-               this.aK.b("PlayerStateData.CurrentWeapon.GenerationSeed[1]", var3x);
+               this.currentSave.AboutDialogCloseListener("PlayerStateData.CurrentWeapon.GenerationSeed[1]", var3x);
             } else if (var1x.equals("PlayerStateData.Multitools[" + var4 + "].Resource.Filename")) {
-               this.aK.b("PlayerStateData.CurrentWeapon.Filename", var3x);
+               this.currentSave.AboutDialogCloseListener("PlayerStateData.CurrentWeapon.Filename", var3x);
             }
          }
 
          if (var3x == null) {
-            hc.info("Removing " + var1x);
+            Logger.info("Removing " + var1x);
          } else {
             String var6;
-            if (var3x instanceof eY) {
+            if (var3x instanceof JsonObject) {
                var6 = "OBJECT";
-            } else if (var3x instanceof eV) {
-               var6 = "ARRAY[" + ((eV)var3x).size() + "]";
+            } else if (var3x instanceof JsonArray) {
+               var6 = "ARRAY[" + ((JsonArray)var3x).size() + "]";
             } else {
-               var6 = fh.b(var3x, false);
+               var6 = JsonParser.AboutDialogCloseListener(var3x, false);
             }
 
-            hc.info("Setting " + var1x + ": " + var6);
+            Logger.info("Setting " + var1x + ": " + var6);
          }
       };
-      this.aX = new u(this);
-      String var2 = nomanssave.aH.getProperty("GameStorage");
-      String var3 = nomanssave.aH.getProperty("GameSaveDir");
-      this.aF = var3 == null ? null : fq.a(var2, new File(var3), this.aX);
-      if (this.aF == null) {
-         this.aG = new ft[0];
-         this.aH = -1;
-         this.aI = new fs[0];
-         this.aJ = -1;
-         this.aM = null;
-         this.aN = null;
+      this.fileChangeHandler = new exportJson(this);
+      String var2 = nomanssave.AppSettings.getProperty("GameStorage");
+      String var3 = nomanssave.AppSettings.getProperty("GameSaveDir");
+      this.saveLocation = var3 == null ? null : SaveLocation.createSaveLocation(var2, new File(var3), this.fileChangeHandler);
+      if (this.saveLocation == null) {
+         this.saveSlots = new SaveSlot[0];
+         this.AppSettings = -1;
+         this.saveFiles = new SaveFile[0];
+         this.ExosuitPanel = -1;
+         this.accountData = null;
+         this.accountJson = null;
       } else {
-         this.aG = this.aF.bV();
-         this.aH = -1;
-         this.aI = new fs[0];
-         this.aJ = -1;
+         this.saveSlots = this.saveLocation.bV();
+         this.AppSettings = -1;
+         this.saveFiles = new SaveFile[0];
+         this.ExosuitPanel = -1;
          if (var2 == null) {
-            var2 = fq.c(this.aF);
-            nomanssave.aH.setProperty("GameStorage", var2);
+            var2 = SaveLocation.getStorageName(this.saveLocation);
+            nomanssave.AppSettings.setProperty("GameStorage", var2);
          }
 
-         hc.debug("Storage: " + var2);
-         hc.debug("Save Path: " + this.aF.bS().getAbsolutePath());
-         this.aM = null;
-         this.aN = null;
+         Logger.debug("Storage: " + var2);
+         Logger.debug("Save Path: " + this.saveLocation.InventorySlotPanel().getAbsolutePath());
+         this.accountData = null;
+         this.accountJson = null;
 
          try {
-            hc.info("Reading account data...");
-            this.aM = this.aF.bT();
-            this.aN = this.aM == null ? null : this.aM.M();
-            if (this.aN != null) {
-               this.aN.a(this.aV);
+            Logger.info("Reading account data...");
+            this.accountData = this.saveLocation.bT();
+            this.accountJson = this.accountData == null ? null : this.accountData.iconCache();
+            if (this.accountJson != null) {
+               this.accountJson.AboutDialog(this.accountChangeListener);
             }
          } catch (IOException var5) {
-            hc.a("Error reading account data", var5);
+            Logger.AboutDialog("Error reading account data", var5);
          }
       }
 
       this.initialize();
-      (new x(this, var1)).start();
+      (new UpdateCheckThread(this, var1)).start();
    }
 
-   public JFrame g() {
-      return this.N;
+   public JFrame getMainWindow() {
+      return this.mainWindow;
    }
 
-   public void a(gH var1) {
-      File var2 = nomanssave.aH.cF;
+   public void AboutDialog(Starship var1) {
+      File var2 = nomanssave.AppSettings.cF;
       if (!var2.exists() && !var2.mkdir()) {
-         var2 = nomanssave.aH.cD;
+         var2 = nomanssave.AppSettings.cD;
       }
 
-      cT var3 = cT.aC();
-      String var4 = a(var1.getName(), "Ship");
+      cT var3 = cT.discoveryPanel();
+      String var4 = AboutDialog(var1.getName(), "Ship");
       var3.setCurrentDirectory(var2);
       var3.setSelectedFile(new File(var2, var4));
-      if (var3.showSaveDialog(this.N) == 0) {
+      if (var3.showSaveDialog(this.mainWindow) == 0) {
          try {
             File var5 = var3.getSelectedFile();
             if (!var5.getName().endsWith(".sh0")) {
                var5 = new File(var5.getParentFile(), var5.getName() + ".sh0");
             }
 
-            var1.a(var5, var3.aw());
+            var1.AboutDialog(var5, var3.freighterPanel());
          } catch (RuntimeException var6) {
-            hc.a("Ship export error", var6);
-            this.c("An error occured during export.");
+            Logger.AboutDialog("Ship export error", var6);
+            this.AccountPanel("An error occured during export.");
          } catch (IOException var7) {
-            hc.a("Ship export error", var7);
-            this.c("An error occured during export.");
+            Logger.AboutDialog("Ship export error", var7);
+            this.AccountPanel("An error occured during export.");
          }
       }
 
    }
 
-   public void a(gv var1) {
-      File var2 = nomanssave.aH.cF;
+   public void AboutDialog(Multitool var1) {
+      File var2 = nomanssave.AppSettings.cF;
       if (!var2.exists() && !var2.mkdir()) {
-         var2 = nomanssave.aH.cD;
+         var2 = nomanssave.AppSettings.cD;
       }
 
-      cv var3 = cv.ax();
-      String var4 = a(var1.getName(), "Weapon");
+      cv var3 = cv.frigatesPanel();
+      String var4 = AboutDialog(var1.getName(), "Weapon");
       var3.setCurrentDirectory(var2);
       var3.setSelectedFile(new File(var2, var4));
-      if (var3.showSaveDialog(this.N) == 0) {
+      if (var3.showSaveDialog(this.mainWindow) == 0) {
          try {
             File var5 = var3.getSelectedFile();
             if (!var5.getName().endsWith(".wp0")) {
                var5 = new File(var5.getParentFile(), var5.getName() + ".wp0");
             }
 
-            var1.j(var5);
+            var1.isFrigateOnMission(var5);
          } catch (RuntimeException var6) {
-            hc.a("Weapon export error", var6);
-            this.c("An error occured during export.");
+            Logger.AboutDialog("Weapon export error", var6);
+            this.AccountPanel("An error occured during export.");
          } catch (IOException var7) {
-            hc.a("Weapon export error", var7);
-            this.c("An error occured during export.");
+            Logger.AboutDialog("Weapon export error", var7);
+            this.AccountPanel("An error occured during export.");
          }
       }
 
    }
 
-   public void a(gj var1) {
-      File var2 = nomanssave.aH.cF;
+   public void AboutDialog(Companion var1) {
+      File var2 = nomanssave.AppSettings.cF;
       if (!var2.exists() && !var2.mkdir()) {
-         var2 = nomanssave.aH.cD;
+         var2 = nomanssave.AppSettings.cD;
       }
 
       String var3 = "." + var1.cL().name().toLowerCase();
-      cp var4 = cp.at();
-      String var5 = a(var1.getName(), var1.cL().name());
+      cp var4 = cp.multitoolPanel();
+      String var5 = AboutDialog(var1.getName(), var1.cL().name());
       var4.setCurrentDirectory(var2);
       var4.setSelectedFile(new File(var2, var5));
-      if (var4.showSaveDialog(this.N) == 0) {
+      if (var4.showSaveDialog(this.mainWindow) == 0) {
          try {
             File var6 = var4.getSelectedFile();
             if (!var6.getName().endsWith(var3)) {
                var6 = new File(var6.getParentFile(), var6.getName() + var3);
             }
 
-            var1.j(var6);
+            var1.isFrigateOnMission(var6);
          } catch (RuntimeException var7) {
-            hc.a("Companion export error", var7);
-            this.c("An error occured during export.");
+            Logger.AboutDialog("Companion export error", var7);
+            this.AccountPanel("An error occured during export.");
          } catch (IOException var8) {
-            hc.a("Companion export error", var8);
-            this.c("An error occured during export.");
+            Logger.AboutDialog("Companion export error", var8);
+            this.AccountPanel("An error occured during export.");
          }
       }
 
    }
 
-   public gH h() {
-      eY var1;
-      if (this.aK != null && (var1 = this.aK.H("PlayerStateData")) != null) {
-         File var2 = nomanssave.aH.cF.exists() ? nomanssave.aH.cF : nomanssave.aH.cD;
-         cT var3 = cT.aC();
+   public Starship deleteMultitool() {
+      JsonObject var1;
+      if (this.currentSave != null && (var1 = this.currentSave.H("PlayerStateData")) != null) {
+         File var2 = nomanssave.AppSettings.cF.exists() ? nomanssave.AppSettings.cF : nomanssave.AppSettings.cD;
+         cT var3 = cT.discoveryPanel();
          var3.setCurrentDirectory(var2);
-         if (var3.showOpenDialog(this.N) == 0) {
+         if (var3.showOpenDialog(this.mainWindow) == 0) {
             try {
                File var4 = var3.getSelectedFile();
-               gH var5 = gH.c(var1, var4);
-               this.aL = true;
+               Starship var5 = Starship.AccountPanel(var1, var4);
+               this.saveModified = true;
                return var5;
             } catch (RuntimeException var6) {
-               hc.a("Ship import error", var6);
-               this.c("An error occured during import.");
+               Logger.AboutDialog("Ship import error", var6);
+               this.AccountPanel("An error occured during import.");
             } catch (IOException var7) {
-               hc.a("Ship import error", var7);
-               this.c("An error occured during import.");
+               Logger.AboutDialog("Ship import error", var7);
+               this.AccountPanel("An error occured during import.");
             }
          }
 
@@ -497,24 +497,24 @@ public class Application {
       }
    }
 
-   public gv i() {
-      eY var1;
-      if (this.aK != null && (var1 = this.aK.H("PlayerStateData")) != null) {
-         File var2 = nomanssave.aH.cF.exists() ? nomanssave.aH.cF : nomanssave.aH.cD;
-         cv var3 = cv.ax();
+   public Multitool deleteShip() {
+      JsonObject var1;
+      if (this.currentSave != null && (var1 = this.currentSave.H("PlayerStateData")) != null) {
+         File var2 = nomanssave.AppSettings.cF.exists() ? nomanssave.AppSettings.cF : nomanssave.AppSettings.cD;
+         cv var3 = cv.frigatesPanel();
          var3.setCurrentDirectory(var2);
-         if (var3.showOpenDialog(this.N) == 0) {
+         if (var3.showOpenDialog(this.mainWindow) == 0) {
             try {
                File var4 = var3.getSelectedFile();
-               gv var5 = gv.b(var1, var4);
-               this.aL = true;
+               Multitool var5 = Multitool.AboutDialogCloseListener(var1, var4);
+               this.saveModified = true;
                return var5;
             } catch (RuntimeException var6) {
-               hc.a("Weapon import error", var6);
-               this.c("An error occured during import.");
+               Logger.AboutDialog("Weapon import error", var6);
+               this.AccountPanel("An error occured during import.");
             } catch (IOException var7) {
-               hc.a("Weapon import error", var7);
-               this.c("An error occured during import.");
+               Logger.AboutDialog("Weapon import error", var7);
+               this.AccountPanel("An error occured during import.");
             }
          }
 
@@ -524,24 +524,24 @@ public class Application {
       }
    }
 
-   public gj j() {
-      eY var1;
-      if (this.aK != null && (var1 = this.aK.H("PlayerStateData")) != null) {
-         File var2 = nomanssave.aH.cF.exists() ? nomanssave.aH.cF : nomanssave.aH.cD;
-         cp var3 = cp.at();
+   public Companion isFrigateOnMission() {
+      JsonObject var1;
+      if (this.currentSave != null && (var1 = this.currentSave.H("PlayerStateData")) != null) {
+         File var2 = nomanssave.AppSettings.cF.exists() ? nomanssave.AppSettings.cF : nomanssave.AppSettings.cD;
+         cp var3 = cp.multitoolPanel();
          var3.setCurrentDirectory(var2);
-         if (var3.showOpenDialog(this.N) == 0) {
+         if (var3.showOpenDialog(this.mainWindow) == 0) {
             try {
                File var4 = var3.getSelectedFile();
-               gj var5 = gj.a(var1, var4);
-               this.aL = true;
+               Companion var5 = Companion.AboutDialog(var1, var4);
+               this.saveModified = true;
                return var5;
             } catch (RuntimeException var6) {
-               hc.a("Companion import error", var6);
-               this.c("An error occured during import.");
+               Logger.AboutDialog("Companion import error", var6);
+               this.AccountPanel("An error occured during import.");
             } catch (IOException var7) {
-               hc.a("Companion import error", var7);
-               this.c("An error occured during import.");
+               Logger.AboutDialog("Companion import error", var7);
+               this.AccountPanel("An error occured during import.");
             }
          }
 
@@ -551,88 +551,88 @@ public class Application {
       }
    }
 
-   public void a(gf var1) {
-      File var2 = nomanssave.aH.cE;
+   public void AboutDialog(Base var1) {
+      File var2 = nomanssave.AppSettings.cE;
       if (!var2.exists() && !var2.mkdir()) {
-         var2 = nomanssave.aH.cD;
+         var2 = nomanssave.AppSettings.cD;
       }
 
       cl var3 = cl.ar();
-      String var4 = a(var1.getName(), "Base");
+      String var4 = AboutDialog(var1.getName(), "Base");
       var3.setCurrentDirectory(var2);
       var3.setSelectedFile(new File(var2, var4));
-      if (var3.showSaveDialog(this.N) == 0) {
+      if (var3.showSaveDialog(this.mainWindow) == 0) {
          try {
             File var5 = var3.getSelectedFile();
             if (!var5.getName().endsWith(".pb3")) {
                var5 = new File(var5.getParentFile(), var5.getName() + ".pb3");
             }
 
-            if (var5.exists() && JOptionPane.showConfirmDialog(this.N, "Are you sure you want to overwrite this existing backup file?", "Confirm", 2) != 0) {
+            if (var5.exists() && JOptionPane.showConfirmDialog(this.mainWindow, "Are you sure you want to overwrite this existing backup file?", "Confirm", 2) != 0) {
                return;
             }
 
-            gS.d(var1.cH(), var5);
+            BackupUtil.d(var1.cH(), var5);
          } catch (RuntimeException var6) {
-            hc.a("Base backup error", var6);
-            this.c("An error occured during backup.");
+            Logger.AboutDialog("Base backup error", var6);
+            this.AccountPanel("An error occured during backup.");
          } catch (IOException var7) {
-            hc.a("Base backup error", var7);
-            this.c("An error occured during backup.");
+            Logger.AboutDialog("Base backup error", var7);
+            this.AccountPanel("An error occured during backup.");
          } catch (GeneralSecurityException var8) {
-            hc.a("Base backup error", var8);
-            this.c("An error occured during backup.");
+            Logger.AboutDialog("Base backup error", var8);
+            this.AccountPanel("An error occured during backup.");
          }
       }
 
    }
 
-   public boolean b(gf var1) {
-      File var2 = nomanssave.aH.cE.exists() ? nomanssave.aH.cE : nomanssave.aH.cD;
+   public boolean AboutDialogCloseListener(Base var1) {
+      File var2 = nomanssave.AppSettings.cE.exists() ? nomanssave.AppSettings.cE : nomanssave.AppSettings.cD;
       cl var3 = cl.ar();
       var3.setCurrentDirectory(var2);
-      if (var3.showOpenDialog(this.N) == 0) {
+      if (var3.showOpenDialog(this.mainWindow) == 0) {
          try {
-            if (JOptionPane.showConfirmDialog(this.N, "Are you sure you want to overwrite your existing base?", "Confirm", 2) != 0) {
+            if (JOptionPane.showConfirmDialog(this.mainWindow, "Are you sure you want to overwrite your existing base?", "Confirm", 2) != 0) {
                return false;
             }
 
             File var4 = var3.getSelectedFile();
-            gS.e(var1.cH(), var4);
-            this.aL = true;
+            BackupUtil.e(var1.cH(), var4);
+            this.saveModified = true;
             return true;
          } catch (IOException var5) {
-            hc.a("Base restore error", var5);
-            this.c("An error occured during backup.");
+            Logger.AboutDialog("Base restore error", var5);
+            this.AccountPanel("An error occured during backup.");
          } catch (GeneralSecurityException var6) {
-            hc.a("Base restore error", var6);
-            this.c("An error occured during backup.");
+            Logger.AboutDialog("Base restore error", var6);
+            this.AccountPanel("An error occured during backup.");
          }
       }
 
       return false;
    }
 
-   public void a(gm var1) {
-      gn var2 = var1.cZ();
+   public void AboutDialog(Freighter var1) {
+      FreighterBase var2 = var1.cZ();
       if (var2 != null) {
-         File var3 = nomanssave.aH.cE;
+         File var3 = nomanssave.AppSettings.cE;
          if (!var3.exists() && !var3.mkdir()) {
-            var3 = nomanssave.aH.cD;
+            var3 = nomanssave.AppSettings.cD;
          }
 
-         cs var4 = cs.av();
-         String var5 = a(var2.getName(), "Freighter");
+         cs var4 = cs.squadronPanel();
+         String var5 = AboutDialog(var2.getName(), "Freighter");
          var4.setCurrentDirectory(var3);
          var4.setSelectedFile(new File(var3, var5));
-         if (var4.showSaveDialog(this.N) == 0) {
+         if (var4.showSaveDialog(this.mainWindow) == 0) {
             try {
                File var6 = var4.getSelectedFile();
                if (!var6.getName().endsWith(".fb3")) {
                   var6 = new File(var6.getParentFile(), var6.getName() + ".fb3");
                }
 
-               if (var6.exists() && JOptionPane.showConfirmDialog(this.N, "Are you sure you want to overwrite this existing backup file?", "Confirm", 2) != 0) {
+               if (var6.exists() && JOptionPane.showConfirmDialog(this.mainWindow, "Are you sure you want to overwrite this existing backup file?", "Confirm", 2) != 0) {
                   return;
                }
 
@@ -640,32 +640,32 @@ public class Application {
                var7.put("HomeSeed", var1.cU());
                var7.put("ResourceSeed", var1.cV());
                var7.put("Name", var1.getName());
-               var7.put("TypeClass", var1.cW());
+               var7.put("TypeClass", var1.LineNumberPanel());
                var7.put("Resource", var1.cT());
                var7.put("FleetCoordination", var1.cY());
                var7.put("Hyperdrive", var1.cX());
-               eY var8 = this.aK.H("PlayerStateData");
-               eY var9 = var8.H("FreighterInventory").bE();
-               eY var10 = var8.H("FreighterInventory_TechOnly").bE();
-               eY var11 = var8.H("FreighterInventory_Cargo").bE();
-               if (!var4.aw()) {
-                  eV var12 = var9.d("Slots");
+               JsonObject var8 = this.currentSave.H("PlayerStateData");
+               JsonObject var9 = var8.H("FreighterInventory").MilestonesPanel();
+               JsonObject var10 = var8.H("FreighterInventory_TechOnly").MilestonesPanel();
+               JsonObject var11 = var8.H("FreighterInventory_Cargo").MilestonesPanel();
+               if (!var4.freighterPanel()) {
+                  JsonArray var12 = var9.d("Slots");
 
                   int var13;
-                  eY var14;
+                  JsonObject var14;
                   for(var13 = 0; var13 < var12.size(); ++var13) {
-                     var14 = var12.V(var13);
+                     var14 = var12.descriptionLabel(var13);
                      if (!var14.getValueAsString("Type.InventoryType").equals("Technology")) {
-                        var12.ac(var13--);
+                        var12.editMenuItems(var13--);
                      }
                   }
 
                   var12 = var11.d("Slots");
 
                   for(var13 = 0; var13 < var12.size(); ++var13) {
-                     var14 = var12.V(var13);
+                     var14 = var12.descriptionLabel(var13);
                      if (!var14.getValueAsString("Type.InventoryType").equals("Technology")) {
-                        var12.ac(var13--);
+                        var12.editMenuItems(var13--);
                      }
                   }
                }
@@ -673,40 +673,40 @@ public class Application {
                var7.put("Inventory", var9);
                var7.put("InventoryTech", var10);
                var7.put("InventoryCargo", var11);
-               gS.a(var2.cH(), (Map)var7, (File)var6);
+               BackupUtil.AboutDialog(var2.cH(), (Map)var7, (File)var6);
             } catch (RuntimeException var15) {
-               hc.a("Freighter backup error", var15);
-               this.c("An error occured during backup.");
+               Logger.AboutDialog("Freighter backup error", var15);
+               this.AccountPanel("An error occured during backup.");
             } catch (IOException var16) {
-               hc.a("Freighter backup error", var16);
-               this.c("An error occured during backup.");
+               Logger.AboutDialog("Freighter backup error", var16);
+               this.AccountPanel("An error occured during backup.");
             } catch (GeneralSecurityException var17) {
-               hc.a("Freighter backup error", var17);
-               this.c("An error occured during backup.");
+               Logger.AboutDialog("Freighter backup error", var17);
+               this.AccountPanel("An error occured during backup.");
             }
          }
 
       }
    }
 
-   public boolean b(gm var1) {
-      gn var2 = var1.cZ();
+   public boolean AboutDialogCloseListener(Freighter var1) {
+      FreighterBase var2 = var1.cZ();
       if (var2 == null) {
          return false;
       } else {
-         File var3 = nomanssave.aH.cE.exists() ? nomanssave.aH.cE : nomanssave.aH.cD;
-         cs var4 = cs.av();
+         File var3 = nomanssave.AppSettings.cE.exists() ? nomanssave.AppSettings.cE : nomanssave.AppSettings.cD;
+         cs var4 = cs.squadronPanel();
          var4.setCurrentDirectory(var3);
-         if (var4.showOpenDialog(this.N) == 0) {
+         if (var4.showOpenDialog(this.mainWindow) == 0) {
             try {
-               if (JOptionPane.showConfirmDialog(this.N, "Are you sure you want to overwrite your existing freighter?", "Confirm", 2) != 0) {
+               if (JOptionPane.showConfirmDialog(this.mainWindow, "Are you sure you want to overwrite your existing freighter?", "Confirm", 2) != 0) {
                   return false;
                }
 
                File var5 = var4.getSelectedFile();
                HashMap var6 = new HashMap();
-               gS.b(var2.cH(), var6, var5);
-               eY var7 = this.aK.H("PlayerStateData");
+               BackupUtil.AboutDialogCloseListener(var2.cH(), var6, var5);
+               JsonObject var7 = this.currentSave.H("PlayerStateData");
                boolean var8 = false;
                Iterator var10 = var6.entrySet().iterator();
 
@@ -729,7 +729,7 @@ public class Application {
                   }
 
                   if (((String)var9.getKey()).equals("Type")) {
-                     var1.ag(go.valueOf((String)var9.getValue()).K());
+                     var1.ag(FreighterType.valueOf((String)var9.getValue()).K());
                   }
 
                   if (((String)var9.getKey()).equals("Resource")) {
@@ -737,42 +737,42 @@ public class Application {
                   }
 
                   if (((String)var9.getKey()).equals("FleetCoordination")) {
-                     var1.b(((Number)var9.getValue()).doubleValue());
+                     var1.AboutDialogCloseListener(((Number)var9.getValue()).doubleValue());
                   }
 
                   if (((String)var9.getKey()).equals("Hyperdrive")) {
-                     var1.a(((Number)var9.getValue()).doubleValue());
+                     var1.AboutDialog(((Number)var9.getValue()).doubleValue());
                   }
 
                   if (((String)var9.getKey()).equals("Inventory")) {
-                     var7.b("FreighterInventory", (Object)((eY)var9.getValue()));
+                     var7.AboutDialogCloseListener("FreighterInventory", (Object)((JsonObject)var9.getValue()));
                      var8 = true;
                   }
 
                   if (((String)var9.getKey()).equals("InventoryTech")) {
-                     var7.b("FreighterInventory_TechOnly", (Object)((eY)var9.getValue()));
+                     var7.AboutDialogCloseListener("FreighterInventory_TechOnly", (Object)((JsonObject)var9.getValue()));
                      var8 = true;
                   }
 
                   if (((String)var9.getKey()).equals("InventoryCargo")) {
-                     var7.b("FreighterInventory_Cargo", (Object)((eY)var9.getValue()));
+                     var7.AboutDialogCloseListener("FreighterInventory_Cargo", (Object)((JsonObject)var9.getValue()));
                      var8 = true;
                   }
                }
 
                if (var8) {
-                  var1 = gm.p(var7);
+                  var1 = Freighter.showCoordinateViewer(var7);
                }
 
-               this.aw.c(var1);
-               this.aL = true;
+               this.freighterPanel.AccountPanel(var1);
+               this.saveModified = true;
                return true;
             } catch (IOException var11) {
-               hc.a("Freighter restore error", var11);
-               this.c("An error occured during restore.");
+               Logger.AboutDialog("Freighter restore error", var11);
+               this.AccountPanel("An error occured during restore.");
             } catch (GeneralSecurityException var12) {
-               hc.a("Freighter restore error", var12);
-               this.c("An error occured during restore.");
+               Logger.AboutDialog("Freighter restore error", var12);
+               this.AccountPanel("An error occured during restore.");
             }
          }
 
@@ -780,8 +780,8 @@ public class Application {
       }
    }
 
-   private void k() {
-      File var1 = ej.b(this.aF == null ? null : this.aF.bS());
+   private void openFile() {
+      File var1 = ej.AboutDialogCloseListener(this.saveLocation == null ? null : this.saveLocation.InventorySlotPanel());
       if (var1 != null) {
          String var2;
          File var3;
@@ -793,58 +793,58 @@ public class Application {
             var2 = var1.getName();
          }
 
-         if (this.aF != null) {
-            if (this.aF.bS().isDirectory() && !this.aF.bS().equals(var3)) {
-               this.aF = null;
-            } else if (this.aF.bS().isFile() && !this.aF.bS().equals(var1)) {
-               this.aF = null;
+         if (this.saveLocation != null) {
+            if (this.saveLocation.InventorySlotPanel().isDirectory() && !this.saveLocation.InventorySlotPanel().equals(var3)) {
+               this.saveLocation = null;
+            } else if (this.saveLocation.InventorySlotPanel().isFile() && !this.saveLocation.InventorySlotPanel().equals(var1)) {
+               this.saveLocation = null;
             }
          }
 
-         if (this.aF == null) {
-            hc.info("Loading storage: " + var3.getAbsolutePath());
-            this.aF = fq.a(var3, this.aX);
+         if (this.saveLocation == null) {
+            Logger.info("Loading storage: " + var3.getAbsolutePath());
+            this.saveLocation = SaveLocation.detectSaveLocation(var3, this.fileChangeHandler);
          }
 
-         if (this.aF == null) {
-            this.aG = new ft[0];
-            this.aH = -1;
-            this.aI = new fs[0];
-            this.aJ = -1;
-            this.aK = null;
-            this.aM = null;
-            this.aN = null;
-            this.ad.setEnabled(false);
-            this.O.setEnabledAt(13, false);
-            this.aE.a((eY)null);
-            this.aO = false;
-            this.P.setText("(none)");
-            this.Q.setText("(none)");
+         if (this.saveLocation == null) {
+            this.saveSlots = new SaveSlot[0];
+            this.AppSettings = -1;
+            this.saveFiles = new SaveFile[0];
+            this.ExosuitPanel = -1;
+            this.currentSave = null;
+            this.accountData = null;
+            this.accountJson = null;
+            this.editAccountJsonMenuItem.setEnabled(false);
+            this.tabbedPane.setEnabledAt(13, false);
+            this.accountPanel.AboutDialog((JsonObject)null);
+            this.accountModified = false;
+            this.storageLabel.setText("(none)");
+            this.savePathLabel.setText("(none)");
          } else {
-            String var4 = fq.c(this.aF);
-            nomanssave.aH.setProperty("GameStorage", var4);
-            nomanssave.aH.setProperty("GameSaveDir", this.aF.bS().getAbsolutePath());
-            hc.debug("Storage: " + var4);
-            hc.debug("Save Path: " + this.aF.bS().getAbsolutePath());
-            this.aG = this.aF.bV();
-            this.aH = -1;
-            this.aI = new fs[0];
-            this.aJ = -1;
+            String var4 = SaveLocation.getStorageName(this.saveLocation);
+            nomanssave.AppSettings.setProperty("GameStorage", var4);
+            nomanssave.AppSettings.setProperty("GameSaveDir", this.saveLocation.InventorySlotPanel().getAbsolutePath());
+            Logger.debug("Storage: " + var4);
+            Logger.debug("Save Path: " + this.saveLocation.InventorySlotPanel().getAbsolutePath());
+            this.saveSlots = this.saveLocation.bV();
+            this.AppSettings = -1;
+            this.saveFiles = new SaveFile[0];
+            this.ExosuitPanel = -1;
             if (var2 != null) {
                label85:
-               for(int var5 = 0; var5 < this.aG.length; ++var5) {
-                  if (this.aF.W(var2) == this.aG[var5].getIndex()) {
-                     this.aH = var5;
-                     this.aI = this.aG[var5].bX();
+               for(int var5 = 0; var5 < this.saveSlots.length; ++var5) {
+                  if (this.saveLocation.reloadButton(var2) == this.saveSlots[var5].getIndex()) {
+                     this.AppSettings = var5;
+                     this.saveFiles = this.saveSlots[var5].bX();
                      int var6 = 0;
 
                      while(true) {
-                        if (var6 >= this.aI.length) {
+                        if (var6 >= this.saveFiles.length) {
                            break label85;
                         }
 
-                        if (var2.equals(this.aI[var6].K())) {
-                           this.aJ = var6;
+                        if (var2.equals(this.saveFiles[var6].K())) {
+                           this.ExosuitPanel = var6;
                            break label85;
                         }
 
@@ -854,279 +854,279 @@ public class Application {
                }
             }
 
-            this.aM = null;
-            this.aN = null;
+            this.accountData = null;
+            this.accountJson = null;
 
             try {
-               this.aM = this.aF.bT();
-               this.aN = this.aM == null ? null : this.aM.M();
-               if (this.aN != null) {
-                  this.aN.a(this.aV);
+               this.accountData = this.saveLocation.bT();
+               this.accountJson = this.accountData == null ? null : this.accountData.iconCache();
+               if (this.accountJson != null) {
+                  this.accountJson.AboutDialog(this.accountChangeListener);
                }
             } catch (IOException var7) {
-               hc.a("Error reading account data", var7);
+               Logger.AboutDialog("Error reading account data", var7);
             }
 
-            this.ad.setEnabled(this.aN != null);
-            this.O.setEnabledAt(13, this.aN != null);
-            this.aE.a(this.aN);
-            this.aO = false;
-            this.P.setText(var4);
-            this.Q.setText(this.aF.bS().getAbsolutePath());
+            this.editAccountJsonMenuItem.setEnabled(this.accountJson != null);
+            this.tabbedPane.setEnabledAt(13, this.accountJson != null);
+            this.accountPanel.AboutDialog(this.accountJson);
+            this.accountModified = false;
+            this.storageLabel.setText(var4);
+            this.savePathLabel.setText(this.saveLocation.InventorySlotPanel().getAbsolutePath());
          }
 
-         this.R.setEnabled(true);
-         this.S.setEnabled(true);
-         if (this.aJ > 0) {
-            this.c("The save file you have selected is not the most recent.");
+         this.slotComboBox.setEnabled(true);
+         this.fileComboBox.setEnabled(true);
+         if (this.ExosuitPanel > 0) {
+            this.AccountPanel("The save file you have selected is not the most recent.");
          }
 
-         this.l();
+         this.loadSave();
       }
 
    }
 
-   private void e(int var1) {
-      this.aH = var1;
-      if (this.aH < 0) {
-         this.aI = new fs[0];
-         this.aJ = -1;
+   private void selectSlot(int var1) {
+      this.AppSettings = var1;
+      if (this.AppSettings < 0) {
+         this.saveFiles = new SaveFile[0];
+         this.ExosuitPanel = -1;
       } else {
-         this.aI = this.aG[this.aH].bX();
-         this.aJ = this.aI.length > 0 ? 0 : -1;
+         this.saveFiles = this.saveSlots[this.AppSettings].bX();
+         this.ExosuitPanel = this.saveFiles.length > 0 ? 0 : -1;
       }
 
-      this.l();
+      this.loadSave();
    }
 
-   private void f(int var1) {
-      this.aJ = var1;
-      this.l();
+   private void selectFile(int var1) {
+      this.ExosuitPanel = var1;
+      this.loadSave();
    }
 
-   public void b(String var1) {
-      EventQueue.invokeLater(new z(this, var1));
+   public void showError(String var1) {
+      EventQueue.invokeLater(new ShowErrorRunnable(this, var1));
    }
 
-   public void c(String var1) {
-      EventQueue.invokeLater(new A(this, var1));
+   public void AccountPanel(String var1) {
+      EventQueue.invokeLater(new ShowWarningRunnable(this, var1));
    }
 
-   private void l() {
-      this.R.updateUI();
-      this.S.updateUI();
-      this.aL = false;
-      this.aK = null;
-      if (this.aJ < 0) {
-         this.T.setText("(no file selected)");
-         this.U.setText("(no file selected)");
-         this.V.setText("(no file selected)");
-         if (this.aH >= 0) {
-            hc.info("No current save file found for " + this.aG[this.aH]);
-            this.b("Save file not found for " + this.aG[this.aH]);
+   private void loadSave() {
+      this.slotComboBox.updateUI();
+      this.fileComboBox.updateUI();
+      this.saveModified = false;
+      this.currentSave = null;
+      if (this.ExosuitPanel < 0) {
+         this.modifiedLabel.setText("(no file selected)");
+         this.saveNameLabel.setText("(no file selected)");
+         this.descriptionLabel.setText("(no file selected)");
+         if (this.AppSettings >= 0) {
+            Logger.info("No current save file found for " + this.saveSlots[this.AppSettings]);
+            this.showError("Save file not found for " + this.saveSlots[this.AppSettings]);
          }
       } else {
          try {
-            this.T.setText(a(this.aI[this.aJ].lastModified()));
-            this.U.setText(e(this.aI[this.aJ].getName()));
-            this.V.setText(e(this.aI[this.aJ].getDescription()));
-            hc.info("Reading save file...");
-            hc.info("  Slot: " + this.aG[this.aH]);
-            hc.info("  Filename: " + this.aI[this.aJ].K());
+            this.modifiedLabel.setText(formatDateTime(this.saveFiles[this.ExosuitPanel].lastModified()));
+            this.saveNameLabel.setText(e(this.saveFiles[this.ExosuitPanel].getName()));
+            this.descriptionLabel.setText(e(this.saveFiles[this.ExosuitPanel].getDescription()));
+            Logger.info("Reading save file...");
+            Logger.info("  Slot: " + this.saveSlots[this.AppSettings]);
+            Logger.info("  Filename: " + this.saveFiles[this.ExosuitPanel].K());
 
             try {
-               this.aK = this.aI[this.aJ].M();
-               this.aK.a(this.aW);
-            } catch (eX var18) {
-               hc.info("  Error parsing JSON: " + var18.getMessage());
+               this.currentSave = this.saveFiles[this.ExosuitPanel].iconCache();
+               this.currentSave.AboutDialog(this.saveChangeListener);
+            } catch (JsonParseException var18) {
+               Logger.info("  Error parsing JSON: " + var18.getMessage());
             }
 
-            hc.info("Finished.");
-            this.aL = this.aI[this.aJ] instanceof F;
+            Logger.info("Finished.");
+            this.saveModified = this.saveFiles[this.ExosuitPanel] instanceof InMemorySaveFile;
          } catch (IOException var19) {
-            hc.error("Could not load save file: " + this.aI[this.aJ].K(), var19);
-            this.aK = null;
+            Logger.error("Could not load save file: " + this.saveFiles[this.ExosuitPanel].K(), var19);
+            this.currentSave = null;
          }
       }
 
-      this.O.setSelectedIndex(0);
-      eY var1;
-      if (this.aK != null && (var1 = this.aK.H("PlayerStateData")) != null) {
-         boolean var20 = this.aF.bW();
-         gz var21 = gz.w(var1);
-         gv[] var4 = gv.v(var1);
-         gB var5 = gB.x(var1);
-         gH[] var6 = gH.C(var1);
-         gC var7 = gC.y(var1);
-         gM[] var8 = gM.D(var1);
-         gm var9 = gm.p(var1);
-         gp[] var10 = gp.q(var1);
-         gO[] var11 = gO.E(var1);
-         gE[] var12 = gE.z(var1);
-         boolean var13 = gj.n(var1);
-         gj[] var14 = gj.o(var1);
-         ge var15 = ge.m(var1);
-         this.O.setEnabledAt(1, var21 != null);
-         this.as.a(var21);
-         this.O.setEnabledAt(2, var4.length > 0);
-         this.at.a(var4, var5);
-         this.O.setEnabledAt(3, var6.length > 0);
-         this.au.a(var6, var7);
-         this.O.setEnabledAt(4, var8.length > 0);
-         this.av.a(var8);
-         this.O.setEnabledAt(5, var9 != null);
-         this.aw.c(var9);
-         this.O.setEnabledAt(6, var9 != null);
-         this.ax.a(var10);
-         this.O.setEnabledAt(7, var11.length > 0);
-         this.ay.a(var11);
-         this.O.setEnabledAt(8, var13);
-         this.az.a(var14);
-         this.O.setEnabledAt(9, var15 != null);
-         this.aA.a(var15);
-         this.O.setEnabledAt(10, var12.length > 0);
-         this.aB.a(var12);
-         this.O.setEnabledAt(11, var21 != null);
-         this.aC.a(var21);
-         this.O.setEnabledAt(12, var21 != null);
-         this.aD.a(var21);
-         this.W.setEnabled(!(this.aI[this.aJ] instanceof F));
-         this.X.setEnabled(true);
-         this.Y.setEnabled(var20);
-         this.Z.setEnabled(true);
-         this.aa.setEnabled(true);
-         this.ab.setEnabled(var20);
-         Iterator var17 = this.ac.iterator();
+      this.tabbedPane.setSelectedIndex(0);
+      JsonObject var1;
+      if (this.currentSave != null && (var1 = this.currentSave.H("PlayerStateData")) != null) {
+         boolean var20 = this.saveLocation.bW();
+         Exosuit var21 = Exosuit.fromPlayerData(var1);
+         Multitool[] var4 = Multitool.fromPlayerData(var1);
+         MultitoolSettings var5 = MultitoolSettings.fromPlayerData(var1);
+         Starship[] var6 = Starship.fromPlayerData(var1);
+         ShipSettings var7 = ShipSettings.fromPlayerData(var1);
+         SquadronPilot[] var8 = SquadronPilot.fromPlayerData(var1);
+         Freighter var9 = Freighter.showCoordinateViewer(var1);
+         Frigate[] var10 = Frigate.editRawJson(var1);
+         Vehicle[] var11 = Vehicle.fromPlayerData(var1);
+         SettlementState[] var12 = SettlementState.fromPlayerData(var1);
+         boolean var13 = Companion.saveFile(var1);
+         Companion[] var14 = Companion.saveFileAs(var1);
+         Settlement var15 = Settlement.saveAccountData(var1);
+         this.tabbedPane.setEnabledAt(1, var21 != null);
+         this.exosuitPanel.AboutDialog(var21);
+         this.tabbedPane.setEnabledAt(2, var4.length > 0);
+         this.multitoolPanel.AboutDialog(var4, var5);
+         this.tabbedPane.setEnabledAt(3, var6.length > 0);
+         this.shipsPanel.AboutDialog(var6, var7);
+         this.tabbedPane.setEnabledAt(4, var8.length > 0);
+         this.squadronPanel.AboutDialog(var8);
+         this.tabbedPane.setEnabledAt(5, var9 != null);
+         this.freighterPanel.AccountPanel(var9);
+         this.tabbedPane.setEnabledAt(6, var9 != null);
+         this.frigatesPanel.AboutDialog(var10);
+         this.tabbedPane.setEnabledAt(7, var11.length > 0);
+         this.vehiclesPanel.AboutDialog(var11);
+         this.tabbedPane.setEnabledAt(8, var13);
+         this.companionsPanel.AboutDialog(var14);
+         this.tabbedPane.setEnabledAt(9, var15 != null);
+         this.basesStoragePanel.AboutDialog(var15);
+         this.tabbedPane.setEnabledAt(10, var12.length > 0);
+         this.settlementsPanel.AboutDialog(var12);
+         this.tabbedPane.setEnabledAt(11, var21 != null);
+         this.discoveryPanel.AboutDialog(var21);
+         this.tabbedPane.setEnabledAt(12, var21 != null);
+         this.milestonesPanel.AboutDialog(var21);
+         this.reloadButton.setEnabled(!(this.saveFiles[this.ExosuitPanel] instanceof InMemorySaveFile));
+         this.CompanionsPanel.setEnabled(true);
+         this.saveAsButton.setEnabled(var20);
+         this.reloadMenuItem.setEnabled(true);
+         this.saveMenuItem.setEnabled(true);
+         this.saveAsMenuItem.setEnabled(var20);
+         Iterator var17 = this.editMenuItems.iterator();
 
          while(var17.hasNext()) {
             JMenuItem var16 = (JMenuItem)var17.next();
             var16.setEnabled(true);
          }
       } else {
-         this.W.setEnabled(false);
-         this.X.setEnabled(false);
-         this.Y.setEnabled(false);
-         this.Z.setEnabled(false);
-         this.aa.setEnabled(false);
-         this.ab.setEnabled(false);
-         Iterator var3 = this.ac.iterator();
+         this.reloadButton.setEnabled(false);
+         this.CompanionsPanel.setEnabled(false);
+         this.saveAsButton.setEnabled(false);
+         this.reloadMenuItem.setEnabled(false);
+         this.saveMenuItem.setEnabled(false);
+         this.saveAsMenuItem.setEnabled(false);
+         Iterator var3 = this.editMenuItems.iterator();
 
          while(var3.hasNext()) {
             JMenuItem var2 = (JMenuItem)var3.next();
             var2.setEnabled(false);
          }
 
-         this.as.a((gz)null);
-         this.at.a((gv[])(new gv[0]), (gB)null);
-         this.au.a((gH[])(new gH[0]), (gC)null);
-         this.av.a(new gM[0]);
-         this.aw.c((gm)null);
-         this.ax.a(new gp[0]);
-         this.ay.a(new gO[0]);
-         this.az.a(new gj[0]);
-         this.aA.a((ge)null);
-         this.aB.a(new gE[0]);
-         this.aC.a((gz)null);
-         this.aD.a((gz)null);
-         this.O.setEnabledAt(1, false);
-         this.O.setEnabledAt(2, false);
-         this.O.setEnabledAt(3, false);
-         this.O.setEnabledAt(4, false);
-         this.O.setEnabledAt(5, false);
-         this.O.setEnabledAt(6, false);
-         this.O.setEnabledAt(7, false);
-         this.O.setEnabledAt(8, false);
-         this.O.setEnabledAt(9, false);
-         this.O.setEnabledAt(11, false);
-         this.O.setEnabledAt(12, false);
-         if (this.aJ >= 0) {
-            if (this.aK == null) {
-               this.b("There was an error loading the file.");
+         this.exosuitPanel.AboutDialog((Exosuit)null);
+         this.multitoolPanel.AboutDialog((Multitool[])(new Multitool[0]), (MultitoolSettings)null);
+         this.shipsPanel.AboutDialog((Starship[])(new Starship[0]), (ShipSettings)null);
+         this.squadronPanel.AboutDialog(new SquadronPilot[0]);
+         this.freighterPanel.AccountPanel((Freighter)null);
+         this.frigatesPanel.AboutDialog(new Frigate[0]);
+         this.vehiclesPanel.AboutDialog(new Vehicle[0]);
+         this.companionsPanel.AboutDialog(new Companion[0]);
+         this.basesStoragePanel.AboutDialog((Settlement)null);
+         this.settlementsPanel.AboutDialog(new SettlementState[0]);
+         this.discoveryPanel.AboutDialog((Exosuit)null);
+         this.milestonesPanel.AboutDialog((Exosuit)null);
+         this.tabbedPane.setEnabledAt(1, false);
+         this.tabbedPane.setEnabledAt(2, false);
+         this.tabbedPane.setEnabledAt(3, false);
+         this.tabbedPane.setEnabledAt(4, false);
+         this.tabbedPane.setEnabledAt(5, false);
+         this.tabbedPane.setEnabledAt(6, false);
+         this.tabbedPane.setEnabledAt(7, false);
+         this.tabbedPane.setEnabledAt(8, false);
+         this.tabbedPane.setEnabledAt(9, false);
+         this.tabbedPane.setEnabledAt(11, false);
+         this.tabbedPane.setEnabledAt(12, false);
+         if (this.ExosuitPanel >= 0) {
+            if (this.currentSave == null) {
+               this.showError("There was an error loading the file.");
             } else {
-               this.b("Save file corrupted");
+               this.showError("Save file corrupted");
             }
          }
       }
 
    }
 
-   private void m() {
+   private void saveAccountData() {
       try {
-         this.aM.k(this.aN);
-         this.aO = false;
+         this.accountData.k(this.accountJson);
+         this.accountModified = false;
       } catch (Exception var2) {
-         hc.a("Error saving account data", var2);
-         this.c("An error occured saving the account data.");
+         Logger.AboutDialog("Error saving account data", var2);
+         this.AccountPanel("An error occured saving the account data.");
       }
 
    }
 
-   private void n() {
-      if (this.aJ < 0) {
-         this.b("No save file selected.");
+   private void saveFile() {
+      if (this.ExosuitPanel < 0) {
+         this.showError("No save file selected.");
       } else {
          try {
-            hc.info("Formatting JSON...");
-            String var1 = this.aI[this.aJ].b(this.aK);
-            this.aI = this.aG[this.aH].bX();
-            this.aJ = -1;
+            Logger.info("Formatting JSON...");
+            String var1 = this.saveFiles[this.ExosuitPanel].AboutDialogCloseListener(this.currentSave);
+            this.saveFiles = this.saveSlots[this.AppSettings].bX();
+            this.ExosuitPanel = -1;
 
-            for(int var2 = 0; var2 < this.aI.length; ++var2) {
-               if (var1.equals(this.aI[var2].K())) {
-                  this.aJ = var2;
+            for(int var2 = 0; var2 < this.saveFiles.length; ++var2) {
+               if (var1.equals(this.saveFiles[var2].K())) {
+                  this.ExosuitPanel = var2;
                   break;
                }
             }
 
-            this.aL = false;
-            this.R.updateUI();
-            this.S.updateUI();
-            if (this.aJ < 0) {
-               this.T.setText("(no file selected)");
-               this.U.setText("(no file selected)");
-               this.V.setText("(no file selected)");
+            this.saveModified = false;
+            this.slotComboBox.updateUI();
+            this.fileComboBox.updateUI();
+            if (this.ExosuitPanel < 0) {
+               this.modifiedLabel.setText("(no file selected)");
+               this.saveNameLabel.setText("(no file selected)");
+               this.descriptionLabel.setText("(no file selected)");
             } else {
-               this.T.setText(a(this.aI[this.aJ].lastModified()));
-               this.U.setText(e(this.aI[this.aJ].getName()));
-               this.V.setText(e(this.aI[this.aJ].getDescription()));
+               this.modifiedLabel.setText(formatDateTime(this.saveFiles[this.ExosuitPanel].lastModified()));
+               this.saveNameLabel.setText(e(this.saveFiles[this.ExosuitPanel].getName()));
+               this.descriptionLabel.setText(e(this.saveFiles[this.ExosuitPanel].getDescription()));
             }
 
-            hc.info("Finished.");
+            Logger.info("Finished.");
          } catch (IOException var3) {
-            hc.error("Could not write save file: " + this.aI[this.aJ].K(), var3);
-            this.b("There was an error saving the file.");
+            Logger.error("Could not write save file: " + this.saveFiles[this.ExosuitPanel].K(), var3);
+            this.showError("There was an error saving the file.");
          }
 
       }
    }
 
-   private void o() {
-      int var1 = this.aG[this.aH].getIndex();
-      int var2 = dz.a(this.N, this.aF.bU(), var1);
+   private void saveFileAs() {
+      int var1 = this.saveSlots[this.AppSettings].getIndex();
+      int var2 = dz.AboutDialog(this.mainWindow, this.saveLocation.bU(), var1);
       if (var2 >= 0 && var2 != var1) {
          try {
-            hc.info("Formatting JSON...");
-            hc.info("Creating game slot...");
-            String var3 = this.aF.a(var2, this.aK);
-            this.aG = this.aF.bV();
-            this.aH = -1;
-            this.aI = new fs[0];
-            this.aJ = -1;
+            Logger.info("Formatting JSON...");
+            Logger.info("Creating game slot...");
+            String var3 = this.saveLocation.AboutDialog(var2, this.currentSave);
+            this.saveSlots = this.saveLocation.bV();
+            this.AppSettings = -1;
+            this.saveFiles = new SaveFile[0];
+            this.ExosuitPanel = -1;
 
             label38:
-            for(int var4 = 0; var4 < this.aG.length; ++var4) {
-               if (this.aF.W(var3) == this.aG[var4].getIndex()) {
-                  this.aH = var4;
-                  this.aI = this.aG[var4].bX();
+            for(int var4 = 0; var4 < this.saveSlots.length; ++var4) {
+               if (this.saveLocation.reloadButton(var3) == this.saveSlots[var4].getIndex()) {
+                  this.AppSettings = var4;
+                  this.saveFiles = this.saveSlots[var4].bX();
                   int var5 = 0;
 
                   while(true) {
-                     if (var5 >= this.aI.length) {
+                     if (var5 >= this.saveFiles.length) {
                         break label38;
                      }
 
-                     if (var3.equals(this.aI[var5].K())) {
-                        this.aJ = var5;
+                     if (var3.equals(this.saveFiles[var5].K())) {
+                        this.ExosuitPanel = var5;
                         break label38;
                      }
 
@@ -1135,299 +1135,299 @@ public class Application {
                }
             }
 
-            this.aL = false;
-            this.R.updateUI();
-            this.S.updateUI();
-            if (this.aJ < 0) {
-               this.T.setText("(no file selected)");
-               this.U.setText("(no file selected)");
-               this.V.setText("(no file selected)");
+            this.saveModified = false;
+            this.slotComboBox.updateUI();
+            this.fileComboBox.updateUI();
+            if (this.ExosuitPanel < 0) {
+               this.modifiedLabel.setText("(no file selected)");
+               this.saveNameLabel.setText("(no file selected)");
+               this.descriptionLabel.setText("(no file selected)");
             } else {
-               this.T.setText(a(this.aI[this.aJ].lastModified()));
-               this.U.setText(e(this.aI[this.aJ].getName()));
-               this.V.setText(e(this.aI[this.aJ].getDescription()));
+               this.modifiedLabel.setText(formatDateTime(this.saveFiles[this.ExosuitPanel].lastModified()));
+               this.saveNameLabel.setText(e(this.saveFiles[this.ExosuitPanel].getName()));
+               this.descriptionLabel.setText(e(this.saveFiles[this.ExosuitPanel].getDescription()));
             }
 
-            hc.info("Finished.");
+            Logger.info("Finished.");
          } catch (IOException var6) {
-            hc.error("Could not write save file", var6);
-            this.b("There was an error saving the file.");
+            Logger.error("Could not write save file", var6);
+            this.showError("There was an error saving the file.");
             return;
          }
       }
 
    }
 
-   public List g(int var1) {
+   public List getInventoriesWithType(int var1) {
       ArrayList var2 = new ArrayList();
-      gz var4 = this.as.X();
+      Exosuit var4 = this.exosuitPanel.CompanionsPanel();
       if (var4 != null) {
          var2.addAll((Collection)var4.cC().stream().filter((var1x) -> {
-            return var1x.ay(var1);
+            return var1x.vehiclesPanel(var1);
          }).collect(Collectors.toList()));
       }
 
-      gv[] var5 = this.at.aK();
+      Multitool[] var5 = this.multitoolPanel.currentSave();
 
       for(int var6 = 0; var6 < var5.length; ++var6) {
-         gt var3;
-         if ((var3 = var5[var6].dE()) != null && var3.ay(var1)) {
+         Inventory var3;
+         if ((var3 = var5[var6].SettlementsPanel()) != null && var3.vehiclesPanel(var1)) {
             var2.add(var3);
          }
       }
 
-      gH[] var10 = this.au.aO();
+      Starship[] var10 = this.shipsPanel.accountModified();
 
       for(int var7 = 0; var7 < var10.length; ++var7) {
          var2.addAll((Collection)var10[var7].cC().stream().filter((var1x) -> {
-            return var1x.ay(var1);
+            return var1x.vehiclesPanel(var1);
          }).collect(Collectors.toList()));
       }
 
-      gm var11 = this.aw.Z();
+      Freighter var11 = this.freighterPanel.reloadMenuItem();
       if (var11 != null) {
          var2.addAll((Collection)var11.cC().stream().filter((var1x) -> {
-            return var1x.ay(var1);
+            return var1x.vehiclesPanel(var1);
          }).collect(Collectors.toList()));
       }
 
-      gO[] var8 = this.ay.aT();
+      Vehicle[] var8 = this.vehiclesPanel.aT();
 
       for(int var9 = 0; var9 < var8.length; ++var9) {
          var2.addAll((Collection)var8[var9].cC().stream().filter((var1x) -> {
-            return var1x.ay(var1);
+            return var1x.vehiclesPanel(var1);
          }).collect(Collectors.toList()));
       }
 
-      ge var12 = this.aA.O();
+      Settlement var12 = this.basesStoragePanel.tabbedPane();
       if (var12 != null) {
          var2.addAll((Collection)var12.cC().stream().filter((var1x) -> {
-            return var1x.ay(var1);
+            return var1x.vehiclesPanel(var1);
          }).collect(Collectors.toList()));
       }
 
       return var2;
    }
 
-   private void p() {
-      eY var1 = this.aK.H("PlayerStateData.UniverseAddress");
-      hl var2 = hl.n(var1);
-      if ((var2 = nomanssave.aj.a((Container)this.N, var2)) != null) {
-         var2.aL(0);
-         this.aK.b("PlayerStateData.UniverseAddress", (Object)var2.ew());
-         this.aK.b("PlayerStateData.PreviousUniverseAddress", (Object)var1);
-         this.aK.b("SpawnStateData.LastKnownPlayerState", (Object)"InShip");
-         this.aL = true;
+   private void showCoordinateViewer() {
+      JsonObject var1 = this.currentSave.H("PlayerStateData.UniverseAddress");
+      GalacticAddress var2 = GalacticAddress.saveFile(var1);
+      if ((var2 = nomanssave.aj.AboutDialog((Container)this.mainWindow, var2)) != null) {
+         var2.saveModified(0);
+         this.currentSave.AboutDialogCloseListener("PlayerStateData.UniverseAddress", (Object)var2.ew());
+         this.currentSave.AboutDialogCloseListener("PlayerStateData.PreviousUniverseAddress", (Object)var1);
+         this.currentSave.AboutDialogCloseListener("SpawnStateData.LastKnownPlayerState", (Object)"InShip");
+         this.saveModified = true;
       }
 
    }
 
-   private void q() {
-      hc.info("Starting JSON Editor...");
-      if (cy.a(this, this.aI[this.aJ].K(), this.aK)) {
-         this.t();
+   private void editRawJson() {
+      Logger.info("Starting JSON Editor...");
+      if (JsonEditorDialog.AboutDialog(this, this.saveFiles[this.ExosuitPanel].K(), this.currentSave)) {
+         this.refreshPanels();
       }
 
    }
 
-   private void r() {
-      hc.info("Starting JSON Editor...");
-      if (cy.a(this, this.aM.K(), this.aN)) {
+   private void editAccountJson() {
+      Logger.info("Starting JSON Editor...");
+      if (JsonEditorDialog.AboutDialog(this, this.accountData.K(), this.accountJson)) {
          try {
-            this.aM.k(this.aN);
+            this.accountData.k(this.accountJson);
          } catch (IOException var2) {
-            hc.a("JSON Save error", var2);
-            this.c("An error occured saving the account data.");
+            Logger.AboutDialog("JSON Save error", var2);
+            this.AccountPanel("An error occured saving the account data.");
          }
       }
 
    }
 
-   private static void a(Window var0) {
+   private static void AboutDialog(Window var0) {
       SwingUtilities.updateComponentTreeUI(var0);
       Window[] var4;
       int var3 = (var4 = var0.getOwnedWindows()).length;
 
       for(int var2 = 0; var2 < var3; ++var2) {
          Window var1 = var4[var2];
-         a(var1);
+         AboutDialog(var1);
       }
 
    }
 
-   private void s() {
-      if (nomanssave.aD.d(this.N)) {
-         nomanssave.aH.V();
-         a((Window)this.N);
+   private void changeTheme() {
+      if (nomanssave.milestonesPanel.d(this.mainWindow)) {
+         nomanssave.AppSettings.descriptionLabel();
+         AboutDialog((Window)this.mainWindow);
       }
 
    }
 
-   private void t() {
-      this.aL = true;
-      eY var1 = this.aK.H("PlayerStateData");
-      gz var2 = gz.w(var1);
-      gv[] var3 = gv.v(var1);
-      gB var4 = gB.x(var1);
-      gH[] var5 = gH.C(var1);
-      gM[] var6 = gM.D(var1);
-      gC var7 = gC.y(var1);
-      gm var8 = gm.p(var1);
-      gp[] var9 = gp.q(var1);
-      gO[] var10 = gO.E(var1);
-      gE[] var11 = gE.z(var1);
-      boolean var12 = gj.n(var1);
-      gj[] var13 = gj.o(var1);
-      ge var14 = ge.m(var1);
-      this.O.setEnabledAt(1, var2 != null);
-      this.as.a(var2);
-      this.O.setEnabledAt(2, var3.length > 0);
-      this.at.a(var3, var4);
-      this.O.setEnabledAt(3, var5.length > 0);
-      this.au.a(var5, var7);
-      this.O.setEnabledAt(4, var6.length > 0);
-      this.av.a(var6);
-      this.O.setEnabledAt(5, var8 != null);
-      this.aw.c(var8);
-      this.O.setEnabledAt(6, var8 != null);
-      this.ax.a(var9);
-      this.O.setEnabledAt(7, var10.length > 0);
-      this.ay.a(var10);
-      this.O.setEnabledAt(8, var12);
-      this.az.a(var13);
-      this.O.setEnabledAt(9, var14 != null);
-      this.aA.a(var14);
-      this.O.setEnabledAt(10, var11.length > 0);
-      this.aB.a(var11);
-      this.O.setEnabledAt(11, var2 != null);
-      this.aC.a(var2);
-      this.O.setEnabledAt(12, var2 != null);
-      this.aD.a(var2);
+   private void refreshPanels() {
+      this.saveModified = true;
+      JsonObject var1 = this.currentSave.H("PlayerStateData");
+      Exosuit var2 = Exosuit.fromPlayerData(var1);
+      Multitool[] var3 = Multitool.fromPlayerData(var1);
+      MultitoolSettings var4 = MultitoolSettings.fromPlayerData(var1);
+      Starship[] var5 = Starship.fromPlayerData(var1);
+      SquadronPilot[] var6 = SquadronPilot.fromPlayerData(var1);
+      ShipSettings var7 = ShipSettings.fromPlayerData(var1);
+      Freighter var8 = Freighter.showCoordinateViewer(var1);
+      Frigate[] var9 = Frigate.editRawJson(var1);
+      Vehicle[] var10 = Vehicle.fromPlayerData(var1);
+      SettlementState[] var11 = SettlementState.fromPlayerData(var1);
+      boolean var12 = Companion.saveFile(var1);
+      Companion[] var13 = Companion.saveFileAs(var1);
+      Settlement var14 = Settlement.saveAccountData(var1);
+      this.tabbedPane.setEnabledAt(1, var2 != null);
+      this.exosuitPanel.AboutDialog(var2);
+      this.tabbedPane.setEnabledAt(2, var3.length > 0);
+      this.multitoolPanel.AboutDialog(var3, var4);
+      this.tabbedPane.setEnabledAt(3, var5.length > 0);
+      this.shipsPanel.AboutDialog(var5, var7);
+      this.tabbedPane.setEnabledAt(4, var6.length > 0);
+      this.squadronPanel.AboutDialog(var6);
+      this.tabbedPane.setEnabledAt(5, var8 != null);
+      this.freighterPanel.AccountPanel(var8);
+      this.tabbedPane.setEnabledAt(6, var8 != null);
+      this.frigatesPanel.AboutDialog(var9);
+      this.tabbedPane.setEnabledAt(7, var10.length > 0);
+      this.vehiclesPanel.AboutDialog(var10);
+      this.tabbedPane.setEnabledAt(8, var12);
+      this.companionsPanel.AboutDialog(var13);
+      this.tabbedPane.setEnabledAt(9, var14 != null);
+      this.basesStoragePanel.AboutDialog(var14);
+      this.tabbedPane.setEnabledAt(10, var11.length > 0);
+      this.settlementsPanel.AboutDialog(var11);
+      this.tabbedPane.setEnabledAt(11, var2 != null);
+      this.discoveryPanel.AboutDialog(var2);
+      this.tabbedPane.setEnabledAt(12, var2 != null);
+      this.milestonesPanel.AboutDialog(var2);
    }
 
-   private void u() {
-      hc.info("Exporting JSON...");
-      cK var1 = cK.aA();
-      String var2 = this.aI[this.aJ].K() + ".json";
-      var1.setCurrentDirectory(nomanssave.aH.cF);
-      var1.setSelectedFile(new File(nomanssave.aH.cF, var2));
-      if (var1.showSaveDialog(this.N) == 0) {
+   private void exportJson() {
+      Logger.info("Exporting JSON...");
+      cK var1 = cK.basesStoragePanel();
+      String var2 = this.saveFiles[this.ExosuitPanel].K() + ".json";
+      var1.setCurrentDirectory(nomanssave.AppSettings.cF);
+      var1.setSelectedFile(new File(nomanssave.AppSettings.cF, var2));
+      if (var1.showSaveDialog(this.mainWindow) == 0) {
          try {
             File var3 = var1.getSelectedFile();
             if (!var3.getName().endsWith(".json")) {
                var3 = new File(var3.getParentFile(), var3.getName() + ".json");
             }
 
-            if (var3.exists() && JOptionPane.showConfirmDialog(this.N, "Are you sure you want to overwrite this existing JSON file?", "Confirm", 2) != 0) {
+            if (var3.exists() && JOptionPane.showConfirmDialog(this.mainWindow, "Are you sure you want to overwrite this existing JSON file?", "Confirm", 2) != 0) {
                return;
             }
 
-            this.aK.c(var3);
+            this.currentSave.AccountPanel(var3);
          } catch (IOException var4) {
-            hc.a("JSON Export error", var4);
-            this.c("An error occured exporting the save data.");
+            Logger.AboutDialog("JSON Export error", var4);
+            this.AccountPanel("An error occured exporting the save data.");
          }
       }
 
    }
 
-   private void v() {
-      hc.info("Importing JSON...");
-      cK var1 = cK.aA();
-      var1.setCurrentDirectory(nomanssave.aH.cF);
-      if (var1.showOpenDialog(this.N) == 0) {
+   private void importJson() {
+      Logger.info("Importing JSON...");
+      cK var1 = cK.basesStoragePanel();
+      var1.setCurrentDirectory(nomanssave.AppSettings.cF);
+      if (var1.showOpenDialog(this.mainWindow) == 0) {
          try {
-            if (JOptionPane.showConfirmDialog(this.N, "Are you sure you want to update your current save data?", "Confirm", 2) != 0) {
+            if (JOptionPane.showConfirmDialog(this.mainWindow, "Are you sure you want to update your current save data?", "Confirm", 2) != 0) {
                return;
             }
 
             File var2 = var1.getSelectedFile();
-            this.aK.d(var2);
-            this.t();
+            this.currentSave.d(var2);
+            this.refreshPanels();
          } catch (IOException var3) {
-            hc.a("JSON Import error", var3);
-            this.c("An error occured importing the save data.");
+            Logger.AboutDialog("JSON Import error", var3);
+            this.AccountPanel("An error occured importing the save data.");
          }
       }
 
    }
 
-   private void w() {
-      this.as.w();
-      this.at.w();
-      this.au.w();
-      this.aw.w();
-      this.ay.w();
-      this.aA.w();
+   private void rechargeAllTechnology() {
+      this.exosuitPanel.rechargeAllTechnology();
+      this.multitoolPanel.rechargeAllTechnology();
+      this.shipsPanel.rechargeAllTechnology();
+      this.freighterPanel.rechargeAllTechnology();
+      this.vehiclesPanel.rechargeAllTechnology();
+      this.basesStoragePanel.rechargeAllTechnology();
    }
 
-   private void x() {
-      this.as.x();
-      this.at.x();
-      this.au.x();
-      this.aw.x();
-      this.ay.x();
-      this.aA.x();
+   private void refillAllStacks() {
+      this.exosuitPanel.refillAllStacks();
+      this.multitoolPanel.refillAllStacks();
+      this.shipsPanel.refillAllStacks();
+      this.freighterPanel.refillAllStacks();
+      this.vehiclesPanel.refillAllStacks();
+      this.basesStoragePanel.refillAllStacks();
    }
 
-   private void y() {
-      this.as.y();
-      this.at.y();
-      this.au.y();
-      this.aw.y();
-      this.ay.y();
-      this.aA.y();
+   private void enableAllSlots() {
+      this.exosuitPanel.enableAllSlots();
+      this.multitoolPanel.enableAllSlots();
+      this.shipsPanel.enableAllSlots();
+      this.freighterPanel.enableAllSlots();
+      this.vehiclesPanel.enableAllSlots();
+      this.basesStoragePanel.enableAllSlots();
    }
 
-   private void z() {
-      this.at.z();
-      this.au.z();
+   private void repairAllSlots() {
+      this.multitoolPanel.repairAllSlots();
+      this.shipsPanel.repairAllSlots();
    }
 
-   private void A() {
-      this.as.A();
-      this.at.A();
-      this.au.A();
-      this.aw.A();
-      this.ay.A();
-      this.aA.A();
+   private void expandAllInventories() {
+      this.exosuitPanel.expandAllInventories();
+      this.multitoolPanel.expandAllInventories();
+      this.shipsPanel.expandAllInventories();
+      this.freighterPanel.expandAllInventories();
+      this.vehiclesPanel.expandAllInventories();
+      this.basesStoragePanel.expandAllInventories();
    }
 
-   public void a(gt var1) {
-      this.as.a(var1);
-      this.at.a(var1);
-      this.au.a(var1);
-      this.aw.a(var1);
-      this.ay.a(var1);
-      this.aA.a(var1);
+   public void AboutDialog(Inventory var1) {
+      this.exosuitPanel.AboutDialog(var1);
+      this.multitoolPanel.AboutDialog(var1);
+      this.shipsPanel.AboutDialog(var1);
+      this.freighterPanel.AboutDialog(var1);
+      this.vehiclesPanel.AboutDialog(var1);
+      this.basesStoragePanel.AboutDialog(var1);
    }
 
-   public void B() {
-      this.aD.B();
+   public void WindowCloseListener() {
+      this.milestonesPanel.WindowCloseListener();
    }
 
    public void C() {
-      this.aD.C();
+      this.milestonesPanel.C();
    }
 
-   public eV d(String var1) {
-      return this.aK.d(var1);
+   public JsonArray d(String var1) {
+      return this.currentSave.d(var1);
    }
 
-   public boolean D() {
-      return this.aK.getValue("PlayerStateData.DifficultyState") != null;
+   public boolean hasNewSaveFormat() {
+      return this.currentSave.getValue("PlayerStateData.DifficultyState") != null;
    }
 
-   public String E() {
-      return this.aK.getValueAsString("PlayerStateData.DifficultyState.Settings.InventoryStackLimits.InventoryStackLimitsDifficulty");
+   public String getStackLimitsDifficulty() {
+      return this.currentSave.getValueAsString("PlayerStateData.DifficultyState.Settings.InventoryStackLimits.InventoryStackLimitsDifficulty");
    }
 
-   public fn F() {
-      String var1 = this.aK.getValueAsString("PlayerStateData.DifficultyState.Preset.DifficultyPresetType");
-      fn var2;
+   public GameMode getGameMode() {
+      String var1 = this.currentSave.getValueAsString("PlayerStateData.DifficultyState.Preset.DifficultyPresetType");
+      GameMode var2;
       if (var1 != null) {
-         fn[] var5;
-         int var4 = (var5 = fn.values()).length;
+         GameMode[] var5;
+         int var4 = (var5 = GameMode.values()).length;
 
          for(int var3 = 0; var3 < var4; ++var3) {
             var2 = var5[var3];
@@ -1437,77 +1437,77 @@ public class Application {
          }
       }
 
-      var2 = this.aI[this.aJ].L();
-      if (var2 == fn.lr) {
-         String var6 = this.aK.getValueAsString("PlayerStateData.SeasonData.GameMode.PresetGameMode");
+      var2 = this.saveFiles[this.ExosuitPanel].instance();
+      if (var2 == GameMode.lr) {
+         String var6 = this.currentSave.getValueAsString("PlayerStateData.SeasonData.GameMode.PresetGameMode");
          if ("Normal".equals(var6)) {
-            var2 = fn.lm;
+            var2 = GameMode.lm;
          }
 
          if ("Creative".equals(var6)) {
-            var2 = fn.lo;
+            var2 = GameMode.lo;
          }
 
          if ("Survival".equals(var6)) {
-            var2 = fn.ln;
+            var2 = GameMode.ln;
          }
 
          if ("Ambient".equals(var6)) {
-            var2 = fn.lp;
+            var2 = GameMode.lp;
          }
 
          if ("Permadeath".equals(var6)) {
-            var2 = fn.lq;
+            var2 = GameMode.lq;
          }
       }
 
       return var2;
    }
 
-   public void h(int var1) {
-      eY var2 = this.aK.H("PlayerStateData");
-      eV var3 = var2.d("Multitools");
+   public void deleteMultitool(int var1) {
+      JsonObject var2 = this.currentSave.H("PlayerStateData");
+      JsonArray var3 = var2.d("Multitools");
       if (var3 != null && var3.size() != 0) {
-         eY var4 = gR.az("multitool");
+         JsonObject var4 = TemplateLoader.loadTemplate("multitool");
          if (var1 >= 0 && var1 < var3.size() && var4 != null) {
             var3.remove(var1);
             var3.add(var4);
-            gB var5 = gB.x(var2);
+            MultitoolSettings var5 = MultitoolSettings.fromPlayerData(var2);
             int var6 = var5.dU();
             if (var6 > 0 && var6 >= var1) {
                --var6;
-               var5.aF(var6);
+               var5.saveLocation(var6);
             }
 
-            this.at.a(gv.v(var2), var5);
+            this.multitoolPanel.AboutDialog(Multitool.fromPlayerData(var2), var5);
          }
       }
    }
 
-   public void i(int var1) {
-      eY var2 = this.aK.H("PlayerStateData");
-      eV var3 = var2.d("ShipOwnership");
+   public void deleteShip(int var1) {
+      JsonObject var2 = this.currentSave.H("PlayerStateData");
+      JsonArray var3 = var2.d("ShipOwnership");
       if (var3 != null && var3.size() != 0) {
-         eY var4 = gR.az("ship");
+         JsonObject var4 = TemplateLoader.loadTemplate("ship");
          if (var1 >= 0 && var1 < var3.size() && var4 != null) {
             var3.remove(var1);
             var3.add(var4);
-            gC var5 = gC.y(var2);
+            ShipSettings var5 = ShipSettings.fromPlayerData(var2);
             int var6 = var5.dV();
             if (var6 > 0 && var6 >= var1) {
                --var6;
-               var5.aG(var6);
+               var5.saveSlots(var6);
             }
 
-            this.au.a(gH.C(var2), var5);
+            this.shipsPanel.AboutDialog(Starship.fromPlayerData(var2), var5);
          }
       }
    }
 
-   public void a(gl var1, int var2) {
-      eY var3 = this.aK.H("PlayerStateData");
-      eV var4;
-      switch(I()[var1.ordinal()]) {
+   public void AboutDialog(gl var1, int var2) {
+      JsonObject var3 = this.currentSave.H("PlayerStateData");
+      JsonArray var4;
+      switch(BasesStoragePanel()[var1.ordinal()]) {
       case 1:
          var4 = var3.d("Pets");
          break;
@@ -1519,20 +1519,20 @@ public class Application {
       }
 
       if (var4 != null && var4.size() != 0) {
-         eY var5 = gR.az("companion");
+         JsonObject var5 = TemplateLoader.loadTemplate("companion");
          if (var2 >= 0 && var2 < var4.size() && var5 != null) {
             var4.remove(var2);
             var4.add(var5);
-            this.az.a(gj.o(var3));
+            this.companionsPanel.AboutDialog(Companion.saveFileAs(var3));
          }
       }
    }
 
-   public boolean j(int var1) {
-      eV var2 = this.aK.d("PlayerStateData.FleetExpeditions");
+   public boolean isFrigateOnMission(int var1) {
+      JsonArray var2 = this.currentSave.d("PlayerStateData.FleetExpeditions");
 
       for(int var3 = 0; var3 < var2.size(); ++var3) {
-         eV var4 = var2.V(var3).d("AllFrigateIndices");
+         JsonArray var4 = var2.descriptionLabel(var3).d("AllFrigateIndices");
          if (var4.hasValue(new Integer(var1))) {
             return true;
          }
@@ -1541,120 +1541,120 @@ public class Application {
       return false;
    }
 
-   public gp[] k(int var1) {
-      eV var2 = this.aK.d("PlayerStateData.FleetFrigates");
-      eV var3 = this.aK.d("PlayerStateData.FleetExpeditions");
+   public Frigate[] deleteFrigate(int var1) {
+      JsonArray var2 = this.currentSave.d("PlayerStateData.FleetFrigates");
+      JsonArray var3 = this.currentSave.d("PlayerStateData.FleetExpeditions");
 
       int var4;
       for(var4 = 0; var4 < var3.size(); ++var4) {
-         eV var5 = var3.V(var4).d("AllFrigateIndices");
+         JsonArray var5 = var3.descriptionLabel(var4).d("AllFrigateIndices");
          if (var5.hasValue(new Integer(var1))) {
-            this.c("This frigate is currently on a mission and cannot be deleted!");
-            return gp.d(var2);
+            this.AccountPanel("This frigate is currently on a mission and cannot be deleted!");
+            return Frigate.d(var2);
          }
       }
 
       if (var2 != null && var1 < var2.size()) {
-         var2.ac(var1);
+         var2.editMenuItems(var1);
 
          for(int var9 = 0; var9 < var3.size(); ++var9) {
-            eY var12 = var3.V(var9);
-            eV var7 = var12.d("ActiveFrigateIndices");
+            JsonObject var12 = var3.descriptionLabel(var9);
+            JsonArray var7 = var12.d("ActiveFrigateIndices");
 
             int var10;
             for(var10 = 0; var10 < var7.size(); ++var10) {
-               if ((var4 = var7.Y(var10)) > var1) {
-                  var7.a(var10, var4 - 1);
+               if ((var4 = var7.saveAsButton(var10)) > var1) {
+                  var7.AboutDialog(var10, var4 - 1);
                }
             }
 
             var7 = var12.d("DamagedFrigateIndices");
 
             for(var10 = 0; var10 < var7.size(); ++var10) {
-               if ((var4 = var7.Y(var10)) > var1) {
-                  var7.a(var10, var4 - 1);
+               if ((var4 = var7.saveAsButton(var10)) > var1) {
+                  var7.AboutDialog(var10, var4 - 1);
                }
             }
 
             var7 = var12.d("DestroyedFrigateIndices");
 
             for(var10 = 0; var10 < var7.size(); ++var10) {
-               if ((var4 = var7.Y(var10)) > var1) {
-                  var7.a(var10, var4 - 1);
+               if ((var4 = var7.saveAsButton(var10)) > var1) {
+                  var7.AboutDialog(var10, var4 - 1);
                }
             }
 
             var7 = var12.d("AllFrigateIndices");
 
             for(var10 = 0; var10 < var7.size(); ++var10) {
-               if ((var4 = var7.Y(var10)) > var1) {
-                  var7.a(var10, var4 - 1);
+               if ((var4 = var7.saveAsButton(var10)) > var1) {
+                  var7.AboutDialog(var10, var4 - 1);
                }
             }
 
-            eV var8 = var12.d("Events");
+            JsonArray var8 = var12.d("Events");
 
             for(var10 = 0; var10 < var7.size(); ++var10) {
-               eY var6 = var8.V(var10);
+               JsonObject var6 = var8.descriptionLabel(var10);
                var7 = var6.d("AffectedFrigateIndices");
 
                int var11;
                for(var11 = 0; var11 < var7.size(); ++var11) {
-                  if ((var4 = var7.Y(var11)) > var1) {
-                     var7.a(var11, var4 - 1);
+                  if ((var4 = var7.saveAsButton(var11)) > var1) {
+                     var7.AboutDialog(var11, var4 - 1);
                   }
                }
 
                var7 = var6.d("RepairingFrigateIndices");
 
                for(var11 = 0; var11 < var7.size(); ++var11) {
-                  if ((var4 = var7.Y(var11)) > var1) {
-                     var7.a(var11, var4 - 1);
+                  if ((var4 = var7.saveAsButton(var11)) > var1) {
+                     var7.AboutDialog(var11, var4 - 1);
                   }
                }
 
                var7 = var6.d("AffectedFrigateResponses");
 
                for(var11 = 0; var11 < var7.size(); ++var11) {
-                  if ((var4 = var7.Y(var11)) > var1) {
-                     var7.a(var11, var4 - 1);
+                  if ((var4 = var7.saveAsButton(var11)) > var1) {
+                     var7.AboutDialog(var11, var4 - 1);
                   }
                }
             }
          }
 
-         this.aL = true;
+         this.saveModified = true;
       }
 
-      return gp.d(var2);
+      return Frigate.d(var2);
    }
 
-   public gp[] a(int var1, String var2) {
-      eV var3 = this.aK.d("PlayerStateData.FleetFrigates");
+   public Frigate[] AboutDialog(int var1, String var2) {
+      JsonArray var3 = this.currentSave.d("PlayerStateData.FleetFrigates");
       if (var3 != null && var1 < var3.size()) {
-         eY var4 = var3.V(var1).bE();
-         var4.d("ResourceSeed").a(1, var2);
-         var4.b("CustomName", (Object)"");
-         var3.f(var4);
-         this.aL = true;
+         JsonObject var4 = var3.descriptionLabel(var1).MilestonesPanel();
+         var4.d("ResourceSeed").AboutDialog(1, var2);
+         var4.AboutDialogCloseListener("CustomName", (Object)"");
+         var3.selectFile(var4);
+         this.saveModified = true;
       }
 
-      return gp.d(var3);
+      return Frigate.d(var3);
    }
 
-   private void G() {
-      int var1 = this.aK.J("PlayerStateData.TotalPlayTime");
+   private void rechargeBasePlanters() {
+      int var1 = this.currentSave.J("PlayerStateData.TotalPlayTime");
       int var2 = 0;
-      eV var3 = this.aK.d("PlayerStateData.PersistentPlayerBases");
+      JsonArray var3 = this.currentSave.d("PlayerStateData.PersistentPlayerBases");
 
       int var4;
-      eV var5;
+      JsonArray var5;
       int var6;
       for(var4 = 0; var4 < var3.size(); ++var4) {
-         var5 = var3.V(var4).d("Objects");
+         var5 = var3.descriptionLabel(var4).d("Objects");
 
          for(var6 = 0; var6 < var5.size(); ++var6) {
-            String var7 = var5.V(var6).getValueAsString("ObjectID");
+            String var7 = var5.descriptionLabel(var6).getValueAsString("ObjectID");
             if ("^PLANTER".equals(var7)) {
                ++var2;
             } else if ("^PLANTERMEGA".equals(var7)) {
@@ -1663,21 +1663,21 @@ public class Application {
          }
       }
 
-      var5 = this.aK.d("PlayerStateData.MaintenanceInteractions");
+      var5 = this.currentSave.d("PlayerStateData.MaintenanceInteractions");
 
       for(var6 = 0; var6 < var5.size(); ++var6) {
-         eY var11 = var5.V(var6);
-         eV var8 = var11.d("InventoryContainer.Slots");
+         JsonObject var11 = var5.descriptionLabel(var6);
+         JsonArray var8 = var11.d("InventoryContainer.Slots");
 
          for(int var9 = 0; var9 < var8.size(); ++var9) {
-            eY var10 = var8.V(var9);
+            JsonObject var10 = var8.descriptionLabel(var9);
             if ("^MAINT_FARM5".equals(var10.getValueAsString("Id"))) {
                if ((var4 = var10.J("MaxAmount")) > 0 && var10.J("Amount") < var4) {
-                  var10.b("Amount", (Object)(new Integer(var4)));
+                  var10.AboutDialogCloseListener("Amount", (Object)(new Integer(var4)));
                }
 
-               var11.b("LastUpdateTimestamp", (Object)(new Integer(var1)));
-               this.aL = true;
+               var11.AboutDialogCloseListener("LastUpdateTimestamp", (Object)(new Integer(var1)));
+               this.saveModified = true;
                --var2;
             }
          }
@@ -1686,283 +1686,283 @@ public class Application {
    }
 
    private void initialize() {
-      this.N = new JFrame();
-      ImageIcon var1 = a("UI-FILEICON.PNG");
+      this.mainWindow = new JFrame();
+      ImageIcon var1 = AboutDialog("UI-FILEICON.PNG");
       if (var1 != null) {
-         this.N.setIconImage(var1.getImage());
+         this.mainWindow.setIconImage(var1.getImage());
       }
 
-      this.N.setTitle("No Man's Sky Save Editor - 1.19.14 (BREACH)");
+      this.mainWindow.setTitle("No Man's Sky Save Editor - 1.19.14 (BREACH)");
       Rectangle var2 = new Rectangle(100, 100, 1100, 720);
-      var2.x = nomanssave.aH.a("MainFrame.X", 100);
-      var2.y = nomanssave.aH.a("MainFrame.Y", 100);
-      var2.width = nomanssave.aH.a("MainFrame.Width", 1000);
-      var2.height = nomanssave.aH.a("MainFrame.Height", 700);
-      this.N.setBounds(var2);
-      this.N.setDefaultCloseOperation(3);
-      this.N.addWindowListener(new B(this));
-      this.N.addComponentListener(new C(this));
-      this.O = new JTabbedPane(1);
-      this.N.getContentPane().add(this.O, "Center");
-      ba var3 = new ba(new int[]{nomanssave.aH.cH, nomanssave.aH.cI, 0});
-      this.O.addTab("Main", (Icon)null, var3, (String)null);
+      var2.UpdateCheckThread = nomanssave.AppSettings.AboutDialog("MainFrame.X", 100);
+      var2.UpdateDownloadRunnable = nomanssave.AppSettings.AboutDialog("MainFrame.Y", 100);
+      var2.width = nomanssave.AppSettings.AboutDialog("MainFrame.Width", 1000);
+      var2.height = nomanssave.AppSettings.AboutDialog("MainFrame.Height", 700);
+      this.mainWindow.setBounds(var2);
+      this.mainWindow.setDefaultCloseOperation(3);
+      this.mainWindow.addWindowListener(new WindowCloseListener(this));
+      this.mainWindow.addComponentListener(new C(this));
+      this.tabbedPane = new JTabbedPane(1);
+      this.mainWindow.getContentPane().add(this.tabbedPane, "Center");
+      FormPanel var3 = new FormPanel(new int[]{nomanssave.AppSettings.cH, nomanssave.AppSettings.cI, 0});
+      this.tabbedPane.addTab("Main", (Icon)null, var3, (String)null);
       var3.k("File Details");
-      this.P = new JLabel();
-      this.P.setText(this.aF == null ? "" : fq.c(this.aF));
-      var3.a("Storage", this.P, 2);
-      this.Q = new JLabel();
-      this.Q.setText(this.aF == null ? "(no path selected)" : this.aF.bS().getAbsolutePath());
-      var3.a("Save Path", this.Q, 2);
-      this.R = new JComboBox();
-      this.R.setModel(new D(this));
-      this.R.setEnabled(this.aF != null);
-      var3.a("Game Slot", (JComponent)this.R);
-      this.S = new JComboBox();
-      this.S.setEditable(false);
-      this.S.setModel(new E(this));
-      this.S.setEnabled(this.aF != null);
-      var3.a("Save File", (JComponent)this.S);
-      this.T = new JLabel();
-      this.T.setText("(no file selected)");
-      var3.a("Modified", this.T, 2);
-      this.U = new JLabel();
-      this.U.setText("(no file selected)");
-      var3.a("Save Name", this.U, 2);
-      this.V = new JLabel();
-      this.V.setText("(no file selected)");
-      var3.a("Description", this.V, 2);
-      var3.Y();
+      this.storageLabel = new JLabel();
+      this.storageLabel.setText(this.saveLocation == null ? "" : SaveLocation.getStorageName(this.saveLocation));
+      var3.AboutDialog("Storage", this.storageLabel, 2);
+      this.savePathLabel = new JLabel();
+      this.savePathLabel.setText(this.saveLocation == null ? "(no path selected)" : this.saveLocation.InventorySlotPanel().getAbsolutePath());
+      var3.AboutDialog("Save Path", this.savePathLabel, 2);
+      this.slotComboBox = new JComboBox();
+      this.slotComboBox.setModel(new SlotComboBoxModel(this));
+      this.slotComboBox.setEnabled(this.saveLocation != null);
+      var3.AboutDialog("Game Slot", (JComponent)this.slotComboBox);
+      this.fileComboBox = new JComboBox();
+      this.fileComboBox.setEditable(false);
+      this.fileComboBox.setModel(new FileComboBoxModel(this));
+      this.fileComboBox.setEnabled(this.saveLocation != null);
+      var3.AboutDialog("Save File", (JComponent)this.fileComboBox);
+      this.modifiedLabel = new JLabel();
+      this.modifiedLabel.setText("(no file selected)");
+      var3.AboutDialog("Modified", this.modifiedLabel, 2);
+      this.saveNameLabel = new JLabel();
+      this.saveNameLabel.setText("(no file selected)");
+      var3.AboutDialog("Save Name", this.saveNameLabel, 2);
+      this.descriptionLabel = new JLabel();
+      this.descriptionLabel.setText("(no file selected)");
+      var3.AboutDialog("Description", this.descriptionLabel, 2);
+      var3.saveAsButton();
       JPanel var4 = new JPanel();
       var4.setLayout(new FlowLayout(0, 0, 0));
-      this.W = new JButton("Reload");
-      this.W.setEnabled(false);
-      this.W.addActionListener((var1x) -> {
-         this.l();
+      this.reloadButton = new JButton("Reload");
+      this.reloadButton.setEnabled(false);
+      this.reloadButton.addActionListener((var1x) -> {
+         this.loadSave();
       });
-      var4.add(this.W);
-      this.X = new JButton("Save Changes");
-      this.X.setEnabled(false);
-      this.X.addActionListener((var1x) -> {
-         this.n();
+      var4.add(this.reloadButton);
+      this.CompanionsPanel = new JButton("Save Changes");
+      this.CompanionsPanel.setEnabled(false);
+      this.CompanionsPanel.addActionListener((var1x) -> {
+         this.saveFile();
       });
-      var4.add(this.X);
-      this.Y = new JButton("Save As");
-      this.Y.setEnabled(false);
-      this.Y.addActionListener((var1x) -> {
-         this.o();
+      var4.add(this.CompanionsPanel);
+      this.saveAsButton = new JButton("Save As");
+      this.saveAsButton.setEnabled(false);
+      this.saveAsButton.addActionListener((var1x) -> {
+         this.saveFileAs();
       });
-      var4.add(this.Y);
-      var3.a((String)null, var4, 2);
-      this.as = new aJ(this);
-      this.O.addTab("Exosuit", (Icon)null, this.as, (String)null);
-      this.O.setEnabledAt(1, false);
-      this.at = new dj(this);
-      this.O.addTab("Multitool", (Icon)null, this.at, (String)null);
-      this.O.setEnabledAt(2, false);
-      this.au = new dN(this);
-      this.O.addTab("Ships", (Icon)null, this.au, (String)null);
-      this.O.setEnabledAt(3, false);
-      this.av = new eb(this);
-      this.O.addTab("Squadron", (Icon)null, this.av, (String)null);
-      this.O.setEnabledAt(4, false);
-      this.aw = new bd(this);
-      this.O.addTab("Freighter", (Icon)null, this.aw, (String)null);
-      this.O.setEnabledAt(5, false);
-      this.ax = new bl(this);
-      this.O.addTab("Frigates", (Icon)null, this.ax, (String)null);
-      this.O.setEnabledAt(6, false);
-      this.ay = new ep(this);
-      this.O.addTab("Vehicles", (Icon)null, this.ay, (String)null);
-      this.O.setEnabledAt(7, false);
-      this.az = new X(this);
-      this.O.addTab("Companions", (Icon)null, this.az, (String)null);
-      this.O.setEnabledAt(8, false);
-      this.aA = new I(this);
-      this.O.addTab("Bases & Storage", (Icon)null, this.aA, (String)null);
-      this.O.setEnabledAt(9, false);
-      this.aB = new dE(this);
-      this.O.addTab("Settlements", (Icon)null, this.aB, (String)null);
-      this.O.setEnabledAt(10, false);
-      this.aC = new ap(this);
-      this.O.addTab("Discovery", (Icon)null, this.aC, (String)null);
-      this.O.setEnabledAt(11, false);
-      this.aD = new bE(this);
-      this.O.addTab("Milestones / Reputation", (Icon)null, this.aD, (String)null);
-      this.O.setEnabledAt(12, false);
-      this.aE = new c(this);
-      this.O.addTab("Account", (Icon)null, this.aE, (String)null);
-      this.O.setEnabledAt(13, false);
-      this.O.addChangeListener((var1x) -> {
-         if (this.O.getSelectedIndex() == 12) {
-            this.aD.aa();
+      var4.add(this.saveAsButton);
+      var3.AboutDialog((String)null, var4, 2);
+      this.exosuitPanel = new ExosuitPanel(this);
+      this.tabbedPane.addTab("Exosuit", (Icon)null, this.exosuitPanel, (String)null);
+      this.tabbedPane.setEnabledAt(1, false);
+      this.multitoolPanel = new MultitoolPanel(this);
+      this.tabbedPane.addTab("Multitool", (Icon)null, this.multitoolPanel, (String)null);
+      this.tabbedPane.setEnabledAt(2, false);
+      this.shipsPanel = new ShipsPanel(this);
+      this.tabbedPane.addTab("Ships", (Icon)null, this.shipsPanel, (String)null);
+      this.tabbedPane.setEnabledAt(3, false);
+      this.squadronPanel = new SquadronPanel(this);
+      this.tabbedPane.addTab("Squadron", (Icon)null, this.squadronPanel, (String)null);
+      this.tabbedPane.setEnabledAt(4, false);
+      this.freighterPanel = new FreighterPanel(this);
+      this.tabbedPane.addTab("Freighter", (Icon)null, this.freighterPanel, (String)null);
+      this.tabbedPane.setEnabledAt(5, false);
+      this.frigatesPanel = new FrigatesPanel(this);
+      this.tabbedPane.addTab("Frigates", (Icon)null, this.frigatesPanel, (String)null);
+      this.tabbedPane.setEnabledAt(6, false);
+      this.vehiclesPanel = new VehiclesPanel(this);
+      this.tabbedPane.addTab("Vehicles", (Icon)null, this.vehiclesPanel, (String)null);
+      this.tabbedPane.setEnabledAt(7, false);
+      this.companionsPanel = new CompanionsPanel(this);
+      this.tabbedPane.addTab("Companions", (Icon)null, this.companionsPanel, (String)null);
+      this.tabbedPane.setEnabledAt(8, false);
+      this.basesStoragePanel = new BasesStoragePanel(this);
+      this.tabbedPane.addTab("Bases & Storage", (Icon)null, this.basesStoragePanel, (String)null);
+      this.tabbedPane.setEnabledAt(9, false);
+      this.settlementsPanel = new SettlementsPanel(this);
+      this.tabbedPane.addTab("Settlements", (Icon)null, this.settlementsPanel, (String)null);
+      this.tabbedPane.setEnabledAt(10, false);
+      this.discoveryPanel = new DiscoveryPanel(this);
+      this.tabbedPane.addTab("Discovery", (Icon)null, this.discoveryPanel, (String)null);
+      this.tabbedPane.setEnabledAt(11, false);
+      this.milestonesPanel = new MilestonesPanel(this);
+      this.tabbedPane.addTab("Milestones / Reputation", (Icon)null, this.milestonesPanel, (String)null);
+      this.tabbedPane.setEnabledAt(12, false);
+      this.accountPanel = new AccountPanel(this);
+      this.tabbedPane.addTab("Account", (Icon)null, this.accountPanel, (String)null);
+      this.tabbedPane.setEnabledAt(13, false);
+      this.tabbedPane.addChangeListener((var1x) -> {
+         if (this.tabbedPane.getSelectedIndex() == 12) {
+            this.milestonesPanel.saveMenuItem();
          }
 
-         if (this.aF != null && this.aO && this.aP) {
-            int var2 = JOptionPane.showConfirmDialog(this.N, "Save account data?", "Save", 0);
+         if (this.saveLocation != null && this.accountModified && this.aP) {
+            int var2 = JOptionPane.showConfirmDialog(this.mainWindow, "Save account data?", "Save", 0);
             this.aP = var2 == 0;
             if (this.aP) {
-               this.m();
+               this.saveAccountData();
             }
          }
 
       });
       JMenuBar var5 = new JMenuBar();
-      this.N.setJMenuBar(var5);
+      this.mainWindow.setJMenuBar(var5);
       JMenu var6 = new JMenu("File");
       var5.add(var6);
       JMenuItem var7 = new JMenuItem("Open File/Path");
       var7.setAccelerator(KeyStroke.getKeyStroke(79, 2));
       var7.addActionListener((var1x) -> {
-         this.k();
+         this.openFile();
       });
       var6.add(var7);
-      this.Z = new JMenuItem("Reload File");
-      this.Z.setEnabled(false);
-      this.Z.setAccelerator(KeyStroke.getKeyStroke(82, 2));
-      this.Z.addActionListener((var1x) -> {
-         this.l();
+      this.reloadMenuItem = new JMenuItem("Reload File");
+      this.reloadMenuItem.setEnabled(false);
+      this.reloadMenuItem.setAccelerator(KeyStroke.getKeyStroke(82, 2));
+      this.reloadMenuItem.addActionListener((var1x) -> {
+         this.loadSave();
       });
-      var6.add(this.Z);
-      this.aa = new JMenuItem("Save File");
-      this.aa.setEnabled(false);
-      this.aa.setAccelerator(KeyStroke.getKeyStroke(83, 2));
-      this.aa.addActionListener((var1x) -> {
-         Component var2 = this.N.getFocusOwner();
-         if (var2 instanceof G) {
-            ((G)var2).N();
+      var6.add(this.reloadMenuItem);
+      this.saveMenuItem = new JMenuItem("Save File");
+      this.saveMenuItem.setEnabled(false);
+      this.saveMenuItem.setAccelerator(KeyStroke.getKeyStroke(83, 2));
+      this.saveMenuItem.addActionListener((var1x) -> {
+         Component var2 = this.mainWindow.getFocusOwner();
+         if (var2 instanceof ValidatedTextField) {
+            ((ValidatedTextField)var2).mainWindow();
          }
 
-         this.n();
+         this.saveFile();
       });
-      var6.add(this.aa);
-      this.ab = new JMenuItem("Save File As");
-      this.ab.setEnabled(false);
-      this.ab.addActionListener((var1x) -> {
-         Component var2 = this.N.getFocusOwner();
-         if (var2 instanceof G) {
-            ((G)var2).N();
+      var6.add(this.saveMenuItem);
+      this.saveAsMenuItem = new JMenuItem("Save File As");
+      this.saveAsMenuItem.setEnabled(false);
+      this.saveAsMenuItem.addActionListener((var1x) -> {
+         Component var2 = this.mainWindow.getFocusOwner();
+         if (var2 instanceof ValidatedTextField) {
+            ((ValidatedTextField)var2).mainWindow();
          }
 
-         this.o();
+         this.saveFileAs();
       });
-      var6.add(this.ab);
+      var6.add(this.saveAsMenuItem);
       var6.addSeparator();
       JMenuItem var8 = new JMenuItem("Exit");
       var8.addActionListener((var1x) -> {
-         if (this.aL || this.aO) {
-            int var2 = JOptionPane.showConfirmDialog(this.N, "Save data before closing?", "Save", 0);
+         if (this.saveModified || this.accountModified) {
+            int var2 = JOptionPane.showConfirmDialog(this.mainWindow, "Save data before closing?", "Save", 0);
             if (var2 == 0) {
-               if (this.aL) {
-                  this.n();
+               if (this.saveModified) {
+                  this.saveFile();
                }
 
-               if (this.aO) {
-                  this.m();
+               if (this.accountModified) {
+                  this.saveAccountData();
                }
             }
          }
 
-         this.N.dispose();
+         this.mainWindow.dispose();
       });
       var6.add(var8);
       JMenu var9 = new JMenu("Edit");
       var5.add(var9);
-      this.ac = new ArrayList();
+      this.editMenuItems = new ArrayList();
       JMenuItem var10 = new JMenuItem("Edit Raw JSON");
       var10.addActionListener((var1x) -> {
-         this.q();
+         this.editRawJson();
       });
       var9.add(var10);
-      this.ac.add(var10);
+      this.editMenuItems.add(var10);
       JMenuItem var11 = new JMenuItem("Export JSON");
       var11.addActionListener((var1x) -> {
-         this.u();
+         this.exportJson();
       });
       var9.add(var11);
-      this.ac.add(var11);
+      this.editMenuItems.add(var11);
       JMenuItem var12 = new JMenuItem("Import JSON");
       var12.addActionListener((var1x) -> {
-         this.v();
+         this.importJson();
       });
       var9.add(var12);
-      this.ac.add(var12);
+      this.editMenuItems.add(var12);
       JMenuItem var13 = new JMenuItem("Coordinate Viewer");
       var13.addActionListener((var1x) -> {
-         this.p();
+         this.showCoordinateViewer();
       });
       var9.add(var13);
-      this.ac.add(var13);
+      this.editMenuItems.add(var13);
       JCheckBoxMenuItem var14 = new JCheckBoxMenuItem("Test Mode");
       var14.setSelected(en.aS());
       var14.addActionListener((var2x) -> {
          boolean var3 = var14.isSelected();
          if (var3) {
-            int var4 = JOptionPane.showConfirmDialog(this.N, "This mode removes any restrictions imposed by the editor.\nUSE WITH CAUTION: Changes made in test mode may not work in game.", "Test Mode", 2);
+            int var4 = JOptionPane.showConfirmDialog(this.mainWindow, "This mode removes any restrictions imposed by the editor.\nUSE WITH CAUTION: Changes made in test mode may not work in game.", "Test Mode", 2);
             if (var4 == 2) {
                var14.setSelected(false);
                return;
             }
          }
 
-         en.c(var3);
+         en.AccountPanel(var3);
       });
       var9.add(var14);
       var9.addSeparator();
       JMenuItem var15 = new JMenuItem("Recharge All Technology");
       var15.addActionListener((var1x) -> {
-         this.w();
+         this.rechargeAllTechnology();
       });
       var9.add(var15);
-      this.ac.add(var15);
+      this.editMenuItems.add(var15);
       JMenuItem var16 = new JMenuItem("Refill All Stacks");
       var16.addActionListener((var1x) -> {
-         this.x();
+         this.refillAllStacks();
       });
       var9.add(var16);
-      this.ac.add(var16);
+      this.editMenuItems.add(var16);
       JMenuItem var17 = new JMenuItem("Recharge Base Planters");
       var17.addActionListener((var1x) -> {
-         this.G();
+         this.rechargeBasePlanters();
       });
       var9.add(var17);
-      this.ac.add(var17);
+      this.editMenuItems.add(var17);
       JMenuItem var18 = new JMenuItem("Expand All Inventories");
       var18.addActionListener((var1x) -> {
-         this.A();
+         this.expandAllInventories();
       });
       var9.add(var18);
-      this.ac.add(var18);
+      this.editMenuItems.add(var18);
       JMenuItem var19 = new JMenuItem("Enable All Slots");
       var19.addActionListener((var1x) -> {
-         this.y();
+         this.enableAllSlots();
       });
       var9.add(var19);
-      this.ac.add(var19);
+      this.editMenuItems.add(var19);
       JMenuItem var20 = new JMenuItem("Repair All Slots / Technology");
       var20.addActionListener((var1x) -> {
-         this.z();
+         this.repairAllSlots();
       });
       var9.add(var20);
-      this.ac.add(var20);
+      this.editMenuItems.add(var20);
       var9.addSeparator();
-      this.ad = new JMenuItem("Edit Account JSON");
-      this.ad.addActionListener((var1x) -> {
-         this.r();
+      this.editAccountJsonMenuItem = new JMenuItem("Edit Account JSON");
+      this.editAccountJsonMenuItem.addActionListener((var1x) -> {
+         this.editAccountJson();
       });
-      var9.add(this.ad);
-      Iterator var22 = this.ac.iterator();
+      var9.add(this.editAccountJsonMenuItem);
+      Iterator var22 = this.editMenuItems.iterator();
 
       while(var22.hasNext()) {
          JMenuItem var21 = (JMenuItem)var22.next();
          var21.setEnabled(false);
       }
 
-      this.ad.setEnabled(false);
+      this.editAccountJsonMenuItem.setEnabled(false);
       JMenu var25 = new JMenu("View");
       var5.add(var25);
       JMenuItem var26 = new JMenuItem("Settings");
       var26.addActionListener((var1x) -> {
-         this.s();
+         this.changeTheme();
       });
       var25.add(var26);
       var5.add(Box.createHorizontalGlue());
@@ -1970,19 +1970,19 @@ public class Application {
       var5.add(var23);
       JMenuItem var24 = new JMenuItem("About");
       var24.addActionListener((var1x) -> {
-         a.a(this.N);
+         AboutDialog.AboutDialog(this.mainWindow);
       });
       var23.add(var24);
-      if (this.aF == null) {
-         EventQueue.invokeLater(new v(this));
-      } else if (this.aN != null) {
-         this.ad.setEnabled(true);
-         this.O.setEnabledAt(13, true);
-         this.aE.a(this.aN);
-         this.aO = false;
+      if (this.saveLocation == null) {
+         EventQueue.invokeLater(new RefreshRunnable(this));
+      } else if (this.accountJson != null) {
+         this.editAccountJsonMenuItem.setEnabled(true);
+         this.tabbedPane.setEnabledAt(13, true);
+         this.accountPanel.AboutDialog(this.accountJson);
+         this.accountModified = false;
       }
 
-      this.N.pack();
+      this.mainWindow.pack();
    }
 
    private static String e(String var0) {
@@ -1990,48 +1990,48 @@ public class Application {
    }
 
    // $FF: synthetic method
-   static boolean a(Application var0) {
+   static boolean AboutDialog(Application var0) {
       return var0.aQ;
    }
 
    // $FF: synthetic method
-   static fq b(Application var0) {
-      return var0.aF;
+   static SaveLocation AboutDialogCloseListener(Application var0) {
+      return var0.saveLocation;
    }
 
    // $FF: synthetic method
-   static void a(Application var0, boolean var1) {
+   static void AboutDialog(Application var0, boolean var1) {
       var0.aR = var1;
    }
 
    // $FF: synthetic method
-   static void b(Application var0, boolean var1) {
+   static void AboutDialogCloseListener(Application var0, boolean var1) {
       var0.aS = var1;
    }
 
    // $FF: synthetic method
-   static int c(Application var0) {
-      return var0.aH;
+   static int AccountPanel(Application var0) {
+      return var0.AppSettings;
    }
 
    // $FF: synthetic method
-   static ft[] d(Application var0) {
-      return var0.aG;
+   static SaveSlot[] d(Application var0) {
+      return var0.saveSlots;
    }
 
    // $FF: synthetic method
-   static void c(Application var0, boolean var1) {
+   static void AccountPanel(Application var0, boolean var1) {
       var0.aT = var1;
    }
 
    // $FF: synthetic method
    static int e(Application var0) {
-      return var0.aJ;
+      return var0.ExosuitPanel;
    }
 
    // $FF: synthetic method
-   static fs[] f(Application var0) {
-      return var0.aI;
+   static SaveFile[] f(Application var0) {
+      return var0.saveFiles;
    }
 
    // $FF: synthetic method
@@ -2046,21 +2046,21 @@ public class Application {
 
    // $FF: synthetic method
    static void g(Application var0) {
-      L = var0;
+      instance = var0;
    }
 
    // $FF: synthetic method
    static Application H() {
-      return L;
+      return instance;
    }
 
    // $FF: synthetic method
    static JFrame h(Application var0) {
-      return var0.N;
+      return var0.mainWindow;
    }
 
    // $FF: synthetic method
-   static int[] I() {
+   static int[] BasesStoragePanel() {
       int[] var10000 = aY;
       if (var10000 != null) {
          return var10000;
@@ -2084,22 +2084,22 @@ public class Application {
 
    // $FF: synthetic method
    static boolean i(Application var0) {
-      return var0.aL;
+      return var0.saveModified;
    }
 
    // $FF: synthetic method
    static boolean j(Application var0) {
-      return var0.aO;
+      return var0.accountModified;
    }
 
    // $FF: synthetic method
    static void k(Application var0) {
-      var0.n();
+      var0.saveFile();
    }
 
    // $FF: synthetic method
-   static void l(Application var0) {
-      var0.m();
+   static void loadSave(Application var0) {
+      var0.saveAccountData();
    }
 
    // $FF: synthetic method
@@ -2108,42 +2108,42 @@ public class Application {
    }
 
    // $FF: synthetic method
-   static void m(Application var0) {
-      var0.f();
+   static void saveAccountData(Application var0) {
+      var0.checkExternalChanges();
    }
 
    // $FF: synthetic method
-   static JComboBox n(Application var0) {
-      return var0.R;
+   static JComboBox saveFile(Application var0) {
+      return var0.slotComboBox;
    }
 
    // $FF: synthetic method
    static void f(Application var0, boolean var1) {
-      var0.aL = var1;
+      var0.saveModified = var1;
    }
 
    // $FF: synthetic method
-   static void a(Application var0, int var1) {
+   static void AboutDialog(Application var0, int var1) {
       var0.e(var1);
    }
 
    // $FF: synthetic method
-   static JComboBox o(Application var0) {
-      return var0.S;
+   static JComboBox saveFileAs(Application var0) {
+      return var0.fileComboBox;
    }
 
    // $FF: synthetic method
-   static void a(Application var0, fs[] var1) {
-      var0.aI = var1;
+   static void AboutDialog(Application var0, SaveFile[] var1) {
+      var0.saveFiles = var1;
    }
 
    // $FF: synthetic method
-   static void b(Application var0, int var1) {
-      var0.f(var1);
+   static void AboutDialogCloseListener(Application var0, int var1) {
+      var0.selectFile(var1);
    }
 
    // $FF: synthetic method
-   static void p(Application var0) {
-      var0.k();
+   static void showCoordinateViewer(Application var0) {
+      var0.openFile();
    }
 }

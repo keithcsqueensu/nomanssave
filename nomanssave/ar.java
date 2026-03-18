@@ -5,13 +5,13 @@ import java.awt.event.ActionListener;
 
 class ar implements ActionListener {
    // $FF: synthetic field
-   final ap cu;
+   final DiscoveryPanel cu;
 
-   ar(ap var1) {
+   ar(DiscoveryPanel var1) {
       this.cu = var1;
    }
 
    public void actionPerformed(ActionEvent var1) {
-      ap.k(this.cu);
+      DiscoveryPanel.k(this.cu);
    }
 }

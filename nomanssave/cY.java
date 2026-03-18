@@ -20,9 +20,9 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 public class cY extends JDialog {
-   private JComboBox gM;
-   private List gN = Collections.emptyList();
-   private int gO = -1;
+   private JComboBox SquadronPilot;
+   private List ShipClass = Collections.emptyList();
+   private int Vehicle = -1;
    private static cY gP = null;
 
    private cY(Frame var1) {
@@ -42,9 +42,9 @@ public class cY extends JDialog {
       var4.setLayout(new FormLayout(new ColumnSpec[]{FormFactory.LABEL_COMPONENT_GAP_COLSPEC, ColumnSpec.decode("100px"), FormFactory.LABEL_COMPONENT_GAP_COLSPEC, ColumnSpec.decode("250px"), FormFactory.LABEL_COMPONENT_GAP_COLSPEC}, new RowSpec[]{FormFactory.LINE_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC, FormFactory.LINE_GAP_ROWSPEC}));
       JLabel var5 = new JLabel("Base Part:");
       var4.add(var5, "2, 2, left, center");
-      this.gM = new JComboBox();
-      this.gM.setModel(new cZ(this));
-      var4.add(this.gM, "4, 2, fill, default");
+      this.SquadronPilot = new JComboBox();
+      this.SquadronPilot.setModel(new cZ(this));
+      var4.add(this.SquadronPilot, "4, 2, fill, default");
       var2.add(var4, "Center");
       JPanel var6 = new JPanel();
       var6.setLayout(new FlowLayout(2));
@@ -60,37 +60,37 @@ public class cY extends JDialog {
       this.pack();
    }
 
-   private int b(List var1) {
-      this.gN = var1;
+   private int AboutDialogCloseListener(List var1) {
+      this.ShipClass = var1;
       this.setLocationRelativeTo(this.getParent());
-      this.gM.setSelectedIndex(0);
-      this.gM.updateUI();
-      this.gO = -1;
+      this.SquadronPilot.setSelectedIndex(0);
+      this.SquadronPilot.updateUI();
+      this.Vehicle = -1;
       this.setVisible(true);
-      return this.gO;
+      return this.Vehicle;
    }
 
-   public static int a(Container var0, List var1) {
+   public static int AboutDialog(Container var0, List var1) {
       if (gP == null) {
          Frame var2 = JOptionPane.getFrameForComponent(var0);
          gP = new cY(var2);
       }
 
-      return gP.b(var1);
+      return gP.AboutDialogCloseListener(var1);
    }
 
    // $FF: synthetic method
-   static List a(cY var0) {
-      return var0.gN;
+   static List AboutDialog(cY var0) {
+      return var0.ShipClass;
    }
 
    // $FF: synthetic method
-   static JComboBox b(cY var0) {
-      return var0.gM;
+   static JComboBox AboutDialogCloseListener(cY var0) {
+      return var0.SquadronPilot;
    }
 
    // $FF: synthetic method
-   static void a(cY var0, int var1) {
-      var0.gO = var1;
+   static void AboutDialog(cY var0, int var1) {
+      var0.Vehicle = var1;
    }
 }

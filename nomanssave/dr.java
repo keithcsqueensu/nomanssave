@@ -5,19 +5,19 @@ import java.awt.event.ActionListener;
 
 class dr implements ActionListener {
    // $FF: synthetic field
-   final dj hl;
+   final MultitoolPanel GalacticAddress;
    // $FF: synthetic field
    private final Application bv;
 
-   dr(dj var1, Application var2) {
-      this.hl = var1;
+   dr(MultitoolPanel var1, Application var2) {
+      this.GalacticAddress = var1;
       this.bv = var2;
    }
 
    public void actionPerformed(ActionEvent var1) {
-      int var2 = dj.j(this.hl).getSelectedIndex();
-      if (var2 >= 0 && var2 < dj.a(this.hl).length) {
-         this.bv.a(dj.a(this.hl)[var2]);
+      int var2 = MultitoolPanel.j(this.GalacticAddress).getSelectedIndex();
+      if (var2 >= 0 && var2 < MultitoolPanel.AboutDialog(this.GalacticAddress).length) {
+         this.bv.AboutDialog(MultitoolPanel.AboutDialog(this.GalacticAddress)[var2]);
       }
    }
 }

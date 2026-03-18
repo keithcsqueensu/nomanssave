@@ -5,14 +5,14 @@ import java.awt.event.WindowEvent;
 
 class ck extends WindowAdapter {
    // $FF: synthetic field
-   final cg fF;
+   final ItemDetailsDialog fF;
 
-   ck(cg var1) {
+   ck(ItemDetailsDialog var1) {
       this.fF = var1;
    }
 
    public void windowClosing(WindowEvent var1) {
-      cg.e(this.fF).N();
-      cg.f(this.fF).N();
+      ItemDetailsDialog.e(this.fF).N();
+      ItemDetailsDialog.f(this.fF).N();
    }
 }

@@ -1,15 +1,15 @@
 package nomanssave;
 
-class bJ extends G {
+class bJ extends ValidatedTextField {
    final gs ez;
    final int type;
    // $FF: synthetic field
-   final bE ey;
+   final MilestonesPanel ItemDefinition;
    // $FF: synthetic field
    private static int[] eA;
 
-   bJ(bE var1, gs var2, boolean var3) {
-      this.ey = var1;
+   bJ(MilestonesPanel var1, gs var2, boolean var3) {
+      this.ItemDefinition = var1;
       this.ez = var2;
       switch(ad()[var2.ordinal()]) {
       case 24:
@@ -23,16 +23,16 @@ class bJ extends G {
    }
 
    protected String g(String var1) {
-      if (bE.a(this.ey) == null) {
+      if (MilestonesPanel.AboutDialog(this.ItemDefinition) == null) {
          return "";
       } else {
          String var2;
          switch(this.type) {
          case 0:
-            var2 = Integer.toString(bE.a(this.ey).a(this.ez));
+            var2 = Integer.toString(MilestonesPanel.AboutDialog(this.ItemDefinition).AboutDialog(this.ez));
             break;
          case 1:
-            var2 = Double.toString(bE.a(this.ey).b(this.ez));
+            var2 = Double.toString(MilestonesPanel.AboutDialog(this.ItemDefinition).AboutDialogCloseListener(this.ez));
             break;
          default:
             return "";
@@ -45,27 +45,27 @@ class bJ extends G {
                int var3;
                switch(this.type) {
                case 0:
-                  var3 = hf.b(var1, 0, Integer.MAX_VALUE);
-                  bE.a(this.ey).a(this.ez, var3);
+                  var3 = hf.AboutDialogCloseListener(var1, 0, Integer.MAX_VALUE);
+                  MilestonesPanel.AboutDialog(this.ItemDefinition).AboutDialog(this.ez, var3);
                   var1 = Integer.toString(var3);
                   break;
                case 1:
                   double var4 = Double.parseDouble(var1);
-                  bE.a(this.ey).a(this.ez, var4);
+                  MilestonesPanel.AboutDialog(this.ItemDefinition).AboutDialog(this.ez, var4);
                   var1 = Double.toString(var4);
                }
 
-               bE.a(this.ey, this.ez, var1);
+               MilestonesPanel.AboutDialog(this.ItemDefinition, this.ez, var1);
                if (this.ez == gs.pL || this.ez == gs.pM) {
-                  var3 = bE.a(this.ey).a(gs.pL) + bE.a(this.ey).a(gs.pM);
-                  bE.a(this.ey).a(gs.pR, var3);
-                  bE.a(this.ey, gs.pR, Integer.toString(var3));
+                  var3 = MilestonesPanel.AboutDialog(this.ItemDefinition).AboutDialog(gs.pL) + MilestonesPanel.AboutDialog(this.ItemDefinition).AboutDialog(gs.pM);
+                  MilestonesPanel.AboutDialog(this.ItemDefinition).AboutDialog(gs.pR, var3);
+                  MilestonesPanel.AboutDialog(this.ItemDefinition, gs.pR, Integer.toString(var3));
                }
 
                if (this.ez == gs.pI || this.ez == gs.pK || this.ez == gs.pJ) {
-                  var3 = bE.a(this.ey).a(gs.pI) + bE.a(this.ey).a(gs.pK) + bE.a(this.ey).a(gs.pJ);
-                  bE.a(this.ey).a(gs.pS, var3);
-                  bE.a(this.ey, gs.pS, Integer.toString(var3));
+                  var3 = MilestonesPanel.AboutDialog(this.ItemDefinition).AboutDialog(gs.pI) + MilestonesPanel.AboutDialog(this.ItemDefinition).AboutDialog(gs.pK) + MilestonesPanel.AboutDialog(this.ItemDefinition).AboutDialog(gs.pJ);
+                  MilestonesPanel.AboutDialog(this.ItemDefinition).AboutDialog(gs.pS, var3);
+                  MilestonesPanel.AboutDialog(this.ItemDefinition, gs.pS, Integer.toString(var3));
                }
 
                return var1;
@@ -78,15 +78,15 @@ class bJ extends G {
 
    void ac() {
       String var1;
-      if (bE.a(this.ey) == null) {
+      if (MilestonesPanel.AboutDialog(this.ItemDefinition) == null) {
          var1 = "";
       } else {
          switch(this.type) {
          case 0:
-            var1 = Integer.toString(bE.a(this.ey).a(this.ez));
+            var1 = Integer.toString(MilestonesPanel.AboutDialog(this.ItemDefinition).AboutDialog(this.ez));
             break;
          case 1:
-            var1 = Double.toString(bE.a(this.ey).b(this.ez));
+            var1 = Double.toString(MilestonesPanel.AboutDialog(this.ItemDefinition).AboutDialogCloseListener(this.ez));
             break;
          default:
             var1 = "";

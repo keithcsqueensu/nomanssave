@@ -10,11 +10,11 @@ class UpdateCheckThread extends Thread {
    // $FF: synthetic field
    final Application aZ;
    // $FF: synthetic field
-   private final boolean FormPanel;
+   private final boolean isAutoUpdate;
 
    UpdateCheckThread(Application var1, boolean var2) {
       this.aZ = var1;
-      this.FormPanel = var2;
+      this.isAutoUpdate = var2;
    }
 
    public void run() {
@@ -47,7 +47,7 @@ class UpdateCheckThread extends Thread {
          Logger.debug("Latest version: \"" + var12 + "\"");
          Logger.debug("Current version: \"1.19.14\"");
          if (!"1.19.14".equals(var12)) {
-            EventQueue.invokeLater(new UpdateDownloadRunnable(this, this.FormPanel));
+            EventQueue.invokeLater(new UpdateDownloadRunnable(this, this.isAutoUpdate));
          }
       } catch (IOException var13) {
       }

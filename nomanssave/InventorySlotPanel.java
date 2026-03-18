@@ -15,18 +15,18 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 
 class InventorySlotPanel extends JPanel {
-   private final int UpdateCheckThread;
-   private final int UpdateDownloadRunnable;
-   private JCheckBoxMenuItem JsonObject;
+   private final int slotRow;
+   private final int slotCol;
+   private JCheckBoxMenuItem enabledMenuItem;
    private JMenuItem eZ;
    private JMenuItem fa;
    private JMenuItem fb;
    private JCheckBoxMenuItem fc;
    private JMenuItem fd;
-   private JMenuItem PropertyChangeListener;
-   private JMenuItem BinaryReader;
+   private JMenuItem itemDetailsMenuItem;
+   private JMenuItem addItemMenuItem;
    private JMenuItem fg;
-   private JMenuItem JsonParser;
+   private JMenuItem moveItemMenuItem;
    private JMenuItem fi;
    private JMenuItem JsonWriter;
    // $FF: synthetic field
@@ -34,14 +34,14 @@ class InventorySlotPanel extends JPanel {
 
    private InventorySlotPanel(InventoryPanel var1, int var2, int var3) {
       this.JsonParseException = var1;
-      this.UpdateCheckThread = var2;
-      this.UpdateDownloadRunnable = var3;
+      this.slotRow = var2;
+      this.slotCol = var3;
       this.setLayout(new GridBagLayout());
       JPopupMenu var4 = new JPopupMenu();
-      this.JsonObject = new JCheckBoxMenuItem("Enabled");
-      this.JsonObject.addActionListener(new bT(this, var2, var3));
-      this.JsonObject.setEnabled(InventoryPanel.AboutDialog(var1).dp() || en.aS());
-      var4.add(this.JsonObject);
+      this.enabledMenuItem = new JCheckBoxMenuItem("Enabled");
+      this.enabledMenuItem.addActionListener(new bT(this, var2, var3));
+      this.enabledMenuItem.setEnabled(InventoryPanel.AboutDialog(var1).dp() || en.aS());
+      var4.add(this.enabledMenuItem);
       this.eZ = new JMenuItem("Enable All Slots");
       this.eZ.addActionListener(new bY(this));
       this.eZ.setEnabled(InventoryPanel.AboutDialog(var1).dp() || en.aS());
@@ -63,18 +63,18 @@ class InventorySlotPanel extends JPanel {
       this.fd.setVisible(InventoryPanel.AboutDialog(var1).do());
       var4.add(this.fd);
       var4.addSeparator();
-      this.PropertyChangeListener = new JMenuItem("Item Details");
-      this.PropertyChangeListener.addActionListener(new cd(this, var2, var3));
-      var4.add(this.PropertyChangeListener);
-      this.BinaryReader = new JMenuItem("Add Item");
-      this.BinaryReader.addActionListener(new ce(this, var2, var3));
-      var4.add(this.BinaryReader);
+      this.itemDetailsMenuItem = new JMenuItem("Item Details");
+      this.itemDetailsMenuItem.addActionListener(new cd(this, var2, var3));
+      var4.add(this.itemDetailsMenuItem);
+      this.addItemMenuItem = new JMenuItem("Add Item");
+      this.addItemMenuItem.addActionListener(new ce(this, var2, var3));
+      var4.add(this.addItemMenuItem);
       this.fg = new JMenuItem("Repair Item");
       this.fg.addActionListener(new cf(this, var2, var3));
       var4.add(this.fg);
-      this.JsonParser = new JMenuItem("Move Item");
-      this.JsonParser.addActionListener(new bU(this, var2, var3));
-      var4.add(this.JsonParser);
+      this.moveItemMenuItem = new JMenuItem("Move Item");
+      this.moveItemMenuItem.addActionListener(new bU(this, var2, var3));
+      var4.add(this.moveItemMenuItem);
       this.fi = new JMenuItem("Fill Stack");
       this.fi.addActionListener(new bV(this, var2, var3));
       var4.add(this.fi);
@@ -88,27 +88,27 @@ class InventorySlotPanel extends JPanel {
    }
 
    private boolean ao() {
-      return InventoryPanel.AboutDialog(this.JsonParseException).h(this.UpdateCheckThread, this.UpdateDownloadRunnable);
+      return InventoryPanel.AboutDialog(this.JsonParseException).h(this.slotRow, this.slotCol);
    }
 
    private boolean DiscoveryPanel() {
-      return InventoryPanel.AboutDialog(this.JsonParseException).l(this.UpdateCheckThread, this.UpdateDownloadRunnable);
+      return InventoryPanel.AboutDialog(this.JsonParseException).l(this.slotRow, this.slotCol);
    }
 
    private void aq() {
       this.removeAll();
-      this.JsonObject.setEnabled(InventoryPanel.AboutDialog(this.JsonParseException).dp() || en.aS());
+      this.enabledMenuItem.setEnabled(InventoryPanel.AboutDialog(this.JsonParseException).dp() || en.aS());
       this.eZ.setEnabled(InventoryPanel.AboutDialog(this.JsonParseException).dp() || en.aS());
       this.fa.setVisible(InventoryPanel.AboutDialog(this.JsonParseException).dq());
       this.fb.setVisible(InventoryPanel.AboutDialog(this.JsonParseException).dq());
-      if (!InventoryPanel.AboutDialog(this.JsonParseException).h(this.UpdateCheckThread, this.UpdateDownloadRunnable)) {
-         this.JsonObject.setSelected(false);
+      if (!InventoryPanel.AboutDialog(this.JsonParseException).h(this.slotRow, this.slotCol)) {
+         this.enabledMenuItem.setSelected(false);
          this.fa.setEnabled(false);
-         this.PropertyChangeListener.setVisible(false);
+         this.itemDetailsMenuItem.setVisible(false);
          this.fg.setVisible(false);
-         this.BinaryReader.setVisible(true);
-         this.BinaryReader.setEnabled(false);
-         this.JsonParser.setVisible(false);
+         this.addItemMenuItem.setVisible(true);
+         this.addItemMenuItem.setEnabled(false);
+         this.moveItemMenuItem.setVisible(false);
          this.fi.setVisible(false);
          this.JsonWriter.setVisible(false);
          this.fc.setVisible(false);
@@ -120,18 +120,18 @@ class InventorySlotPanel extends JPanel {
          ItemDefinition var2;
          boolean var3;
          String var4;
-         if (InventoryPanel.AboutDialog(this.JsonParseException).l(this.UpdateCheckThread, this.UpdateDownloadRunnable)) {
-            this.JsonObject.setSelected(true);
+         if (InventoryPanel.AboutDialog(this.JsonParseException).l(this.slotRow, this.slotCol)) {
+            this.enabledMenuItem.setSelected(true);
             this.fa.setEnabled(true);
-            this.PropertyChangeListener.setVisible(false);
+            this.itemDetailsMenuItem.setVisible(false);
             this.fg.setVisible(false);
-            this.BinaryReader.setVisible(true);
-            this.BinaryReader.setEnabled(false);
-            this.JsonParser.setVisible(false);
+            this.addItemMenuItem.setVisible(true);
+            this.addItemMenuItem.setEnabled(false);
+            this.moveItemMenuItem.setVisible(false);
             this.fi.setVisible(false);
             this.JsonWriter.setVisible(false);
             this.fc.setVisible(InventoryPanel.AboutDialog(this.JsonParseException).do());
-            if (InventoryPanel.AboutDialog(this.JsonParseException).k(this.UpdateCheckThread, this.UpdateDownloadRunnable)) {
+            if (InventoryPanel.AboutDialog(this.JsonParseException).k(this.slotRow, this.slotCol)) {
                this.setBorder(InventoryPanel.ah());
                this.fc.setState(true);
             } else {
@@ -140,7 +140,7 @@ class InventorySlotPanel extends JPanel {
             }
 
             this.setBackground(InventoryPanel.ai());
-            var1 = InventoryPanel.AboutDialog(this.JsonParseException).f(this.UpdateCheckThread, this.UpdateDownloadRunnable);
+            var1 = InventoryPanel.AboutDialog(this.JsonParseException).f(this.slotRow, this.slotCol);
             if (var1 == null) {
                this.setToolTipText((String)null);
             } else {
@@ -160,10 +160,10 @@ class InventorySlotPanel extends JPanel {
                this.setToolTipText(var4);
             }
          } else {
-            this.JsonObject.setSelected(true);
+            this.enabledMenuItem.setSelected(true);
             this.fa.setEnabled(false);
             this.fc.setVisible(InventoryPanel.AboutDialog(this.JsonParseException).do());
-            if (InventoryPanel.AboutDialog(this.JsonParseException).k(this.UpdateCheckThread, this.UpdateDownloadRunnable)) {
+            if (InventoryPanel.AboutDialog(this.JsonParseException).k(this.slotRow, this.slotCol)) {
                this.setBorder(InventoryPanel.ah());
                this.fc.setState(true);
             } else {
@@ -171,13 +171,13 @@ class InventorySlotPanel extends JPanel {
                this.fc.setState(false);
             }
 
-            var1 = InventoryPanel.AboutDialog(this.JsonParseException).f(this.UpdateCheckThread, this.UpdateDownloadRunnable);
+            var1 = InventoryPanel.AboutDialog(this.JsonParseException).f(this.slotRow, this.slotCol);
             if (var1 == null) {
-               this.PropertyChangeListener.setVisible(false);
+               this.itemDetailsMenuItem.setVisible(false);
                this.fg.setVisible(false);
-               this.BinaryReader.setVisible(true);
-               this.BinaryReader.setEnabled(true);
-               this.JsonParser.setVisible(false);
+               this.addItemMenuItem.setVisible(true);
+               this.addItemMenuItem.setEnabled(true);
+               this.moveItemMenuItem.setVisible(false);
                this.fi.setVisible(false);
                this.JsonWriter.setVisible(false);
                this.setBackground(InventoryPanel.eK);
@@ -185,11 +185,11 @@ class InventorySlotPanel extends JPanel {
             } else {
                var2 = ItemDefinition.d(var1.dz());
                var3 = var2 instanceof eQ && var1.dC() != 0.0D;
-               this.PropertyChangeListener.setVisible(true);
+               this.itemDetailsMenuItem.setVisible(true);
                this.fg.setVisible(var3);
-               this.BinaryReader.setVisible(false);
-               this.BinaryReader.setEnabled(false);
-               this.JsonParser.setVisible(true);
+               this.addItemMenuItem.setVisible(false);
+               this.addItemMenuItem.setEnabled(false);
+               this.moveItemMenuItem.setVisible(true);
                this.fi.setVisible(false);
                this.JsonWriter.setVisible(true);
                var4 = var1.getType();
@@ -215,7 +215,7 @@ class InventorySlotPanel extends JPanel {
                   this.setBackground(InventoryPanel.an());
                }
 
-               this.PropertyChangeListener.setEnabled(var2 != null);
+               this.itemDetailsMenuItem.setEnabled(var2 != null);
                String var10 = var2 == null ? InventoryPanel.AboutDialogCloseListener(var1.dz()) : var2.getName();
                int var11 = UIManager.getInt("Inventory.iconSize");
                ImageIcon var13 = var2 == null ? null : var2.AccountPanel(var11, var11);
@@ -267,7 +267,7 @@ class InventorySlotPanel extends JPanel {
 
    // $FF: synthetic method
    static JCheckBoxMenuItem AboutDialogCloseListener(InventorySlotPanel var0) {
-      return var0.JsonObject;
+      return var0.enabledMenuItem;
    }
 
    // $FF: synthetic method
@@ -302,12 +302,12 @@ class InventorySlotPanel extends JPanel {
 
    // $FF: synthetic method
    static int h(InventorySlotPanel var0) {
-      return var0.UpdateCheckThread;
+      return var0.slotRow;
    }
 
    // $FF: synthetic method
    static int i(InventorySlotPanel var0) {
-      return var0.UpdateDownloadRunnable;
+      return var0.slotCol;
    }
 
    // $FF: synthetic method

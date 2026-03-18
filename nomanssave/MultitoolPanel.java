@@ -11,15 +11,15 @@ public class MultitoolPanel extends SplitFormPanel {
    private static final double gZ = 1000.0D;
    private JComboBox ha = new JComboBox();
    private ValidatedTextField hb;
-   private cN Logger;
+   private cN typeComboBox;
    private cN hd;
    private ValidatedTextField he;
    private ValidatedTextField hf;
    private ValidatedTextField hg;
-   private ValidatedTextField SpookyHash;
+   private ValidatedTextField scanField;
    private JButton bQ;
    private JButton bR;
-   private JButton InventorySlotPanel;
+   private JButton importButton;
    private InventoryPanel hi;
    private Multitool[] hj;
 
@@ -28,15 +28,15 @@ public class MultitoolPanel extends SplitFormPanel {
       this.AboutDialog("Multitool", true, this.ha);
       this.hb = new dl(this);
       this.AboutDialog((String)"Name", (JComponent)this.hb);
-      this.Logger = new cN(MultitoolType.class);
-      this.Logger.AboutDialog((var1x) -> {
+      this.typeComboBox = new cN(MultitoolType.class);
+      this.typeComboBox.AboutDialog((var1x) -> {
          Multitool var2 = (Multitool)this.ha.getSelectedItem();
          if (var2 != null) {
             var2.ag(var1x);
          }
 
       });
-      this.AboutDialog((String)"Type", (JComponent)this.Logger);
+      this.AboutDialog((String)"Type", (JComponent)this.typeComboBox);
       this.hd = new cN(ShipClass.class);
       this.hd.AboutDialog((var1x) -> {
          Multitool var2 = (Multitool)this.ha.getSelectedItem();
@@ -53,8 +53,8 @@ public class MultitoolPanel extends SplitFormPanel {
       this.AboutDialog((String)"Damage", (JComponent)this.hf);
       this.hg = new do(this);
       this.AboutDialog((String)"Mining", (JComponent)this.hg);
-      this.SpookyHash = new dp(this);
-      this.AboutDialog((String)"Scan", (JComponent)this.SpookyHash);
+      this.scanField = new dp(this);
+      this.AboutDialog((String)"Scan", (JComponent)this.scanField);
       this.Y();
       JPanel var2 = new JPanel();
       this.bQ = new JButton("Delete Multitool");
@@ -63,9 +63,9 @@ public class MultitoolPanel extends SplitFormPanel {
       this.bR = new JButton("Export");
       this.bR.addActionListener(new dr(this, var1));
       var2.add(this.bR);
-      this.InventorySlotPanel = new JButton("Import");
-      this.InventorySlotPanel.addActionListener(new ds(this, var1));
-      var2.add(this.InventorySlotPanel);
+      this.importButton = new JButton("Import");
+      this.importButton.addActionListener(new ds(this, var1));
+      var2.add(this.importButton);
       this.AboutDialog((JComponent)var2);
       this.hi = new InventoryPanel(var1);
       this.AboutDialogCloseListener(this.hi);
@@ -127,7 +127,7 @@ public class MultitoolPanel extends SplitFormPanel {
 
    // $FF: synthetic method
    static cN AccountPanel(MultitoolPanel var0) {
-      return var0.Logger;
+      return var0.typeComboBox;
    }
 
    // $FF: synthetic method
@@ -152,7 +152,7 @@ public class MultitoolPanel extends SplitFormPanel {
 
    // $FF: synthetic method
    static ValidatedTextField h(MultitoolPanel var0) {
-      return var0.SpookyHash;
+      return var0.scanField;
    }
 
    // $FF: synthetic method

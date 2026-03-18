@@ -35,10 +35,10 @@ public class InventoryPanel extends JPanel implements eo {
    public static final Border eP;
    private static final Border eQ;
    private final Application eR;
-   private final JPanel AlienWord;
+   private final JPanel slotsPanel;
    private final JComboBox eT;
    private final JButton Race;
-   private List JsonArray;
+   private List slotPanelList;
    private Inventory eW;
 
    static {
@@ -62,16 +62,16 @@ public class InventoryPanel extends JPanel implements eo {
       this.setLayout(new BorderLayout());
       JPanel var2 = new JPanel();
       var2.setLayout(new FlowLayout());
-      this.AlienWord = new JPanel();
-      this.AlienWord.setLayout(new GridBagLayout());
+      this.slotsPanel = new JPanel();
+      this.slotsPanel.setLayout(new GridBagLayout());
       int var3 = UIManager.getInt("Inventory.gridSize");
       this.setPreferredSize(new Dimension(var3 * 10 + 20, var3 * 8 + 50));
       this.add(var2, "North");
       JScrollPane var4 = new JScrollPane();
-      var4.setViewportView(this.AlienWord);
+      var4.setViewportView(this.slotsPanel);
       var4.setBorder(new LineBorder(eL));
       this.add(var4, "Center");
-      this.JsonArray = Collections.emptyList();
+      this.slotPanelList = Collections.emptyList();
       this.eT = new JComboBox();
       this.eT.setVisible(false);
       this.eT.setModel(new bP(this));
@@ -93,9 +93,9 @@ public class InventoryPanel extends JPanel implements eo {
    public void AboutDialog(boolean var1) {
       this.Race.setVisible(this.eW == null ? false : var1 || this.eW.dk());
       boolean var2 = this.eW == null ? false : var1 || this.eW.dp();
-      synchronized(this.AlienWord.getTreeLock()) {
-         for(int var4 = 0; var4 < this.AlienWord.getComponentCount(); ++var4) {
-            Component var5 = this.AlienWord.getComponent(var4);
+      synchronized(this.slotsPanel.getTreeLock()) {
+         for(int var4 = 0; var4 < this.slotsPanel.getComponentCount(); ++var4) {
+            Component var5 = this.slotsPanel.getComponent(var4);
             if (var5 instanceof InventorySlotPanel) {
                InventorySlotPanel var6 = (InventorySlotPanel)var5;
                InventorySlotPanel.AboutDialogCloseListener(var6).setEnabled(var2);
@@ -114,7 +114,7 @@ public class InventoryPanel extends JPanel implements eo {
    }
 
    void AppStartupRunnable() {
-      this.JsonArray.stream().forEach((var1) -> {
+      this.slotPanelList.stream().forEach((var1) -> {
          if (var1.dt() && this.eW == var1) {
             this.af();
          }
@@ -123,7 +123,7 @@ public class InventoryPanel extends JPanel implements eo {
    }
 
    void UpdateCheckThread() {
-      this.JsonArray.stream().forEach((var1) -> {
+      this.slotPanelList.stream().forEach((var1) -> {
          if (var1.du() && this.eW == var1) {
             this.af();
          }
@@ -132,7 +132,7 @@ public class InventoryPanel extends JPanel implements eo {
    }
 
    void UpdateDownloadRunnable() {
-      this.JsonArray.stream().forEach((var1) -> {
+      this.slotPanelList.stream().forEach((var1) -> {
          if (var1.dp() && var1.dv() && this.eW == var1) {
             this.af();
          }
@@ -141,7 +141,7 @@ public class InventoryPanel extends JPanel implements eo {
    }
 
    void ShowErrorRunnable() {
-      this.JsonArray.stream().forEach((var1) -> {
+      this.slotPanelList.stream().forEach((var1) -> {
          if (var1.dq() && var1.ds() && this.eW == var1) {
             this.af();
          }
@@ -150,7 +150,7 @@ public class InventoryPanel extends JPanel implements eo {
    }
 
    void ShowWarningRunnable() {
-      this.JsonArray.stream().forEach((var1) -> {
+      this.slotPanelList.stream().forEach((var1) -> {
          if (var1.dk() && var1.dl() && this.eW == var1) {
             this.af();
          }
@@ -161,15 +161,15 @@ public class InventoryPanel extends JPanel implements eo {
    void ae() {
       int var1 = this.eT.getSelectedIndex();
       if (var1 >= 0) {
-         this.eW = (Inventory)this.JsonArray.get(var1);
+         this.eW = (Inventory)this.slotPanelList.get(var1);
          this.af();
       }
 
    }
 
    private void af() {
-      synchronized(this.AlienWord.getTreeLock()) {
-         this.AlienWord.removeAll();
+      synchronized(this.slotsPanel.getTreeLock()) {
+         this.slotsPanel.removeAll();
          if (this.eW != null) {
             int var2 = UIManager.getInt("Inventory.gridSize");
             Dimension var3 = new Dimension(var2, var2);
@@ -185,26 +185,26 @@ public class InventoryPanel extends JPanel implements eo {
                   var7.insets = new Insets(-1, -1, 0, 0);
                   var7.gridx = var5;
                   var7.gridy = var4;
-                  this.AlienWord.add(var6, var7);
+                  this.slotsPanel.add(var6, var7);
                }
             }
          }
       }
 
-      this.AlienWord.revalidate();
-      this.AlienWord.updateUI();
+      this.slotsPanel.revalidate();
+      this.slotsPanel.updateUI();
    }
 
    void AboutDialog(List var1) {
-      this.JsonArray = var1;
+      this.slotPanelList = var1;
       this.eW = null;
       this.eT.updateUI();
-      if (this.JsonArray.size() == 0) {
+      if (this.slotPanelList.size() == 0) {
          this.eT.setVisible(false);
          this.Race.setVisible(false);
          this.af();
       } else {
-         this.eT.setVisible(this.JsonArray.size() != 1);
+         this.eT.setVisible(this.slotPanelList.size() != 1);
          this.Race.setVisible(false);
          this.eT.setSelectedIndex(0);
       }
@@ -212,9 +212,9 @@ public class InventoryPanel extends JPanel implements eo {
    }
 
    private InventorySlotPanel AboutDialog(int var1, int var2) {
-      synchronized(this.AlienWord.getTreeLock()) {
-         for(int var4 = 0; var4 < this.AlienWord.getComponentCount(); ++var4) {
-            Component var5 = this.AlienWord.getComponent(var4);
+      synchronized(this.slotsPanel.getTreeLock()) {
+         for(int var4 = 0; var4 < this.slotsPanel.getComponentCount(); ++var4) {
+            Component var5 = this.slotsPanel.getComponent(var4);
             if (var5 instanceof InventorySlotPanel) {
                InventorySlotPanel var6 = (InventorySlotPanel)var5;
                if (InventorySlotPanel.h(var6) == var1 && InventorySlotPanel.i(var6) == var2) {
@@ -348,7 +348,7 @@ public class InventoryPanel extends JPanel implements eo {
 
    // $FF: synthetic method
    static List d(InventoryPanel var0) {
-      return var0.JsonArray;
+      return var0.slotPanelList;
    }
 
    // $FF: synthetic method

@@ -40,7 +40,7 @@ public class FrigatesPanel extends JPanel implements eo {
    private ValidatedTextField ej;
    private ValidatedTextField ek;
    private JLabel el;
-   private JButton SplitFormPanel;
+   private JButton repairButton;
    private er[] en;
    private er[] eo;
    private Frigate[] VehiclesPanel;
@@ -124,10 +124,10 @@ public class FrigatesPanel extends JPanel implements eo {
       var7.setLayout(new FormLayout(new ColumnSpec[]{FormFactory.GLUE_COLSPEC, FormFactory.DEFAULT_COLSPEC, FormFactory.GLUE_COLSPEC}, new RowSpec[]{FormFactory.DEFAULT_ROWSPEC, FormFactory.DEFAULT_ROWSPEC}));
       this.el = new JLabel("");
       var7.add(this.el, "2,1");
-      this.SplitFormPanel = new JButton("Repair");
-      this.SplitFormPanel.addActionListener(new bz(this));
+      this.repairButton = new JButton("Repair");
+      this.repairButton.addActionListener(new bz(this));
       JPanel var8 = new JPanel();
-      var8.add(this.SplitFormPanel);
+      var8.add(this.repairButton);
       var7.add(var8, "2,2");
       this.dT.AboutDialog(var7);
       this.SquadronPanel = new FormPanel(new int[]{AppSettings.cJ, 0});
@@ -320,7 +320,7 @@ public class FrigatesPanel extends JPanel implements eo {
 
    // $FF: synthetic method
    static JButton ShowErrorRunnable(FrigatesPanel var0) {
-      return var0.SplitFormPanel;
+      return var0.repairButton;
    }
 
    // $FF: synthetic method

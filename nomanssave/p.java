@@ -17,9 +17,9 @@ import javax.swing.KeyStroke;
 import javax.swing.table.TableRowSorter;
 
 public class p extends JDialog {
-   private final JTable SlotComboBoxModel;
-   private final TableRowSorter FileComboBoxModel;
-   private List InMemorySaveFile;
+   private final JTable table;
+   private final TableRowSorter rowSorter;
+   private List rowList;
    private List ValidatedTextField = null;
    private static p H = null;
 
@@ -33,14 +33,14 @@ public class p extends JDialog {
       this.setContentPane(var2);
       var2.setLayout(new BorderLayout(0, 0));
       JScrollPane var3 = new JScrollPane();
-      this.SlotComboBoxModel = new JTable();
-      this.SlotComboBoxModel.setSelectionMode(2);
-      this.SlotComboBoxModel.setModel(new q(this));
-      this.SlotComboBoxModel.getColumnModel().getColumn(0).setMaxWidth(24);
-      this.FileComboBoxModel = new TableRowSorter(this.SlotComboBoxModel.getModel());
-      this.FileComboBoxModel.setSortable(0, false);
-      this.SlotComboBoxModel.setRowSorter(this.FileComboBoxModel);
-      var3.setViewportView(this.SlotComboBoxModel);
+      this.table = new JTable();
+      this.table.setSelectionMode(2);
+      this.table.setModel(new q(this));
+      this.table.getColumnModel().getColumn(0).setMaxWidth(24);
+      this.rowSorter = new TableRowSorter(this.table.getModel());
+      this.rowSorter.setSortable(0, false);
+      this.table.setRowSorter(this.rowSorter);
+      var3.setViewportView(this.table);
       var2.add(var3);
       JPanel var4 = new JPanel();
       var4.setLayout(new FlowLayout(2));
@@ -56,10 +56,10 @@ public class p extends JDialog {
    }
 
    private String[] d() {
-      this.SlotComboBoxModel.clearSelection();
-      this.FileComboBoxModel.setSortKeys(Collections.emptyList());
-      this.FileComboBoxModel.sort();
-      this.SlotComboBoxModel.updateUI();
+      this.table.clearSelection();
+      this.rowSorter.setSortKeys(Collections.emptyList());
+      this.rowSorter.sort();
+      this.table.updateUI();
       this.ValidatedTextField = null;
       this.setLocationRelativeTo(this.getParent());
       this.setVisible(true);
@@ -72,7 +72,7 @@ public class p extends JDialog {
          H = new p(var1);
       }
 
-      H.InMemorySaveFile = ItemDefinition.FrigatesPanel();
+      H.rowList = ItemDefinition.FrigatesPanel();
       H.setTitle("Add Known Technologies");
       return H.d();
    }
@@ -83,19 +83,19 @@ public class p extends JDialog {
          H = new p(var1);
       }
 
-      H.InMemorySaveFile = ItemDefinition.bm();
+      H.rowList = ItemDefinition.bm();
       H.setTitle("Add Known Products");
       return H.d();
    }
 
    // $FF: synthetic method
    static List AboutDialog(p var0) {
-      return var0.InMemorySaveFile;
+      return var0.rowList;
    }
 
    // $FF: synthetic method
    static JTable AboutDialogCloseListener(p var0) {
-      return var0.SlotComboBoxModel;
+      return var0.table;
    }
 
    // $FF: synthetic method

@@ -10,11 +10,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class AccountPanel extends JPanel {
-   private final f AccountPanel;
+   private final f accountTable;
    private final f d;
    private final f e;
 
-   AccountPanel(Application var1) {
+   accountTable(Application var1) {
       GridLayout var2 = new GridLayout(2, 3);
       this.setLayout(var2);
       JPanel var3 = new JPanel();
@@ -25,8 +25,8 @@ public class AccountPanel extends JPanel {
       var3.add(var4, "2, 2");
       JScrollPane var5 = new JScrollPane();
       var3.add(var5, "2, 4, fill, fill");
-      this.AccountPanel = new f(this, var1, eI::bq, eI::P);
-      var5.setViewportView(this.AccountPanel);
+      this.accountTable = new f(this, var1, eI::bq, eI::P);
+      var5.setViewportView(this.accountTable);
       JPanel var6 = new JPanel();
       this.add(var6);
       var6.setLayout(new FormLayout(new ColumnSpec[]{FormFactory.LABEL_COMPONENT_GAP_COLSPEC, ColumnSpec.decode("default:grow"), FormFactory.LABEL_COMPONENT_GAP_COLSPEC}, new RowSpec[]{FormFactory.LINE_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC, FormFactory.LINE_GAP_ROWSPEC, RowSpec.decode("200px:grow"), FormFactory.LINE_GAP_ROWSPEC, FormFactory.DEFAULT_ROWSPEC, FormFactory.DEFAULT_ROWSPEC, FormFactory.LINE_GAP_ROWSPEC}));
@@ -61,11 +61,11 @@ public class AccountPanel extends JPanel {
 
    void AboutDialog(JsonObject var1) {
       if (var1 == null) {
-         this.AccountPanel.AboutDialog((JsonArray)null);
+         this.accountTable.AboutDialog((JsonArray)null);
          this.d.AboutDialog((JsonArray)null);
          this.e.AboutDialog((JsonArray)null);
       } else {
-         this.AccountPanel.AboutDialog(var1.d("UserSettingsData.UnlockedSeasonRewards"));
+         this.accountTable.AboutDialog(var1.d("UserSettingsData.UnlockedSeasonRewards"));
          this.d.AboutDialog(var1.d("UserSettingsData.UnlockedTwitchRewards"));
          this.e.AboutDialog(var1.d("UserSettingsData.UnlockedPlatformRewards"));
       }

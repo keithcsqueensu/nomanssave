@@ -967,29 +967,29 @@ public class Application {
          Companion[] var14 = Companion.saveFileAs(var1);
          Settlement var15 = Settlement.saveAccountData(var1);
          this.tabbedPane.setEnabledAt(1, var21 != null);
-         this.exosuitPanel.updateComponentTreeUI(var21);
+         this.exosuitPanel.AboutDialog(var21);
          this.tabbedPane.setEnabledAt(2, var4.length > 0);
          this.multitoolPanel.AboutDialog(var4, var5);
          this.tabbedPane.setEnabledAt(3, var6.length > 0);
          this.shipsPanel.AboutDialog(var6, var7);
          this.tabbedPane.setEnabledAt(4, var8.length > 0);
-         this.squadronPanel.updateComponentTreeUI(var8);
+         this.squadronPanel.AboutDialog(var8);
          this.tabbedPane.setEnabledAt(5, var9 != null);
          this.freighterPanel.AccountPanel(var9);
          this.tabbedPane.setEnabledAt(6, var9 != null);
-         this.frigatesPanel.updateComponentTreeUI(var10);
+         this.frigatesPanel.AboutDialog(var10);
          this.tabbedPane.setEnabledAt(7, var11.length > 0);
-         this.vehiclesPanel.updateComponentTreeUI(var11);
+         this.vehiclesPanel.AboutDialog(var11);
          this.tabbedPane.setEnabledAt(8, var13);
-         this.companionsPanel.updateComponentTreeUI(var14);
+         this.companionsPanel.AboutDialog(var14);
          this.tabbedPane.setEnabledAt(9, var15 != null);
-         this.basesStoragePanel.updateComponentTreeUI(var15);
+         this.basesStoragePanel.AboutDialog(var15);
          this.tabbedPane.setEnabledAt(10, var12.length > 0);
-         this.settlementsPanel.updateComponentTreeUI(var12);
+         this.settlementsPanel.AboutDialog(var12);
          this.tabbedPane.setEnabledAt(11, var21 != null);
-         this.discoveryPanel.updateComponentTreeUI(var21);
+         this.discoveryPanel.AboutDialog(var21);
          this.tabbedPane.setEnabledAt(12, var21 != null);
-         this.milestonesPanel.updateComponentTreeUI(var21);
+         this.milestonesPanel.AboutDialog(var21);
          this.reloadButton.setEnabled(!(this.saveFiles[this.ExosuitPanel] instanceof InMemorySaveFile));
          this.CompanionsPanel.setEnabled(true);
          this.saveAsButton.setEnabled(var20);
@@ -1280,29 +1280,29 @@ public class Application {
       Companion[] var13 = Companion.saveFileAs(var1);
       Settlement var14 = Settlement.saveAccountData(var1);
       this.tabbedPane.setEnabledAt(1, var2 != null);
-      this.exosuitPanel.updateComponentTreeUI(var2);
+      this.exosuitPanel.AboutDialog(var2);
       this.tabbedPane.setEnabledAt(2, var3.length > 0);
       this.multitoolPanel.AboutDialog(var3, var4);
       this.tabbedPane.setEnabledAt(3, var5.length > 0);
       this.shipsPanel.AboutDialog(var5, var7);
       this.tabbedPane.setEnabledAt(4, var6.length > 0);
-      this.squadronPanel.updateComponentTreeUI(var6);
+      this.squadronPanel.AboutDialog(var6);
       this.tabbedPane.setEnabledAt(5, var8 != null);
       this.freighterPanel.AccountPanel(var8);
       this.tabbedPane.setEnabledAt(6, var8 != null);
-      this.frigatesPanel.updateComponentTreeUI(var9);
+      this.frigatesPanel.AboutDialog(var9);
       this.tabbedPane.setEnabledAt(7, var10.length > 0);
-      this.vehiclesPanel.updateComponentTreeUI(var10);
+      this.vehiclesPanel.AboutDialog(var10);
       this.tabbedPane.setEnabledAt(8, var12);
-      this.companionsPanel.updateComponentTreeUI(var13);
+      this.companionsPanel.AboutDialog(var13);
       this.tabbedPane.setEnabledAt(9, var14 != null);
-      this.basesStoragePanel.updateComponentTreeUI(var14);
+      this.basesStoragePanel.AboutDialog(var14);
       this.tabbedPane.setEnabledAt(10, var11.length > 0);
-      this.settlementsPanel.updateComponentTreeUI(var11);
+      this.settlementsPanel.AboutDialog(var11);
       this.tabbedPane.setEnabledAt(11, var2 != null);
-      this.discoveryPanel.updateComponentTreeUI(var2);
+      this.discoveryPanel.AboutDialog(var2);
       this.tabbedPane.setEnabledAt(12, var2 != null);
-      this.milestonesPanel.updateComponentTreeUI(var2);
+      this.milestonesPanel.AboutDialog(var2);
    }
 
    private void exportJson() {
@@ -1394,12 +1394,12 @@ public class Application {
    }
 
    public void updateInventory(Inventory var1) {
-      this.exosuitPanel.updateComponentTreeUI(var1);
-      this.multitoolPanel.updateComponentTreeUI(var1);
-      this.shipsPanel.updateComponentTreeUI(var1);
-      this.freighterPanel.updateComponentTreeUI(var1);
-      this.vehiclesPanel.updateComponentTreeUI(var1);
-      this.basesStoragePanel.updateComponentTreeUI(var1);
+      this.exosuitPanel.AboutDialog(var1);
+      this.multitoolPanel.AboutDialog(var1);
+      this.shipsPanel.AboutDialog(var1);
+      this.freighterPanel.AboutDialog(var1);
+      this.vehiclesPanel.AboutDialog(var1);
+      this.basesStoragePanel.AboutDialog(var1);
    }
 
    public void WindowCloseListener() {

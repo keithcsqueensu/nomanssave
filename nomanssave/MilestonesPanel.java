@@ -133,6 +133,6 @@ public class MilestonesPanel extends JPanel {
 
    // $FF: synthetic method
    static void access$addMilestone(MilestonesPanel var0, gs var1, String var2) {
-      var0.AboutDialog(var1, var2);
+      var0.addMilestone(var1, var2);
    }
 }

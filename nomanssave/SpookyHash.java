@@ -889,7 +889,7 @@ public class SpookyHash {
       var3[1] = var6;
    }
 
-   public static long AboutDialogCloseListener(long[] var0, int var1, int var2, long[] var3) {
+   public static long hashLongs(long[] var0, int var1, int var2, long[] var3) {
       if (var2 < 24) {
          AboutDialog(var0, var1, var2, var3);
          return var3[0];
@@ -1083,7 +1083,7 @@ public class SpookyHash {
    }
 
    public static long AboutDialog(long[] var0, long[] var1) {
-      return AboutDialogCloseListener((long[])var0, 0, var0.length, var1);
+      return hashLongs((long[])var0, 0, var0.length, var1);
    }
 
    public long[] AboutDialogCloseListener(long[] var1, int var2, int var3) {

@@ -70,15 +70,15 @@ public class BasesStoragePanel extends SplitFormPanel {
       this.bq.ShowWarningRunnable();
    }
 
-   void AboutDialog(Inventory var1) {
-      this.bq.AboutDialog(var1);
+   void updateInventory(Inventory var1) {
+      this.bq.updateInventory(var1);
    }
 
    Settlement O() {
       return this.br;
    }
 
-   void AboutDialog(Settlement var1) {
+   void updateSettlement(Settlement var1) {
       this.br = var1;
       List var2;
       if (var1 == null) {
@@ -93,21 +93,21 @@ public class BasesStoragePanel extends SplitFormPanel {
 
       this.bh.updateUI();
       this.bk.updateUI();
-      this.bq.AboutDialog(var2);
+      this.bq.updateInventory(var2);
    }
 
    // $FF: synthetic method
-   static Settlement AboutDialog(BasesStoragePanel var0) {
+   static Settlement access$getSettlement(BasesStoragePanel var0) {
       return var0.br;
    }
 
    // $FF: synthetic method
-   static JTextField AboutDialogCloseListener(BasesStoragePanel var0) {
+   static JTextField access$getNameField(BasesStoragePanel var0) {
       return var0.bi;
    }
 
    // $FF: synthetic method
-   static ValidatedTextField AccountPanel(BasesStoragePanel var0) {
+   static ValidatedTextField access$getStorageField(BasesStoragePanel var0) {
       return var0.bj;
    }
 

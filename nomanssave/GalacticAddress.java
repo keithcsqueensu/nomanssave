@@ -32,7 +32,7 @@ public class GalacticAddress {
       return var1;
    }
 
-   private static int AboutDialog(long var0, int var2) {
+   private static int extractSignedBits(long var0, int var2) {
       int var3 = -1 >>> 32 - var2;
       int var4 = Integer.MIN_VALUE >>> 32 - var2;
       int var5 = (int)(var0 & (long)var3);
@@ -43,7 +43,7 @@ public class GalacticAddress {
       return var5;
    }
 
-   private static int AboutDialogCloseListener(long var0, int var2) {
+   private static int extractUnsignedBits(long var0, int var2) {
       int var3 = -1 >>> 32 - var2;
       return (int)(var0 & (long)var3);
    }
@@ -75,10 +75,10 @@ public class GalacticAddress {
          }
       } else if (sO.matcher(var0).matches()) {
          var3 = aE(var0);
-         int var5 = AboutDialogCloseListener(var3 >> 44, 4);
-         int var6 = AboutDialogCloseListener(var3 >> 32, 12);
-         int var7 = AboutDialog(var3 >> 24, 8);
-         int var8 = AboutDialog(var3 >> 12, 12);
+         int var5 = extractUnsignedBits(var3 >> 44, 4);
+         int var6 = extractUnsignedBits(var3 >> 32, 12);
+         int var7 = extractSignedBits(var3 >> 24, 8);
+         int var8 = extractSignedBits(var3 >> 12, 12);
          int var9 = AboutDialog(var3, 12);
          return new GalacticAddress(var5, var6, var1, var7, var8, var9);
       } else {
@@ -123,12 +123,12 @@ public class GalacticAddress {
    }
 
    public GalacticAddress(long var1) {
-      this.sQ = AboutDialogCloseListener(var1 >> 52, 12);
-      this.sR = AboutDialogCloseListener(var1 >> 40, 12);
-      this.sS = AboutDialogCloseListener(var1 >> 32, 8);
-      this.sT = AboutDialog(var1 >> 24, 8);
-      this.sU = AboutDialog(var1 >> 12, 12);
-      this.sV = AboutDialog(var1 >> 0, 12);
+      this.sQ = extractUnsignedBits(var1 >> 52, 12);
+      this.sR = extractUnsignedBits(var1 >> 40, 12);
+      this.sS = extractUnsignedBits(var1 >> 32, 8);
+      this.sT = extractSignedBits(var1 >> 24, 8);
+      this.sU = extractSignedBits(var1 >> 12, 12);
+      this.sV = extractSignedBits(var1 >> 0, 12);
    }
 
    private GalacticAddress(int var1, int var2, int var3, int var4, int var5, int var6) {

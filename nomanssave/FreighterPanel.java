@@ -84,15 +84,15 @@ public class FreighterPanel extends SplitFormPanel {
       this.ShipsPanel.ShowWarningRunnable();
    }
 
-   void AboutDialog(Inventory var1) {
-      this.ShipsPanel.AboutDialog(var1);
+   void updateInventory(Inventory var1) {
+      this.ShipsPanel.updateInventory(var1);
    }
 
    Freighter Z() {
       return this.dO;
    }
 
-   void AccountPanel(Freighter var1) {
+   void updateFreighter(Freighter var1) {
       if (var1 == null) {
          this.dO = null;
          this.dG.setText("");
@@ -133,17 +133,17 @@ public class FreighterPanel extends SplitFormPanel {
    }
 
    // $FF: synthetic method
-   static Freighter AboutDialog(FreighterPanel var0) {
+   static Freighter access$getFreighter(FreighterPanel var0) {
       return var0.dO;
    }
 
    // $FF: synthetic method
-   static ValidatedTextField AboutDialogCloseListener(FreighterPanel var0) {
+   static ValidatedTextField access$getNameField(FreighterPanel var0) {
       return var0.dG;
    }
 
    // $FF: synthetic method
-   static ValidatedTextField AccountPanel(FreighterPanel var0) {
+   static ValidatedTextField access$getSeedField(FreighterPanel var0) {
       return var0.dJ;
    }
 }

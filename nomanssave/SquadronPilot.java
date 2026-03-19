@@ -43,7 +43,7 @@ public class SquadronPilot {
       return NpcType.as(this.rI.getValueAsString("NPCResource.Filename"));
    }
 
-   public void AboutDialog(NpcType var1) {
+   public void setNpcType(NpcType var1) {
       this.rI.AboutDialogCloseListener("NPCResource.Filename", (Object)var1.K());
    }
 
@@ -68,7 +68,7 @@ public class SquadronPilot {
       return ShipType.aw(this.rI.getValueAsString("ShipResource.Filename"));
    }
 
-   public void AboutDialog(ShipType var1) {
+   public void setShipType(ShipType var1) {
       this.rI.AboutDialogCloseListener("ShipResource.Filename", (Object)var1.K());
    }
 

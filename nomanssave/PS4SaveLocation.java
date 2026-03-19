@@ -44,7 +44,7 @@ public class PS4SaveLocation implements SaveLocation {
       FileWatcher.AboutDialog(this, var1);
    }
 
-   private static JsonObject AboutDialog(byte[] var0, eG var1) {
+   private static JsonObject readMetadata(byte[] var0, eG var1) {
       Throwable var2 = null;
       Object var3 = null;
 
@@ -56,7 +56,7 @@ public class PS4SaveLocation implements SaveLocation {
             JsonObject var17;
             boolean var10001;
             try {
-               var17 = var4.AboutDialog(var1);
+               var17 = var4.readJsonObject(var1);
             } catch (Throwable var15) {
                var10000 = var15;
                var10001 = false;
@@ -187,7 +187,7 @@ public class PS4SaveLocation implements SaveLocation {
    }
 
    // $FF: synthetic method
-   static File AboutDialog(PS4SaveLocation var0) {
+   static File access$getDirectory(PS4SaveLocation var0) {
       return var0.lX;
    }
 
@@ -197,8 +197,8 @@ public class PS4SaveLocation implements SaveLocation {
    }
 
    // $FF: synthetic method
-   static JsonObject AboutDialogCloseListener(byte[] var0, eG var1) {
-      return AboutDialog(var0, var1);
+   static JsonObject access$readMetadata(byte[] var0, eG var1) {
+      return readMetadata(var0, var1);
    }
 
    // $FF: synthetic method
@@ -207,7 +207,7 @@ public class PS4SaveLocation implements SaveLocation {
    }
 
    // $FF: synthetic method
-   static fD[] AboutDialogCloseListener(PS4SaveLocation var0) {
+   static fD[] access$getSaveFiles(PS4SaveLocation var0) {
       return var0.lZ;
    }
 

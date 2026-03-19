@@ -91,15 +91,15 @@ public class MultitoolPanel extends SplitFormPanel {
       this.hi.ShowWarningRunnable();
    }
 
-   void AboutDialog(Inventory var1) {
-      this.hi.AboutDialog(var1);
+   void updateInventory(Inventory var1) {
+      this.hi.updateInventory(var1);
    }
 
    Multitool[] aK() {
       return this.hj;
    }
 
-   void AboutDialog(Multitool[] var1, MultitoolSettings var2) {
+   void updateMultitools(Multitool[] var1, MultitoolSettings var2) {
       this.hj = var1;
       if (var1.length == 0) {
          this.ha.setSelectedIndex(-1);
@@ -116,17 +116,17 @@ public class MultitoolPanel extends SplitFormPanel {
    }
 
    // $FF: synthetic method
-   static Multitool[] AboutDialog(MultitoolPanel var0) {
+   static Multitool[] access$getMultitools(MultitoolPanel var0) {
       return var0.hj;
    }
 
    // $FF: synthetic method
-   static ValidatedTextField AboutDialogCloseListener(MultitoolPanel var0) {
+   static ValidatedTextField access$getNameField(MultitoolPanel var0) {
       return var0.hb;
    }
 
    // $FF: synthetic method
-   static cN AccountPanel(MultitoolPanel var0) {
+   static cN access$getTypeComboBox(MultitoolPanel var0) {
       return var0.typeComboBox;
    }
 
@@ -166,7 +166,7 @@ public class MultitoolPanel extends SplitFormPanel {
    }
 
    // $FF: synthetic method
-   static void AboutDialog(MultitoolPanel var0, Multitool[] var1) {
+   static void access$setMultitools(MultitoolPanel var0, Multitool[] var1) {
       var0.hj = var1;
    }
 }

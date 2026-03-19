@@ -51,7 +51,7 @@ public class Base {
       return var1;
    }
 
-   public boolean AboutDialog(gg var1) {
+   public boolean matchesPosition(gg var1) {
       return gV.AboutDialog(this.nj, var1.nl);
    }
 

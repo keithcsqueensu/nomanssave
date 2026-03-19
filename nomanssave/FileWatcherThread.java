@@ -26,12 +26,12 @@ class FileWatcherThread extends Thread {
       this.start();
    }
 
-   void AboutDialog(SaveLocation var1, File var2) {
+   void fileChanged(SaveLocation var1, File var2) {
       WatchKey var3 = var2.toPath().register(this.lk, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_DELETE, StandardWatchEventKinds.ENTRY_MODIFY);
       this.ll.put(var1, var3);
    }
 
-   void AboutDialogCloseListener(SaveLocation var1) {
+   void unregister(SaveLocation var1) {
       WatchKey var2 = (WatchKey)this.ll.remove(var1);
       if (var2 != null) {
          var2.cancel();

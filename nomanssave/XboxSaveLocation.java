@@ -234,7 +234,7 @@ public class XboxSaveLocation implements SaveLocation {
       return var0.delete();
    }
 
-   private static InputStream AboutDialog(InputStream var0, int var1) {
+   private static InputStream readBytes(InputStream var0, int var1) {
       try {
          boolean var2 = true;
          if (!((InputStream)var0).markSupported()) {
@@ -277,12 +277,12 @@ public class XboxSaveLocation implements SaveLocation {
    }
 
    // $FF: synthetic method
-   static String AboutDialog(XboxSaveLocation var0) {
+   static String access$getDirectory(XboxSaveLocation var0) {
       return var0.ct();
    }
 
    // $FF: synthetic method
-   static fY[] AboutDialogCloseListener(XboxSaveLocation var0) {
+   static fY[] access$getSaveFiles(XboxSaveLocation var0) {
       return var0.mE;
    }
 
@@ -302,7 +302,7 @@ public class XboxSaveLocation implements SaveLocation {
    }
 
    // $FF: synthetic method
-   static List AccountPanel(XboxSaveLocation var0) {
+   static List access$getEntries(XboxSaveLocation var0) {
       return var0.mI;
    }
 
@@ -317,13 +317,13 @@ public class XboxSaveLocation implements SaveLocation {
    }
 
    // $FF: synthetic method
-   static fW AboutDialog(XboxSaveLocation var0, String var1) {
+   static fW access$findEntry(XboxSaveLocation var0, String var1) {
       return var0.Z(var1);
    }
 
    // $FF: synthetic method
-   static InputStream AboutDialogCloseListener(InputStream var0, int var1) {
-      return AboutDialog(var0, var1);
+   static InputStream access$readBytes(InputStream var0, int var1) {
+      return readBytes(var0, var1);
    }
 
    // $FF: synthetic method

@@ -98,7 +98,7 @@ public class MilestonesPanel extends JPanel {
 
    }
 
-   private void AboutDialog(gs var1, String var2) {
+   private void addMilestone(gs var1, String var2) {
       for(int var4 = 0; var4 < this.ex.length; ++var4) {
          for(int var5 = 0; var5 < this.ex[var4].getComponentCount(); ++var5) {
             Component var3 = this.ex[var4].getComponent(var5);
@@ -127,12 +127,12 @@ public class MilestonesPanel extends JPanel {
    }
 
    // $FF: synthetic method
-   static Exosuit AboutDialog(MilestonesPanel var0) {
+   static Exosuit access$getExosuit(MilestonesPanel var0) {
       return var0.cp;
    }
 
    // $FF: synthetic method
-   static void AboutDialog(MilestonesPanel var0, gs var1, String var2) {
+   static void access$addMilestone(MilestonesPanel var0, gs var1, String var2) {
       var0.AboutDialog(var1, var2);
    }
 }

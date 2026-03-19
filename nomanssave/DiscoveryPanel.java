@@ -179,7 +179,7 @@ public class DiscoveryPanel extends JPanel {
       }
    }
 
-   public void AboutDialog(Exosuit var1) {
+   public void updateExosuit(Exosuit var1) {
       this.cp = var1;
       this.cq = var1 == null ? null : var1.dQ();
       this.cr = var1 == null ? null : var1.dR();
@@ -223,17 +223,17 @@ public class DiscoveryPanel extends JPanel {
    }
 
    // $FF: synthetic method
-   static JsonArray AboutDialog(DiscoveryPanel var0) {
+   static JsonArray access$getData(DiscoveryPanel var0) {
       return var0.cq;
    }
 
    // $FF: synthetic method
-   static TableRowSorter AboutDialogCloseListener(DiscoveryPanel var0) {
+   static TableRowSorter access$getSorter(DiscoveryPanel var0) {
       return var0.cj;
    }
 
    // $FF: synthetic method
-   static JTable AccountPanel(DiscoveryPanel var0) {
+   static JTable access$getTable(DiscoveryPanel var0) {
       return var0.ci;
    }
 

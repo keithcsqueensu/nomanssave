@@ -83,7 +83,7 @@ public class CompanionsPanel extends JPanel {
       var3.AboutDialog(var4);
    }
 
-   void AboutDialog(Companion[] var1) {
+   void updateCompanions(Companion[] var1) {
       this.bT = var1;
       if (var1.length == 0) {
          this.bG.setSelectedIndex(-1);
@@ -95,17 +95,17 @@ public class CompanionsPanel extends JPanel {
    }
 
    // $FF: synthetic method
-   static Companion[] AboutDialog(CompanionsPanel var0) {
+   static Companion[] access$getCompanions(CompanionsPanel var0) {
       return var0.bT;
    }
 
    // $FF: synthetic method
-   static JComboBox AboutDialogCloseListener(CompanionsPanel var0) {
+   static JComboBox access$getNameCombo(CompanionsPanel var0) {
       return var0.bH;
    }
 
    // $FF: synthetic method
-   static ValidatedTextField AccountPanel(CompanionsPanel var0) {
+   static ValidatedTextField access$getSeedField(CompanionsPanel var0) {
       return var0.bI;
    }
 
@@ -150,7 +150,7 @@ public class CompanionsPanel extends JPanel {
    }
 
    // $FF: synthetic method
-   static void AboutDialog(CompanionsPanel var0, Companion[] var1) {
+   static void access$setCompanions(CompanionsPanel var0, Companion[] var1) {
       var0.bT = var1;
    }
 }

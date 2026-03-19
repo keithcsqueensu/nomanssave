@@ -36,10 +36,10 @@ public class FormPanel extends JPanel {
    }
 
    void k(String var1) {
-      this.AboutDialog(var1, (ImageIcon)null);
+      this.addRow(var1, (ImageIcon)null);
    }
 
-   void AboutDialog(String var1, ImageIcon var2) {
+   void addRow(String var1, ImageIcon var2) {
       int var3;
       if (this.dA.getRowCount() == 1) {
          this.dA.appendRow(FormFactory.DEFAULT_ROWSPEC);
@@ -86,19 +86,19 @@ public class FormPanel extends JPanel {
       this.dA.appendRow(FormFactory.LINE_GAP_ROWSPEC);
    }
 
-   void AboutDialog(String var1, JComponent var2) {
-      this.AboutDialog(var1, false, var2, 1);
+   void addRow(String var1, JComponent var2) {
+      this.addRow(var1, false, var2, 1);
    }
 
-   void AboutDialog(String var1, JComponent var2, int var3) {
-      this.AboutDialog(var1, false, var2, var3);
+   void addRow(String var1, JComponent var2, int var3) {
+      this.addRow(var1, false, var2, var3);
    }
 
-   void AboutDialog(String var1, boolean var2, JComponent var3) {
-      this.AboutDialog(var1, var2, var3, 1);
+   void addRow(String var1, boolean var2, JComponent var3) {
+      this.addRow(var1, var2, var3, 1);
    }
 
-   void AboutDialog(String var1, boolean var2, JComponent var3, int var4) {
+   void addRow(String var1, boolean var2, JComponent var3, int var4) {
       var4 = var4 * 2 - 1;
       this.dA.appendRow(FormFactory.DEFAULT_ROWSPEC);
       this.dA.appendRow(FormFactory.LINE_GAP_ROWSPEC);
@@ -115,7 +115,7 @@ public class FormPanel extends JPanel {
       this.add(var3, "4, " + var5 + ", " + var4 + ", 1, fill, default");
    }
 
-   void AboutDialog(String var1, ValidatedTextField var2) {
+   void addRow(String var1, ValidatedTextField var2) {
       JPanel var3 = new JPanel();
       var3.setLayout(new BorderLayout(0, 0));
       JPanel var4 = new JPanel();
@@ -127,10 +127,10 @@ public class FormPanel extends JPanel {
       var4.add(var5);
       var3.add(var2, "Center");
       var3.add(var4, "South");
-      this.AboutDialog(var1, (JComponent)var3);
+      this.addRow(var1, (JComponent)var3);
    }
 
-   void AboutDialog(JComponent var1) {
+   void addRow(JComponent var1) {
       this.dA.appendRow(FormFactory.DEFAULT_ROWSPEC);
       this.dA.appendRow(FormFactory.LINE_GAP_ROWSPEC);
       int var2 = this.dA.getColumnCount() - 2;

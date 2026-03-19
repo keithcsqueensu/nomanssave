@@ -41,7 +41,7 @@ public class Companion {
       return (Companion[])var1.toArray(new Companion[0]);
    }
 
-   public static Companion AboutDialog(JsonObject var0, File var1) {
+   public static Companion importFromFile(JsonObject var0, File var1) {
       JsonArray var2 = null;
       gl var3 = null;
       if (var1.getName().endsWith(".pet")) {

@@ -48,7 +48,7 @@ public class Frigate {
       return FrigateClass.an(this.oR.getValueAsString("FrigateClass.FrigateClass"));
    }
 
-   public void AccountPanel(FrigateClass var1) {
+   public void setFrigateClass(FrigateClass var1) {
       this.oR.AboutDialogCloseListener("FrigateClass.FrigateClass", (Object)var1.toString());
    }
 
@@ -124,7 +124,7 @@ public class Frigate {
       }
    }
 
-   public void AboutDialog(int var1, er var2) {
+   public void setStatUpgrade(int var1, er var2) {
       JsonArray var3 = this.oR.d("TraitIDs");
       if (var1 < var3.size()) {
          var3.AboutDialog(var1, var2 == null ? "^" : var2.getID());

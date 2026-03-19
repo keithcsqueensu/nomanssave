@@ -18,7 +18,7 @@ public class Freighter {
       return var0 == null || var0.length() == 0;
    }
 
-   private static Function AboutDialog(Freighter var0, String var1) {
+   private static Function buildFieldAccessor(Freighter var0, String var1) {
       return (var1x) -> {
          return new String[]{"Freighter", var1};
       };
@@ -56,13 +56,13 @@ public class Freighter {
       }
 
       ArrayList var14 = new ArrayList();
-      var14.add(new Inventory(AboutDialog(this, var5), var2, var19, var10, var11, false, true));
+      var14.add(new Inventory(buildFieldAccessor(this, var5), var2, var19, var10, var11, false, true));
       if (var3 != null) {
-         var14.add(new Inventory(AboutDialog(this, "Technology"), var3, var20, var12, var13, true, true));
+         var14.add(new Inventory(buildFieldAccessor(this, "Technology"), var3, var20, var12, var13, true, true));
       }
 
       if (var4 != null) {
-         var14.add(new Inventory(AboutDialog(this, var6), var4, var9, 8, 6, false, true));
+         var14.add(new Inventory(buildFieldAccessor(this, var6), var4, var9, 8, 6, false, true));
       }
 
       this.CoordinateTransform = Collections.unmodifiableList(var14);
@@ -161,7 +161,7 @@ public class Freighter {
       return this.ak("^FREI_HYPERDRIVE");
    }
 
-   public void AboutDialog(double var1) {
+   public void setHyperdriveLevel(double var1) {
       this.d("^FREI_HYPERDRIVE", var1);
    }
 
@@ -169,7 +169,7 @@ public class Freighter {
       return this.ak("^FREI_FLEET");
    }
 
-   public void AboutDialogCloseListener(double var1) {
+   public void setFuelLevel(double var1) {
       this.d("^FREI_FLEET", var1);
    }
 

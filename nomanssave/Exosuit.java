@@ -213,7 +213,7 @@ public class Exosuit {
       return var1;
    }
 
-   public int AboutDialogCloseListener(Race var1) {
+   public int countKnownWords(Race var1) {
       int var2 = 0;
 
       for(int var4 = 0; var4 < this.rc.size(); ++var4) {
@@ -226,7 +226,7 @@ public class Exosuit {
       return var2;
    }
 
-   public gA AboutDialog(AlienWord var1) {
+   public gA getWordEntry(AlienWord var1) {
       return new gA(this, var1, (gA)null);
    }
 
@@ -241,7 +241,7 @@ public class Exosuit {
       return false;
    }
 
-   private void AboutDialog(String var1, int var2, boolean var3) {
+   private void setStatData(String var1, int var2, boolean var3) {
       JsonObject var4;
       for(int var5 = 0; var5 < this.rc.size(); ++var5) {
          var4 = this.rc.V(var5);
@@ -298,7 +298,7 @@ public class Exosuit {
       }
    }
 
-   public int AboutDialog(gs var1) {
+   public int getStat(gs var1) {
       for(int var3 = 0; var3 < this.rb.size(); ++var3) {
          JsonObject var2 = this.rb.V(var3);
          if (var2.getValueAsString("Id").equals(var1.id)) {
@@ -309,7 +309,7 @@ public class Exosuit {
       return 0;
    }
 
-   public void AboutDialog(gs var1, int var2) {
+   public void setStat(gs var1, int var2) {
       if (var2 < 0) {
          throw new RuntimeException("Stat value out of range");
       } else {
@@ -333,7 +333,7 @@ public class Exosuit {
       }
    }
 
-   public double AboutDialogCloseListener(gs var1) {
+   public double getStatDouble(gs var1) {
       for(int var3 = 0; var3 < this.rb.size(); ++var3) {
          JsonObject var2 = this.rb.V(var3);
          if (var2.getValueAsString("Id").equals(var1.id)) {
@@ -344,7 +344,7 @@ public class Exosuit {
       return 0.0D;
    }
 
-   public void AboutDialog(gs var1, double var2) {
+   public void setStatDouble(gs var1, double var2) {
       if (var2 < 0.0D) {
          throw new RuntimeException("Stat value out of range");
       } else {
@@ -369,12 +369,12 @@ public class Exosuit {
    }
 
    // $FF: synthetic method
-   static boolean AboutDialog(Exosuit var0, String var1, int var2) {
+   static boolean access$checkStatKey(Exosuit var0, String var1, int var2) {
       return var0.d(var1, var2);
    }
 
    // $FF: synthetic method
-   static void AboutDialog(Exosuit var0, String var1, int var2, boolean var3) {
-      var0.AboutDialog(var1, var2, var3);
+   static void access$setStatData(Exosuit var0, String var1, int var2, boolean var3) {
+      var0.setStatData(var1, var2, var3);
    }
 }

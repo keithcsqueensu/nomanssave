@@ -79,7 +79,7 @@ public class SettlementsPanel extends JPanel {
       return this.hC;
    }
 
-   void AboutDialog(SettlementState[] var1) {
+   void updateSettlements(SettlementState[] var1) {
       if (var1.length == 0) {
          this.hC = new SettlementState[0];
          this.hx.setSelectedIndex(-1);
@@ -92,17 +92,17 @@ public class SettlementsPanel extends JPanel {
    }
 
    // $FF: synthetic method
-   static JComboBox AboutDialog(SettlementsPanel var0) {
+   static JComboBox access$getComboBox(SettlementsPanel var0) {
       return var0.hx;
    }
 
    // $FF: synthetic method
-   static SettlementState[] AboutDialogCloseListener(SettlementsPanel var0) {
+   static SettlementState[] access$getSettlements(SettlementsPanel var0) {
       return var0.hC;
    }
 
    // $FF: synthetic method
-   static ValidatedTextField AccountPanel(SettlementsPanel var0) {
+   static ValidatedTextField access$getSeedField(SettlementsPanel var0) {
       return var0.hy;
    }
 

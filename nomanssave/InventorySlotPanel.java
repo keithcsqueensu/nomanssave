@@ -151,12 +151,12 @@ class InventorySlotPanel extends JPanel {
                ImageIcon var6 = var2 == null ? null : var2.AccountPanel(var5, var5);
                int var7 = 0;
                if (var6 != null) {
-                  this.AboutDialog(var6, var5, var7++);
+                  this.paintIcon(var6, var5, var7++);
                }
 
                Color var8 = var3 ? InventoryPanel.aj() : InventoryPanel.eO;
-               this.AboutDialog(var4, var7++, var8);
-               this.AboutDialog(var1.dA() < 0 ? "" : var1.dA() + "/" + var1.dB(), var7++, var8);
+               this.paintText(var4, var7++, var8);
+               this.paintText(var1.dA() < 0 ? "" : var1.dA() + "/" + var1.dB(), var7++, var8);
                this.setToolTipText(var4);
             }
          } else {
@@ -221,12 +221,12 @@ class InventorySlotPanel extends JPanel {
                ImageIcon var13 = var2 == null ? null : var2.AccountPanel(var11, var11);
                int var12 = 0;
                if (var13 != null) {
-                  this.AboutDialog(var13, var11, var12++);
+                  this.paintIcon(var13, var11, var12++);
                }
 
                Color var9 = var3 ? InventoryPanel.aj() : InventoryPanel.eO;
-               this.AboutDialog(var10, var12++, var9);
-               this.AboutDialog(var1.dA() < 0 ? " " : var1.dA() + "/" + var1.dB(), var12++, var9);
+               this.paintText(var10, var12++, var9);
+               this.paintText(var1.dA() < 0 ? " " : var1.dA() + "/" + var1.dB(), var12++, var9);
                this.setToolTipText(var10);
             }
          }
@@ -236,7 +236,7 @@ class InventorySlotPanel extends JPanel {
       this.updateUI();
    }
 
-   private void AboutDialog(ImageIcon var1, int var2, int var3) {
+   private void paintIcon(ImageIcon var1, int var2, int var3) {
       JLabel var4 = new JLabel(var1);
       var4.setPreferredSize(new Dimension(var2, var2));
       GridBagConstraints var5 = new GridBagConstraints();
@@ -248,7 +248,7 @@ class InventorySlotPanel extends JPanel {
       this.add(var4, var5);
    }
 
-   private void AboutDialog(String var1, int var2, Color var3) {
+   private void paintText(String var1, int var2, Color var3) {
       JLabel var4 = new JLabel();
       var4.setFont(UIManager.getFont("Inventory.font"));
       var4.setBackground((Color)null);
@@ -266,12 +266,12 @@ class InventorySlotPanel extends JPanel {
    }
 
    // $FF: synthetic method
-   static JCheckBoxMenuItem AboutDialogCloseListener(InventorySlotPanel var0) {
+   static JCheckBoxMenuItem access$getEnabledMenuItem(InventorySlotPanel var0) {
       return var0.enabledMenuItem;
    }
 
    // $FF: synthetic method
-   static void AccountPanel(InventorySlotPanel var0) {
+   static void access$repaint(InventorySlotPanel var0) {
       var0.aq();
    }
 

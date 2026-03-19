@@ -158,7 +158,7 @@ abstract class XboxContainerWriter {
       }
    }
 
-   JsonObject AboutDialog(eG var1) {
+   JsonObject readJsonObject(eG var1) {
       Throwable var2 = null;
       Object var3 = null;
 
@@ -170,7 +170,7 @@ abstract class XboxContainerWriter {
             JsonObject var17;
             boolean var10001;
             try {
-               var17 = var4.AboutDialog(var1);
+               var17 = var4.readJsonObject(var1);
             } catch (Throwable var15) {
                var10000 = var15;
                var10001 = false;
@@ -310,7 +310,7 @@ abstract class XboxContainerWriter {
       XboxSaveLocation.e(this.mN);
    }
 
-   void AboutDialog(String var1, GameMode var2) {
+   void writeHeader(String var1, GameMode var2) {
       Properties var3 = new Properties();
       var3.setProperty("MetaFile", this.mZ.getName());
       var3.setProperty("DataFile", this.mY.getName());

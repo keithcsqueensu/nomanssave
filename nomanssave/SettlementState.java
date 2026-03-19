@@ -58,11 +58,11 @@ public class SettlementState {
       this.bf.d("Stats").AboutDialog(var1, var2);
    }
 
-   public int AboutDialog(gG var1) {
+   public int getStat(gG var1) {
       return this.bf.d("Stats").Y(var1.ordinal());
    }
 
-   public void AboutDialog(gG var1, int var2) {
+   public void setStat(gG var1, int var2) {
       this.bf.d("Stats").AboutDialog(var1.ordinal(), var2);
    }
 
@@ -74,7 +74,7 @@ public class SettlementState {
       return this.bf.d("Perks").CompanionsPanel(var1);
    }
 
-   public void AccountPanel(int var1, String var2) {
+   public void setPerk(int var1, String var2) {
       this.bf.d("Perks").AboutDialog(var1, var2);
    }
 

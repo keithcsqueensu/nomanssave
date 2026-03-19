@@ -145,7 +145,7 @@ public class SteamSaveLocation implements SaveLocation {
       var2.write(var0, 0, var0.length);
       var2.write(var1, 0, var1.length);
       long[] var3 = new long[]{96176015842230784L, -8446744073709551617L};
-      SpookyHash.AboutDialog(var2.toByteArray(), var3);
+      SpookyHash.hashBytes(var2.toByteArray(), var3);
       long[] var4 = new long[]{var3[0] & 4294967295L, var3[0] >>> 32 & 4294967295L, var3[1] & 4294967295L, var3[1] >>> 32 & 4294967295L};
       return toLongBytes(var4, 0, 4);
    }

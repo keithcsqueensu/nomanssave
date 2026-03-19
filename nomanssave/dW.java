@@ -15,7 +15,7 @@ class dW extends ValidatedTextField {
          int var2 = ShipsPanel.o(this.ia).dM();
 
          try {
-            int var3 = hf.AboutDialogCloseListener(var1, 1, 500);
+            int var3 = hf.parseIntClamped(var1, 1, 500);
             if (var3 != var2) {
                ShipsPanel.o(this.ia).aB(var3);
             }

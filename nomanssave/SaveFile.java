@@ -7,7 +7,7 @@ public interface SaveFile {
 
    JsonObject M();
 
-   String AboutDialogCloseListener(JsonObject var1);
+   String writeToFile(JsonObject var1);
 
    long lastModified();
 

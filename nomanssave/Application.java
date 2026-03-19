@@ -370,7 +370,7 @@ public class Application {
                this.accountJson.AboutDialog(this.accountChangeListener);
             }
          } catch (IOException var5) {
-            Logger.AboutDialog("Error reading account data", var5);
+            Logger.error("Error reading account data", var5);
          }
       }
 
@@ -401,10 +401,10 @@ public class Application {
 
             var1.AboutDialog(var5, var3.freighterPanel());
          } catch (RuntimeException var6) {
-            Logger.AboutDialog("Ship export error", var6);
+            Logger.error("Ship export error", var6);
             this.showWarning("An error occured during export.");
          } catch (IOException var7) {
-            Logger.AboutDialog("Ship export error", var7);
+            Logger.error("Ship export error", var7);
             this.showWarning("An error occured during export.");
          }
       }
@@ -430,10 +430,10 @@ public class Application {
 
             var1.isFrigateOnMission(var5);
          } catch (RuntimeException var6) {
-            Logger.AboutDialog("Weapon export error", var6);
+            Logger.error("Weapon export error", var6);
             this.showWarning("An error occured during export.");
          } catch (IOException var7) {
-            Logger.AboutDialog("Weapon export error", var7);
+            Logger.error("Weapon export error", var7);
             this.showWarning("An error occured during export.");
          }
       }
@@ -460,10 +460,10 @@ public class Application {
 
             var1.isFrigateOnMission(var6);
          } catch (RuntimeException var7) {
-            Logger.AboutDialog("Companion export error", var7);
+            Logger.error("Companion export error", var7);
             this.showWarning("An error occured during export.");
          } catch (IOException var8) {
-            Logger.AboutDialog("Companion export error", var8);
+            Logger.error("Companion export error", var8);
             this.showWarning("An error occured during export.");
          }
       }
@@ -483,10 +483,10 @@ public class Application {
                this.saveModified = true;
                return var5;
             } catch (RuntimeException var6) {
-               Logger.AboutDialog("Ship import error", var6);
+               Logger.error("Ship import error", var6);
                this.showWarning("An error occured during import.");
             } catch (IOException var7) {
-               Logger.AboutDialog("Ship import error", var7);
+               Logger.error("Ship import error", var7);
                this.showWarning("An error occured during import.");
             }
          }
@@ -510,10 +510,10 @@ public class Application {
                this.saveModified = true;
                return var5;
             } catch (RuntimeException var6) {
-               Logger.AboutDialog("Weapon import error", var6);
+               Logger.error("Weapon import error", var6);
                this.showWarning("An error occured during import.");
             } catch (IOException var7) {
-               Logger.AboutDialog("Weapon import error", var7);
+               Logger.error("Weapon import error", var7);
                this.showWarning("An error occured during import.");
             }
          }
@@ -537,10 +537,10 @@ public class Application {
                this.saveModified = true;
                return var5;
             } catch (RuntimeException var6) {
-               Logger.AboutDialog("Companion import error", var6);
+               Logger.error("Companion import error", var6);
                this.showWarning("An error occured during import.");
             } catch (IOException var7) {
-               Logger.AboutDialog("Companion import error", var7);
+               Logger.error("Companion import error", var7);
                this.showWarning("An error occured during import.");
             }
          }
@@ -574,13 +574,13 @@ public class Application {
 
             BackupUtil.d(var1.cH(), var5);
          } catch (RuntimeException var6) {
-            Logger.AboutDialog("Base backup error", var6);
+            Logger.error("Base backup error", var6);
             this.showWarning("An error occured during backup.");
          } catch (IOException var7) {
-            Logger.AboutDialog("Base backup error", var7);
+            Logger.error("Base backup error", var7);
             this.showWarning("An error occured during backup.");
          } catch (GeneralSecurityException var8) {
-            Logger.AboutDialog("Base backup error", var8);
+            Logger.error("Base backup error", var8);
             this.showWarning("An error occured during backup.");
          }
       }
@@ -602,10 +602,10 @@ public class Application {
             this.saveModified = true;
             return true;
          } catch (IOException var5) {
-            Logger.AboutDialog("Base restore error", var5);
+            Logger.error("Base restore error", var5);
             this.showWarning("An error occured during backup.");
          } catch (GeneralSecurityException var6) {
-            Logger.AboutDialog("Base restore error", var6);
+            Logger.error("Base restore error", var6);
             this.showWarning("An error occured during backup.");
          }
       }
@@ -675,13 +675,13 @@ public class Application {
                var7.put("InventoryCargo", var11);
                BackupUtil.AboutDialog(var2.cH(), (Map)var7, (File)var6);
             } catch (RuntimeException var15) {
-               Logger.AboutDialog("Freighter backup error", var15);
+               Logger.error("Freighter backup error", var15);
                this.showWarning("An error occured during backup.");
             } catch (IOException var16) {
-               Logger.AboutDialog("Freighter backup error", var16);
+               Logger.error("Freighter backup error", var16);
                this.showWarning("An error occured during backup.");
             } catch (GeneralSecurityException var17) {
-               Logger.AboutDialog("Freighter backup error", var17);
+               Logger.error("Freighter backup error", var17);
                this.showWarning("An error occured during backup.");
             }
          }
@@ -768,10 +768,10 @@ public class Application {
                this.saveModified = true;
                return true;
             } catch (IOException var11) {
-               Logger.AboutDialog("Freighter restore error", var11);
+               Logger.error("Freighter restore error", var11);
                this.showWarning("An error occured during restore.");
             } catch (GeneralSecurityException var12) {
-               Logger.AboutDialog("Freighter restore error", var12);
+               Logger.error("Freighter restore error", var12);
                this.showWarning("An error occured during restore.");
             }
          }
@@ -781,7 +781,7 @@ public class Application {
    }
 
    private void openFile() {
-      File var1 = ej.AboutDialogCloseListener(this.saveLocation == null ? null : this.saveLocation.InventorySlotPanel());
+      File var1 = ej.createFileChooser(this.saveLocation == null ? null : this.saveLocation.InventorySlotPanel());
       if (var1 != null) {
          String var2;
          File var3;
@@ -864,7 +864,7 @@ public class Application {
                   this.accountJson.AboutDialog(this.accountChangeListener);
                }
             } catch (IOException var7) {
-               Logger.AboutDialog("Error reading account data", var7);
+               Logger.error("Error reading account data", var7);
             }
 
             this.editAccountJsonMenuItem.setEnabled(this.accountJson != null);
@@ -989,7 +989,7 @@ public class Application {
          this.tabbedPane.setEnabledAt(11, var21 != null);
          this.discoveryPanel.AboutDialog(var21);
          this.tabbedPane.setEnabledAt(12, var21 != null);
-         this.milestonesPanel.AboutDialog(var21);
+         this.milestonesPanel.updateMilestones(var21);
          this.reloadButton.setEnabled(!(this.saveFiles[this.ExosuitPanel] instanceof InMemorySaveFile));
          this.CompanionsPanel.setEnabled(true);
          this.saveAsButton.setEnabled(var20);
@@ -1027,7 +1027,7 @@ public class Application {
          this.basesStoragePanel.AboutDialog((Settlement)null);
          this.settlementsPanel.AboutDialog(new SettlementState[0]);
          this.discoveryPanel.AboutDialog((Exosuit)null);
-         this.milestonesPanel.AboutDialog((Exosuit)null);
+         this.milestonesPanel.updateMilestones((Exosuit)null);
          this.tabbedPane.setEnabledAt(1, false);
          this.tabbedPane.setEnabledAt(2, false);
          this.tabbedPane.setEnabledAt(3, false);
@@ -1055,7 +1055,7 @@ public class Application {
          this.accountData.k(this.accountJson);
          this.accountModified = false;
       } catch (Exception var2) {
-         Logger.AboutDialog("Error saving account data", var2);
+         Logger.error("Error saving account data", var2);
          this.showWarning("An error occured saving the account data.");
       }
 
@@ -1067,7 +1067,7 @@ public class Application {
       } else {
          try {
             Logger.info("Formatting JSON...");
-            String var1 = this.saveFiles[this.ExosuitPanel].AboutDialogCloseListener(this.currentSave);
+            String var1 = this.saveFiles[this.ExosuitPanel].writeToFile(this.currentSave);
             this.saveFiles = this.saveSlots[this.AppSettings].bX();
             this.ExosuitPanel = -1;
 
@@ -1102,7 +1102,7 @@ public class Application {
 
    private void saveFileAs() {
       int var1 = this.saveSlots[this.AppSettings].getIndex();
-      int var2 = dz.AboutDialog(this.mainWindow, this.saveLocation.bU(), var1);
+      int var2 = dz.show(this.mainWindow, this.saveLocation.bU(), var1);
       if (var2 >= 0 && var2 != var1) {
          try {
             Logger.info("Formatting JSON...");
@@ -1236,7 +1236,7 @@ public class Application {
          try {
             this.accountData.k(this.accountJson);
          } catch (IOException var2) {
-            Logger.AboutDialog("JSON Save error", var2);
+            Logger.error("JSON Save error", var2);
             this.showWarning("An error occured saving the account data.");
          }
       }
@@ -1302,7 +1302,7 @@ public class Application {
       this.tabbedPane.setEnabledAt(11, var2 != null);
       this.discoveryPanel.AboutDialog(var2);
       this.tabbedPane.setEnabledAt(12, var2 != null);
-      this.milestonesPanel.AboutDialog(var2);
+      this.milestonesPanel.updateMilestones(var2);
    }
 
    private void exportJson() {
@@ -1324,7 +1324,7 @@ public class Application {
 
             this.currentSave.AccountPanel(var3);
          } catch (IOException var4) {
-            Logger.AboutDialog("JSON Export error", var4);
+            Logger.error("JSON Export error", var4);
             this.showWarning("An error occured exporting the save data.");
          }
       }
@@ -1345,7 +1345,7 @@ public class Application {
             this.currentSave.d(var2);
             this.refreshPanels();
          } catch (IOException var3) {
-            Logger.AboutDialog("JSON Import error", var3);
+            Logger.error("JSON Import error", var3);
             this.showWarning("An error occured importing the save data.");
          }
       }
@@ -1904,7 +1904,7 @@ public class Application {
             }
          }
 
-         en.AccountPanel(var3);
+         en.setEnabled(var3);
       });
       var9.add(var14);
       var9.addSeparator();
@@ -1995,7 +1995,7 @@ public class Application {
    }
 
    // $FF: synthetic method
-   static SaveLocation AboutDialogCloseListener(Application var0) {
+   static SaveLocation access$getSaveLocation(Application var0) {
       return var0.saveLocation;
    }
 
@@ -2005,12 +2005,12 @@ public class Application {
    }
 
    // $FF: synthetic method
-   static void AboutDialogCloseListener(Application var0, boolean var1) {
+   static void access$setFileChanged(Application var0, boolean var1) {
       var0.aS = var1;
    }
 
    // $FF: synthetic method
-   static int AccountPanel(Application var0) {
+   static int access$getSlotIndex(Application var0) {
       return var0.AppSettings;
    }
 
@@ -2020,7 +2020,7 @@ public class Application {
    }
 
    // $FF: synthetic method
-   static void AccountPanel(Application var0, boolean var1) {
+   static void access$setAccountPanelChanged(Application var0, boolean var1) {
       var0.aT = var1;
    }
 
@@ -2138,7 +2138,7 @@ public class Application {
    }
 
    // $FF: synthetic method
-   static void AboutDialogCloseListener(Application var0, int var1) {
+   static void access$selectFile(Application var0, int var1) {
       var0.selectFile(var1);
    }
 

@@ -60,7 +60,7 @@ class SlotComboBoxModel implements ComboBoxModel {
    }
 
    public Object getSelectedItem() {
-      return Application.AccountPanel(this.aZ) < 0 ? null : Application.d(this.aZ)[Application.AccountPanel(this.aZ)];
+      return Application.access$getSlotIndex(this.aZ) < 0 ? null : Application.d(this.aZ)[Application.access$getSlotIndex(this.aZ)];
    }
 
    // $FF: synthetic method

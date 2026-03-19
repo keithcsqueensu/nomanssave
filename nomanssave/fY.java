@@ -24,7 +24,7 @@ class fY extends XboxContainerWriter implements SaveFile {
 
          this.me = GameMode.T(var3);
       } catch (IOException var5) {
-         Logger.AboutDialog("Could not read game mode from " + this.mO.name, var5);
+         Logger.error("Could not read game mode from " + this.mO.name, var5);
       }
 
    }
@@ -65,7 +65,7 @@ class fY extends XboxContainerWriter implements SaveFile {
       return this.AboutDialog(eG.jV);
    }
 
-   public String AboutDialogCloseListener(JsonObject var1) {
+   public String writeToFile(JsonObject var1) {
       this.AboutDialog(this.lO == 0 ? "wgsbackup" : "wgsbackup" + (this.lO + 1), this.me);
       int var2 = XboxSaveLocation.ao(var1.J("Version"));
       if (var2 != 0) {

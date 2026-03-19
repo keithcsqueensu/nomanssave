@@ -16,7 +16,7 @@ class fM extends SteamSaveFileMetadata implements SaveFile {
          String var3 = new String(this.ah(65536));
          this.me = GameMode.T(var3);
       } catch (IOException var4) {
-         Logger.AboutDialog("Could not read game mode from " + this.filename, var4);
+         Logger.error("Could not read game mode from " + this.filename, var4);
       }
 
    }
@@ -42,7 +42,7 @@ class fM extends SteamSaveFileMetadata implements SaveFile {
       (new File(SteamSaveLocation.AboutDialog(this.mt), "mf_" + this.filename)).delete();
    }
 
-   public String AboutDialogCloseListener(JsonObject var1) {
+   public String writeToFile(JsonObject var1) {
       this.AboutDialog(this.lO == 0 ? "backup" : "backup" + (this.lO + 1), this.me, this.getName(), this.getDescription());
       this.mx.Y(var1.getValueAsString("CommonStateData.SaveName"));
       this.me = GameMode.i(var1);

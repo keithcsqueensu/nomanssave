@@ -8,7 +8,7 @@ public class en {
    private static boolean iu = false;
    private static List iv = new ArrayList();
 
-   public static void AboutDialog(eo var0) {
+   public static void addListener(eo var0) {
       iv.add(var0);
    }
 
@@ -16,13 +16,13 @@ public class en {
       return iu;
    }
 
-   public static void AccountPanel(boolean var0) {
+   public static void setEnabled(boolean var0) {
       iu = var0;
       Iterator var2 = iv.iterator();
 
       while(var2.hasNext()) {
          eo var1 = (eo)var2.next();
-         var1.AboutDialog(var0);
+         var1.setEnabled(var0);
       }
 
    }

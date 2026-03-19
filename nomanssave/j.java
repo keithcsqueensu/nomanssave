@@ -17,7 +17,7 @@ class j implements ComboBoxModel {
       return h.e(this.ShowErrorRunnable).size();
    }
 
-   public eB AboutDialogCloseListener(int var1) {
+   public eB getElementAt(int var1) {
       return (eB)h.e(this.ShowErrorRunnable).get(var1);
    }
 
@@ -38,6 +38,6 @@ class j implements ComboBoxModel {
 
    // $FF: synthetic method
    public Object getElementAt(int var1) {
-      return this.AboutDialogCloseListener(var1);
+      return this.getElementAt(var1);
    }
 }

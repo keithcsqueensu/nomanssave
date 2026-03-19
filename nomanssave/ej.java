@@ -30,7 +30,7 @@ public class ej extends JFileChooser {
       });
    }
 
-   private String AboutDialog(File var1) {
+   private String formatFileName(File var1) {
       Matcher var2 = iq.matcher(var1.getName());
       if (var2.matches()) {
          long var3 = Long.parseLong(var2.group(1));
@@ -40,7 +40,7 @@ public class ej extends JFileChooser {
       }
    }
 
-   public static File AboutDialogCloseListener(File var0) {
+   public static File createFileChooser(File var0) {
       if (ir == null) {
          ir = new ej();
       }
@@ -78,8 +78,8 @@ public class ej extends JFileChooser {
    }
 
    // $FF: synthetic method
-   static String AboutDialog(ej var0, File var1) {
-      return var0.AboutDialog(var1);
+   static String access$formatFileName(ej var0, File var1) {
+      return var0.formatFileName(var1);
    }
 
    // $FF: synthetic method

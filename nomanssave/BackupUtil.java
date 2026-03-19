@@ -73,9 +73,9 @@ public class BackupUtil {
          ((OutputStream)var22).write(var19);
          var22 = new CipherOutputStream((OutputStream)var22, var21);
          ((OutputStream)var22).write(new byte[]{84, 82, 85, 69});
-         hk.AboutDialog((OutputStream)var22, var17);
+         hk.writeInt((OutputStream)var22, var17);
          byte[] var23 = JsonWriter.AboutDialogCloseListener(var4);
-         hk.AboutDialog((OutputStream)var22, var23.length);
+         hk.writeInt((OutputStream)var22, var23.length);
          ((OutputStream)var22).write(var23);
          Iterator var13 = var1.entrySet().iterator();
 
@@ -86,7 +86,7 @@ public class BackupUtil {
                ((OutputStream)var22).write(var23.length);
                ((OutputStream)var22).write(var23);
                var23 = JsonWriter.j(var24.getValue());
-               hk.AboutDialog((OutputStream)var22, var23.length);
+               hk.writeInt((OutputStream)var22, var23.length);
                ((OutputStream)var22).write(var23);
             }
          }

@@ -15,7 +15,7 @@ class gJ extends Inventory {
    }
 
    public int MultitoolPanel() {
-      return Starship.AboutDialogCloseListener(this.rq);
+      return Starship.show(this.rq);
    }
 
    public String toString() {

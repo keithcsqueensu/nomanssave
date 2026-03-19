@@ -66,7 +66,7 @@ public class p extends JDialog {
       return this.ValidatedTextField == null ? new String[0] : (String[])this.ValidatedTextField.toArray(new String[0]);
    }
 
-   public static String[] AboutDialogCloseListener(Container var0) {
+   public static String[] show(Container var0) {
       if (H == null) {
          Frame var1 = JOptionPane.getFrameForComponent(var0);
          H = new p(var1);
@@ -77,7 +77,7 @@ public class p extends JDialog {
       return H.d();
    }
 
-   public static String[] AccountPanel(Container var0) {
+   public static String[] showProducts(Container var0) {
       if (H == null) {
          Frame var1 = JOptionPane.getFrameForComponent(var0);
          H = new p(var1);
@@ -89,22 +89,22 @@ public class p extends JDialog {
    }
 
    // $FF: synthetic method
-   static List AboutDialog(p var0) {
+   static List access$getList(p var0) {
       return var0.rowList;
    }
 
    // $FF: synthetic method
-   static JTable AboutDialogCloseListener(p var0) {
+   static JTable access$getTable(p var0) {
       return var0.table;
    }
 
    // $FF: synthetic method
-   static void AboutDialog(p var0, List var1) {
+   static void access$setList(p var0, List var1) {
       var0.ValidatedTextField = var1;
    }
 
    // $FF: synthetic method
-   static List AccountPanel(p var0) {
+   static List access$getSelectedList(p var0) {
       return var0.ValidatedTextField;
    }
 }

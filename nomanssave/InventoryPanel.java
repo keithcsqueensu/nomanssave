@@ -81,7 +81,7 @@ public class InventoryPanel extends JPanel implements eo {
       this.Race.setVisible(false);
       this.Race.addActionListener(new bR(this));
       var2.add(this.Race);
-      en.AboutDialog(this);
+      en.addListener(this);
       UIManager.addPropertyChangeListener((var1x) -> {
          if ("lookAndFeel".equals(var1x.getPropertyName())) {
             EventQueue.invokeLater(this::af);
@@ -228,7 +228,7 @@ public class InventoryPanel extends JPanel implements eo {
    }
 
    private void showItemDetails(InventorySlotPanel var1) {
-      ItemDefinition var2 = h.AboutDialog(this, this.eW.MultitoolPanel());
+      ItemDefinition var2 = h.show(this, this.eW.MultitoolPanel());
       if (var2 != null) {
          this.eW.AboutDialog(InventorySlotPanel.h(var1), InventorySlotPanel.i(var1), var2);
          InventorySlotPanel.AccountPanel(var1);
@@ -256,7 +256,7 @@ public class InventoryPanel extends JPanel implements eo {
 
       List var5 = this.eR.g(var4);
       int var6 = var5.indexOf(this.eW);
-      int var7 = dd.AboutDialog(this, var5, var6);
+      int var7 = dd.show(this, var5, var6);
       if (var7 != var6) {
          Inventory var8 = (Inventory)var5.get(var7);
          if (this.eW.AboutDialog(InventorySlotPanel.h(var2), InventorySlotPanel.i(var2), var8)) {

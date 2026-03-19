@@ -17,7 +17,7 @@ class fD extends fH implements SaveFile {
          String var3 = new String(this.ah(65536));
          this.me = GameMode.T(var3);
       } catch (IOException var4) {
-         Logger.AboutDialog("Could not read game mode from " + this.mh.getName(), var4);
+         Logger.error("Could not read game mode from " + this.mh.getName(), var4);
       }
 
    }
@@ -36,10 +36,10 @@ class fD extends fH implements SaveFile {
    }
 
    public JsonObject M() {
-      return PS4SaveLocation.AboutDialogCloseListener(this.readBytes(), eG.jV);
+      return PS4SaveLocation.access$readMetadata(this.readBytes(), eG.jV);
    }
 
-   public String AboutDialogCloseListener(JsonObject var1) {
+   public String writeToFile(JsonObject var1) {
       this.AboutDialog(this.lO == 0 ? "ps4_backup" : "ps4_backup" + (this.lO + 1), this.me, this.getName(), this.getDescription());
       this.writeBytes(PS4SaveLocation.l(var1));
       return this.K();

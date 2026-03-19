@@ -15,7 +15,7 @@ class aK extends ValidatedTextField {
          int var2 = ExosuitPanel.AboutDialog(this.MultitoolPanel).dM();
 
          try {
-            int var3 = hf.AboutDialogCloseListener(var1, 1, 200);
+            int var3 = hf.parseIntClamped(var1, 1, 200);
             if (var3 != var2) {
                ExosuitPanel.AboutDialog(this.MultitoolPanel).aB(var3);
             }

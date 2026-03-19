@@ -14,7 +14,7 @@ class bR implements ActionListener {
 
    public void actionPerformed(ActionEvent var1) {
       if (InventoryPanel.AboutDialog(this.JsonParseException) != null) {
-         Dimension var2 = aQ.AboutDialog(this.JsonParseException, InventoryPanel.AboutDialog(this.JsonParseException).getSize(), InventoryPanel.AboutDialog(this.JsonParseException).dm(), InventoryPanel.AboutDialog(this.JsonParseException).dn());
+         Dimension var2 = aQ.access$setDimension(this.JsonParseException, InventoryPanel.AboutDialog(this.JsonParseException).getSize(), InventoryPanel.AboutDialog(this.JsonParseException).dm(), InventoryPanel.AboutDialog(this.JsonParseException).dn());
          if (var2 != null && InventoryPanel.AboutDialog(this.JsonParseException).AboutDialog(var2)) {
             InventoryPanel.AccountPanel(this.JsonParseException);
          }

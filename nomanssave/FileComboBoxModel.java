@@ -54,11 +54,11 @@ class FileComboBoxModel implements ComboBoxModel {
          if (var4 < Application.f(this.aZ).length) {
             SaveFile[] var7 = new SaveFile[var4];
             System.arraycopy(Application.f(this.aZ), 0, var7, 0, var4);
-            Application.AboutDialog(this.aZ, var7);
+            Application.access$setSaveFiles(this.aZ, var7);
          }
       }
 
-      Application.AboutDialogCloseListener(this.aZ, var2);
+      Application.access$selectFile(this.aZ, var2);
    }
 
    public Object getSelectedItem() {

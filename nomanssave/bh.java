@@ -15,7 +15,7 @@ class bh extends ValidatedTextField {
          double var2 = FreighterPanel.AboutDialog(this.dP).cX();
 
          try {
-            double var4 = hf.AboutDialog(var1, 0.0D, 1000.0D);
+            double var4 = hf.parseDoubleClamped(var1, 0.0D, 1000.0D);
             if (var4 != var2) {
                FreighterPanel.AboutDialog(this.dP).AboutDialog(var4);
             }

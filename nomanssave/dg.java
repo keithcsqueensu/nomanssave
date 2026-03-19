@@ -12,7 +12,7 @@ class dg implements ActionListener {
    }
 
    public void actionPerformed(ActionEvent var1) {
-      dd.AboutDialog(this.gW, dd.AboutDialogCloseListener(this.gW).getSelectedIndex());
+      dd.show(this.gW, dd.access$getList(this.gW).getSelectedIndex());
       this.gW.setVisible(false);
    }
 }

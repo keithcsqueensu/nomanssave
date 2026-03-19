@@ -60,7 +60,7 @@ public class cY extends JDialog {
       this.pack();
    }
 
-   private int AboutDialogCloseListener(List var1) {
+   private int showDialog(List var1) {
       this.ShipClass = var1;
       this.setLocationRelativeTo(this.getParent());
       this.SquadronPilot.setSelectedIndex(0);
@@ -70,27 +70,27 @@ public class cY extends JDialog {
       return this.Vehicle;
    }
 
-   public static int AboutDialog(Container var0, List var1) {
+   public static int show(Container var0, List var1) {
       if (gP == null) {
          Frame var2 = JOptionPane.getFrameForComponent(var0);
          gP = new cY(var2);
       }
 
-      return gP.AboutDialogCloseListener(var1);
+      return gP.showDialog(var1);
    }
 
    // $FF: synthetic method
-   static List AboutDialog(cY var0) {
+   static List access$getItems(cY var0) {
       return var0.ShipClass;
    }
 
    // $FF: synthetic method
-   static JComboBox AboutDialogCloseListener(cY var0) {
+   static JComboBox access$getComboBox(cY var0) {
       return var0.SquadronPilot;
    }
 
    // $FF: synthetic method
-   static void AboutDialog(cY var0, int var1) {
+   static void access$setSelected(cY var0, int var1) {
       var0.Vehicle = var1;
    }
 }

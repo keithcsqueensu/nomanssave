@@ -147,7 +147,7 @@ public class ItemDetailsDialog extends JDialog {
          this.SaveSlot.setVisible(true);
 
          try {
-            int var9 = hf.AboutDialogCloseListener(var4, 0, 99999);
+            int var9 = hf.parseIntClamped(var4, 0, 99999);
             this.fC = new Integer(var9);
             this.SaveSlot.setEditable(true);
          } catch (RuntimeException var7) {

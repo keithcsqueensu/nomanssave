@@ -47,7 +47,7 @@ class eD extends eE {
                   }
                }
             } catch (RuntimeException var13) {
-               Logger.AboutDialog("Ignoring: " + var5, var13);
+               Logger.error("Ignoring: " + var5, var13);
             }
          }
       } finally {

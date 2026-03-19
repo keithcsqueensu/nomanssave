@@ -14,7 +14,7 @@ class fK extends SteamSaveFileMetadata implements AccountData {
    }
 
    public void k(JsonObject var1) {
-      this.AboutDialog("accountdata", (GameMode)null, (String)null, (String)null);
+      this.writeMetadata("accountdata", (GameMode)null, (String)null, (String)null);
       this.AboutDialog(var1, false);
    }
 }

@@ -89,7 +89,7 @@ public class XboxSaveLocation implements SaveLocation {
             Logger.debug("  unknown1: " + this.lL);
          }
 
-         this.name = gc.AccountPanel(var1);
+         this.name = gc.readUtf16String(var1);
          Logger.debug("  name: " + this.name);
          this.lM = hk.readInt(var1);
          if (this.lM != 0) {
@@ -106,7 +106,7 @@ public class XboxSaveLocation implements SaveLocation {
             Logger.debug("  unknown4: " + this.lS);
          }
 
-         this.mF = gc.AccountPanel(var1);
+         this.mF = gc.readUtf16String(var1);
          Logger.debug("  appid: " + this.mF);
          this.mG = hk.readInt(var1);
          if (this.mG != 0) {
@@ -137,16 +137,16 @@ public class XboxSaveLocation implements SaveLocation {
       FileOutputStream var1 = new FileOutputStream(new File(this.lX, "containers.index"));
 
       try {
-         hk.AboutDialog(var1, this.header);
-         hk.AboutDialog(var1, this.mI.size());
-         hk.AboutDialog(var1, this.lL);
-         gc.AboutDialogCloseListener(var1, this.name);
-         hk.AboutDialog(var1, this.lM);
-         hk.AboutDialog(var1, this.lR);
-         hk.AboutDialog(var1, this.lS);
-         gc.AboutDialogCloseListener(var1, this.mF);
-         hk.AboutDialog(var1, this.mG);
-         hk.AboutDialog(var1, this.mH);
+         hk.writeInt(var1, this.header);
+         hk.writeInt(var1, this.mI.size());
+         hk.writeInt(var1, this.lL);
+         gc.writeUtf16String(var1, this.name);
+         hk.writeInt(var1, this.lM);
+         hk.writeInt(var1, this.lR);
+         hk.writeInt(var1, this.lS);
+         gc.writeUtf16String(var1, this.mF);
+         hk.writeInt(var1, this.mG);
+         hk.writeInt(var1, this.mH);
          Iterator var3 = this.mI.iterator();
 
          while(var3.hasNext()) {

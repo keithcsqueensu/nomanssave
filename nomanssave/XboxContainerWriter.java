@@ -23,12 +23,12 @@ abstract class XboxContainerWriter {
 
    XboxContainerWriter(XboxSaveLocation var1, fV var2) {
       this.mN = var1;
-      int var3 = XboxSaveLocation.AccountPanel(var1).size();
+      int var3 = XboxSaveLocation.access$getEntries(var1).size();
 
-      for(int var4 = 0; var4 < XboxSaveLocation.AccountPanel(var1).size(); ++var4) {
-         int var5 = ((fW)XboxSaveLocation.AccountPanel(var1).get(var4)).name.compareTo(var2.mO.name);
+      for(int var4 = 0; var4 < XboxSaveLocation.access$getEntries(var1).size(); ++var4) {
+         int var5 = ((fW)XboxSaveLocation.access$getEntries(var1).get(var4)).name.compareTo(var2.mO.name);
          if (var5 == 0) {
-            fW var6 = (fW)XboxSaveLocation.AccountPanel(var1).remove(var4);
+            fW var6 = (fW)XboxSaveLocation.access$getEntries(var1).remove(var4);
             XboxSaveLocation.i(new File(XboxSaveLocation.d(var1), var6.mU));
          }
 
@@ -54,7 +54,7 @@ abstract class XboxContainerWriter {
             var10.close();
          }
 
-         XboxSaveLocation.AccountPanel(var1).add(var3, this.mO);
+         XboxSaveLocation.access$getEntries(var1).add(var3, this.mO);
       }
    }
 
@@ -79,9 +79,9 @@ abstract class XboxContainerWriter {
             for(int var9 = 0; var9 < var8; ++var9) {
                String var10 = gc.d(var6);
                Logger.debug("  name: " + var10);
-               String var11 = gc.AboutDialog(var6);
+               String var11 = gc.readGuid(var6);
                Logger.debug("  filename: " + var11);
-               String var12 = gc.AboutDialog(var6);
+               String var12 = gc.readGuid(var6);
                if (!var11.equals(var12)) {
                   Logger.debug("  filename2: " + var12);
                }

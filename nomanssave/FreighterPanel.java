@@ -25,7 +25,7 @@ public class FreighterPanel extends SplitFormPanel {
    FreighterPanel(Application var1) {
       this.k("Freighter");
       this.dG = new be(this);
-      this.AboutDialog("Name", this.dG);
+      this.addRow("Name", this.dG);
       this.dH = new cN(FreighterType.class);
       this.dH.AboutDialog((var1x) -> {
          if (this.dO != null) {
@@ -33,7 +33,7 @@ public class FreighterPanel extends SplitFormPanel {
          }
 
       });
-      this.AboutDialog("Type", this.dH);
+      this.addRow("Type", this.dH);
       this.dI = new cN(ShipClass.class);
       this.dI.AboutDialog((var1x) -> {
          if (this.dO != null) {
@@ -41,21 +41,21 @@ public class FreighterPanel extends SplitFormPanel {
          }
 
       });
-      this.AboutDialog("Class", this.dI);
+      this.addRow("Class", this.dI);
       this.dJ = new bf(this);
-      this.AboutDialog("Home Seed", this.dJ);
+      this.addRow("Home Seed", this.dJ);
       this.dK = new bg(this);
-      this.AboutDialog("Model Seed", this.dK);
+      this.addRow("Model Seed", this.dK);
       this.k("Base Stats");
       this.dL = new bh(this);
-      this.AboutDialog("Hyperdrive", this.dL);
+      this.addRow("Hyperdrive", this.dL);
       this.dM = new bi(this);
-      this.AboutDialog("Fleet Coordination", this.dM);
+      this.addRow("Fleet Coordination", this.dM);
       this.Y();
       this.k("Base Info");
       this.bm = new JTextField();
       this.bm.setEnabled(false);
-      this.AboutDialog("Items", this.bm);
+      this.addRow("Items", this.bm);
       JPanel var2 = new JPanel();
       this.bn = new JButton("Backup");
       this.bn.addActionListener(new bj(this, var1));
@@ -63,9 +63,9 @@ public class FreighterPanel extends SplitFormPanel {
       this.bo = new JButton("Restore");
       this.bo.addActionListener(new bk(this, var1));
       var2.add(this.bo);
-      this.AboutDialog((JComponent)var2);
+      this.addRow((JComponent)var2);
       this.ShipsPanel = new InventoryPanel(var1);
-      this.AboutDialogCloseListener(this.ShipsPanel);
+      this.setRightComponent(this.ShipsPanel);
    }
 
    void AppStartupRunnable() {

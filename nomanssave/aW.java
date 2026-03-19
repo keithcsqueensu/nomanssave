@@ -81,7 +81,7 @@ public class aW extends JDialog {
       this.pack();
    }
 
-   public static void AboutDialog(JsonEditorDialog var0, String var1) {
+   public static void show(JsonEditorDialog var0, String var1) {
       if (dx == null) {
          dx = new aW(var0);
       }
@@ -98,17 +98,17 @@ public class aW extends JDialog {
    }
 
    // $FF: synthetic method
-   static JTextField AboutDialog(aW var0) {
+   static JTextField access$getSearchField(aW var0) {
       return var0.ds;
    }
 
    // $FF: synthetic method
-   static JRadioButton AboutDialogCloseListener(aW var0) {
+   static JRadioButton access$getDirectionButton(aW var0) {
       return var0.dw;
    }
 
    // $FF: synthetic method
-   static JCheckBox AccountPanel(aW var0) {
+   static JCheckBox access$getCaseSensitiveCheckbox(aW var0) {
       return var0.dt;
    }
 

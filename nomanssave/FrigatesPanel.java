@@ -151,7 +151,7 @@ public class FrigatesPanel extends JPanel implements eo {
       this.SquadronPanel.AboutDialog("Failed", (JComponent)this.ej);
       this.ek = new bq(this);
       this.SquadronPanel.AboutDialog("Damaged", (JComponent)this.ek);
-      nomanssave.en.AboutDialog(this);
+      nomanssave.en.addListener(this);
    }
 
    public void setEditable(boolean var1) {

@@ -38,7 +38,7 @@ public class gu implements ItemData {
       return this.qD.L("DamageFactor");
    }
 
-   public void AccountPanel(double var1) {
+   public void setDamageFactor(double var1) {
       this.qD.AboutDialogCloseListener("DamageFactor", (Object)(new Double(var1)));
    }
 

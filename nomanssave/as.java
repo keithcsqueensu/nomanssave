@@ -13,7 +13,7 @@ class as implements ActionListener {
    }
 
    public void actionPerformed(ActionEvent var1) {
-      String[] var2 = p.AboutDialogCloseListener((Container)this.cu);
+      String[] var2 = p.show((Container)this.cu);
       boolean var3 = false;
 
       for(int var4 = 0; var4 < var2.length; ++var4) {

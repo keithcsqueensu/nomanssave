@@ -660,7 +660,7 @@ public class JsonParser {
    private static Number readNumber(fi var0, int var1) {
       boolean var3 = false;
       if (var1 == 45) {
-         var1 = fi.AboutDialog(var0, kZ);
+         var1 = fi.access$readWhile(var0, kZ);
          if (var1 < 0) {
             throw new JsonParseException("Invalid token", var0.kF, var0.kG);
          }
@@ -670,15 +670,15 @@ public class JsonParser {
 
       BigDecimal var2 = new BigDecimal(var1 - 48);
       if (var1 != 48) {
-         while((var1 = fi.AboutDialog(var0, kZ)) >= 0) {
+         while((var1 = fi.access$readWhile(var0, kZ)) >= 0) {
             var2 = var2.multiply(BigDecimal.TEN).add(new BigDecimal(var1 - 48));
          }
       }
 
       boolean var4 = true;
-      if (fi.AboutDialog(var0, la) >= 0) {
+      if (fi.access$readWhile(var0, la) >= 0) {
          var4 = false;
-         var1 = fi.AboutDialog(var0, kZ);
+         var1 = fi.access$readWhile(var0, kZ);
          if (var1 < 0) {
             throw new JsonParseException("Invalid token", var0.kF, var0.kG);
          }
@@ -689,16 +689,16 @@ public class JsonParser {
             BigDecimal var10001 = new BigDecimal(var1 - 48);
             --var5;
             var2 = var2.add(var10001.scaleByPowerOfTen(var5));
-         } while((var1 = fi.AboutDialog(var0, kZ)) >= 0);
+         } while((var1 = fi.access$readWhile(var0, kZ)) >= 0);
       }
 
-      if (fi.AboutDialog(var0, lb) >= 0) {
+      if (fi.access$readWhile(var0, lb) >= 0) {
          var4 = false;
-         var1 = fi.AboutDialog(var0, lc);
+         var1 = fi.access$readWhile(var0, lc);
          boolean var9 = false;
          if (var1 == 43 || var1 == 45) {
             var9 = var1 == 45;
-            var1 = fi.AboutDialog(var0, kZ);
+            var1 = fi.access$readWhile(var0, kZ);
          }
 
          if (var1 < 0) {
@@ -710,7 +710,7 @@ public class JsonParser {
          do {
             var6 *= 10;
             var6 += var1 - 48;
-         } while((var1 = fi.AboutDialog(var0, kZ)) >= 0);
+         } while((var1 = fi.access$readWhile(var0, kZ)) >= 0);
 
          if (var9) {
             var6 = -var6;

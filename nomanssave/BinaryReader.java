@@ -293,7 +293,7 @@ public class BinaryReader implements Closeable {
             while(true) {
                String var6 = this.bN();
                if (var3 == null) {
-                  if (var1 != null && (var4 = eC.AboutDialog(var1, var6)) != null) {
+                  if (var1 != null && (var4 = eC.findEncoding(var1, var6)) != null) {
                      var3 = new fk(var4);
                   } else {
                      var3 = new JsonObject();

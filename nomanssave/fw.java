@@ -45,18 +45,18 @@ class fw {
       return fu.AboutDialogCloseListener(this.lK, fu.bY()) && this.lO >= 0;
    }
 
-   int AboutDialog(OutputStream var1) {
+   int writeTo(OutputStream var1) {
       var1.write(this.lK);
-      hk.AboutDialog(var1, this.lL);
-      hk.AboutDialog(var1, this.lM);
-      hk.AboutDialog(var1, this.lN);
-      hk.AboutDialog(var1, this.lO);
-      hk.AboutDialog(var1, (int)(this.FreighterPanel / 1000L));
-      hk.AboutDialog(var1, (int)this.length);
-      hk.AboutDialog(var1, (int)this.lP);
-      hk.AboutDialog(var1, this.lQ);
-      hk.AboutDialog(var1, this.lR);
-      hk.AboutDialog(var1, this.lS);
+      hk.writeInt(var1, this.lL);
+      hk.writeInt(var1, this.lM);
+      hk.writeInt(var1, this.lN);
+      hk.writeInt(var1, this.lO);
+      hk.writeInt(var1, (int)(this.FreighterPanel / 1000L));
+      hk.writeInt(var1, (int)this.length);
+      hk.writeInt(var1, (int)this.lP);
+      hk.writeInt(var1, this.lQ);
+      hk.writeInt(var1, this.lR);
+      hk.writeInt(var1, this.lS);
       return 48;
    }
 

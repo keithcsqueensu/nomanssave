@@ -14,7 +14,7 @@ class fU extends XboxContainerWriter implements AccountData {
    }
 
    public void k(JsonObject var1) {
-      this.AboutDialog("msaccountdata", (GameMode)null);
+      this.writeHeader("msaccountdata", (GameMode)null);
       this.h(var1);
    }
 }

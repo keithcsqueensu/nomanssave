@@ -30,7 +30,7 @@ public class gw extends Multitool {
       return MultitoolType.qH;
    }
 
-   public void AboutDialog(MultitoolType var1) {
+   public void setType(MultitoolType var1) {
       if (var1 != MultitoolType.qH) {
          throw new RuntimeException("Only standard types allowed");
       }

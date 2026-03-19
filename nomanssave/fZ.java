@@ -17,18 +17,18 @@ class fZ implements SaveSlot {
    }
 
    public boolean isEmpty() {
-      return XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2] == null && XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2 + 1] == null;
+      return XboxSaveLocation.access$getSaveFiles(this.mN)[this.lT * 2] == null && XboxSaveLocation.access$getSaveFiles(this.mN)[this.lT * 2 + 1] == null;
    }
 
    public SaveFile[] bX() {
       Logger.info("Loading saves for Slot " + (this.lT + 1) + "...");
       ArrayList var1 = new ArrayList();
-      if (XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2] != null) {
-         var1.add(XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2]);
+      if (XboxSaveLocation.access$getSaveFiles(this.mN)[this.lT * 2] != null) {
+         var1.add(XboxSaveLocation.access$getSaveFiles(this.mN)[this.lT * 2]);
       }
 
-      if (XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2 + 1] != null) {
-         var1.add(XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2 + 1]);
+      if (XboxSaveLocation.access$getSaveFiles(this.mN)[this.lT * 2 + 1] != null) {
+         var1.add(XboxSaveLocation.access$getSaveFiles(this.mN)[this.lT * 2 + 1]);
       }
 
       AppSettings.cG.listFiles(new ga(this, var1));
@@ -39,15 +39,15 @@ class fZ implements SaveSlot {
    public GameMode L() {
       long var1 = Long.MIN_VALUE;
       GameMode var3 = null;
-      if (XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2] != null) {
-         var3 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2].L();
-         var1 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2].lastModified();
+      if (XboxSaveLocation.access$getSaveFiles(this.mN)[this.lT * 2] != null) {
+         var3 = XboxSaveLocation.access$getSaveFiles(this.mN)[this.lT * 2].L();
+         var1 = XboxSaveLocation.access$getSaveFiles(this.mN)[this.lT * 2].lastModified();
       }
 
-      if (XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2 + 1] != null) {
-         long var4 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2 + 1].lastModified();
+      if (XboxSaveLocation.access$getSaveFiles(this.mN)[this.lT * 2 + 1] != null) {
+         long var4 = XboxSaveLocation.access$getSaveFiles(this.mN)[this.lT * 2 + 1].lastModified();
          if (var4 > var1) {
-            var3 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2 + 1].L();
+            var3 = XboxSaveLocation.access$getSaveFiles(this.mN)[this.lT * 2 + 1].L();
          }
       }
 
@@ -59,15 +59,15 @@ class fZ implements SaveSlot {
       var1.append("Slot " + (this.lT + 1) + " - ");
       long var2 = Long.MIN_VALUE;
       GameMode var4 = null;
-      if (XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2] != null) {
-         var4 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2].L();
-         var2 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2].lastModified();
+      if (XboxSaveLocation.access$getSaveFiles(this.mN)[this.lT * 2] != null) {
+         var4 = XboxSaveLocation.access$getSaveFiles(this.mN)[this.lT * 2].L();
+         var2 = XboxSaveLocation.access$getSaveFiles(this.mN)[this.lT * 2].lastModified();
       }
 
-      if (XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2 + 1] != null) {
-         long var5 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2 + 1].lastModified();
+      if (XboxSaveLocation.access$getSaveFiles(this.mN)[this.lT * 2 + 1] != null) {
+         long var5 = XboxSaveLocation.access$getSaveFiles(this.mN)[this.lT * 2 + 1].lastModified();
          if (var5 > var2) {
-            var4 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.lT * 2 + 1].L();
+            var4 = XboxSaveLocation.access$getSaveFiles(this.mN)[this.lT * 2 + 1].L();
             var2 = var5;
          }
       }
@@ -83,7 +83,7 @@ class fZ implements SaveSlot {
    }
 
    // $FF: synthetic method
-   static XboxSaveLocation AboutDialog(fZ var0) {
+   static XboxSaveLocation access$getXboxSaveLocation(fZ var0) {
       return var0.mN;
    }
 }

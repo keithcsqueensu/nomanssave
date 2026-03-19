@@ -48,7 +48,7 @@ public class dz extends JDialog {
       this.getRootPane().registerKeyboardAction(new dD(this), KeyStroke.getKeyStroke(27, 0), 2);
    }
 
-   private int AboutDialog(SaveSlot[] var1, int var2) {
+   private int showDialog(SaveSlot[] var1, int var2) {
       this.hs = var1;
       this.hr.updateUI();
       this.hr.setSelectedIndex(var2);
@@ -58,27 +58,27 @@ public class dz extends JDialog {
       return this.gU;
    }
 
-   public static int AboutDialog(Container var0, SaveSlot[] var1, int var2) {
+   public static int show(Container var0, SaveSlot[] var1, int var2) {
       if (ht == null) {
          Frame var3 = JOptionPane.getFrameForComponent(var0);
          ht = new dz(var3);
       }
 
-      return ht.AboutDialog(var1, var2);
+      return ht.showDialog(var1, var2);
    }
 
    // $FF: synthetic method
-   static SaveSlot[] AboutDialog(dz var0) {
+   static SaveSlot[] access$getSlots(dz var0) {
       return var0.hs;
    }
 
    // $FF: synthetic method
-   static JList AboutDialogCloseListener(dz var0) {
+   static JList access$getList(dz var0) {
       return var0.hr;
    }
 
    // $FF: synthetic method
-   static void AboutDialog(dz var0, int var1) {
+   static void access$setSelectedIndex(dz var0, int var1) {
       var0.gU = var1;
    }
 }

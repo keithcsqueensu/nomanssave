@@ -48,7 +48,7 @@ class SteamSaveFileMetadata {
 
          int var8 = this.mx.cj();
          if (var8 != 0) {
-            Logger.info("  TotalPlayTime: " + SaveLocation.AccountPanel((long)var8));
+            Logger.info("  TotalPlayTime: " + SaveLocation.formatPlayTime((long)var8));
          }
       } else {
          Logger.info("Creating new metadata for " + var2);

@@ -9,9 +9,9 @@ public class VehiclesPanel extends SplitFormPanel {
 
    VehiclesPanel(Application var1) {
       this.iw.setModel(new eq(this));
-      this.AboutDialog("Vehicle", true, this.iw);
+      this.addRow("Vehicle", true, this.iw);
       this.ix = new InventoryPanel(var1);
-      this.AboutDialogCloseListener(this.ix);
+      this.setRightComponent(this.ix);
    }
 
    void AppStartupRunnable() {

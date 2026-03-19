@@ -14,9 +14,9 @@ class i implements ActionListener {
    }
 
    public void actionPerformed(ActionEvent var1) {
-      String var2 = h.AboutDialog(this.ShowErrorRunnable).getText();
-      h.AboutDialog(this.ShowErrorRunnable, ItemDefinition.AboutDialogCloseListener(h.AboutDialogCloseListener(this.ShowErrorRunnable), var2));
-      h.AccountPanel(this.ShowErrorRunnable);
+      String var2 = h.access$getTextField(this.ShowErrorRunnable).getText();
+      h.access$setSelectedItem(this.ShowErrorRunnable, ItemDefinition.findByAmmoType(h.access$getTypeFilter(this.ShowErrorRunnable), var2));
+      h.access$refreshCategoryFilter(this.ShowErrorRunnable);
       if (h.d(this.ShowErrorRunnable).size() == 0) {
          JOptionPane.showOptionDialog(this.ShowErrorRunnable, "Item not found.", "Warning", 0, 2, (Icon)null, new Object[]{"OK"}, (Object)null);
       }

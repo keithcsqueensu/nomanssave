@@ -3,12 +3,12 @@ package nomanssave;
 import java.util.Comparator;
 
 class eJ implements Comparator {
-   public int AboutDialog(eI var1, eI var2) {
+   public int compare(eI var1, eI var2) {
       return var1.name.compareTo(var2.name);
    }
 
    // $FF: synthetic method
    public int compare(Object var1, Object var2) {
-      return this.AboutDialog((eI)var1, (eI)var2);
+      return this.compare((eI)var1, (eI)var2);
    }
 }

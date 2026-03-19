@@ -23,9 +23,9 @@ class ga implements FileFilter {
          int var3 = var2.group(1).length() == 0 ? 0 : Integer.parseInt(var2.group(1)) - 1;
          if (var3 / 2 == this.nb.lT) {
             try {
-               this.mg.add(new fV(fZ.AboutDialog(this.nb), var1.getName(), var3));
+               this.mg.add(new fV(fZ.access$getXboxSaveLocation(this.nb), var1.getName(), var3));
             } catch (IOException var5) {
-               Logger.AboutDialog("Cannot load " + var1.getName(), var5);
+               Logger.error("Cannot load " + var1.getName(), var5);
             }
          }
       }

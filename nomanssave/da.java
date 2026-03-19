@@ -12,7 +12,7 @@ class da implements ActionListener {
    }
 
    public void actionPerformed(ActionEvent var1) {
-      cY.AboutDialog(this.TemplateLoader, cY.AboutDialogCloseListener(this.TemplateLoader).getSelectedIndex());
+      cY.access$setSelected(this.TemplateLoader, cY.access$getComboBox(this.TemplateLoader).getSelectedIndex());
       this.TemplateLoader.setVisible(false);
    }
 }

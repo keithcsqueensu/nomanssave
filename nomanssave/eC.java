@@ -12,8 +12,8 @@ public class eC {
    private final eE jU;
 
    static {
-      jS[0] = AccountPanel("db/jsonmap.txt", "NMS 5.21 (savegame)");
-      jS[1] = AccountPanel("db/jsonmapac.txt", "NMS 5.21 (account)");
+      jS[0] = loadEncoding("db/jsonmap.txt", "NMS 5.21 (savegame)");
+      jS[1] = loadEncoding("db/jsonmapac.txt", "NMS 5.21 (account)");
    }
 
    public static void main(String[] var0) {
@@ -35,7 +35,7 @@ public class eC {
 
    private static String hashName(String var0) {
       long[] var1 = new long[]{8268756125562466087L, 8268756125562466087L};
-      SpookyHash.AboutDialog(var0.getBytes("UTF-8"), var1);
+      SpookyHash.hashBytes(var0.getBytes("UTF-8"), var1);
       String var2 = "0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy";
       long var3 = 4294967295L & var1[0] >> 32;
       var3 = var3 % 68L << 32 | 4294967295L & var1[0];
@@ -45,12 +45,12 @@ public class eC {
       return new String(new char[]{var2.charAt(var5), var2.charAt(var6), var2.charAt(var7)});
    }
 
-   public static eC AboutDialog(eG var0, String var1) {
+   public static eC findEncoding(eG var0, String var1) {
       eD var2 = jS[var0.ordinal()];
       return var2 != null && var2.s(var1) ? new eC(var2) : null;
    }
 
-   private static eD AccountPanel(String var0, String var1) {
+   private static eD loadEncoding(String var0, String var1) {
       InputStream var2 = Application.class.getResourceAsStream(var0);
       if (var2 == null) {
          return null;

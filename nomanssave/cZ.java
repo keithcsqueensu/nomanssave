@@ -14,11 +14,11 @@ class cZ implements ComboBoxModel {
    }
 
    public int getSize() {
-      return cY.AboutDialog(this.TemplateLoader).size();
+      return cY.access$getItems(this.TemplateLoader).size();
    }
 
    public gg C(int var1) {
-      return (gg)cY.AboutDialog(this.TemplateLoader).get(var1);
+      return (gg)cY.access$getItems(this.TemplateLoader).get(var1);
    }
 
    public void addListDataListener(ListDataListener var1) {

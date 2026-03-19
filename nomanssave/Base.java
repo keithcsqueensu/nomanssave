@@ -52,7 +52,7 @@ public class Base {
    }
 
    public boolean matchesPosition(gg var1) {
-      return gV.AboutDialog(this.nj, var1.nl);
+      return gV.swapObject(this.nj, var1.nl);
    }
 
    public String toString() {

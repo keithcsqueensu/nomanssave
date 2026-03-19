@@ -87,16 +87,16 @@ public class h extends JDialog {
       this.pack();
    }
 
-   private void AboutDialog() {
+   private void refreshCategoryFilter() {
       this.t = (List)this.s.stream().map(ItemDefinition::FormPanel).distinct().sorted((var0, var1) -> {
          return var0.name().compareTo(var1.name());
       }).collect(Collectors.toList());
       this.o.setSelectedIndex(this.t.size() == 1 ? 0 : -1);
       this.o.updateUI();
-      this.AboutDialogCloseListener();
+      this.refreshSubcategoryFilter();
    }
 
-   private void AboutDialogCloseListener() {
+   private void refreshSubcategoryFilter() {
       eB var1 = (eB)this.o.getSelectedItem();
       this.u = (List)this.s.stream().filter((var1x) -> {
          return var1x.FormPanel() == var1;
@@ -105,10 +105,10 @@ public class h extends JDialog {
       }).collect(Collectors.toList());
       this.p.setSelectedIndex(this.u.size() == 1 ? 0 : -1);
       this.p.updateUI();
-      this.AccountPanel();
+      this.refreshItemList();
    }
 
-   private void AccountPanel() {
+   private void refreshItemList() {
       eB var1 = (eB)this.o.getSelectedItem();
       ex var2 = (ex)this.p.getSelectedItem();
       this.RefreshRunnable = (List)this.s.stream().filter((var2x) -> {
@@ -120,43 +120,43 @@ public class h extends JDialog {
       this.q.updateUI();
    }
 
-   private ItemDefinition AboutDialog(int var1) {
+   private ItemDefinition showDialog(int var1) {
       this.r = var1;
       this.s = ItemDefinition.AboutDialogCloseListener(var1, this.m.getText());
-      this.AboutDialog();
+      this.refreshCategoryFilter();
       this.l = null;
       this.setLocationRelativeTo(this.getParent());
       this.setVisible(true);
       return this.l;
    }
 
-   public static ItemDefinition AboutDialog(Container var0, int var1) {
+   public static ItemDefinition show(Container var0, int var1) {
       if (AppStartupRunnable == null) {
          Frame var2 = JOptionPane.getFrameForComponent(var0);
          AppStartupRunnable = new h(var2);
       }
 
-      return AppStartupRunnable.AboutDialog(var1);
+      return AppStartupRunnable.showDialog(var1);
    }
 
    // $FF: synthetic method
-   static JTextField AboutDialog(h var0) {
+   static JTextField access$getTextField(h var0) {
       return var0.m;
    }
 
    // $FF: synthetic method
-   static int AboutDialogCloseListener(h var0) {
+   static int access$getTypeFilter(h var0) {
       return var0.r;
    }
 
    // $FF: synthetic method
-   static void AboutDialog(h var0, List var1) {
+   static void access$setFilteredItems(h var0, List var1) {
       var0.s = var1;
    }
 
    // $FF: synthetic method
-   static void AccountPanel(h var0) {
-      var0.AboutDialog();
+   static void access$refreshCategoryFilter(h var0) {
+      var0.refreshCategoryFilter();
    }
 
    // $FF: synthetic method
@@ -171,7 +171,7 @@ public class h extends JDialog {
 
    // $FF: synthetic method
    static void f(h var0) {
-      var0.AboutDialogCloseListener();
+      var0.refreshSubcategoryFilter();
    }
 
    // $FF: synthetic method
@@ -181,7 +181,7 @@ public class h extends JDialog {
 
    // $FF: synthetic method
    static void h(h var0) {
-      var0.AccountPanel();
+      var0.refreshItemList();
    }
 
    // $FF: synthetic method
@@ -195,7 +195,7 @@ public class h extends JDialog {
    }
 
    // $FF: synthetic method
-   static void AboutDialog(h var0, ItemDefinition var1) {
+   static void access$setSelectedItem(h var0, ItemDefinition var1) {
       var0.l = var1;
    }
 }

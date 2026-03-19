@@ -63,7 +63,7 @@ public class aQ extends JDialog {
       this.pack();
    }
 
-   private Dimension AboutDialog(Dimension var1, Dimension var2, Dimension var3) {
+   private Dimension showDialog(Dimension var1, Dimension var2, Dimension var3) {
       this.dk = var1;
       this.dl = var2;
       this.dm = var3;
@@ -75,27 +75,27 @@ public class aQ extends JDialog {
       return this.dn;
    }
 
-   public static Dimension AboutDialog(Container var0, Dimension var1, Dimension var2, Dimension var3) {
+   public static Dimension show(Container var0, Dimension var1, Dimension var2, Dimension var3) {
       if (dq == null) {
          Frame var4 = JOptionPane.getFrameForComponent(var0);
          dq = new aQ(var4);
       }
 
-      return dq.AboutDialog(var1, var2, var3);
+      return dq.showDialog(var1, var2, var3);
    }
 
    // $FF: synthetic method
-   static JTextField AboutDialog(aQ var0) {
+   static JTextField access$getTextField(aQ var0) {
       return var0.do;
    }
 
    // $FF: synthetic method
-   static Dimension AboutDialogCloseListener(aQ var0) {
+   static Dimension access$getDimension(aQ var0) {
       return var0.dk;
    }
 
    // $FF: synthetic method
-   static Dimension AccountPanel(aQ var0) {
+   static Dimension access$getMinDimension(aQ var0) {
       return var0.dl;
    }
 
@@ -110,7 +110,7 @@ public class aQ extends JDialog {
    }
 
    // $FF: synthetic method
-   static void AboutDialog(aQ var0, Dimension var1) {
+   static void access$setDimension(aQ var0, Dimension var1) {
       var0.dn = var1;
    }
 }

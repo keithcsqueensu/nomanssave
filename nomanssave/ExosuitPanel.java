@@ -21,19 +21,19 @@ public class ExosuitPanel extends SplitFormPanel {
    ExosuitPanel(Application var1) {
       this.k("Main Stats");
       this.de = new aK(this);
-      this.AboutDialog("Health", this.de);
+      this.addRow("Health", this.de);
       this.df = new aL(this);
-      this.AboutDialog("Shield", this.df);
+      this.addRow("Shield", this.df);
       this.dg = new aM(this);
-      this.AboutDialog("Energy", this.dg);
+      this.addRow("Energy", this.dg);
       this.db = new aN(this, var1);
-      this.AboutDialog("Units", this.db);
+      this.addRow("Units", this.db);
       this.dc = new aO(this);
-      this.AboutDialog("Nanites", this.dc);
+      this.addRow("Nanites", this.dc);
       this.dd = new aP(this);
-      this.AboutDialog("Quicksilver", this.dd);
+      this.addRow("Quicksilver", this.dd);
       this.dh = new InventoryPanel(var1);
-      this.AboutDialogCloseListener(this.dh);
+      this.setRightComponent(this.dh);
    }
 
    void AppStartupRunnable() {

@@ -18,7 +18,7 @@ class dM extends ValidatedTextField {
          int var3 = var2.aq(this.hH.ordinal());
 
          try {
-            int var4 = hf.AboutDialogCloseListener(var1, 0, this.hH.dY());
+            int var4 = hf.parseIntClamped(var1, 0, this.hH.dY());
             if (var4 != var3) {
                var2.e(this.hH.ordinal(), var4);
             }

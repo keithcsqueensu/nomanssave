@@ -7,5 +7,5 @@ public interface fp {
 
    JsonObject M();
 
-   String AboutDialogCloseListener(JsonObject var1);
+   String writeToFile(JsonObject var1);
 }

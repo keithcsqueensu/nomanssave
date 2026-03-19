@@ -110,7 +110,7 @@ public class MilestonesPanel extends JPanel {
 
    }
 
-   void AboutDialog(Exosuit var1) {
+   void updateMilestones(Exosuit var1) {
       this.cp = var1;
 
       for(int var3 = 0; var3 < this.ex.length; ++var3) {

@@ -16,7 +16,7 @@ public class FileWatcher {
 
             lj.fileChanged(var0, var1);
          } catch (IOException var4) {
-            Logger.AboutDialog("Unable to register storage", var4);
+            Logger.error("Unable to register storage", var4);
          }
 
       }
@@ -29,7 +29,7 @@ public class FileWatcher {
                lj.unregister(var0);
             }
          } catch (IOException var3) {
-            Logger.AboutDialog("Unable to unregister storage", var3);
+            Logger.error("Unable to unregister storage", var3);
          }
 
       }

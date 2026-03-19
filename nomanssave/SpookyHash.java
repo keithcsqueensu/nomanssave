@@ -212,57 +212,57 @@ public class SpookyHash {
             var26 ^= var4;
             var4 = var4 << 11 | var4 >>> 53;
             var26 += var6;
-            var6 += AboutDialog(var0, var29 + 8);
+            var6 += readLong(var0, var29 + 8);
             var10 ^= var26;
             var4 ^= var6;
             var6 = var6 << 32 | var6 >>> 32;
             var4 += var8;
-            var8 += AboutDialog(var0, var29 + 16);
+            var8 += readLong(var0, var29 + 16);
             var12 ^= var4;
             var6 ^= var8;
             var8 = var8 << 43 | var8 >>> 21;
             var6 += var10;
-            var10 += AboutDialog(var0, var29 + 24);
+            var10 += readLong(var0, var29 + 24);
             var14 ^= var6;
             var8 ^= var10;
             var10 = var10 << 31 | var10 >>> 33;
             var8 += var12;
-            var12 += AboutDialog(var0, var29 + 32);
+            var12 += readLong(var0, var29 + 32);
             var16 ^= var8;
             var10 ^= var12;
             var12 = var12 << 17 | var12 >>> 47;
             var10 += var14;
-            var14 += AboutDialog(var0, var29 + 40);
+            var14 += readLong(var0, var29 + 40);
             var18 ^= var10;
             var12 ^= var14;
             var14 = var14 << 28 | var14 >>> 36;
             var12 += var16;
-            var16 += AboutDialog(var0, var29 + 48);
+            var16 += readLong(var0, var29 + 48);
             var20 ^= var12;
             var14 ^= var16;
             var16 = var16 << 39 | var16 >>> 25;
             var14 += var18;
-            var18 += AboutDialog(var0, var29 + 56);
+            var18 += readLong(var0, var29 + 56);
             var22 ^= var14;
             var16 ^= var18;
             var18 = var18 << 57 | var18 >>> 7;
             var16 += var20;
-            var20 += AboutDialog(var0, var29 + 64);
+            var20 += readLong(var0, var29 + 64);
             var24 ^= var16;
             var18 ^= var20;
             var20 = var20 << 55 | var20 >>> 9;
             var18 += var22;
-            var22 += AboutDialog(var0, var29 + 72);
+            var22 += readLong(var0, var29 + 72);
             var26 ^= var18;
             var20 ^= var22;
             var22 = var22 << 54 | var22 >>> 10;
             var20 += var24;
-            var24 += AboutDialog(var0, var29 + 80);
+            var24 += readLong(var0, var29 + 80);
             var4 ^= var20;
             var22 ^= var24;
             var24 = var24 << 22 | var24 >>> 42;
             var22 += var26;
-            var26 += AboutDialog(var0, var29 + 88);
+            var26 += readLong(var0, var29 + 88);
             var6 ^= var22;
             var24 ^= var26;
             var26 = var26 << 46 | var26 >>> 18;
@@ -315,25 +315,25 @@ public class SpookyHash {
 
          switch(var31) {
          case 11:
-            var24 += AboutDialog(var0, var29 + 80);
+            var24 += readLong(var0, var29 + 80);
          case 10:
-            var22 += AboutDialog(var0, var29 + 72);
+            var22 += readLong(var0, var29 + 72);
          case 9:
-            var20 += AboutDialog(var0, var29 + 64);
+            var20 += readLong(var0, var29 + 64);
          case 8:
-            var18 += AboutDialog(var0, var29 + 56);
+            var18 += readLong(var0, var29 + 56);
          case 7:
-            var16 += AboutDialog(var0, var29 + 48);
+            var16 += readLong(var0, var29 + 48);
          case 6:
-            var14 += AboutDialog(var0, var29 + 40);
+            var14 += readLong(var0, var29 + 40);
          case 5:
-            var12 += AboutDialog(var0, var29 + 32);
+            var12 += readLong(var0, var29 + 32);
          case 4:
-            var10 += AboutDialog(var0, var29 + 24);
+            var10 += readLong(var0, var29 + 24);
          case 3:
-            var8 += AboutDialog(var0, var29 + 16);
+            var8 += readLong(var0, var29 + 16);
          case 2:
-            var6 += AboutDialog(var0, var29 + 8);
+            var6 += readLong(var0, var29 + 8);
          case 1:
             var4 += readLong(var0, var29);
          default:
@@ -385,11 +385,11 @@ public class SpookyHash {
       }
    }
 
-   private static long AboutDialog(CharSequence var0, int var1) {
+   private static long readChar4(CharSequence var0, int var1) {
       return (long)var0.charAt(var1 + 3) << 48 | (long)var0.charAt(var1 + 2) << 32 | (long)var0.charAt(var1 + 1) << 16 | (long)var0.charAt(var1);
    }
 
-   private static long AboutDialog(CharSequence var0, int var1, int var2) {
+   private static long readPartialChars(CharSequence var0, int var1, int var2) {
       long var3 = 0L;
       switch(var2) {
       case 3:
@@ -403,7 +403,7 @@ public class SpookyHash {
       }
    }
 
-   private static void AboutDialog(CharSequence var0, int var1, int var2, long[] var3) {
+   private static void mixChars(CharSequence var0, int var1, int var2, long[] var3) {
       long var4 = var3[0];
       long var6 = var3[1];
       long var8 = -2401053088876216593L;
@@ -412,8 +412,8 @@ public class SpookyHash {
 
       int var13;
       for(var13 = var1; var12 >= 16; var12 -= 16) {
-         var8 += AboutDialog(var0, var13);
-         var10 += AboutDialog(var0, var13 + 4);
+         var8 += readChar4(var0, var13);
+         var10 += readChar4(var0, var13 + 4);
          var8 = var8 << 50 | var8 >>> 14;
          var8 += var10;
          var4 ^= var8;
@@ -450,14 +450,14 @@ public class SpookyHash {
          var6 = var6 << 36 | var6 >>> 28;
          var6 += var8;
          var10 ^= var6;
-         var4 += AboutDialog(var0, var13 + 8);
-         var6 += AboutDialog(var0, var13 + 12);
+         var4 += readChar4(var0, var13 + 8);
+         var6 += readChar4(var0, var13 + 12);
          var13 += 16;
       }
 
       if (var12 >= 8) {
-         var8 += AboutDialog(var0, var13);
-         var10 += AboutDialog(var0, var13 + 4);
+         var8 += readChar4(var0, var13);
+         var10 += readChar4(var0, var13 + 4);
          var13 += 8;
          var12 -= 8;
          var8 = var8 << 50 | var8 >>> 14;
@@ -500,14 +500,14 @@ public class SpookyHash {
 
       var10 += (long)(var2 << 1) << 56;
       if (var12 >= 4) {
-         var8 += AboutDialog(var0, var13);
+         var8 += readChar4(var0, var13);
          var13 += 4;
          var12 -= 4;
          if (var12 > 0) {
-            var10 += AboutDialog(var0, var13, var12);
+            var10 += readPartialChars(var0, var13, var12);
          }
       } else if (var12 > 0) {
-         var8 += AboutDialog(var0, var13, var12);
+         var8 += readPartialChars(var0, var13, var12);
       } else {
          var8 += -2401053088876216593L;
          var10 += -2401053088876216593L;
@@ -552,7 +552,7 @@ public class SpookyHash {
 
    public static long hashString(CharSequence var0, int var1, int var2, long[] var3) {
       if (var2 < 96) {
-         AboutDialog(var0, var1, var2, var3);
+         mixChars(var0, var1, var2, var3);
          return var3[0];
       } else {
          long var10;
@@ -571,62 +571,62 @@ public class SpookyHash {
 
          int var29;
          for(var29 = var1; var28 >= 48; var29 += 48) {
-            var4 += AboutDialog(var0, var29);
+            var4 += readChar4(var0, var29);
             var8 ^= var24;
             var26 ^= var4;
             var4 = var4 << 11 | var4 >>> 53;
             var26 += var6;
-            var6 += AboutDialog(var0, var29 + 4);
+            var6 += readLong(var0, var29 + 4);
             var10 ^= var26;
             var4 ^= var6;
             var6 = var6 << 32 | var6 >>> 32;
             var4 += var8;
-            var8 += AboutDialog(var0, var29 + 8);
+            var8 += readLong(var0, var29 + 8);
             var12 ^= var4;
             var6 ^= var8;
             var8 = var8 << 43 | var8 >>> 21;
             var6 += var10;
-            var10 += AboutDialog(var0, var29 + 12);
+            var10 += readLong(var0, var29 + 12);
             var14 ^= var6;
             var8 ^= var10;
             var10 = var10 << 31 | var10 >>> 33;
             var8 += var12;
-            var12 += AboutDialog(var0, var29 + 16);
+            var12 += readLong(var0, var29 + 16);
             var16 ^= var8;
             var10 ^= var12;
             var12 = var12 << 17 | var12 >>> 47;
             var10 += var14;
-            var14 += AboutDialog(var0, var29 + 20);
+            var14 += readLong(var0, var29 + 20);
             var18 ^= var10;
             var12 ^= var14;
             var14 = var14 << 28 | var14 >>> 36;
             var12 += var16;
-            var16 += AboutDialog(var0, var29 + 24);
+            var16 += readLong(var0, var29 + 24);
             var20 ^= var12;
             var14 ^= var16;
             var16 = var16 << 39 | var16 >>> 25;
             var14 += var18;
-            var18 += AboutDialog(var0, var29 + 28);
+            var18 += readLong(var0, var29 + 28);
             var22 ^= var14;
             var16 ^= var18;
             var18 = var18 << 57 | var18 >>> 7;
             var16 += var20;
-            var20 += AboutDialog(var0, var29 + 32);
+            var20 += readLong(var0, var29 + 32);
             var24 ^= var16;
             var18 ^= var20;
             var20 = var20 << 55 | var20 >>> 9;
             var18 += var22;
-            var22 += AboutDialog(var0, var29 + 36);
+            var22 += readLong(var0, var29 + 36);
             var26 ^= var18;
             var20 ^= var22;
             var22 = var22 << 54 | var22 >>> 10;
             var20 += var24;
-            var24 += AboutDialog(var0, var29 + 40);
+            var24 += readLong(var0, var29 + 40);
             var4 ^= var20;
             var22 ^= var24;
             var24 = var24 << 22 | var24 >>> 42;
             var22 += var26;
-            var26 += AboutDialog(var0, var29 + 44);
+            var26 += readLong(var0, var29 + 44);
             var6 ^= var22;
             var24 ^= var26;
             var26 = var26 << 46 | var26 >>> 18;
@@ -637,7 +637,7 @@ public class SpookyHash {
          int var30 = var28 & 3;
          int var31 = var28 >> 2;
          if (var30 > 0) {
-            long var32 = AboutDialog(var0, var29 + (var31 << 2), var30);
+            long var32 = readLong(var0, var29 + (var31 << 2), var30);
             switch(var31) {
             case 0:
                var4 += var32;
@@ -679,27 +679,27 @@ public class SpookyHash {
 
          switch(var31) {
          case 11:
-            var24 += AboutDialog(var0, var29 + 40);
+            var24 += readLong(var0, var29 + 40);
          case 10:
-            var22 += AboutDialog(var0, var29 + 36);
+            var22 += readLong(var0, var29 + 36);
          case 9:
-            var20 += AboutDialog(var0, var29 + 32);
+            var20 += readLong(var0, var29 + 32);
          case 8:
-            var18 += AboutDialog(var0, var29 + 28);
+            var18 += readLong(var0, var29 + 28);
          case 7:
-            var16 += AboutDialog(var0, var29 + 24);
+            var16 += readLong(var0, var29 + 24);
          case 6:
-            var14 += AboutDialog(var0, var29 + 20);
+            var14 += readLong(var0, var29 + 20);
          case 5:
-            var12 += AboutDialog(var0, var29 + 16);
+            var12 += readLong(var0, var29 + 16);
          case 4:
-            var10 += AboutDialog(var0, var29 + 12);
+            var10 += readLong(var0, var29 + 12);
          case 3:
-            var8 += AboutDialog(var0, var29 + 8);
+            var8 += readLong(var0, var29 + 8);
          case 2:
-            var6 += AboutDialog(var0, var29 + 4);
+            var6 += readLong(var0, var29 + 4);
          case 1:
-            var4 += AboutDialog(var0, var29);
+            var4 += readChar4(var0, var29);
          default:
             var26 += (long)var28 << 1 << 56;
 
@@ -749,7 +749,7 @@ public class SpookyHash {
       }
    }
 
-   private static void AboutDialog(long[] var0, int var1, int var2, long[] var3) {
+   private static void mixLongs(long[] var0, int var1, int var2, long[] var3) {
       long var4 = var3[0];
       long var6 = var3[1];
       long var8 = -2401053088876216593L;
@@ -891,7 +891,7 @@ public class SpookyHash {
 
    public static long hashLongs(long[] var0, int var1, int var2, long[] var3) {
       if (var2 < 24) {
-         AboutDialog(var0, var1, var2, var3);
+         mixChars(var0, var1, var2, var3);
          return var3[0];
       } else {
          long var10;
@@ -1054,45 +1054,45 @@ public class SpookyHash {
       this.sH = var3;
    }
 
-   public static long AboutDialog(byte[] var0, long[] var1) {
-      return AboutDialogCloseListener((byte[])var0, 0, var0.length, var1);
+   public static long hashBytes(byte[] var0, long[] var1) {
+      return hashLongs((byte[])var0, 0, var0.length, var1);
    }
 
-   public long[] AccountPanel(byte[] var1, int var2, int var3) {
+   public long[] hashBytes(byte[] var1, int var2, int var3) {
       long[] var4 = new long[]{this.sG, this.sH};
-      AboutDialogCloseListener(var1, var2, var3, var4);
+      hashLongs(var1, var2, var3, var4);
       return var4;
    }
 
    public long[] j(byte[] var1) {
-      return this.AccountPanel(var1, 0, var1.length);
+      return this.hashBytes(var1, 0, var1.length);
    }
 
-   public static long AboutDialog(CharSequence var0, long[] var1) {
-      return AboutDialogCloseListener((CharSequence)var0, 0, var0.length(), var1);
+   public static long hashString(CharSequence var0, long[] var1) {
+      return hashString((CharSequence)var0, 0, var0.length(), var1);
    }
 
-   public long[] AboutDialogCloseListener(CharSequence var1, int var2, int var3) {
+   public long[] hashString(CharSequence var1, int var2, int var3) {
       long[] var4 = new long[]{this.sG, this.sH};
-      AboutDialogCloseListener(var1, var2, var3, var4);
+      hashString(var1, var2, var3, var4);
       return var4;
    }
 
-   public long[] AboutDialog(CharSequence var1) {
-      return this.AboutDialogCloseListener((CharSequence)var1, 0, var1.length());
+   public long[] hashString(CharSequence var1) {
+      return this.hashString((CharSequence)var1, 0, var1.length());
    }
 
-   public static long AboutDialog(long[] var0, long[] var1) {
+   public static long hashLongs(long[] var0, long[] var1) {
       return hashLongs((long[])var0, 0, var0.length, var1);
    }
 
-   public long[] AboutDialogCloseListener(long[] var1, int var2, int var3) {
+   public long[] hashLongs(long[] var1, int var2, int var3) {
       long[] var4 = new long[]{this.sG, this.sH};
-      AboutDialogCloseListener(var1, var2, var3, var4);
+      hashLongs(var1, var2, var3, var4);
       return var4;
    }
 
-   public long[] AboutDialogCloseListener(long[] var1) {
-      return this.AboutDialogCloseListener((long[])var1, 0, var1.length);
+   public long[] hashLongs(long[] var1) {
+      return this.hashLongs((long[])var1, 0, var1.length);
    }
 }

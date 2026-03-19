@@ -34,7 +34,7 @@ class InMemorySaveFile implements SaveFile {
       return this.bf;
    }
 
-   public String AboutDialogCloseListener(JsonObject var1) {
+   public String generateFilename(JsonObject var1) {
       throw new IOException("Save not supported!");
    }
 

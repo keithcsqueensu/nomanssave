@@ -20,7 +20,7 @@ class cf implements ActionListener {
    public void actionPerformed(ActionEvent var1) {
       gu var2 = InventoryPanel.AboutDialog(InventorySlotPanel.j(this.fk)).f(this.FileWatcher, this.FileWatcherThread);
       if (var2 != null) {
-         var2.AccountPanel(0.0D);
+         var2.setDamageFactor(0.0D);
          var2.e(true);
          InventorySlotPanel.AccountPanel(this.fk);
       }

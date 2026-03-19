@@ -10,7 +10,7 @@ public class CoordinateTransform {
    private final double[] rW;
    private final double[] rX;
 
-   private static double[] AboutDialogCloseListener(double[] var0) {
+   private static double[] normalize(double[] var0) {
       double var1 = Math.sqrt(var0[0] * var0[0] + var0[1] * var0[1] + var0[2] * var0[2]);
       if (var1 < 0.1D) {
          throw new RuntimeException("vector cannot be normalized");
@@ -37,16 +37,16 @@ public class CoordinateTransform {
          this.rV = new double[]{1.0D, 0.0D, 0.0D};
       } else {
          var1 = new double[]{var1[0] / var3, var1[1] / var3, var1[2] / var3};
-         var2 = AboutDialogCloseListener(var2);
+         var2 = normalize(var2);
          double var5 = var2[0] * var1[0] + var2[1] * var1[1] + var2[2] * var1[2];
          this.rX = var2;
-         this.rW = AboutDialogCloseListener(new double[]{var1[0] - var5 * var2[0], var1[1] - var5 * var2[1], var1[2] - var5 * var2[2]});
-         this.rV = AboutDialogCloseListener(new double[]{this.rW[1] * var2[2] - this.rW[2] * var2[1], this.rW[2] * var2[0] - this.rW[0] * var2[2], this.rW[0] * var2[1] - this.rW[1] * var2[0]});
+         this.rW = normalize(new double[]{var1[0] - var5 * var2[0], var1[1] - var5 * var2[1], var1[2] - var5 * var2[2]});
+         this.rV = normalize(new double[]{this.rW[1] * var2[2] - this.rW[2] * var2[1], this.rW[2] * var2[0] - this.rW[0] * var2[2], this.rW[0] * var2[1] - this.rW[1] * var2[0]});
       }
 
    }
 
-   private static double[] AboutDialog(double var0, double[] var2, double[] var3) {
+   private static double[] lerp(double var0, double[] var2, double[] var3) {
       double var4 = Math.cos(var0);
       double var6 = -Math.sin(var0);
       double var8 = var3[0];
@@ -69,25 +69,25 @@ public class CoordinateTransform {
       return new double[]{var15 / var21, var17 / var21, var19 / var21};
    }
 
-   public double[] AboutDialog(gU var1) {
+   public double[] toLocalCoords(gU var1) {
       if (var1.rY.equals("fr")) {
-         return AboutDialog(var1.rZ, this.rX, this.rV);
+         return lerp(var1.rZ, this.rX, this.rV);
       } else if (var1.rY.equals("fu")) {
-         return AboutDialog(var1.rZ, this.rX, this.rW);
+         return lerp(var1.rZ, this.rX, this.rW);
       } else if (var1.rY.equals("ur")) {
-         return AboutDialog(var1.rZ, this.rW, this.rV);
+         return lerp(var1.rZ, this.rW, this.rV);
       } else if (var1.rY.equals("uf")) {
-         return AboutDialog(var1.rZ, this.rW, this.rX);
+         return lerp(var1.rZ, this.rW, this.rX);
       } else if (var1.rY.equals("ru")) {
-         return AboutDialog(var1.rZ, this.rV, this.rW);
+         return lerp(var1.rZ, this.rV, this.rW);
       } else if (var1.rY.equals("rf")) {
-         return AboutDialog(var1.rZ, this.rV, this.rX);
+         return lerp(var1.rZ, this.rV, this.rX);
       } else {
          throw new RuntimeException("Unsupported rotation axis");
       }
    }
 
-   public double[] AccountPanel(double[] var1) {
+   public double[] transformToWorld(double[] var1) {
       double var2 = var1[0] * this.rV[0] + var1[1] * this.rW[0] + var1[2] * this.rX[0];
       double var4 = var1[0] * this.rV[1] + var1[1] * this.rW[1] + var1[2] * this.rX[1];
       double var6 = var1[0] * this.rV[2] + var1[1] * this.rW[2] + var1[2] * this.rX[2];
@@ -101,11 +101,11 @@ public class CoordinateTransform {
       return new double[]{var2, var4, var6};
    }
 
-   private void AboutDialog(double[] var1, StringBuffer var2, StringBuffer var3, StringBuffer var4, int var5) {
+   private void appendCoords(double[] var1, StringBuffer var2, StringBuffer var3, StringBuffer var4, int var5) {
       int var6 = var2.length();
-      var2.append(AboutDialog(var1[0], var5));
-      var3.append(AboutDialog(var1[1], var5));
-      var4.append(AboutDialog(var1[2], var5));
+      var2.append(formatComponent(var1[0], var5));
+      var3.append(formatComponent(var1[1], var5));
+      var4.append(formatComponent(var1[2], var5));
       int var7 = Math.max(Math.max(var2.length(), var3.length()), var4.length());
 
       while(var2.length() < var7) {
@@ -122,7 +122,7 @@ public class CoordinateTransform {
 
    }
 
-   private void AboutDialog(StringBuffer var1, StringBuffer var2, StringBuffer var3, int var4) {
+   private void appendCoordRow(StringBuffer var1, StringBuffer var2, StringBuffer var3, int var4) {
       int var5 = Math.max(Math.max(var1.length(), var2.length()), var3.length());
 
       while(var1.length() < var5) {
@@ -140,15 +140,15 @@ public class CoordinateTransform {
       var1.append("| ");
       var2.append("| ");
       var3.append("| ");
-      this.AboutDialog(this.rV, var1, var2, var3, var4);
+      this.appendCoords(this.rV, var1, var2, var3, var4);
       var1.append(' ');
       var2.append(' ');
       var3.append(' ');
-      this.AboutDialog(this.rW, var1, var2, var3, var4);
+      this.appendCoords(this.rW, var1, var2, var3, var4);
       var1.append(' ');
       var2.append(' ');
       var3.append(' ');
-      this.AboutDialog(this.rX, var1, var2, var3, var4);
+      this.appendCoords(this.rX, var1, var2, var3, var4);
       var1.append(" |");
       var2.append(" |");
       var3.append(" |");
@@ -162,7 +162,7 @@ public class CoordinateTransform {
       StringBuffer var2 = new StringBuffer();
       StringBuffer var3 = new StringBuffer();
       StringBuffer var4 = new StringBuffer();
-      this.AboutDialog(var2, var3, var4, var1);
+      this.appendCoordRow(var2, var3, var4, var1);
       StringBuffer var5 = new StringBuffer();
       var5.append(var2).append("\n");
       var5.append(var3).append("\n");
@@ -171,22 +171,22 @@ public class CoordinateTransform {
    }
 
    static String e(double[] var0) {
-      return AboutDialog(var0, 12);
+      return formatVector3(var0, 12);
    }
 
-   static String AboutDialog(double[] var0, int var1) {
-      return "[ " + AboutDialogCloseListener(var0[0], var1) + " , " + AboutDialogCloseListener(var0[1], var1) + " , " + AboutDialogCloseListener(var0[2], var1) + " ]";
+   static String formatVector3(double[] var0, int var1) {
+      return "[ " + formatComponentPadded(var0[0], var1) + " , " + formatComponentPadded(var0[1], var1) + " , " + formatComponentPadded(var0[2], var1) + " ]";
    }
 
    static String f(double[] var0) {
-      return AboutDialogCloseListener(var0, 12);
+      return formatVector4(var0, 12);
    }
 
-   static String AboutDialogCloseListener(double[] var0, int var1) {
-      return "[ " + AboutDialogCloseListener(var0[0], var1) + " , " + AboutDialogCloseListener(var0[1], var1) + " , " + AboutDialogCloseListener(var0[2], var1) + " , " + AboutDialogCloseListener(var0[3], var1) + " ]";
+   static String formatVector4(double[] var0, int var1) {
+      return "[ " + formatComponentPadded(var0[0], var1) + " , " + formatComponentPadded(var0[1], var1) + " , " + formatComponentPadded(var0[2], var1) + " , " + formatComponentPadded(var0[3], var1) + " ]";
    }
 
-   static String AboutDialog(double var0, int var2) {
+   static String formatComponent(double var0, int var2) {
       if (Double.isInfinite(var0)) {
          return "Infinite";
       } else if (Double.isNaN(var0)) {
@@ -198,7 +198,7 @@ public class CoordinateTransform {
       }
    }
 
-   static String AboutDialogCloseListener(double var0, int var2) {
+   static String formatComponentPadded(double var0, int var2) {
       if (Double.isInfinite(var0)) {
          return "Infinite";
       } else if (Double.isNaN(var0)) {

@@ -58,15 +58,15 @@ class ax implements TableModel {
          } else {
             switch(var2) {
             case 2:
-               return var3.AboutDialog(Race.kr);
+               return var3.isSpokenBy(Race.kr);
             case 3:
-               return var3.AboutDialog(Race.ks);
+               return var3.isSpokenBy(Race.ks);
             case 4:
-               return var3.AboutDialog(Race.kt);
+               return var3.isSpokenBy(Race.kt);
             case 5:
-               return var3.AboutDialog(Race.kv);
+               return var3.isSpokenBy(Race.kv);
             case 6:
-               return var3.AboutDialog(Race.kz);
+               return var3.isSpokenBy(Race.kz);
             default:
                return false;
             }
@@ -78,22 +78,22 @@ class ax implements TableModel {
 
    public Object getValueAt(int var1, int var2) {
       AlienWord var3 = AlienWord.T(var1);
-      gA var4 = DiscoveryPanel.i(this.cu).AboutDialog(var3);
+      gA var4 = DiscoveryPanel.i(this.cu).getWordEntry(var3);
       switch(var2) {
       case 0:
          return var3 == null ? "" : var3.getText();
       case 1:
          return var4.getID();
       case 2:
-         return var4.AccountPanel(Race.kr);
+         return var4.hasRecipeForRace(Race.kr);
       case 3:
-         return var4.AccountPanel(Race.ks);
+         return var4.hasRecipeForRace(Race.ks);
       case 4:
-         return var4.AccountPanel(Race.kt);
+         return var4.hasRecipeForRace(Race.kt);
       case 5:
-         return var4.AccountPanel(Race.kv);
+         return var4.hasRecipeForRace(Race.kv);
       case 6:
-         return var4.AccountPanel(Race.kz);
+         return var4.hasRecipeForRace(Race.kz);
       default:
          return null;
       }
@@ -101,22 +101,22 @@ class ax implements TableModel {
 
    public void setValueAt(Object var1, int var2, int var3) {
       AlienWord var4 = AlienWord.T(var2);
-      gA var5 = DiscoveryPanel.i(this.cu).AboutDialog(var4);
+      gA var5 = DiscoveryPanel.i(this.cu).getWordEntry(var4);
       switch(var3) {
       case 2:
-         var5.AboutDialog(Race.kr, Boolean.TRUE.equals(var1));
+         var5.setRecipeEnabled(Race.kr, Boolean.TRUE.equals(var1));
          break;
       case 3:
-         var5.AboutDialog(Race.ks, Boolean.TRUE.equals(var1));
+         var5.setRecipeEnabled(Race.ks, Boolean.TRUE.equals(var1));
          break;
       case 4:
-         var5.AboutDialog(Race.kt, Boolean.TRUE.equals(var1));
+         var5.setRecipeEnabled(Race.kt, Boolean.TRUE.equals(var1));
          break;
       case 5:
-         var5.AboutDialog(Race.kv, Boolean.TRUE.equals(var1));
+         var5.setRecipeEnabled(Race.kv, Boolean.TRUE.equals(var1));
          break;
       case 6:
-         var5.AboutDialog(Race.kz, Boolean.TRUE.equals(var1));
+         var5.setRecipeEnabled(Race.kz, Boolean.TRUE.equals(var1));
       }
 
    }

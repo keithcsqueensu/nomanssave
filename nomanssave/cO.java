@@ -16,11 +16,11 @@ class cO implements ComboBoxModel {
    }
 
    public int getSize() {
-      return ((Enum[])this.gu.getEnumConstants()).length + cN.AboutDialog(this.Inventory).size();
+      return ((Enum[])this.gu.getEnumConstants()).length + cN.access$getItems(this.Inventory).size();
    }
 
    public Object getElementAt(int var1) {
-      return var1 < ((Enum[])this.gu.getEnumConstants()).length ? ((Enum[])this.gu.getEnumConstants())[var1] : cN.AboutDialog(this.Inventory).get(var1 - ((Enum[])this.gu.getEnumConstants()).length);
+      return var1 < ((Enum[])this.gu.getEnumConstants()).length ? ((Enum[])this.gu.getEnumConstants())[var1] : cN.access$getItems(this.Inventory).get(var1 - ((Enum[])this.gu.getEnumConstants()).length);
    }
 
    public void addListDataListener(ListDataListener var1) {
@@ -30,21 +30,21 @@ class cO implements ComboBoxModel {
    }
 
    public void setSelectedItem(Object var1) {
-      Object var2 = cN.AboutDialogCloseListener(this.Inventory);
-      cN.AboutDialog(this.Inventory, var1);
-      if (cN.AccountPanel(this.Inventory) != null) {
+      Object var2 = cN.access$getSelectedItem(this.Inventory);
+      cN.access$setSelectedItem(this.Inventory, var1);
+      if (cN.access$getChangeListener(this.Inventory) != null) {
          SwingUtilities.invokeLater(() -> {
-            if (cN.AboutDialogCloseListener(this.Inventory) == null) {
+            if (cN.access$getSelectedItem(this.Inventory) == null) {
                if (var2 != null) {
-                  cN.AccountPanel(this.Inventory).setSelectedValue((String)null);
+                  cN.access$getChangeListener(this.Inventory).setSelectedValue((String)null);
                }
-            } else if (var2 == null || !cN.AboutDialogCloseListener(this.Inventory).equals(var2)) {
+            } else if (var2 == null || !cN.access$getSelectedItem(this.Inventory).equals(var2)) {
                if (cN.d(this.Inventory)) {
-                  cN.AccountPanel(this.Inventory).setSelectedValue(((gD)cN.AboutDialogCloseListener(this.Inventory)).K());
-               } else if (cN.AboutDialogCloseListener(this.Inventory) instanceof Enum) {
-                  cN.AccountPanel(this.Inventory).setSelectedValue(((Enum)cN.AboutDialogCloseListener(this.Inventory)).name());
+                  cN.access$getChangeListener(this.Inventory).setSelectedValue(((gD)cN.access$getSelectedItem(this.Inventory)).K());
+               } else if (cN.access$getSelectedItem(this.Inventory) instanceof Enum) {
+                  cN.access$getChangeListener(this.Inventory).setSelectedValue(((Enum)cN.access$getSelectedItem(this.Inventory)).name());
                } else {
-                  cN.AccountPanel(this.Inventory).setSelectedValue(cN.AboutDialogCloseListener(this.Inventory).toString());
+                  cN.access$getChangeListener(this.Inventory).setSelectedValue(cN.access$getSelectedItem(this.Inventory).toString());
                }
             }
 
@@ -54,6 +54,6 @@ class cO implements ComboBoxModel {
    }
 
    public Object getSelectedItem() {
-      return cN.AboutDialogCloseListener(this.Inventory);
+      return cN.access$getSelectedItem(this.Inventory);
    }
 }

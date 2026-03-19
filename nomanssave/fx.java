@@ -72,7 +72,7 @@ class fx implements SaveFile {
       }
    }
 
-   public String AboutDialogCloseListener(JsonObject var1) {
+   public String writeToFile(JsonObject var1) {
       ByteArrayOutputStream var2 = new ByteArrayOutputStream();
       Throwable var3 = null;
       Object var4 = null;

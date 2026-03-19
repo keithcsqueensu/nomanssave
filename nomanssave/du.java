@@ -117,7 +117,7 @@ class du extends JPanel {
    }
 
    // $FF: synthetic method
-   static void AccountPanel(du var0) {
+   static void access$refreshUI(du var0) {
       var0.aM();
    }
 

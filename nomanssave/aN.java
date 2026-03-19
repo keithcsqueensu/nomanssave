@@ -18,7 +18,7 @@ class aN extends ValidatedTextField {
          long var2 = ExosuitPanel.AboutDialog(this.MultitoolPanel).dJ();
 
          try {
-            long var4 = hf.AboutDialog(var1, 0L, 4294967295L);
+            long var4 = hf.parseLongClamped(var1, 0L, 4294967295L);
             if (var4 != var2) {
                ExosuitPanel.AboutDialog(this.MultitoolPanel).e(var4);
                this.bv.C();

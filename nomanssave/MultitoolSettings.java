@@ -18,10 +18,10 @@ public class MultitoolSettings {
    public void aF(int var1) {
       JsonObject var2 = this.oI.H("Multitools[" + var1 + "]");
       if (var2 != null && var2.M("Seed[0]")) {
-         this.oI.AboutDialogCloseListener("ActiveMultioolIndex", (Object)var1);
-         this.oI.AboutDialogCloseListener("WeaponInventory", (Object)var2.H("Store").MilestonesPanel());
-         this.oI.AboutDialogCloseListener("CurrentWeapon.GenerationSeed[1]", (Object)var2.BasesStoragePanel("Seed[1]"));
-         this.oI.AboutDialogCloseListener("CurrentWeapon.Filename", (Object)var2.getValueAsString("Resource.Filename"));
+         this.oI.setValueByPath("ActiveMultioolIndex", (Object)var1);
+         this.oI.setValueByPath("WeaponInventory", (Object)var2.H("Store").MilestonesPanel());
+         this.oI.setValueByPath("CurrentWeapon.GenerationSeed[1]", (Object)var2.BasesStoragePanel("Seed[1]"));
+         this.oI.setValueByPath("CurrentWeapon.Filename", (Object)var2.getValueAsString("Resource.Filename"));
       } else {
          throw new RuntimeException("Cannot set current multitool");
       }

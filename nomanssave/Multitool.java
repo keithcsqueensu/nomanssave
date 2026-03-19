@@ -29,7 +29,7 @@ public class Multitool {
       }
    }
 
-   public static Multitool AboutDialogCloseListener(JsonObject var0, File var1) {
+   public static Multitool importFromFile(JsonObject var0, File var1) {
       JsonArray var2 = var0.d("Multitools");
       if (var2 != null && var2.size() != 0) {
          int var3 = -1;
@@ -93,7 +93,7 @@ public class Multitool {
       }
    }
 
-   private static Function AboutDialogCloseListener(Multitool var0) {
+   private static Function buildFieldAccessor(Multitool var0) {
       return (var1) -> {
          String var2 = var0.getName();
          if (var2 == null || var2.length() == 0) {
@@ -114,7 +114,7 @@ public class Multitool {
          var5 = 10;
       }
 
-      this.qG = new Inventory(AboutDialogCloseListener(this), var3, 2, var4, var5, true, true);
+      this.qG = new Inventory(buildFieldAccessor(this), var3, 2, var4, var5, true, true);
    }
 
    public void j(File var1) {
@@ -154,7 +154,7 @@ public class Multitool {
    }
 
    public void setName(String var1) {
-      this.qF.AboutDialogCloseListener("Name", (Object)var1);
+      this.qF.setValueByPath("Name", (Object)var1);
    }
 
    public String cT() {
@@ -162,7 +162,7 @@ public class Multitool {
    }
 
    public void ag(String var1) {
-      this.qF.AboutDialogCloseListener("Resource.Filename", (Object)var1);
+      this.qF.setValueByPath("Resource.Filename", (Object)var1);
    }
 
    public String cK() {
@@ -178,7 +178,7 @@ public class Multitool {
    }
 
    public void aj(String var1) {
-      this.qF.AboutDialogCloseListener("Store.Class.InventoryClass", (Object)var1);
+      this.qF.setValueByPath("Store.Class.InventoryClass", (Object)var1);
    }
 
    public Inventory SettlementsPanel() {
@@ -218,7 +218,7 @@ public class Multitool {
    }
 
    public void cm() {
-      this.qF.AboutDialogCloseListener("Seed", (Object)(new JsonArray(new Object[]{Boolean.FALSE, "0x0"})));
+      this.qF.setValueByPath("Seed", (Object)(new JsonArray(new Object[]{Boolean.FALSE, "0x0"})));
    }
 
    public String toString() {

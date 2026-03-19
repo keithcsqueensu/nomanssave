@@ -64,7 +64,7 @@ public class Q extends JDialog {
       this.pack();
    }
 
-   private W AboutDialog(W var1, int var2, int var3) {
+   private W a(W var1, int var2, int var3) {
       this.bw = var1;
       this.bx = var2;
       this.by = var3;
@@ -76,27 +76,27 @@ public class Q extends JDialog {
       return this.bz;
    }
 
-   public static W AboutDialog(Container var0, W var1, int var2, int var3) {
+   public static W a(Container var0, W var1, int var2, int var3) {
       if (bC == null) {
          Frame var4 = JOptionPane.getFrameForComponent(var0);
          bC = new Q(var4);
       }
 
-      return bC.AboutDialog(var1, var2, var3);
+      return bC.a(var1, var2, var3);
    }
 
    // $FF: synthetic method
-   static JTextField AboutDialog(Q var0) {
+   static JTextField a(Q var0) {
       return var0.bA;
    }
 
    // $FF: synthetic method
-   static int AboutDialogCloseListener(Q var0) {
+   static int b(Q var0) {
       return var0.bx;
    }
 
    // $FF: synthetic method
-   static W AccountPanel(Q var0) {
+   static W c(Q var0) {
       return var0.bw;
    }
 
@@ -111,7 +111,7 @@ public class Q extends JDialog {
    }
 
    // $FF: synthetic method
-   static void AboutDialog(Q var0, W var1) {
+   static void a(Q var0, W var1) {
       var0.bz = var1;
    }
 }

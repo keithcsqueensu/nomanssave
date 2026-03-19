@@ -26,7 +26,7 @@ class bL extends JTextField {
    }
 
    // $FF: synthetic method
-   static MilestonesPanel AboutDialog(bL var0) {
+   static MilestonesPanel access$getMilestonesPanel(bL var0) {
       return var0.ItemDefinition;
    }
 }

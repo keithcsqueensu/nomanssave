@@ -17,18 +17,18 @@ class fN implements SaveSlot {
    }
 
    public boolean isEmpty() {
-      return SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2] == null && SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2 + 1] == null;
+      return SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2] == null && SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2 + 1] == null;
    }
 
    public SaveFile[] bX() {
       Logger.info("Loading saves for Slot " + (this.lT + 1) + "...");
       ArrayList var1 = new ArrayList();
-      if (SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2] != null) {
-         var1.add(SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2]);
+      if (SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2] != null) {
+         var1.add(SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2]);
       }
 
-      if (SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2 + 1] != null) {
-         var1.add(SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2 + 1]);
+      if (SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2 + 1] != null) {
+         var1.add(SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2 + 1]);
       }
 
       AppSettings.cG.listFiles(new fO(this, var1));
@@ -39,15 +39,15 @@ class fN implements SaveSlot {
    public GameMode L() {
       long var1 = Long.MIN_VALUE;
       GameMode var3 = null;
-      if (SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2] != null) {
-         var3 = SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2].L();
-         var1 = SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2].lastModified();
+      if (SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2] != null) {
+         var3 = SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2].L();
+         var1 = SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2].lastModified();
       }
 
-      if (SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2 + 1] != null) {
-         long var4 = SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2 + 1].lastModified();
+      if (SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2 + 1] != null) {
+         long var4 = SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2 + 1].lastModified();
          if (var4 > var1) {
-            var3 = SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2 + 1].L();
+            var3 = SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2 + 1].L();
          }
       }
 
@@ -60,18 +60,18 @@ class fN implements SaveSlot {
       long var2 = Long.MIN_VALUE;
       String var4 = null;
       GameMode var5 = null;
-      if (SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2] != null) {
-         var5 = SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2].L();
-         var2 = SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2].lastModified();
-         var4 = SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2].getName();
+      if (SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2] != null) {
+         var5 = SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2].L();
+         var2 = SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2].lastModified();
+         var4 = SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2].getName();
       }
 
-      if (SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2 + 1] != null) {
-         long var6 = SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2 + 1].lastModified();
+      if (SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2 + 1] != null) {
+         long var6 = SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2 + 1].lastModified();
          if (var6 > var2) {
-            var5 = SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2 + 1].L();
+            var5 = SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2 + 1].L();
             var2 = var6;
-            var4 = SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.lT * 2 + 1].getName();
+            var4 = SteamSaveLocation.access$getSaveFiles(this.mt)[this.lT * 2 + 1].getName();
          }
       }
 
@@ -90,7 +90,7 @@ class fN implements SaveSlot {
    }
 
    // $FF: synthetic method
-   static SteamSaveLocation AboutDialog(fN var0) {
+   static SteamSaveLocation access$getSteamSaveLocation(fN var0) {
       return var0.mt;
    }
 }

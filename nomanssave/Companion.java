@@ -41,7 +41,7 @@ public class Companion {
       return (Companion[])var1.toArray(new Companion[0]);
    }
 
-   public static Companion AboutDialog(JsonObject var0, File var1) {
+   public static Companion importFromFile(JsonObject var0, File var1) {
       JsonArray var2 = null;
       gl var3 = null;
       if (var1.getName().endsWith(".pet")) {
@@ -162,7 +162,7 @@ public class Companion {
    }
 
    public void setName(String var1) {
-      this.bf.AboutDialogCloseListener("CustomName", (Object)var1);
+      this.bf.setValueByPath("CustomName", (Object)var1);
    }
 
    public String cM() {
@@ -199,7 +199,7 @@ public class Companion {
    }
 
    public void ac(String var1) {
-      this.bf.AboutDialogCloseListener("SpeciesSeed", (Object)var1);
+      this.bf.setValueByPath("SpeciesSeed", (Object)var1);
    }
 
    public String cP() {
@@ -207,7 +207,7 @@ public class Companion {
    }
 
    public void ad(String var1) {
-      this.bf.AboutDialogCloseListener("GenusSeed", (Object)var1);
+      this.bf.setValueByPath("GenusSeed", (Object)var1);
    }
 
    public boolean cQ() {
@@ -215,7 +215,7 @@ public class Companion {
    }
 
    public void d(boolean var1) {
-      this.bf.AboutDialogCloseListener("Predator", (Object)var1);
+      this.bf.setValueByPath("Predator", (Object)var1);
    }
 
    public String cR() {
@@ -223,7 +223,7 @@ public class Companion {
    }
 
    public void ae(String var1) {
-      this.bf.AboutDialogCloseListener("Biome.Biome", (Object)var1);
+      this.bf.setValueByPath("Biome.Biome", (Object)var1);
    }
 
    public String cS() {
@@ -231,7 +231,7 @@ public class Companion {
    }
 
    public void af(String var1) {
-      this.bf.AboutDialogCloseListener("CreatureType.CreatureType", (Object)var1);
+      this.bf.setValueByPath("CreatureType.CreatureType", (Object)var1);
    }
 
    public String toString() {

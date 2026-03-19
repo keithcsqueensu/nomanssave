@@ -19,7 +19,7 @@ class hj extends Thread {
       try {
          var1 = hi.j(this.sK);
       } catch (IOException var7) {
-         Logger.AboutDialog("Steam lookup error", var7);
+         Logger.error("Steam lookup error", var7);
          var1 = null;
       }
 

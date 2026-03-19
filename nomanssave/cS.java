@@ -9,7 +9,7 @@ class cS implements gD {
    cS(cN var1, String var2) {
       this.Inventory = var1;
       this.filename = var2;
-      this.index = cN.AboutDialog(var1).size() + 1;
+      this.index = cN.access$getItems(var1).size() + 1;
    }
 
    public String K() {

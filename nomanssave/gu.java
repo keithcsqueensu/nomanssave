@@ -19,7 +19,7 @@ public class gu implements ItemData {
    }
 
    public void m(Object var1) {
-      this.qD.AboutDialogCloseListener("Id", var1);
+      this.qD.setValueByPath("Id", var1);
    }
 
    public int dA() {
@@ -27,7 +27,7 @@ public class gu implements ItemData {
    }
 
    public void aA(int var1) {
-      this.qD.AboutDialogCloseListener("Amount", (Object)(new Integer(var1)));
+      this.qD.setValueByPath("Amount", (Object)(new Integer(var1)));
    }
 
    public int dB() {
@@ -38,8 +38,8 @@ public class gu implements ItemData {
       return this.qD.L("DamageFactor");
    }
 
-   public void AccountPanel(double var1) {
-      this.qD.AboutDialogCloseListener("DamageFactor", (Object)(new Double(var1)));
+   public void setDamageFactor(double var1) {
+      this.qD.setValueByPath("DamageFactor", (Object)(new Double(var1)));
    }
 
    public boolean dD() {
@@ -47,7 +47,7 @@ public class gu implements ItemData {
    }
 
    public void e(boolean var1) {
-      this.qD.AboutDialogCloseListener("FullyInstalled", (Object)(new Boolean(var1)));
+      this.qD.setValueByPath("FullyInstalled", (Object)(new Boolean(var1)));
    }
 
    // $FF: synthetic method

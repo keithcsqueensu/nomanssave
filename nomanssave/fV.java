@@ -60,7 +60,7 @@ class fV implements SaveFile {
 
    }
 
-   void AboutDialog(FileOutputStream var1) {
+   void extractToStream(FileOutputStream var1) {
       ZipFile var2 = new ZipFile(this.mc);
 
       try {
@@ -99,15 +99,15 @@ class fV implements SaveFile {
       // $FF: Couldn't be decompiled
    }
 
-   public String AboutDialogCloseListener(JsonObject var1) {
+   public String writeToFile(JsonObject var1) {
       Logger.info("Writing new save file...");
       String var2;
-      if (XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.mb] != null) {
-         XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.mb].mZ.AboutDialog(this.mQ);
-         var2 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.mb].AboutDialogCloseListener(var1);
+      if (XboxSaveLocation.access$getSaveFiles(this.mN)[this.mb] != null) {
+         XboxSaveLocation.access$getSaveFiles(this.mN)[this.mb].mZ.extractToStream(this.mQ);
+         var2 = XboxSaveLocation.access$getSaveFiles(this.mN)[this.mb].writeToFile(var1);
       } else {
-         XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.mb] = new fY(this.mN, this, var1);
-         var2 = XboxSaveLocation.AboutDialogCloseListener(this.mN)[this.mb].K();
+         XboxSaveLocation.access$getSaveFiles(this.mN)[this.mb] = new fY(this.mN, this, var1);
+         var2 = XboxSaveLocation.access$getSaveFiles(this.mN)[this.mb].K();
       }
 
       Logger.info("Finished.");

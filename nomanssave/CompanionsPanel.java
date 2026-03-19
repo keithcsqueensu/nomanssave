@@ -32,25 +32,25 @@ public class CompanionsPanel extends JPanel {
       this.add(new JPanel());
       this.bG = new JComboBox();
       this.bG.setModel(new Y(this));
-      var3.AboutDialog("Companion", true, this.bG);
+      var3.addRow("Companion", true, this.bG);
       this.bH = new JComboBox();
       this.bH.setModel(new ab(this));
       this.bH.setEnabled(false);
-      var3.AboutDialog("Type", (JComponent)this.bH);
+      var3.addRow("Type", (JComponent)this.bH);
       this.bI = new ac(this);
-      var3.AboutDialog("Name", (JComponent)this.bI);
+      var3.addRow("Name", (JComponent)this.bI);
       this.bJ = new ad(this);
-      var3.AboutDialog("Creature Seed", this.bJ);
+      var3.addRow("Creature Seed", this.bJ);
       this.bK = new ae(this);
-      var3.AboutDialog("Secondary Seed", (JComponent)this.bK);
+      var3.addRow("Secondary Seed", (JComponent)this.bK);
       this.bL = new af(this);
-      var3.AboutDialog("Species Seed", (JComponent)this.bL);
+      var3.addRow("Species Seed", (JComponent)this.bL);
       this.bM = new ag(this);
-      var3.AboutDialog("Genus Seed", (JComponent)this.bM);
+      var3.addRow("Genus Seed", (JComponent)this.bM);
       this.bN = new JCheckBox("Predator");
       this.bN.setEnabled(false);
       this.bN.addActionListener(new ah(this));
-      var3.AboutDialog((String)null, (JComponent)this.bN);
+      var3.addRow((String)null, (JComponent)this.bN);
       this.InventoryPanel = new cN(gi.class);
       this.InventoryPanel.AboutDialog((var1x) -> {
          Companion var2 = (Companion)this.bG.getSelectedItem();
@@ -59,7 +59,7 @@ public class CompanionsPanel extends JPanel {
          }
 
       });
-      var3.AboutDialog("Biome", (JComponent)this.InventoryPanel);
+      var3.addRow("Biome", (JComponent)this.InventoryPanel);
       this.bP = new cN(CompanionGenus.class);
       this.bP.AboutDialog((var1x) -> {
          Companion var2 = (Companion)this.bG.getSelectedItem();
@@ -68,7 +68,7 @@ public class CompanionsPanel extends JPanel {
          }
 
       });
-      var3.AboutDialog("Type", (JComponent)this.bP);
+      var3.addRow("Type", (JComponent)this.bP);
       var3.Y();
       JPanel var4 = new JPanel();
       this.bQ = new JButton("Delete");
@@ -80,10 +80,10 @@ public class CompanionsPanel extends JPanel {
       this.InventorySlotPanel = new JButton("Import");
       this.InventorySlotPanel.addActionListener(new aa(this, var1));
       var4.add(this.InventorySlotPanel);
-      var3.AboutDialog(var4);
+      var3.addRow(var4);
    }
 
-   void AboutDialog(Companion[] var1) {
+   void updateCompanions(Companion[] var1) {
       this.bT = var1;
       if (var1.length == 0) {
          this.bG.setSelectedIndex(-1);
@@ -95,17 +95,17 @@ public class CompanionsPanel extends JPanel {
    }
 
    // $FF: synthetic method
-   static Companion[] AboutDialog(CompanionsPanel var0) {
+   static Companion[] access$getCompanions(CompanionsPanel var0) {
       return var0.bT;
    }
 
    // $FF: synthetic method
-   static JComboBox AboutDialogCloseListener(CompanionsPanel var0) {
+   static JComboBox access$getNameCombo(CompanionsPanel var0) {
       return var0.bH;
    }
 
    // $FF: synthetic method
-   static ValidatedTextField AccountPanel(CompanionsPanel var0) {
+   static ValidatedTextField access$getSeedField(CompanionsPanel var0) {
       return var0.bI;
    }
 
@@ -150,7 +150,7 @@ public class CompanionsPanel extends JPanel {
    }
 
    // $FF: synthetic method
-   static void AboutDialog(CompanionsPanel var0, Companion[] var1) {
+   static void access$setCompanions(CompanionsPanel var0, Companion[] var1) {
       var0.bT = var1;
    }
 }

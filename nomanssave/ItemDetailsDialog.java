@@ -114,7 +114,7 @@ public class ItemDetailsDialog extends JDialog {
       this.addWindowListener(new ck(this));
    }
 
-   private void AboutDialog(ItemData var1) {
+   private void loadItemData(ItemData var1) {
       this.fB = var1;
       Object var2 = var1.dz();
       this.PS4SaveLocation = ItemDefinition.d(var2);
@@ -147,7 +147,7 @@ public class ItemDetailsDialog extends JDialog {
          this.SaveSlot.setVisible(true);
 
          try {
-            int var9 = hf.AboutDialogCloseListener(var4, 0, 99999);
+            int var9 = hf.parseIntClamped(var4, 0, 99999);
             this.fC = new Integer(var9);
             this.SaveSlot.setEditable(true);
          } catch (RuntimeException var7) {
@@ -199,32 +199,32 @@ public class ItemDetailsDialog extends JDialog {
       this.setVisible(true);
    }
 
-   public static void AboutDialog(Container var0, ItemData var1) {
+   public static void showItemDetails(Container var0, ItemData var1) {
       if (fE == null) {
          Frame var2 = JOptionPane.getFrameForComponent(var0);
          fE = new ItemDetailsDialog(var2);
       }
 
-      fE.AboutDialog(var1);
+      fE.loadItemData(var1);
    }
 
    // $FF: synthetic method
-   static Integer AboutDialog(ItemDetailsDialog var0) {
+   static Integer access$getSlotIndex(ItemDetailsDialog var0) {
       return var0.fC;
    }
 
    // $FF: synthetic method
-   static ItemData AboutDialogCloseListener(ItemDetailsDialog var0) {
+   static ItemData access$getItemData(ItemDetailsDialog var0) {
       return var0.fB;
    }
 
    // $FF: synthetic method
-   static ItemDefinition AccountPanel(ItemDetailsDialog var0) {
+   static ItemDefinition access$getItemDefinition(ItemDetailsDialog var0) {
       return var0.PS4SaveLocation;
    }
 
    // $FF: synthetic method
-   static void AboutDialog(ItemDetailsDialog var0, Integer var1) {
+   static void access$setSlotIndex(ItemDetailsDialog var0, Integer var1) {
       var0.fC = var1;
    }
 
@@ -234,7 +234,7 @@ public class ItemDetailsDialog extends JDialog {
    }
 
    // $FF: synthetic method
-   static void AboutDialogCloseListener(ItemDetailsDialog var0, Integer var1) {
+   static void access$setItemData(ItemDetailsDialog var0, Integer var1) {
       var0.fD = var1;
    }
 

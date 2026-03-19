@@ -87,7 +87,7 @@ class fH {
 
    }
 
-   void AboutDialog(String var1, GameMode var2, String var3, String var4) {
+   void writeMetadata(String var1, GameMode var2, String var3, String var4) {
       Properties var5 = new Properties();
       var5.setProperty("StorageFile", this.mh.getName());
       var5.setProperty("LastModified", Long.toString(this.mh.lastModified()));

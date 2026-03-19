@@ -112,7 +112,7 @@ public class SteamSaveLocation implements SaveLocation {
       return true;
    }
 
-   public String AboutDialog(int var1, JsonObject var2) {
+   public String renameFrigate(int var1, JsonObject var2) {
       if (this.ms[var1 * 2] != null) {
          this.ms[var1 * 2].cm();
          this.ms[var1 * 2] = null;
@@ -127,7 +127,7 @@ public class SteamSaveLocation implements SaveLocation {
       return this.ms[var1 * 2].filename;
    }
 
-   private static byte[] AboutDialog(long[] var0, int var1, int var2) {
+   private static byte[] toLongBytes(long[] var0, int var1, int var2) {
       byte[] var3 = new byte[var2 * 4];
 
       for(int var4 = 0; var4 < var2; ++var4) {
@@ -140,28 +140,28 @@ public class SteamSaveLocation implements SaveLocation {
       return var3;
    }
 
-   private static byte[] AccountPanel(byte[] var0, byte[] var1) {
+   private static byte[] xorBytes(byte[] var0, byte[] var1) {
       ByteArrayOutputStream var2 = new ByteArrayOutputStream();
       var2.write(var0, 0, var0.length);
       var2.write(var1, 0, var1.length);
       long[] var3 = new long[]{96176015842230784L, -8446744073709551617L};
-      SpookyHash.AboutDialog(var2.toByteArray(), var3);
+      SpookyHash.hashBytes(var2.toByteArray(), var3);
       long[] var4 = new long[]{var3[0] & 4294967295L, var3[0] >>> 32 & 4294967295L, var3[1] & 4294967295L, var3[1] >>> 32 & 4294967295L};
-      return AboutDialog(var4, 0, 4);
+      return toLongBytes(var4, 0, 4);
    }
 
    // $FF: synthetic method
-   static File AboutDialog(SteamSaveLocation var0) {
+   static File access$getDirectory(SteamSaveLocation var0) {
       return var0.lX;
    }
 
    // $FF: synthetic method
    static byte[] d(byte[] var0, byte[] var1) {
-      return AccountPanel(var0, var1);
+      return xorBytes(var0, var1);
    }
 
    // $FF: synthetic method
-   static fM[] AboutDialogCloseListener(SteamSaveLocation var0) {
+   static fM[] access$getSaveFiles(SteamSaveLocation var0) {
       return var0.ms;
    }
 

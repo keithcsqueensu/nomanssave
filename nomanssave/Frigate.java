@@ -41,15 +41,15 @@ public class Frigate {
    }
 
    public void setName(String var1) {
-      this.oR.AboutDialogCloseListener("CustomName", (Object)var1);
+      this.oR.setValueByPath("CustomName", (Object)var1);
    }
 
    public FrigateClass da() {
       return FrigateClass.an(this.oR.getValueAsString("FrigateClass.FrigateClass"));
    }
 
-   public void AccountPanel(FrigateClass var1) {
-      this.oR.AboutDialogCloseListener("FrigateClass.FrigateClass", (Object)var1.toString());
+   public void setFrigateClass(FrigateClass var1) {
+      this.oR.setValueByPath("FrigateClass.FrigateClass", (Object)var1.toString());
    }
 
    public String LineNumberPanel() {
@@ -96,7 +96,7 @@ public class Frigate {
    }
 
    public void am(String var1) {
-      this.oR.AboutDialogCloseListener("Race.AlienRace", (Object)var1);
+      this.oR.setValueByPath("Race.AlienRace", (Object)var1);
    }
 
    public int aq(int var1) {
@@ -124,7 +124,7 @@ public class Frigate {
       }
    }
 
-   public void AboutDialog(int var1, er var2) {
+   public void setStatUpgrade(int var1, er var2) {
       JsonArray var3 = this.oR.d("TraitIDs");
       if (var1 < var3.size()) {
          var3.AboutDialog(var1, var2 == null ? "^" : var2.getID());
@@ -137,7 +137,7 @@ public class Frigate {
    }
 
    public void as(int var1) {
-      this.oR.AboutDialogCloseListener("TotalNumberOfExpeditions", (Object)(new Integer(var1)));
+      this.oR.setValueByPath("TotalNumberOfExpeditions", (Object)(new Integer(var1)));
    }
 
    public int dd() {
@@ -145,7 +145,7 @@ public class Frigate {
    }
 
    public void at(int var1) {
-      this.oR.AboutDialogCloseListener("TotalNumberOfSuccessfulEvents", (Object)(new Integer(var1)));
+      this.oR.setValueByPath("TotalNumberOfSuccessfulEvents", (Object)(new Integer(var1)));
    }
 
    public int de() {
@@ -153,7 +153,7 @@ public class Frigate {
    }
 
    public void au(int var1) {
-      this.oR.AboutDialogCloseListener("TotalNumberOfFailedEvents", (Object)(new Integer(var1)));
+      this.oR.setValueByPath("TotalNumberOfFailedEvents", (Object)(new Integer(var1)));
    }
 
    public int df() {
@@ -161,7 +161,7 @@ public class Frigate {
    }
 
    public void av(int var1) {
-      this.oR.AboutDialogCloseListener("NumberOfTimesDamaged", (Object)(new Integer(var1)));
+      this.oR.setValueByPath("NumberOfTimesDamaged", (Object)(new Integer(var1)));
    }
 
    public int dg() {
@@ -169,7 +169,7 @@ public class Frigate {
    }
 
    public void aw(int var1) {
-      this.oR.AboutDialogCloseListener("RepairsMade", (Object)(new Integer(var1)));
+      this.oR.setValueByPath("RepairsMade", (Object)(new Integer(var1)));
    }
 
    public int dh() {
@@ -177,7 +177,7 @@ public class Frigate {
    }
 
    public void ax(int var1) {
-      this.oR.AboutDialogCloseListener("DamageTaken", (Object)(new Integer(var1)));
+      this.oR.setValueByPath("DamageTaken", (Object)(new Integer(var1)));
    }
 
    public String toString() {

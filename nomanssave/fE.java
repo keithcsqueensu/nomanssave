@@ -17,18 +17,18 @@ class fE implements SaveSlot {
    }
 
    public boolean isEmpty() {
-      return PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.lT * 2] == null && PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.lT * 2 + 1] == null;
+      return PS4SaveLocation.access$getSaveFiles(this.ma)[this.lT * 2] == null && PS4SaveLocation.access$getSaveFiles(this.ma)[this.lT * 2 + 1] == null;
    }
 
    public SaveFile[] bX() {
       Logger.info("Loading saves for Slot " + (this.lT + 1) + "...");
       ArrayList var1 = new ArrayList();
-      if (PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.lT * 2] != null) {
-         var1.add(PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.lT * 2]);
+      if (PS4SaveLocation.access$getSaveFiles(this.ma)[this.lT * 2] != null) {
+         var1.add(PS4SaveLocation.access$getSaveFiles(this.ma)[this.lT * 2]);
       }
 
-      if (PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.lT * 2 + 1] != null) {
-         var1.add(PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.lT * 2 + 1]);
+      if (PS4SaveLocation.access$getSaveFiles(this.ma)[this.lT * 2 + 1] != null) {
+         var1.add(PS4SaveLocation.access$getSaveFiles(this.ma)[this.lT * 2 + 1]);
       }
 
       AppSettings.cG.listFiles(new fF(this, var1));
@@ -39,15 +39,15 @@ class fE implements SaveSlot {
    public GameMode L() {
       long var1 = Long.MIN_VALUE;
       GameMode var3 = null;
-      if (PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.lT * 2] != null) {
-         var3 = PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.lT * 2].L();
-         var1 = PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.lT * 2].lastModified();
+      if (PS4SaveLocation.access$getSaveFiles(this.ma)[this.lT * 2] != null) {
+         var3 = PS4SaveLocation.access$getSaveFiles(this.ma)[this.lT * 2].L();
+         var1 = PS4SaveLocation.access$getSaveFiles(this.ma)[this.lT * 2].lastModified();
       }
 
-      if (PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.lT * 2 + 1] != null) {
-         long var4 = PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.lT * 2 + 1].lastModified();
+      if (PS4SaveLocation.access$getSaveFiles(this.ma)[this.lT * 2 + 1] != null) {
+         long var4 = PS4SaveLocation.access$getSaveFiles(this.ma)[this.lT * 2 + 1].lastModified();
          if (var4 > var1) {
-            var3 = PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.lT * 2 + 1].L();
+            var3 = PS4SaveLocation.access$getSaveFiles(this.ma)[this.lT * 2 + 1].L();
          }
       }
 
@@ -59,15 +59,15 @@ class fE implements SaveSlot {
       var1.append("Slot " + (this.lT + 1) + " - ");
       long var2 = Long.MIN_VALUE;
       GameMode var4 = null;
-      if (PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.lT * 2] != null) {
-         var4 = PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.lT * 2].L();
-         var2 = PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.lT * 2].lastModified();
+      if (PS4SaveLocation.access$getSaveFiles(this.ma)[this.lT * 2] != null) {
+         var4 = PS4SaveLocation.access$getSaveFiles(this.ma)[this.lT * 2].L();
+         var2 = PS4SaveLocation.access$getSaveFiles(this.ma)[this.lT * 2].lastModified();
       }
 
-      if (PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.lT * 2 + 1] != null) {
-         long var5 = PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.lT * 2 + 1].lastModified();
+      if (PS4SaveLocation.access$getSaveFiles(this.ma)[this.lT * 2 + 1] != null) {
+         long var5 = PS4SaveLocation.access$getSaveFiles(this.ma)[this.lT * 2 + 1].lastModified();
          if (var5 > var2) {
-            var4 = PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.lT * 2 + 1].L();
+            var4 = PS4SaveLocation.access$getSaveFiles(this.ma)[this.lT * 2 + 1].L();
             var2 = var5;
          }
       }
@@ -83,7 +83,7 @@ class fE implements SaveSlot {
    }
 
    // $FF: synthetic method
-   static PS4SaveLocation AboutDialog(fE var0) {
+   static PS4SaveLocation access$getPS4SaveLocation(fE var0) {
       return var0.ma;
    }
 }

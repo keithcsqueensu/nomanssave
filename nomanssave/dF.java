@@ -38,7 +38,7 @@ class dF implements ComboBoxModel {
             SettlementsPanel.e(this.hE)[var2].setText("");
          }
 
-         SettlementsPanel.f(this.hE).AboutDialog(new gF[0]);
+         SettlementsPanel.f(this.hE).updateAlienWords(new gF[0]);
       } else {
          SettlementsPanel.AccountPanel(this.hE).setText(this.hD.getName());
          SettlementsPanel.d(this.hE).setText(this.hD.cK());
@@ -47,7 +47,7 @@ class dF implements ComboBoxModel {
             SettlementsPanel.e(this.hE)[var2].setText(Integer.toString(this.hD.aq(var2)));
          }
 
-         SettlementsPanel.f(this.hE).AboutDialog(this.hD.dX());
+         SettlementsPanel.f(this.hE).updateAlienWords(this.hD.dX());
       }
 
       SettlementsPanel.g(this.hE).revalidate();

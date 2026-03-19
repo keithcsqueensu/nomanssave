@@ -23,7 +23,7 @@ class P implements ActionListener {
             this.bv.AccountPanel("Cannot move base computer.\nPlease ensure that your base has a suitable Signal Booster / Blueprint Analyser / Beacon placed where you want your base computer to be.");
          } else {
             int var4;
-            if ((var4 = cY.AboutDialog(this.bv.g(), var3)) >= 0) {
+            if ((var4 = cY.show(this.bv.g(), var3)) >= 0) {
                gg var5 = (gg)var3.get(var4);
                Logger.info("Attempting to swap base computer with " + var5.toString() + "...");
                if (var2.AboutDialog(var5)) {

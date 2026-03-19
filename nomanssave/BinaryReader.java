@@ -21,7 +21,7 @@ public class BinaryReader implements Closeable {
    private int kR;
    private final CharsetDecoder kS;
 
-   public static Object AboutDialog(byte[] var0) {
+   public static Object parse(byte[] var0) {
       Throwable var1 = null;
       Object var2 = null;
 
@@ -71,7 +71,7 @@ public class BinaryReader implements Closeable {
       }
    }
 
-   public static JsonObject AboutDialogCloseListener(byte[] var0) {
+   public static JsonObject parseJsonObject(byte[] var0) {
       Throwable var1 = null;
       Object var2 = null;
 
@@ -121,7 +121,7 @@ public class BinaryReader implements Closeable {
       }
    }
 
-   public static JsonArray AccountPanel(byte[] var0) {
+   public static JsonArray parseJsonArray(byte[] var0) {
       Throwable var1 = null;
       Object var2 = null;
 
@@ -192,7 +192,7 @@ public class BinaryReader implements Closeable {
       }
    }
 
-   private int AboutDialog(Predicate var1) {
+   private int findKey(Predicate var1) {
       if (this.kR < 0) {
          this.kR = this.in.read();
       }
@@ -261,7 +261,7 @@ public class BinaryReader implements Closeable {
    }
 
    public Object bJ() {
-      return this.AboutDialog(this.bI(), (eC)null);
+      return this.readValue(this.bI(), (eC)null);
    }
 
    public JsonObject bK() {
@@ -271,11 +271,11 @@ public class BinaryReader implements Closeable {
       } else if (var1 != 123) {
          throw new JsonParseException("Unexpected token");
       } else {
-         return this.AboutDialog((eC)null);
+         return this.readJsonObject((eC)null);
       }
    }
 
-   public JsonObject AboutDialog(eG var1) {
+   public JsonObject readJsonObject(eG var1) {
       int var2 = this.bI();
       if (var2 < 0) {
          throw new JsonParseException("Short read");
@@ -293,7 +293,7 @@ public class BinaryReader implements Closeable {
             while(true) {
                String var6 = this.bN();
                if (var3 == null) {
-                  if (var1 != null && (var4 = eC.AboutDialog(var1, var6)) != null) {
+                  if (var1 != null && (var4 = eC.findEncoding(var1, var6)) != null) {
                      var3 = new fk(var4);
                   } else {
                      var3 = new JsonObject();
@@ -308,7 +308,7 @@ public class BinaryReader implements Closeable {
                   throw new JsonParseException("Invalid token");
                }
 
-               Object var7 = this.AboutDialog(this.bI(), var4);
+               Object var7 = this.readValue(this.bI(), var4);
                ((JsonObject)var3).AboutDialog(var6, var7);
                var5 = this.bI();
                if (var5 == 125) {
@@ -352,17 +352,17 @@ public class BinaryReader implements Closeable {
       } else if (var1 != 91) {
          throw new JsonParseException("Unexpected token");
       } else {
-         return this.AboutDialogCloseListener((eC)null);
+         return this.readJsonArray((eC)null);
       }
    }
 
-   private Object AboutDialog(int var1, eC var2) {
+   private Object readValue(int var1, eC var2) {
       if (var1 < 0) {
          throw new JsonParseException("Short read");
       } else if (var1 == 123) {
-         return this.AboutDialog(var2);
+         return this.readJsonObject(var2);
       } else if (var1 == 91) {
-         return this.AboutDialogCloseListener(var2);
+         return this.readJsonArray(var2);
       } else if (var1 == 34) {
          return this.InventoryPanel();
       } else if (var1 == 116) {
@@ -407,7 +407,7 @@ public class BinaryReader implements Closeable {
    private Number ad(int var1) {
       boolean var3 = false;
       if (var1 == 45) {
-         var1 = this.AboutDialog(JsonParser.kZ);
+         var1 = this.findKey(JsonParser.kZ);
          if (var1 < 0) {
             throw new JsonParseException("Invalid token");
          }
@@ -417,15 +417,15 @@ public class BinaryReader implements Closeable {
 
       BigDecimal var2 = new BigDecimal(var1 - 48);
       if (var1 != 48) {
-         while((var1 = this.AboutDialog(JsonParser.kZ)) >= 0) {
+         while((var1 = this.findKey(JsonParser.kZ)) >= 0) {
             var2 = var2.multiply(BigDecimal.TEN).add(new BigDecimal(var1 - 48));
          }
       }
 
       boolean var4 = true;
-      if (this.AboutDialog(JsonParser.la) >= 0) {
+      if (this.findKey(JsonParser.la) >= 0) {
          var4 = false;
-         var1 = this.AboutDialog(JsonParser.kZ);
+         var1 = this.findKey(JsonParser.kZ);
          if (var1 < 0) {
             throw new JsonParseException("Invalid token");
          }
@@ -436,16 +436,16 @@ public class BinaryReader implements Closeable {
             BigDecimal var10001 = new BigDecimal(var1 - 48);
             --var5;
             var2 = var2.add(var10001.scaleByPowerOfTen(var5));
-         } while((var1 = this.AboutDialog(JsonParser.kZ)) >= 0);
+         } while((var1 = this.findKey(JsonParser.kZ)) >= 0);
       }
 
-      if (this.AboutDialog(JsonParser.lb) >= 0) {
+      if (this.findKey(JsonParser.lb) >= 0) {
          var4 = false;
-         var1 = this.AboutDialog(JsonParser.lc);
+         var1 = this.findKey(JsonParser.lc);
          boolean var9 = false;
          if (var1 == 43 || var1 == 45) {
             var9 = var1 == 45;
-            var1 = this.AboutDialog(JsonParser.kZ);
+            var1 = this.findKey(JsonParser.kZ);
          }
 
          if (var1 < 0) {
@@ -457,7 +457,7 @@ public class BinaryReader implements Closeable {
          do {
             var6 *= 10;
             var6 += var1 - 48;
-         } while((var1 = this.AboutDialog(JsonParser.kZ)) >= 0);
+         } while((var1 = this.findKey(JsonParser.kZ)) >= 0);
 
          if (var9) {
             var6 = -var6;
@@ -484,7 +484,7 @@ public class BinaryReader implements Closeable {
       return var2;
    }
 
-   private JsonObject AboutDialog(eC var1) {
+   private JsonObject readJsonObject(eC var1) {
       JsonObject var2 = new JsonObject();
       int var3 = this.bI();
       if (var3 != 34) {
@@ -502,7 +502,7 @@ public class BinaryReader implements Closeable {
                throw new JsonParseException("Invalid token");
             }
 
-            Object var5 = this.AboutDialog(this.bI(), var1);
+            Object var5 = this.readValue(this.bI(), var1);
             var2.AboutDialog(var4, var5);
             var3 = this.bI();
             if (var3 == 125) {
@@ -523,12 +523,12 @@ public class BinaryReader implements Closeable {
       return var2;
    }
 
-   private JsonArray AboutDialogCloseListener(eC var1) {
+   private JsonArray readJsonArray(eC var1) {
       JsonArray var2 = new JsonArray();
       int var3;
       if ((var3 = this.bI()) != 93) {
          while(true) {
-            Object var4 = this.AboutDialog(var3, var1);
+            Object var4 = this.readValue(var3, var1);
             var2.e(var4);
             var3 = this.bI();
             if (var3 == 93) {

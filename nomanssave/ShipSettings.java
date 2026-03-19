@@ -16,7 +16,7 @@ public class ShipSettings {
    }
 
    public void aG(int var1) {
-      this.oI.AboutDialogCloseListener("PrimaryShip", (Object)var1);
+      this.oI.setValueByPath("PrimaryShip", (Object)var1);
    }
 
    public int dM() {
@@ -24,7 +24,7 @@ public class ShipSettings {
    }
 
    public void aB(int var1) {
-      this.oI.AboutDialogCloseListener("ShipHealth", (Object)(new Integer(var1)));
+      this.oI.setValueByPath("ShipHealth", (Object)(new Integer(var1)));
    }
 
    public int ShipsPanel() {
@@ -32,6 +32,6 @@ public class ShipSettings {
    }
 
    public void aC(int var1) {
-      this.oI.AboutDialogCloseListener("ShipShield", (Object)(new Integer(var1)));
+      this.oI.setValueByPath("ShipShield", (Object)(new Integer(var1)));
    }
 }

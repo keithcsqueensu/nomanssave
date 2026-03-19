@@ -13,7 +13,7 @@ public class gw extends Multitool {
    }
 
    public void setName(String var1) {
-      this.oI.AboutDialogCloseListener("PlayerWeaponName", (Object)var1);
+      this.oI.setValueByPath("PlayerWeaponName", (Object)var1);
    }
 
    public String cT() {
@@ -30,7 +30,7 @@ public class gw extends Multitool {
       return MultitoolType.qH;
    }
 
-   public void AboutDialog(MultitoolType var1) {
+   public void setType(MultitoolType var1) {
       if (var1 != MultitoolType.qH) {
          throw new RuntimeException("Only standard types allowed");
       }
@@ -49,7 +49,7 @@ public class gw extends Multitool {
    }
 
    public void aj(String var1) {
-      this.oI.AboutDialogCloseListener("WeaponInventory.Class.InventoryClass", (Object)var1);
+      this.oI.setValueByPath("WeaponInventory.Class.InventoryClass", (Object)var1);
    }
 
    public String toString() {

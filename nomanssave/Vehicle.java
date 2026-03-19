@@ -35,7 +35,7 @@ public class Vehicle {
       }
    }
 
-   private static Function AboutDialog(Vehicle var0, String var1) {
+   private static Function buildFieldAccessor(Vehicle var0, String var1) {
       return (var2) -> {
          return new String[]{var0.getType(), var1};
       };
@@ -70,9 +70,9 @@ public class Vehicle {
       }
 
       ArrayList var12 = new ArrayList();
-      var12.add(new gP(this, AboutDialog(this, var11), var3, 0, var7, var8, false, false, false, false, var6, var5));
+      var12.add(new gP(this, buildFieldAccessor(this, var11), var3, 0, var7, var8, false, false, false, false, var6, var5));
       if (var4 != null) {
-         var12.add(new Inventory(AboutDialog(this, "Technology"), var4, var5, var9, var10, true, false, false, false));
+         var12.add(new Inventory(buildFieldAccessor(this, "Technology"), var4, var5, var9, var10, true, false, false, false));
       }
 
       this.CoordinateTransform = Collections.unmodifiableList(var12);
@@ -84,14 +84,14 @@ public class Vehicle {
       var2.AboutDialog((var1x, var2x, var3x) -> {
          if ("ValidSlotIndices".equals(var1x) && var3x instanceof JsonArray) {
             int var4 = ((JsonArray)var3x).size();
-            var1.AboutDialogCloseListener("Slots", (Object)var4);
+            var1.setValueByPath("Slots", (Object)var4);
          }
 
       });
       byte var3 = 8;
       byte var4 = 6;
       ArrayList var5 = new ArrayList();
-      var5.add(new Inventory(AboutDialog(this, "Cold Storage"), var2, 2048, var3, var4, false, false, true, false));
+      var5.add(new Inventory(buildFieldAccessor(this, "Cold Storage"), var2, 2048, var3, var4, false, false, true, false));
       this.CoordinateTransform = Collections.unmodifiableList(var5);
    }
 

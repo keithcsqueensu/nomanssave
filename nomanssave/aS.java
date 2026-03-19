@@ -18,15 +18,15 @@ class aS implements FocusListener {
       int var2;
       try {
          var2 = Integer.parseInt(aQ.e(this.dr).getText());
-         if (var2 != aQ.AboutDialogCloseListener(this.dr).height) {
-            if (var2 < aQ.AccountPanel(this.dr).height) {
-               var2 = aQ.AccountPanel(this.dr).height;
+         if (var2 != aQ.access$getDimension(this.dr).height) {
+            if (var2 < aQ.access$getMinDimension(this.dr).height) {
+               var2 = aQ.access$getMinDimension(this.dr).height;
             } else if (var2 > aQ.d(this.dr).height && !en.aS()) {
                var2 = aQ.d(this.dr).height;
             }
          }
       } catch (RuntimeException var4) {
-         var2 = aQ.AboutDialogCloseListener(this.dr).height;
+         var2 = aQ.access$getDimension(this.dr).height;
       }
 
       aQ.e(this.dr).setText(Integer.toString(var2));

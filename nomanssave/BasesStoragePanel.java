@@ -23,22 +23,22 @@ public class BasesStoragePanel extends SplitFormPanel {
 
    BasesStoragePanel(Application var1) {
       this.bh.setModel(new J(this));
-      this.AboutDialog("Base NPC", true, this.bh);
+      this.addRow("Base NPC", true, this.bh);
       this.bi = new JTextField();
       this.bi.setEnabled(false);
-      this.AboutDialog("Race", this.bi);
+      this.addRow("Race", this.bi);
       this.bj = new K(this);
       this.bj.setEnabled(false);
-      this.AboutDialog("Seed", this.bj);
+      this.addRow("Seed", this.bj);
       this.Y();
       this.bk = new JComboBox();
       this.bk.setModel(new L(this));
-      this.AboutDialog("Base Info", true, this.bk);
+      this.addRow("Base Info", true, this.bk);
       this.FrigatesPanel = new M(this);
-      this.AboutDialog("Name", this.FrigatesPanel);
+      this.addRow("Name", this.FrigatesPanel);
       this.bm = new JTextField();
       this.bm.setEnabled(false);
-      this.AboutDialog("Items", this.bm);
+      this.addRow("Items", this.bm);
       JPanel var2 = new JPanel();
       this.bn = new JButton("Backup");
       this.bn.addActionListener(new N(this, var1));
@@ -49,9 +49,9 @@ public class BasesStoragePanel extends SplitFormPanel {
       this.bp = new JButton("Move Base Computer");
       this.bp.addActionListener(new P(this, var1));
       var2.add(this.bp);
-      this.AboutDialog((JComponent)var2);
+      this.addRow((JComponent)var2);
       this.bq = new InventoryPanel(var1);
-      this.AboutDialogCloseListener(this.bq);
+      this.setRightComponent(this.bq);
    }
 
    void AppStartupRunnable() {
@@ -70,15 +70,15 @@ public class BasesStoragePanel extends SplitFormPanel {
       this.bq.ShowWarningRunnable();
    }
 
-   void AboutDialog(Inventory var1) {
-      this.bq.AboutDialog(var1);
+   void updateInventory(Inventory var1) {
+      this.bq.updateInventory(var1);
    }
 
    Settlement O() {
       return this.br;
    }
 
-   void AboutDialog(Settlement var1) {
+   void updateSettlement(Settlement var1) {
       this.br = var1;
       List var2;
       if (var1 == null) {
@@ -93,21 +93,21 @@ public class BasesStoragePanel extends SplitFormPanel {
 
       this.bh.updateUI();
       this.bk.updateUI();
-      this.bq.AboutDialog(var2);
+      this.bq.updateInventory(var2);
    }
 
    // $FF: synthetic method
-   static Settlement AboutDialog(BasesStoragePanel var0) {
+   static Settlement access$getSettlement(BasesStoragePanel var0) {
       return var0.br;
    }
 
    // $FF: synthetic method
-   static JTextField AboutDialogCloseListener(BasesStoragePanel var0) {
+   static JTextField access$getNameField(BasesStoragePanel var0) {
       return var0.bi;
    }
 
    // $FF: synthetic method
-   static ValidatedTextField AccountPanel(BasesStoragePanel var0) {
+   static ValidatedTextField access$getStorageField(BasesStoragePanel var0) {
       return var0.bj;
    }
 

@@ -25,7 +25,7 @@ public class SplitFormPanel extends JPanel {
       this.add(this.it, var2);
    }
 
-   void AboutDialogCloseListener(JComponent var1) {
+   void setRightComponent(JComponent var1) {
       GridBagConstraints var2 = new GridBagConstraints();
       var2.fill = 1;
       var2.gridx = 1;
@@ -37,20 +37,20 @@ public class SplitFormPanel extends JPanel {
       this.it.k(var1);
    }
 
-   void AboutDialog(String var1, ValidatedTextField var2) {
-      this.it.AboutDialog(var1, var2);
+   void addRow(String var1, ValidatedTextField var2) {
+      this.it.addRow(var1, var2);
    }
 
-   void AboutDialog(String var1, JComponent var2) {
-      this.it.AboutDialog(var1, var2);
+   void addRow(String var1, JComponent var2) {
+      this.it.addRow(var1, var2);
    }
 
-   void AboutDialog(String var1, boolean var2, JComponent var3) {
-      this.it.AboutDialog(var1, var2, var3);
+   void addRow(String var1, boolean var2, JComponent var3) {
+      this.it.addRow(var1, var2, var3);
    }
 
-   void AboutDialog(JComponent var1) {
-      this.it.AboutDialog(var1);
+   void addRow(JComponent var1) {
+      this.it.addRow(var1);
    }
 
    void Y() {

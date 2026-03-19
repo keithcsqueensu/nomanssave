@@ -31,11 +31,11 @@ public class JsonObject {
       return JsonParser.Q(var0);
    }
 
-   public void AboutDialogCloseListener(String var1, Function var2) {
+   public void addChangeHandler(String var1, Function var2) {
       this.kJ.put(var1, var2);
    }
 
-   void AboutDialog(String var1, Object var2) {
+   void putWithParent(String var1, Object var2) {
       for(int var3 = 0; var3 < this.length; ++var3) {
          if (this.names[var3].equals(var1)) {
             throw new RuntimeException("duplicate key: " + var1);
@@ -166,6 +166,10 @@ public class JsonObject {
       }
    }
 
+   public void setValueByPath(String var1, Object var2) {
+      this.ValidatedTextField(var1).AboutDialog(var2, false);
+   }
+
    public Object InMemorySaveFile(String var1) {
       if (var1 == null) {
          throw new NullPointerException();
@@ -194,7 +198,7 @@ public class JsonObject {
       }
    }
 
-   public void AccountPanel(JsonObject var1) {
+   public void deepCopyFrom(JsonObject var1) {
       if (var1 == null) {
          throw new NullPointerException();
       } else {
@@ -206,7 +210,7 @@ public class JsonObject {
                   Object var5 = this.values[var4];
                   JsonParser.i(var5);
                   if (var5 instanceof JsonObject && var1.values[var2] instanceof JsonObject) {
-                     ((JsonObject)var5).AccountPanel((JsonObject)var1.values[var2]);
+                     ((JsonObject)var5).deepCopyFrom((JsonObject)var1.values[var2]);
                      this.values[var4] = var5;
                   } else {
                      this.values[var4] = var1.values[var2];
@@ -281,11 +285,11 @@ public class JsonObject {
       this.length = 0;
    }
 
-   public void AboutDialog(PropertyChangeListener var1) {
+   public void addPropertyChangeListener(PropertyChangeListener var1) {
       this.kI = var1;
    }
 
-   void AboutDialog(Object var1, String var2, Object var3, Object var4) {
+   void firePropertyChange(Object var1, String var2, Object var3, Object var4) {
       for(int var5 = 0; var5 < this.length; ++var5) {
          if (var1 == this.values[var5]) {
             this.firePropertyChange(this.names[var5] + var2, var3, var4);
@@ -304,11 +308,11 @@ public class JsonObject {
 
       String var4 = var1.length() == 0 ? "" : "." + var1;
       if (this.kD instanceof JsonObject) {
-         ((JsonObject)this.kD).AboutDialog(this, var4, var2, var3);
+         ((JsonObject)this.kD).firePropertyChange(this, var4, var2, var3);
       }
 
       if (this.kD instanceof JsonArray) {
-         ((JsonArray)this.kD).AboutDialog(this, var4, var2, var3);
+         ((JsonArray)this.kD).firePropertyChange(this, var4, var2, var3);
       }
 
    }
@@ -409,7 +413,7 @@ public class JsonObject {
       return var2 == null ? 0 : ((Number)var2).intValue();
    }
 
-   public int AccountPanel(String var1, int var2) {
+   public int getInt(String var1, int var2) {
       Object var3 = this.getValue(var1);
       return var3 == null ? var2 : ((Number)var3).intValue();
    }
@@ -419,7 +423,7 @@ public class JsonObject {
       return var2 == null ? 0L : ((Number)var2).longValue();
    }
 
-   public long AboutDialog(String var1, long var2) {
+   public long getLong(String var1, long var2) {
       Object var4 = this.getValue(var1);
       return var4 == null ? var2 : ((Number)var4).longValue();
    }
@@ -429,7 +433,7 @@ public class JsonObject {
       return var2 == null ? 0.0D : ((Number)var2).doubleValue();
    }
 
-   public double AccountPanel(String var1, double var2) {
+   public double getDouble(String var1, double var2) {
       Object var4 = this.getValue(var1);
       return var4 == null ? var2 : ((Number)var4).doubleValue();
    }
@@ -439,16 +443,16 @@ public class JsonObject {
       return var2 == null ? false : (Boolean)var2;
    }
 
-   public boolean AboutDialog(String var1, boolean var2) {
+   public boolean getBoolean(String var1, boolean var2) {
       Object var3 = this.getValue(var1);
       return var3 == null ? var2 : (Boolean)var3;
    }
 
-   public Object AboutDialogCloseListener(String var1, Object var2) {
+   public Object getOrDefault(String var1, Object var2) {
       return this.ValidatedTextField(var1).AboutDialog(var2, false);
    }
 
-   public Object AccountPanel(String var1, Object var2) {
+   public Object getOrDefaultDeep(String var1, Object var2) {
       return this.ValidatedTextField(var1).AboutDialog(var2, true);
    }
 
@@ -464,7 +468,7 @@ public class JsonObject {
       }
    }
 
-   public JsonObject AboutDialogCloseListener(String var1, JsonObject var2) {
+   public JsonObject getOrDefaultObject(String var1, JsonObject var2) {
       return this.ValidatedTextField(var1).e(var2);
    }
 
@@ -497,7 +501,7 @@ public class JsonObject {
       }
    }
 
-   public void AccountPanel(File var1) {
+   public void saveToFile(File var1) {
       Throwable var2 = null;
       Object var3 = null;
 

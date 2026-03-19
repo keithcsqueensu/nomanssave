@@ -145,7 +145,7 @@ public class Logger {
 
    }
 
-   public static void AboutDialog(String var0, Throwable var1) {
+   public static void warn(String var0, Throwable var1) {
       so.println(d(var0, "WARNING: "));
       if (sq != null) {
          synchronized(sq) {
@@ -234,7 +234,7 @@ public class Logger {
    }
 
    // $FF: synthetic method
-   static void AboutDialog(LogRecord var0) {
+   static void publish(LogRecord var0) {
       log(var0);
    }
 

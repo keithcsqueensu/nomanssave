@@ -1,7 +1,7 @@
 package nomanssave;
 
 public interface SaveChangeListener {
-   void AboutDialog(SaveLocation var1);
+   void onSaveLocationChanged(SaveLocation var1);
 
-   void AboutDialog(SaveLocation var1, int var2, String var3);
+   void onFileChanged(SaveLocation var1, int var2, String var3);
 }

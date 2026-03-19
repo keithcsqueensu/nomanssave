@@ -9,9 +9,9 @@ public class VehiclesPanel extends SplitFormPanel {
 
    VehiclesPanel(Application var1) {
       this.iw.setModel(new eq(this));
-      this.AboutDialog("Vehicle", true, this.iw);
+      this.addRow("Vehicle", true, this.iw);
       this.ix = new InventoryPanel(var1);
-      this.AboutDialogCloseListener(this.ix);
+      this.setRightComponent(this.ix);
    }
 
    void AppStartupRunnable() {
@@ -30,15 +30,15 @@ public class VehiclesPanel extends SplitFormPanel {
       this.ix.ShowWarningRunnable();
    }
 
-   void AboutDialog(Inventory var1) {
-      this.ix.AboutDialog(var1);
+   void updateInventory(Inventory var1) {
+      this.ix.updateInventory(var1);
    }
 
    Vehicle[] aT() {
       return this.iy;
    }
 
-   void AboutDialog(Vehicle[] var1) {
+   void updateVehicles(Vehicle[] var1) {
       if (var1.length == 0) {
          this.iy = new Vehicle[0];
          this.iw.setSelectedIndex(-1);
@@ -51,12 +51,12 @@ public class VehiclesPanel extends SplitFormPanel {
    }
 
    // $FF: synthetic method
-   static Vehicle[] AboutDialog(VehiclesPanel var0) {
+   static Vehicle[] access$getVehicles(VehiclesPanel var0) {
       return var0.iy;
    }
 
    // $FF: synthetic method
-   static InventoryPanel AboutDialogCloseListener(VehiclesPanel var0) {
+   static InventoryPanel access$getInventoryPanel(VehiclesPanel var0) {
       return var0.ix;
    }
 }

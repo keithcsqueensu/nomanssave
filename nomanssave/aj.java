@@ -123,7 +123,7 @@ public class aj extends JDialog {
 
    }
 
-   private GalacticAddress AboutDialog(GalacticAddress var1) {
+   private GalacticAddress showDialog(GalacticAddress var1) {
       this.cc = var1;
       this.m.setText("");
       this.P();
@@ -133,32 +133,32 @@ public class aj extends JDialog {
       return this.cd ? this.cc : null;
    }
 
-   public static GalacticAddress AboutDialog(Container var0, GalacticAddress var1) {
+   public static GalacticAddress show(Container var0, GalacticAddress var1) {
       if (cf == null) {
          Frame var2 = JOptionPane.getFrameForComponent(var0);
          cf = new aj(var2);
       }
 
-      return cf.AboutDialog(var1);
+      return cf.showDialog(var1);
    }
 
    // $FF: synthetic method
-   static JTextField AboutDialog(aj var0) {
+   static JTextField access$getTextField(aj var0) {
       return var0.m;
    }
 
    // $FF: synthetic method
-   static JComboBox AboutDialogCloseListener(aj var0) {
+   static JComboBox access$getGalaxyComboBox(aj var0) {
       return var0.bX;
    }
 
    // $FF: synthetic method
-   static void AboutDialog(aj var0, GalacticAddress var1) {
+   static void access$setAddress(aj var0, GalacticAddress var1) {
       var0.cc = var1;
    }
 
    // $FF: synthetic method
-   static void AccountPanel(aj var0) {
+   static void access$clearAddress(aj var0) {
       var0.P();
    }
 
@@ -168,7 +168,7 @@ public class aj extends JDialog {
    }
 
    // $FF: synthetic method
-   static void AboutDialog(aj var0, boolean var1) {
+   static void access$setEditing(aj var0, boolean var1) {
       var0.cd = var1;
    }
 }

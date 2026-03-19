@@ -56,8 +56,8 @@ public class LineNumberPanel extends JPanel implements PropertyChangeListener, C
       this.MultitoolSettings = var1;
       this.setFont(var1.getFont());
       this.UpdateDownloadRunnable(5);
-      this.AboutDialog(Color.RED);
-      this.AboutDialog(1.0F);
+      this.setHighlightColor(Color.RED);
+      this.setMinimumDigits(1.0F);
       this.ShowErrorRunnable(var2);
       var1.getDocument().addDocumentListener(this);
       var1.addCaretListener(this);
@@ -68,7 +68,7 @@ public class LineNumberPanel extends JPanel implements PropertyChangeListener, C
       return this.ShipSettings;
    }
 
-   public void AboutDialogCloseListener(boolean var1) {
+   public void setHighlightLine(boolean var1) {
       this.ShipSettings = var1;
    }
 
@@ -88,7 +88,7 @@ public class LineNumberPanel extends JPanel implements PropertyChangeListener, C
       return this.SettlementState == null ? this.getForeground() : this.SettlementState;
    }
 
-   public void AboutDialog(Color var1) {
+   public void setHighlightColor(Color var1) {
       this.SettlementState = var1;
    }
 
@@ -96,7 +96,7 @@ public class LineNumberPanel extends JPanel implements PropertyChangeListener, C
       return this.gF;
    }
 
-   public void AboutDialog(float var1) {
+   public void setMinimumDigits(float var1) {
       this.gF = var1 > 1.0F ? 1.0F : (var1 < 0.0F ? -1.0F : var1);
    }
 
@@ -146,8 +146,8 @@ public class LineNumberPanel extends JPanel implements PropertyChangeListener, C
 
             String var8 = this.WindowCloseListener(var6);
             int var9 = var2.stringWidth(var8);
-            int var10 = this.AboutDialogCloseListener(var4, var9) + var3.left;
-            int var11 = this.AboutDialog(var6, var2);
+            int var10 = this.getLineY(var4, var9) + var3.left;
+            int var11 = this.getLineHeight(var6, var2);
             var1.drawString(var8, var10, var11);
             var6 = Utilities.getRowEnd(this.MultitoolSettings, var6) + 1;
          } catch (Exception var12) {
@@ -170,11 +170,11 @@ public class LineNumberPanel extends JPanel implements PropertyChangeListener, C
       return var4.getStartOffset() == var1 ? String.valueOf(var3 + 1) : "";
    }
 
-   private int AboutDialogCloseListener(int var1, int var2) {
+   private int getLineY(int var1, int var2) {
       return (int)((float)(var1 - var2) * this.gF);
    }
 
-   private int AboutDialog(int var1, FontMetrics var2) {
+   private int getLineHeight(int var1, FontMetrics var2) {
       Rectangle var3 = this.MultitoolSettings.modelToView(var1);
       int var4 = var2.getHeight();
       int var5 = var3.UpdateDownloadRunnable + var3.height;
@@ -252,22 +252,22 @@ public class LineNumberPanel extends JPanel implements PropertyChangeListener, C
    }
 
    // $FF: synthetic method
-   static JTextComponent AboutDialog(LineNumberPanel var0) {
+   static JTextComponent access$getTextComponent(LineNumberPanel var0) {
       return var0.MultitoolSettings;
    }
 
    // $FF: synthetic method
-   static int AboutDialogCloseListener(LineNumberPanel var0) {
+   static int access$getUpdateFont(LineNumberPanel var0) {
       return var0.gI;
    }
 
    // $FF: synthetic method
-   static void AccountPanel(LineNumberPanel var0) {
+   static void access$repaint(LineNumberPanel var0) {
       var0.aI();
    }
 
    // $FF: synthetic method
-   static void AboutDialog(LineNumberPanel var0, int var1) {
+   static void access$setUpdateFont(LineNumberPanel var0, int var1) {
       var0.gI = var1;
    }
 }

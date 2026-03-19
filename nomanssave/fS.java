@@ -63,7 +63,7 @@ public class fS {
 
       this.my = hk.f(var1);
       if (this.my != 0L) {
-         Logger.info("  totalPlayTime: " + SaveLocation.AccountPanel(this.my));
+         Logger.info("  totalPlayTime: " + SaveLocation.formatPlayTime(this.my));
       }
 
       if (this.lL == 1) {
@@ -129,19 +129,19 @@ public class fS {
    }
 
    void write(OutputStream var1) {
-      hk.AboutDialog(var1, this.lL);
-      hk.AboutDialog(var1, this.version);
-      hk.AboutDialogCloseListener(var1, this.my);
+      hk.writeInt(var1, this.lL);
+      hk.writeInt(var1, this.version);
+      hk.writeLong(var1, this.my);
       if (this.mB != null) {
-         hk.AboutDialog(var1, this.mz);
+         hk.writeInt(var1, this.mz);
          var1.write(this.mB);
       } else {
-         hk.AboutDialog(var1, this.mA);
-         gc.AccountPanel(var1, this.name);
-         gc.AccountPanel(var1, this.description);
+         hk.writeInt(var1, this.mA);
+         gc.writeUtf8FixedString(var1, this.name);
+         gc.writeUtf8FixedString(var1, this.description);
       }
 
-      hk.AboutDialog(var1, this.lM);
+      hk.writeInt(var1, this.lM);
    }
 
    byte[] co() {
@@ -212,7 +212,7 @@ public class fS {
       return this.mh.length();
    }
 
-   void AboutDialog(fS var1) {
+   void copyFrom(fS var1) {
       this.lL = var1.lL;
       this.version = var1.version;
       this.my = var1.my;

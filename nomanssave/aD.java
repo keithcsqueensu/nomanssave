@@ -67,17 +67,17 @@ public class aD extends JDialog {
    }
 
    // $FF: synthetic method
-   static JComboBox AboutDialog(aD var0) {
+   static JComboBox access$getComboBox(aD var0) {
       return var0.cw;
    }
 
    // $FF: synthetic method
-   static void AboutDialog(aD var0, boolean var1) {
+   static void access$setFlag(aD var0, boolean var1) {
       var0.JsonEditorDialog = var1;
    }
 
    // $FF: synthetic method
-   static JTextField AboutDialogCloseListener(aD var0) {
+   static JTextField access$getTextField(aD var0) {
       return var0.cx;
    }
 }

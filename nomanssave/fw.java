@@ -42,21 +42,21 @@ class fw {
    }
 
    boolean isValid() {
-      return fu.AboutDialogCloseListener(this.lK, fu.bY()) && this.lO >= 0;
+      return fu.access$bytesEqual(this.lK, fu.bY()) && this.lO >= 0;
    }
 
-   int AboutDialog(OutputStream var1) {
+   int writeTo(OutputStream var1) {
       var1.write(this.lK);
-      hk.AboutDialog(var1, this.lL);
-      hk.AboutDialog(var1, this.lM);
-      hk.AboutDialog(var1, this.lN);
-      hk.AboutDialog(var1, this.lO);
-      hk.AboutDialog(var1, (int)(this.FreighterPanel / 1000L));
-      hk.AboutDialog(var1, (int)this.length);
-      hk.AboutDialog(var1, (int)this.lP);
-      hk.AboutDialog(var1, this.lQ);
-      hk.AboutDialog(var1, this.lR);
-      hk.AboutDialog(var1, this.lS);
+      hk.writeInt(var1, this.lL);
+      hk.writeInt(var1, this.lM);
+      hk.writeInt(var1, this.lN);
+      hk.writeInt(var1, this.lO);
+      hk.writeInt(var1, (int)(this.FreighterPanel / 1000L));
+      hk.writeInt(var1, (int)this.length);
+      hk.writeInt(var1, (int)this.lP);
+      hk.writeInt(var1, this.lQ);
+      hk.writeInt(var1, this.lR);
+      hk.writeInt(var1, this.lS);
       return 48;
    }
 
@@ -83,7 +83,7 @@ class fw {
       if (!this.isValid()) {
          return null;
       } else {
-         FileInputStream var1 = new FileInputStream(fu.AboutDialogCloseListener(this.lJ));
+         FileInputStream var1 = new FileInputStream(fu.access$getFile(this.lJ));
 
          byte[] var8;
          try {
@@ -117,8 +117,8 @@ class fw {
       } else {
          int var2 = -1;
 
-         for(int var3 = 0; var3 < fu.AccountPanel(this.lJ).length; ++var3) {
-            if (fu.AccountPanel(this.lJ)[var3] == this) {
+         for(int var3 = 0; var3 < fu.access$getContainers(this.lJ).length; ++var3) {
+            if (fu.access$getContainers(this.lJ)[var3] == this) {
                var2 = var3;
                break;
             }
@@ -128,46 +128,46 @@ class fw {
             throw new IOException("header not valid");
          } else {
             long var25 = System.currentTimeMillis();
-            File var5 = new File(fu.AboutDialogCloseListener(this.lJ).getParentFile(), "~" + fu.AboutDialogCloseListener(this.lJ).getName());
+            File var5 = new File(fu.access$getFile(this.lJ).getParentFile(), "~" + fu.access$getFile(this.lJ).getName());
             FileOutputStream var6 = new FileOutputStream(var5);
 
             try {
-               FileInputStream var7 = new FileInputStream(fu.AboutDialogCloseListener(this.lJ));
+               FileInputStream var7 = new FileInputStream(fu.access$getFile(this.lJ));
 
                try {
                   System.out.println("Reading header");
                   byte[] var8 = new byte[64];
                   hk.readFully(var7, var8);
                   var6.write(var8);
-                  long var9 = (long)var1.length - fu.AccountPanel(this.lJ)[var2].length;
+                  long var9 = (long)var1.length - fu.access$getContainers(this.lJ)[var2].length;
                   long var11 = 64L;
 
                   int var13;
                   fw var10000;
                   for(var13 = 0; var13 < var2; ++var13) {
-                     if (fu.AccountPanel(this.lJ)[var13].lP < fu.AccountPanel(this.lJ)[var2].lP) {
-                        var10000 = fu.AccountPanel(this.lJ)[var13];
+                     if (fu.access$getContainers(this.lJ)[var13].lP < fu.access$getContainers(this.lJ)[var2].lP) {
+                        var10000 = fu.access$getContainers(this.lJ)[var13];
                         var10000.lP += var9;
                      }
 
-                     var11 += (long)fu.AccountPanel(this.lJ)[var13].AboutDialog(var6);
+                     var11 += (long)fu.access$getContainers(this.lJ)[var13].AboutDialog(var6);
                   }
 
                   var6.write(fu.bY());
-                  fu.AccountPanel(this.lJ)[var2].length = (long)var1.length;
-                  fu.AccountPanel(this.lJ)[var2].FreighterPanel = var25;
-                  var11 += (long)fu.AccountPanel(this.lJ)[var2].AboutDialog(var6);
+                  fu.access$getContainers(this.lJ)[var2].length = (long)var1.length;
+                  fu.access$getContainers(this.lJ)[var2].FreighterPanel = var25;
+                  var11 += (long)fu.access$getContainers(this.lJ)[var2].AboutDialog(var6);
 
-                  for(var13 = var2 + 1; var13 < fu.AccountPanel(this.lJ).length; ++var13) {
-                     if (fu.AccountPanel(this.lJ)[var13].lP < fu.AccountPanel(this.lJ)[var2].lP) {
-                        var10000 = fu.AccountPanel(this.lJ)[var13];
+                  for(var13 = var2 + 1; var13 < fu.access$getContainers(this.lJ).length; ++var13) {
+                     if (fu.access$getContainers(this.lJ)[var13].lP < fu.access$getContainers(this.lJ)[var2].lP) {
+                        var10000 = fu.access$getContainers(this.lJ)[var13];
                         var10000.lP += var9;
                      }
 
-                     var11 += (long)fu.AccountPanel(this.lJ)[var13].AboutDialog(var6);
+                     var11 += (long)fu.access$getContainers(this.lJ)[var13].AboutDialog(var6);
                   }
 
-                  long var26 = fu.AccountPanel(this.lJ)[var2].lP - var11;
+                  long var26 = fu.access$getContainers(this.lJ)[var2].lP - var11;
 
                   byte[] var15;
                   int var16;

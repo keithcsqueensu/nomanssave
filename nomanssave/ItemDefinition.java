@@ -172,7 +172,7 @@ public abstract class ItemDefinition {
       }
    }
 
-   public final ImageIcon AccountPanel(int var1, int var2) {
+   public final ImageIcon loadIcon(int var1, int var2) {
       String var3 = this.bi();
       return var3 == null ? null : Application.loadScaledIcon(var3, var1, var2);
    }
@@ -187,7 +187,7 @@ public abstract class ItemDefinition {
       return this.id;
    }
 
-   static String AboutDialog(Element var0) {
+   static String getElementText(Element var0) {
       if (var0 == null) {
          throw new IllegalArgumentException();
       } else {
@@ -332,7 +332,7 @@ public abstract class ItemDefinition {
       return var1;
    }
 
-   public static List AboutDialogCloseListener(int var0, String var1) {
+   public static List findByAmmoType(int var0, String var1) {
       String var2 = var1.toUpperCase();
       return (List)jJ.stream().filter((var2x) -> {
          return var2x.getName().toUpperCase().indexOf(var2) >= 0 && O(var0).contains(var2x.bc());

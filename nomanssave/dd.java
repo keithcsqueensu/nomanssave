@@ -50,7 +50,7 @@ public class dd extends JDialog {
       this.getRootPane().registerKeyboardAction(new di(this), KeyStroke.getKeyStroke(27, 0), 2);
    }
 
-   private int AboutDialog(List var1, int var2) {
+   private int showDialog(List var1, int var2) {
       this.CoordinateTransform = var1;
       this.BackupUtil.updateUI();
       this.BackupUtil.setSelectedIndex(this.gU);
@@ -60,27 +60,27 @@ public class dd extends JDialog {
       return this.gU;
    }
 
-   public static int AboutDialog(Container var0, List var1, int var2) {
+   public static int show(Container var0, List var1, int var2) {
       if (gV == null) {
          Frame var3 = JOptionPane.getFrameForComponent(var0);
          gV = new dd(var3);
       }
 
-      return gV.AboutDialog(var1, var2);
+      return gV.showDialog(var1, var2);
    }
 
    // $FF: synthetic method
-   static List AboutDialog(dd var0) {
+   static List access$getItems(dd var0) {
       return var0.CoordinateTransform;
    }
 
    // $FF: synthetic method
-   static JList AboutDialogCloseListener(dd var0) {
+   static JList access$getList(dd var0) {
       return var0.BackupUtil;
    }
 
    // $FF: synthetic method
-   static void AboutDialog(dd var0, int var1) {
+   static void access$setSelectedIndex(dd var0, int var1) {
       var0.gU = var1;
    }
 }

@@ -73,14 +73,14 @@ class fL implements SaveFile {
       // $FF: Couldn't be decompiled
    }
 
-   public String AboutDialogCloseListener(JsonObject var1) {
+   public String writeToFile(JsonObject var1) {
       Logger.info("Writing new save file...");
       String var2;
-      if (SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.mb] != null) {
-         var2 = SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.mb].AboutDialogCloseListener(var1);
+      if (SteamSaveLocation.access$getSaveFiles(this.mt)[this.mb] != null) {
+         var2 = SteamSaveLocation.access$getSaveFiles(this.mt)[this.mb].writeToFile(var1);
       } else {
-         SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.mb] = new fM(this.mt, this.mb, var1);
-         var2 = SteamSaveLocation.AboutDialogCloseListener(this.mt)[this.mb].filename;
+         SteamSaveLocation.access$getSaveFiles(this.mt)[this.mb] = new fM(this.mt, this.mb, var1);
+         var2 = SteamSaveLocation.access$getSaveFiles(this.mt)[this.mb].filename;
       }
 
       Logger.info("Finished.");

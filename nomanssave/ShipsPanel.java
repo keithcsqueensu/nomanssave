@@ -50,7 +50,7 @@ public class ShipsPanel extends SplitFormPanel {
             }
 
             var3.ag(var2x);
-            this.hW.AboutDialog(var3.cC());
+            this.hW.updateInventory(var3.cC());
             this.hK.updateUI();
          }
 
@@ -107,7 +107,7 @@ public class ShipsPanel extends SplitFormPanel {
                Logger.info(var1x + ": technology recharged");
             }
 
-            this.hW.AboutDialog(var1x);
+            this.hW.updateInventory(var1x);
          });
       }
 
@@ -120,7 +120,7 @@ public class ShipsPanel extends SplitFormPanel {
                Logger.info(var1x + ": items refilled");
             }
 
-            this.hW.AboutDialog(var1x);
+            this.hW.updateInventory(var1x);
          });
       }
 
@@ -133,7 +133,7 @@ public class ShipsPanel extends SplitFormPanel {
                Logger.info(var1x + ": all slots enabled");
             }
 
-            this.hW.AboutDialog(var1x);
+            this.hW.updateInventory(var1x);
          });
       }
 
@@ -146,7 +146,7 @@ public class ShipsPanel extends SplitFormPanel {
                Logger.info(var1x + ": all slots repaired");
             }
 
-            this.hW.AboutDialog(var1x);
+            this.hW.updateInventory(var1x);
          });
       }
 
@@ -159,21 +159,21 @@ public class ShipsPanel extends SplitFormPanel {
                Logger.info(var1x + ": inventory expanded");
             }
 
-            this.hW.AboutDialog(var1x);
+            this.hW.updateInventory(var1x);
          });
       }
 
    }
 
-   void AboutDialog(Inventory var1) {
-      this.hW.AboutDialog(var1);
+   void updateInventory(Inventory var1) {
+      this.hW.updateInventory(var1);
    }
 
    Starship[] aO() {
       return this.hX;
    }
 
-   void AboutDialog(Starship[] var1, ShipSettings var2) {
+   void updateShips(Starship[] var1, ShipSettings var2) {
       this.hX = var1;
       this.hY = var2;
       if (var1.length == 0) {
@@ -199,17 +199,17 @@ public class ShipsPanel extends SplitFormPanel {
    }
 
    // $FF: synthetic method
-   static Starship[] AboutDialog(ShipsPanel var0) {
+   static Starship[] access$getShips(ShipsPanel var0) {
       return var0.hX;
    }
 
    // $FF: synthetic method
-   static ValidatedTextField AboutDialogCloseListener(ShipsPanel var0) {
+   static ValidatedTextField access$getNameField(ShipsPanel var0) {
       return var0.hL;
    }
 
    // $FF: synthetic method
-   static cN AccountPanel(ShipsPanel var0) {
+   static cN access$getTypeComboBox(ShipsPanel var0) {
       return var0.hM;
    }
 
@@ -279,7 +279,7 @@ public class ShipsPanel extends SplitFormPanel {
    }
 
    // $FF: synthetic method
-   static void AboutDialog(ShipsPanel var0, Starship[] var1) {
+   static void access$setShips(ShipsPanel var0, Starship[] var1) {
       var0.hX = var1;
    }
 }

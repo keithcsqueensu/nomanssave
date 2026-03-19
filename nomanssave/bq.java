@@ -15,7 +15,7 @@ class bq extends ValidatedTextField {
          int var2 = FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].df();
 
          try {
-            int var3 = hf.AboutDialogCloseListener(var1, 0, Integer.MAX_VALUE);
+            int var3 = hf.parseIntClamped(var1, 0, Integer.MAX_VALUE);
             if (var3 != var2) {
                FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].av(var3);
             }

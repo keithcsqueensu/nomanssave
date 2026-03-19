@@ -95,7 +95,7 @@ public class hk {
       return (255 & var1[3]) << 24 | (255 & var1[2]) << 16 | (255 & var1[1]) << 8 | 255 & var1[0];
    }
 
-   public static void AboutDialog(OutputStream var0, int var1) {
+   public static void writeInt(OutputStream var0, int var1) {
       var0.write(255 & var1);
       var0.write(255 & var1 >> 8);
       var0.write(255 & var1 >> 16);
@@ -108,7 +108,7 @@ public class hk {
       return (255L & (long)var1[7]) << 56 | (255L & (long)var1[6]) << 48 | (255L & (long)var1[5]) << 40 | (255L & (long)var1[4]) << 32 | (255L & (long)var1[3]) << 24 | (255L & (long)var1[2]) << 16 | (255L & (long)var1[1]) << 8 | 255L & (long)var1[0];
    }
 
-   public static void AboutDialogCloseListener(OutputStream var0, long var1) {
+   public static void writeLong(OutputStream var0, long var1) {
       var0.write((int)(255L & var1));
       var0.write((int)(255L & var1 >> 8));
       var0.write((int)(255L & var1 >> 16));

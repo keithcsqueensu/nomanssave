@@ -94,7 +94,7 @@ public class JsonEditorDialog extends JDialog implements TreeSelectionListener {
       this.XboxContainerWriter.getActionMap().put("find", var6);
    }
 
-   private boolean AboutDialog(String var1, JsonObject var2) {
+   private boolean loadAndShow(String var1, JsonObject var2) {
       this.setTitle("JSON Editor (Advanced Users Only)");
       this.fS = var1;
       this.XboxSaveLocation = var2;
@@ -162,7 +162,7 @@ public class JsonEditorDialog extends JDialog implements TreeSelectionListener {
       return var1.toString();
    }
 
-   private static int AboutDialog(char var0) {
+   private static int hexCharValue(char var0) {
       int var1 = "0123456789ABCDEFabcdef".indexOf(var0);
       if (var1 < 0) {
          throw new RuntimeException("Error decoding hex");
@@ -175,14 +175,14 @@ public class JsonEditorDialog extends JDialog implements TreeSelectionListener {
       }
    }
 
-   private static void AboutDialog(String var0, ClipboardOwner var1) {
+   private static void setClipboard(String var0, ClipboardOwner var1) {
       StringBuffer var2 = new StringBuffer();
       char[] var3 = var0.toCharArray();
 
       for(int var5 = 0; var5 < var3.length; ++var5) {
          if (var3[var5] == '\\' && var5 + 5 < var3.length && var3[var5 + 1] == 'u') {
             try {
-               int var4 = AboutDialog(var3[var5 + 2]) << 12 | AboutDialog(var3[var5 + 3]) << 8 | AboutDialog(var3[var5 + 4]) << 4 | AboutDialog(var3[var5 + 5]);
+               int var4 = hexCharValue(var3[var5 + 2]) << 12 | hexCharValue(var3[var5 + 3]) << 8 | hexCharValue(var3[var5 + 4]) << 4 | hexCharValue(var3[var5 + 5]);
                if (var4 < 32) {
                   var2.append(var3[var5]);
                   var2.append(var3[var5 + 1]);
@@ -207,12 +207,12 @@ public class JsonEditorDialog extends JDialog implements TreeSelectionListener {
       var6.setContents(var8, var1);
    }
 
-   public static boolean AboutDialog(Application var0, String var1, JsonObject var2) {
+   public static boolean open(Application var0, String var1, JsonObject var2) {
       if (NpcRace == null) {
          NpcRace = new JsonEditorDialog(var0);
       }
 
-      return NpcRace.AboutDialog(var1, var2);
+      return NpcRace.loadAndShow(var1, var2);
    }
 
    public void valueChanged(TreeSelectionEvent var1) {
@@ -250,7 +250,7 @@ public class JsonEditorDialog extends JDialog implements TreeSelectionListener {
       }
    }
 
-   void AboutDialog(String var1, boolean var2, boolean var3, boolean var4) {
+   void configure(String var1, boolean var2, boolean var3, boolean var4) {
       String var5 = this.XboxContainerWriter.getText();
       if (!this.Base.equals(var1)) {
          Highlighter var6 = this.XboxContainerWriter.getHighlighter();
@@ -308,32 +308,32 @@ public class JsonEditorDialog extends JDialog implements TreeSelectionListener {
    }
 
    // $FF: synthetic method
-   static void AboutDialogCloseListener(String var0, ClipboardOwner var1) {
-      AboutDialog(var0, var1);
+   static void access$setClipboard(String var0, ClipboardOwner var1) {
+      setClipboard(var0, var1);
    }
 
    // $FF: synthetic method
-   static String AboutDialog(JsonEditorDialog var0) {
+   static String access$getContent(JsonEditorDialog var0) {
       return var0.fS;
    }
 
    // $FF: synthetic method
-   static JsonObject AboutDialogCloseListener(JsonEditorDialog var0) {
+   static JsonObject access$getJson(JsonEditorDialog var0) {
       return var0.XboxSaveLocation;
    }
 
    // $FF: synthetic method
-   static void AboutDialog(JsonEditorDialog var0, boolean var1) {
+   static void access$setModified(JsonEditorDialog var0, boolean var1) {
       var0.ga = var1;
    }
 
    // $FF: synthetic method
-   static void AboutDialogCloseListener(JsonEditorDialog var0, boolean var1) {
+   static void access$setReadOnly(JsonEditorDialog var0, boolean var1) {
       var0.gb = var1;
    }
 
    // $FF: synthetic method
-   static JTextArea AccountPanel(JsonEditorDialog var0) {
+   static JTextArea access$getTextArea(JsonEditorDialog var0) {
       return var0.XboxContainerWriter;
    }
 

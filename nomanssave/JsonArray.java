@@ -212,7 +212,7 @@ public class JsonArray {
       this.firePropertyChange("", var1, this);
    }
 
-   void AboutDialog(Object var1, String var2, Object var3, Object var4) {
+   void firePropertyChange(Object var1, String var2, Object var3, Object var4) {
       for(int var5 = 0; var5 < this.length; ++var5) {
          if (var1 == this.values[var5]) {
             this.firePropertyChange("[" + var5 + "]" + var2, var3, var4);
@@ -224,11 +224,11 @@ public class JsonArray {
 
    private void firePropertyChange(String var1, Object var2, Object var3) {
       if (this.kD instanceof JsonObject) {
-         ((JsonObject)this.kD).AboutDialog(this, var1, var2, var3);
+         ((JsonObject)this.kD).firePropertyChange(this, var1, var2, var3);
       }
 
       if (this.kD instanceof JsonArray) {
-         ((JsonArray)this.kD).AboutDialog(this, var1, var2, var3);
+         ((JsonArray)this.kD).firePropertyChange(this, var1, var2, var3);
       }
 
    }
@@ -270,7 +270,7 @@ public class JsonArray {
       return var2 == null ? false : (Boolean)var2;
    }
 
-   public void AboutDialog(int var1, Object var2) {
+   public void setValueAt(int var1, Object var2) {
       this.set(var1, var2);
    }
 

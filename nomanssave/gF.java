@@ -24,8 +24,8 @@ public class gF implements ItemData {
    }
 
    public void m(Object var1) {
-      this.kM.AboutDialogCloseListener("ElementId", var1);
-      this.kM.AboutDialogCloseListener("LastChangeTimestamp", (Object)((int)(System.currentTimeMillis() / 1000L)));
+      this.kM.setValueByPath("ElementId", var1);
+      this.kM.setValueByPath("LastChangeTimestamp", (Object)((int)(System.currentTimeMillis() / 1000L)));
    }
 
    public int dA() {
@@ -33,8 +33,8 @@ public class gF implements ItemData {
    }
 
    public void aA(int var1) {
-      this.kM.AboutDialogCloseListener("Amount", (Object)var1);
-      this.kM.AboutDialogCloseListener("LastChangeTimestamp", (Object)((int)(System.currentTimeMillis() / 1000L)));
+      this.kM.setValueByPath("Amount", (Object)var1);
+      this.kM.setValueByPath("LastChangeTimestamp", (Object)((int)(System.currentTimeMillis() / 1000L)));
    }
 
    public int dB() {

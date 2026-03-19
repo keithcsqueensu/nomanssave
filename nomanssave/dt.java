@@ -20,7 +20,7 @@ public class dt extends FormPanel {
       this.k("Production");
       this.AlienWord = new JPanel();
       this.AlienWord.setLayout(new GridBagLayout());
-      this.AboutDialog((JComponent)this.AlienWord);
+      this.addField((JComponent)this.AlienWord);
       UIManager.addPropertyChangeListener((var1x) -> {
          if ("lookAndFeel".equals(var1x.getPropertyName())) {
             EventQueue.invokeLater(this::aL);
@@ -42,7 +42,7 @@ public class dt extends FormPanel {
 
             Component var2 = var5[var3];
             du var6 = (du)var2;
-            du.AccountPanel(var6);
+            du.access$refreshUI(var6);
             ++var3;
          }
       }
@@ -51,7 +51,7 @@ public class dt extends FormPanel {
       this.AlienWord.updateUI();
    }
 
-   public void AboutDialog(gF[] var1) {
+   public void updateAlienWords(gF[] var1) {
       synchronized(this.AlienWord.getTreeLock()) {
          this.AlienWord.removeAll();
          int var3 = 0;
@@ -76,30 +76,30 @@ public class dt extends FormPanel {
       this.AlienWord.updateUI();
    }
 
-   private void AboutDialog(du var1) {
-      ItemDefinition var2 = h.AboutDialog(this, 28160);
+   private void pickItemForSlot(du var1) {
+      ItemDefinition var2 = h.show(this, 28160);
       if (var2 != null) {
          var1.hm.m(var2.aZ());
          var1.hm.aA(0);
-         du.AccountPanel(var1);
+         du.access$refreshUI(var1);
       }
 
    }
 
-   private void AboutDialogCloseListener(du var1) {
+   private void moveItemToInventory(du var1) {
       ItemDefinition var2 = ItemDefinition.d(var1.hm.dz());
       if (var2 == null) {
          this.eR.AccountPanel("Item details not found!");
       } else {
          List var3 = this.eR.g(3584);
-         int var4 = dd.AboutDialog(this, var3, -1);
+         int var4 = dd.show(this, var3, -1);
          if (var4 != -1) {
             Inventory var5 = (Inventory)var3.get(var4);
             int var6 = var1.hm.dA();
             ItemDefinition var7 = ItemDefinition.d(var1.hm.dz());
             var6 = var5.AboutDialog(var7, var6);
             var1.hm.aA(var6);
-            du.AccountPanel(var1);
+            du.access$refreshUI(var1);
             this.eR.AboutDialog(var5);
          }
 
@@ -107,12 +107,12 @@ public class dt extends FormPanel {
    }
 
    // $FF: synthetic method
-   static void AboutDialog(dt var0, du var1) {
-      var0.AboutDialog(var1);
+   static void access$pickItem(dt var0, du var1) {
+      var0.pickItemForSlot(var1);
    }
 
    // $FF: synthetic method
-   static void AboutDialogCloseListener(dt var0, du var1) {
-      var0.AboutDialogCloseListener(var1);
+   static void access$moveItem(dt var0, du var1) {
+      var0.moveItemToInventory(var1);
    }
 }

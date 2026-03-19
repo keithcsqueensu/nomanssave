@@ -62,27 +62,27 @@ public class cN extends JComboBox {
       this.updateUI();
    }
 
-   public void AboutDialog(cR var1) {
+   public void setSelected(cR var1) {
       this.Frigate = var1;
    }
 
    // $FF: synthetic method
-   static List AboutDialog(cN var0) {
+   static List access$getItems(cN var0) {
       return var0.FreighterType;
    }
 
    // $FF: synthetic method
-   static Object AboutDialogCloseListener(cN var0) {
+   static Object access$getSelectedItem(cN var0) {
       return var0.gq;
    }
 
    // $FF: synthetic method
-   static void AboutDialog(cN var0, Object var1) {
+   static void access$setSelectedItem(cN var0, Object var1) {
       var0.gq = var1;
    }
 
    // $FF: synthetic method
-   static cR AccountPanel(cN var0) {
+   static cR access$getChangeListener(cN var0) {
       return var0.Frigate;
    }
 

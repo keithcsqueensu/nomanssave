@@ -18,7 +18,7 @@ public class Freighter {
       return var0 == null || var0.length() == 0;
    }
 
-   private static Function AboutDialog(Freighter var0, String var1) {
+   private static Function buildFieldAccessor(Freighter var0, String var1) {
       return (var1x) -> {
          return new String[]{"Freighter", var1};
       };
@@ -56,13 +56,13 @@ public class Freighter {
       }
 
       ArrayList var14 = new ArrayList();
-      var14.add(new Inventory(AboutDialog(this, var5), var2, var19, var10, var11, false, true));
+      var14.add(new Inventory(buildFieldAccessor(this, var5), var2, var19, var10, var11, false, true));
       if (var3 != null) {
-         var14.add(new Inventory(AboutDialog(this, "Technology"), var3, var20, var12, var13, true, true));
+         var14.add(new Inventory(buildFieldAccessor(this, "Technology"), var3, var20, var12, var13, true, true));
       }
 
       if (var4 != null) {
-         var14.add(new Inventory(AboutDialog(this, var6), var4, var9, 8, 6, false, true));
+         var14.add(new Inventory(buildFieldAccessor(this, var6), var4, var9, 8, 6, false, true));
       }
 
       this.CoordinateTransform = Collections.unmodifiableList(var14);
@@ -85,7 +85,7 @@ public class Freighter {
    }
 
    public void setName(String var1) {
-      this.oI.AboutDialogCloseListener("PlayerFreighterName", (Object)var1);
+      this.oI.setValueByPath("PlayerFreighterName", (Object)var1);
    }
 
    public String cT() {
@@ -93,7 +93,7 @@ public class Freighter {
    }
 
    public void ag(String var1) {
-      this.oI.AboutDialogCloseListener("CurrentFreighter.Filename", (Object)var1);
+      this.oI.setValueByPath("CurrentFreighter.Filename", (Object)var1);
    }
 
    public String cU() {
@@ -110,7 +110,7 @@ public class Freighter {
       JsonArray var2 = this.oI.d("CurrentFreighterHomeSystemSeed");
       if (var2 == null) {
          var2 = new JsonArray(new Object[]{Boolean.FALSE, "0x0"});
-         this.oI.AboutDialogCloseListener("CurrentFreighterHomeSystemSeed", (Object)var2);
+         this.oI.setValueByPath("CurrentFreighterHomeSystemSeed", (Object)var2);
       }
 
       var2.AboutDialog(0, Boolean.TRUE);
@@ -130,15 +130,15 @@ public class Freighter {
    }
 
    public void aj(String var1) {
-      this.oI.AboutDialogCloseListener("FreighterInventory.Class.InventoryClass", (Object)var1);
+      this.oI.setValueByPath("FreighterInventory.Class.InventoryClass", (Object)var1);
       JsonObject var2 = this.oI.H("FreighterInventory_TechOnly.Class");
       if (var2 != null) {
-         var2.AboutDialogCloseListener("InventoryClass", (Object)var1);
+         var2.setValueByPath("InventoryClass", (Object)var1);
       }
 
       var2 = this.oI.H("FreighterInventory_Cargo.Class");
       if (var2 != null) {
-         var2.AboutDialogCloseListener("InventoryClass", (Object)var1);
+         var2.setValueByPath("InventoryClass", (Object)var1);
       }
 
    }
@@ -161,7 +161,7 @@ public class Freighter {
       return this.ak("^FREI_HYPERDRIVE");
    }
 
-   public void AboutDialog(double var1) {
+   public void setHyperdriveLevel(double var1) {
       this.d("^FREI_HYPERDRIVE", var1);
    }
 
@@ -169,7 +169,7 @@ public class Freighter {
       return this.ak("^FREI_FLEET");
    }
 
-   public void AboutDialogCloseListener(double var1) {
+   public void setFuelLevel(double var1) {
       this.d("^FREI_FLEET", var1);
    }
 

@@ -145,14 +145,14 @@ public class SaveFileMetadata {
       return new SaveFileMetadata(6, var0, 2004, new byte[376]);
    }
 
-   public static SaveFileMetadata AboutDialog(int var0, byte[] var1) {
-      return AboutDialog(var0, var1, 0, var1.length);
+   public static SaveFileMetadata parse(int var0, byte[] var1) {
+      return parse(var0, var1, 0, var1.length);
    }
 
-   public static SaveFileMetadata AboutDialog(int var0, byte[] var1, int var2, int var3) {
+   public static SaveFileMetadata parse(int var0, byte[] var1, int var2, int var3) {
       if (var3 >= 8 && var3 % 4 == 0) {
          int var4 = var3 == 104 ? 8 : 6;
-         long[] var5 = AboutDialog(var1, var2, var3);
+         long[] var5 = parseLongs(var1, var2, var3);
          long var6 = 0L;
 
          int var8;
@@ -196,7 +196,7 @@ public class SaveFileMetadata {
             if (!ai(var13)) {
                throw new IOException("Invalid or unsupported format in metadata header: " + Integer.toHexString(var13));
             } else {
-               byte[] var21 = AboutDialog((long[])var5, 2, var5.length - 2);
+               byte[] var21 = toLongBytes((long[])var5, 2, var5.length - 2);
                return new SaveFileMetadata(var4, var0, var13, var21);
             }
          }
@@ -241,7 +241,7 @@ public class SaveFileMetadata {
          var10 = var6[var7];
       }
 
-      return AboutDialog((long[])var6, 0, var6.length);
+      return toLongBytes((long[])var6, 0, var6.length);
    }
 
    private int getInt(int var1) {
@@ -380,7 +380,7 @@ public class SaveFileMetadata {
       return (var0 & var3) << var2 | var0 >>> 32 - var2;
    }
 
-   private static byte[] AboutDialog(long[] var0, int var1, int var2) {
+   private static byte[] toLongBytes(long[] var0, int var1, int var2) {
       byte[] var3 = new byte[var2 * 4];
 
       for(int var4 = 0; var4 < var2; ++var4) {
@@ -394,10 +394,10 @@ public class SaveFileMetadata {
    }
 
    private static long[] g(byte[] var0) {
-      return AboutDialog((byte[])var0, 0, var0.length);
+      return parseLongs((byte[])var0, 0, var0.length);
    }
 
-   private static long[] AboutDialog(byte[] var0, int var1, int var2) {
+   private static long[] parseLongs(byte[] var0, int var1, int var2) {
       long[] var3 = new long[var2 / 4];
 
       for(int var4 = 0; var4 < var2; var4 += 4) {

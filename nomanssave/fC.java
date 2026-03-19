@@ -116,17 +116,17 @@ class fC implements SaveFile {
          throw var2;
       }
 
-      return PS4SaveLocation.AboutDialogCloseListener(var1.toByteArray(), eG.jV);
+      return PS4SaveLocation.access$readMetadata(var1.toByteArray(), eG.jV);
    }
 
-   public String AboutDialogCloseListener(JsonObject var1) {
+   public String writeToFile(JsonObject var1) {
       Logger.info("Writing new save file...");
       String var2;
-      if (PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.mb] != null) {
-         var2 = PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.mb].AboutDialogCloseListener(var1);
+      if (PS4SaveLocation.access$getSaveFiles(this.ma)[this.mb] != null) {
+         var2 = PS4SaveLocation.access$getSaveFiles(this.ma)[this.mb.writeToFile(var1);
       } else {
-         PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.mb] = new fD(this.ma, this.mb, this.lK, var1);
-         var2 = PS4SaveLocation.AboutDialogCloseListener(this.ma)[this.mb].K();
+         PS4SaveLocation.access$getSaveFiles(this.ma)[this.mb] = new fD(this.ma, this.mb, this.lK, var1);
+         var2 = PS4SaveLocation.access$getSaveFiles(this.ma)[this.mb].K();
       }
 
       Logger.info("Finished.");

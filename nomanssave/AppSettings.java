@@ -57,25 +57,25 @@ public class AppSettings {
       return cK.J(var0);
    }
 
-   public static int AboutDialog(String var0, int var1) {
+   public static int getInt(String var0, int var1) {
       return cK.AccountPanel(var0, var1);
    }
 
-   public static void AboutDialogCloseListener(String var0, int var1) {
+   public static void setInt(String var0, int var1) {
       cK.AccountPanel(var0, var1);
       cL = true;
    }
 
-   public static double AboutDialog(String var0, double var1) {
+   public static double getDouble(String var0, double var1) {
       return cK.AccountPanel(var0, var1);
    }
 
-   public static void AboutDialogCloseListener(String var0, double var1) {
+   public static void setDouble(String var0, double var1) {
       cK.AccountPanel(var0, var1);
       cL = true;
    }
 
-   public static Object[] AboutDialog(String var0, Class var1) {
+   public static Object[] getArray(String var0, Class var1) {
       JsonArray var2 = cK.d(var0);
       if (var2 == null) {
          return (Object[])Array.newInstance(var1, 0);
@@ -90,7 +90,7 @@ public class AppSettings {
       }
    }
 
-   public static void AboutDialog(String var0, Object[] var1) {
+   public static void setArray(String var0, Object[] var1) {
       JsonArray var2 = new JsonArray();
 
       for(int var3 = 0; var3 < var1.length; ++var3) {
@@ -208,9 +208,9 @@ public class AppSettings {
                      String var9 = var3.getProperty(var7);
                      if (!var7.equals("InventoryFontScale")) {
                         if (var7.equals("InventoryScaling")) {
-                           cK.AboutDialogCloseListener("InventoryScaling", (Object)Double.parseDouble(var9));
+                           cK.setValueByPath("InventoryScaling", (Object)Double.parseDouble(var9));
                         } else if (var7.equals("FontScaling")) {
-                           cK.AboutDialogCloseListener("FontScaling", (Object)Double.parseDouble(var9));
+                           cK.setValueByPath("FontScaling", (Object)Double.parseDouble(var9));
                         } else {
                            int var5;
                            int var10;
@@ -248,7 +248,7 @@ public class AppSettings {
                }
 
                if (var6.size() > 0) {
-                  cK.AboutDialogCloseListener("SteamIDs", (Object)var6);
+                  cK.setValueByPath("SteamIDs", (Object)var6);
                }
 
                cL = true;
@@ -315,7 +315,7 @@ public class AppSettings {
          double var4 = cK.L("InventoryScaling");
          if (var4 <= 0.0D) {
             var4 = 1.0D;
-            cK.AboutDialogCloseListener("InventoryScaling", (Object)var4);
+            cK.setValueByPath("InventoryScaling", (Object)var4);
             cL = true;
          }
 

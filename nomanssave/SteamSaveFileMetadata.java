@@ -48,7 +48,7 @@ class SteamSaveFileMetadata {
 
          int var8 = this.mx.cj();
          if (var8 != 0) {
-            Logger.info("  TotalPlayTime: " + SaveLocation.AccountPanel((long)var8));
+            Logger.info("  TotalPlayTime: " + SaveLocation.formatPlayTime((long)var8));
          }
       } else {
          Logger.info("Creating new metadata for " + var2);
@@ -65,7 +65,7 @@ class SteamSaveFileMetadata {
       return (new File(SteamSaveLocation.AboutDialog(this.mt), "mf_" + this.filename)).lastModified();
    }
 
-   JsonObject AboutDialog(eG param1) {
+   JsonObject readSaveFile(eG param1) {
       // $FF: Couldn't be decompiled
    }
 
@@ -99,7 +99,7 @@ class SteamSaveFileMetadata {
       }
    }
 
-   void AboutDialog(String var1, GameMode var2, String var3, String var4) {
+   void writeSaveFile(String var1, GameMode var2, String var3, String var4) {
       File var5 = new File(SteamSaveLocation.AboutDialog(this.mt), "mf_" + this.filename);
       File var6 = new File(SteamSaveLocation.AboutDialog(this.mt), this.filename);
       Properties var7 = new Properties();
@@ -160,7 +160,7 @@ class SteamSaveFileMetadata {
       var9.setLastModified(var5.lastModified());
    }
 
-   void AboutDialog(JsonObject var1, boolean var2) {
+   void updateSaveData(JsonObject var1, boolean var2) {
       ByteArrayOutputStream var3 = new ByteArrayOutputStream();
       Throwable var4 = null;
       Object var5 = null;

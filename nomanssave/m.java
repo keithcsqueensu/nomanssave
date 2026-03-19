@@ -12,7 +12,7 @@ class m implements ActionListener {
    }
 
    public void actionPerformed(ActionEvent var1) {
-      h.AboutDialog(this.ShowErrorRunnable, (ItemDefinition)h.j(this.ShowErrorRunnable).getSelectedItem());
+      h.access$setSelectedItem(this.ShowErrorRunnable, (ItemDefinition)h.j(this.ShowErrorRunnable).getSelectedItem());
       this.ShowErrorRunnable.setVisible(false);
    }
 }

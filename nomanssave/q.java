@@ -39,19 +39,19 @@ class q implements TableModel {
    }
 
    public int getRowCount() {
-      return p.AboutDialog(this.BasesStoragePanel) == null ? 0 : p.AboutDialog(this.BasesStoragePanel).size();
+      return p.access$getList(this.BasesStoragePanel) == null ? 0 : p.access$getList(this.BasesStoragePanel).size();
    }
 
    public Object getValueAt(int var1, int var2) {
       switch(var2) {
       case 0:
-         return ((ItemDefinition)p.AboutDialog(this.BasesStoragePanel).get(var1)).N(3);
+         return ((ItemDefinition)p.access$getList(this.BasesStoragePanel).get(var1)).N(3);
       case 1:
-         return ((ItemDefinition)p.AboutDialog(this.BasesStoragePanel).get(var1)).getName();
+         return ((ItemDefinition)p.access$getList(this.BasesStoragePanel).get(var1)).getName();
       case 2:
-         return ((ItemDefinition)p.AboutDialog(this.BasesStoragePanel).get(var1)).bc().toString();
+         return ((ItemDefinition)p.access$getList(this.BasesStoragePanel).get(var1)).bc().toString();
       case 3:
-         return ((ItemDefinition)p.AboutDialog(this.BasesStoragePanel).get(var1)).getID();
+         return ((ItemDefinition)p.access$getList(this.BasesStoragePanel).get(var1)).getID();
       default:
          return null;
       }

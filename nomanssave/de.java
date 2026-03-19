@@ -12,11 +12,11 @@ class de implements ListModel {
    }
 
    public int getSize() {
-      return dd.AboutDialog(this.gW).size();
+      return dd.access$getItems(this.gW).size();
    }
 
    public Inventory AppStartupRunnable(int var1) {
-      return (Inventory)dd.AboutDialog(this.gW).get(var1);
+      return (Inventory)dd.access$getItems(this.gW).get(var1);
    }
 
    public void addListDataListener(ListDataListener var1) {

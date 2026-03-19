@@ -10,11 +10,11 @@ class fB extends fH implements AccountData {
    }
 
    public JsonObject M() {
-      return PS4SaveLocation.AboutDialogCloseListener(this.readBytes(), eG.jW);
+      return PS4SaveLocation.access$readMetadata(this.readBytes(), eG.jW);
    }
 
    public void k(JsonObject var1) {
-      this.AboutDialog("ps4_accountdata", (GameMode)null, (String)null, (String)null);
+      this.writeMetadata("ps4_accountdata", (GameMode)null, (String)null, (String)null);
       this.writeBytes(PS4SaveLocation.l(var1));
    }
 }

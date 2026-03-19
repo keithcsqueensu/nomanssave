@@ -74,7 +74,7 @@ public class JsonWriter implements Closeable {
       return var1.toByteArray();
    }
 
-   public static byte[] AboutDialogCloseListener(JsonArray var0) {
+   public static byte[] toBytes(JsonArray var0) {
       ByteArrayOutputStream var1 = new ByteArrayOutputStream();
       Throwable var2 = null;
       Object var3 = null;
@@ -83,7 +83,7 @@ public class JsonWriter implements Closeable {
          JsonWriter var4 = new JsonWriter(var1, 0);
 
          try {
-            var4.AccountPanel(var0);
+            var4.writeJsonArray(var0);
          } finally {
             if (var4 != null) {
                var4.close();
@@ -122,9 +122,9 @@ public class JsonWriter implements Closeable {
       } else if (var1 instanceof String) {
          this.writeString((String)var1);
       } else if (var1 instanceof fg) {
-         this.AccountPanel((fg)var1);
+         this.writeToken((fg)var1);
       } else if (var1 instanceof fk) {
-         this.AboutDialog((JsonObject)var1, ((fk)var1).li);
+         this.writeJsonObject((JsonObject)var1, ((fk)var1).li);
       } else if (var1 instanceof JsonObject) {
          this.AboutDialog((JsonObject)((JsonObject)var1), (eC)null);
       } else if (var1 instanceof JsonArray) {
@@ -134,12 +134,12 @@ public class JsonWriter implements Closeable {
             throw new IOException("Cannot write value");
          }
 
-         this.AboutDialog((Number)var1);
+         this.writeNumber((Number)var1);
       }
 
    }
 
-   private void AboutDialog(Object var1, eC var2) {
+   private void writeValue(Object var1, eC var2) {
       if (var1 == null) {
          this.lh.write(le);
       } else if (var1.equals(Boolean.TRUE)) {
@@ -149,17 +149,17 @@ public class JsonWriter implements Closeable {
       } else if (var1 instanceof String) {
          this.writeString((String)var1);
       } else if (var1 instanceof fg) {
-         this.AccountPanel((fg)var1);
+         this.writeToken((fg)var1);
       } else if (var1 instanceof JsonObject) {
-         this.AboutDialog((JsonObject)var1, var2);
+         this.writeJsonObject((JsonObject)var1, var2);
       } else if (var1 instanceof JsonArray) {
-         this.AboutDialog((JsonArray)var1, var2);
+         this.writeJsonArrayInternal((JsonArray)var1, var2);
       } else {
          if (!(var1 instanceof Number)) {
             throw new IOException("Cannot write value");
          }
 
-         this.AboutDialog((Number)var1);
+         this.writeNumber((Number)var1);
       }
 
    }
@@ -168,7 +168,7 @@ public class JsonWriter implements Closeable {
       this.lh.write(JsonParser.O(var1).getBytes(StandardCharsets.UTF_8));
    }
 
-   private void AccountPanel(fg var1) {
+   private void writeToken(fg var1) {
       this.lh.write(34);
       byte[] var5;
       int var4 = (var5 = var1.toByteArray()).length;
@@ -205,10 +205,10 @@ public class JsonWriter implements Closeable {
    }
 
    public void h(JsonObject var1) {
-      this.AboutDialog(var1, var1 instanceof fk ? ((fk)var1).li : null);
+      this.writeJsonObject(var1, var1 instanceof fk ? ((fk)var1).li : null);
    }
 
-   private void AboutDialog(JsonObject var1, eC var2) {
+   private void writeJsonObject(JsonObject var1, eC var2) {
       this.lh.write(123);
       if (var1.length > 0) {
          for(int var3 = 0; var3 < var1.length; ++var3) {
@@ -218,18 +218,18 @@ public class JsonWriter implements Closeable {
 
             this.writeString(var2 == null ? var1.names[var3] : var2.r(var1.names[var3]));
             this.lh.write(58);
-            this.AboutDialog(var1.values[var3], var2);
+            this.writeValue(var1.values[var3], var2);
          }
       }
 
       this.lh.write(125);
    }
 
-   public void AccountPanel(JsonArray var1) {
-      this.AboutDialog((JsonArray)var1, (eC)null);
+   public void writeJsonArray(JsonArray var1) {
+      this.writeJsonArrayInternal((JsonArray)var1, (eC)null);
    }
 
-   private void AboutDialog(JsonArray var1, eC var2) {
+   private void writeJsonArrayInternal(JsonArray var1, eC var2) {
       this.lh.write(91);
       if (var1.length > 0) {
          for(int var3 = 0; var3 < var1.length; ++var3) {
@@ -237,14 +237,14 @@ public class JsonWriter implements Closeable {
                this.lh.write(44);
             }
 
-            this.AboutDialog(var1.values[var3], var2);
+            this.writeValue(var1.values[var3], var2);
          }
       }
 
       this.lh.write(93);
    }
 
-   private void AboutDialog(Number var1) {
+   private void writeNumber(Number var1) {
       if (var1 instanceof BigDecimal) {
          this.lh.write(((BigDecimal)var1).toString().replace('E', 'e').getBytes(StandardCharsets.UTF_8));
       } else {

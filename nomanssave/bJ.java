@@ -45,7 +45,7 @@ class bJ extends ValidatedTextField {
                int var3;
                switch(this.type) {
                case 0:
-                  var3 = hf.AboutDialogCloseListener(var1, 0, Integer.MAX_VALUE);
+                  var3 = hf.parseIntClamped(var1, 0, Integer.MAX_VALUE);
                   MilestonesPanel.AboutDialog(this.ItemDefinition).AboutDialog(this.ez, var3);
                   var1 = Integer.toString(var3);
                   break;

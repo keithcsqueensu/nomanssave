@@ -22,11 +22,11 @@ class fW {
 
    fW(XboxSaveLocation var1, InputStream var2) {
       this.mN = var1;
-      this.name = gc.AccountPanel(var2);
+      this.name = gc.readUtf16String(var2);
       Logger.info("  " + this.name);
-      this.filename = gc.AccountPanel(var2);
+      this.filename = gc.readUtf16String(var2);
       Logger.debug("    filename: " + this.filename);
-      this.id = gc.AccountPanel(var2);
+      this.id = gc.readUtf16String(var2);
       Logger.debug("    id: " + this.id);
       this.mT = var2.read();
       if (this.mT < 0) {
@@ -38,9 +38,9 @@ class fW {
             Logger.debug("    unknown1: " + Integer.toHexString(this.lL));
          }
 
-         this.mU = gc.AboutDialog(var2);
+         this.mU = gc.readGuid(var2);
          Logger.debug("    containerPath: " + this.mU);
-         this.timestamp = gc.AboutDialogCloseListener(var2);
+         this.timestamp = gc.readFileTime(var2);
          Logger.debug("    timestamp: " + new Date(this.timestamp));
          this.mV = hk.f(var2);
          if (this.mV != 0L) {
@@ -70,15 +70,15 @@ class fW {
    }
 
    void write(OutputStream var1) {
-      gc.AboutDialogCloseListener(var1, this.name);
-      gc.AboutDialogCloseListener(var1, this.filename);
-      gc.AboutDialogCloseListener(var1, this.id);
+      gc.writeUtf16String(var1, this.name);
+      gc.writeUtf16String(var1, this.filename);
+      gc.writeUtf16String(var1, this.id);
       var1.write(this.mT);
-      hk.AboutDialog(var1, this.lL);
-      gc.AboutDialog(var1, this.mU);
-      gc.AboutDialog(var1, this.timestamp);
-      hk.AboutDialogCloseListener(var1, this.mV);
-      hk.AboutDialogCloseListener(var1, this.mW);
+      hk.writeInt(var1, this.lL);
+      gc.writeFileTime(var1, this.mU);
+      gc.writeFileTime(var1, this.timestamp);
+      hk.writeLong(var1, this.mV);
+      hk.writeLong(var1, this.mW);
    }
 
    String cz() {

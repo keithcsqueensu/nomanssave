@@ -15,9 +15,9 @@ class aX implements ActionListener {
    }
 
    public void actionPerformed(ActionEvent var1) {
-      String var2 = aW.AboutDialog(this.dy).getText();
+      String var2 = aW.access$getSearchField(this.dy).getText();
       if (var2.length() > 0) {
-         this.dz.AboutDialog(var2, aW.AboutDialogCloseListener(this.dy).isSelected(), aW.AccountPanel(this.dy).isSelected(), aW.d(this.dy).isSelected());
+         this.dz.configure(var2, aW.access$getDirectionButton(this.dy).isSelected(), aW.access$getCaseSensitiveCheckbox(this.dy).isSelected(), aW.d(this.dy).isSelected());
       }
 
    }

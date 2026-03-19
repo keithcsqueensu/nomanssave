@@ -55,7 +55,7 @@ class UpdateCheckThread extends Thread {
    }
 
    // $FF: synthetic method
-   static Application AboutDialog(UpdateCheckThread var0) {
+   static Application access$getApplication(UpdateCheckThread var0) {
       return var0.aZ;
    }
 }

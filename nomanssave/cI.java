@@ -48,7 +48,7 @@ class cI implements TreeModel {
       this.gh.remove(var1);
    }
 
-   public void AboutDialog(cJ var1) {
+   public void notifyTreeChanged(cJ var1) {
       ArrayList var2 = new ArrayList();
       var2.add(var1);
 

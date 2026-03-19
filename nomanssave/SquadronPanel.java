@@ -24,7 +24,7 @@ public class SquadronPanel extends SplitFormPanel {
       this.ib = new ec[0];
    }
 
-   void AboutDialog(SquadronPilot[] var1) {
+   void updateSquadron(SquadronPilot[] var1) {
       this.ic = var1;
 
       for(int var2 = var1.length; var2 < this.ib.length; ++var2) {
@@ -65,7 +65,7 @@ public class SquadronPanel extends SplitFormPanel {
    }
 
    // $FF: synthetic method
-   static SquadronPilot[] AboutDialog(SquadronPanel var0) {
+   static SquadronPilot[] access$getPilots(SquadronPanel var0) {
       return var0.ic;
    }
 

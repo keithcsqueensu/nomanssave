@@ -77,7 +77,7 @@ public class AlienWord {
       return (Race)this.kp.get(var1);
    }
 
-   public boolean AboutDialog(Race var1) {
+   public boolean isSpokenBy(Race var1) {
       return this.kp.containsValue(var1);
    }
 

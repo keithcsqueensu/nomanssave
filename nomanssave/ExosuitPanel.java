@@ -21,19 +21,19 @@ public class ExosuitPanel extends SplitFormPanel {
    ExosuitPanel(Application var1) {
       this.k("Main Stats");
       this.de = new aK(this);
-      this.AboutDialog("Health", this.de);
+      this.addRow("Health", this.de);
       this.df = new aL(this);
-      this.AboutDialog("Shield", this.df);
+      this.addRow("Shield", this.df);
       this.dg = new aM(this);
-      this.AboutDialog("Energy", this.dg);
+      this.addRow("Energy", this.dg);
       this.db = new aN(this, var1);
-      this.AboutDialog("Units", this.db);
+      this.addRow("Units", this.db);
       this.dc = new aO(this);
-      this.AboutDialog("Nanites", this.dc);
+      this.addRow("Nanites", this.dc);
       this.dd = new aP(this);
-      this.AboutDialog("Quicksilver", this.dd);
+      this.addRow("Quicksilver", this.dd);
       this.dh = new InventoryPanel(var1);
-      this.AboutDialogCloseListener(this.dh);
+      this.setRightComponent(this.dh);
    }
 
    void AppStartupRunnable() {
@@ -52,15 +52,15 @@ public class ExosuitPanel extends SplitFormPanel {
       this.dh.ShowWarningRunnable();
    }
 
-   void AboutDialog(Inventory var1) {
-      this.dh.AboutDialog(var1);
+   void updateInventory(Inventory var1) {
+      this.dh.updateInventory(var1);
    }
 
    Exosuit CompanionsPanel() {
       return this.di;
    }
 
-   void AboutDialog(Exosuit var1) {
+   void updateExosuit(Exosuit var1) {
       if (var1 == null) {
          this.di = null;
          this.db.setText("");
@@ -69,7 +69,7 @@ public class ExosuitPanel extends SplitFormPanel {
          this.de.setText("");
          this.df.setText("");
          this.dg.setText("");
-         this.dh.AboutDialog(Collections.emptyList());
+         this.dh.updateInventory(Collections.emptyList());
       } else {
          this.di = var1;
          this.db.setText(Long.toString(var1.dJ()));
@@ -78,13 +78,13 @@ public class ExosuitPanel extends SplitFormPanel {
          this.de.setText(Integer.toString(var1.dM()));
          this.df.setText(Integer.toString(var1.ShipsPanel()));
          this.dg.setText(Integer.toString(var1.dO()));
-         this.dh.AboutDialog(var1.cC());
+         this.dh.updateInventory(var1.cC());
       }
 
    }
 
    // $FF: synthetic method
-   static Exosuit AboutDialog(ExosuitPanel var0) {
+   static Exosuit access$getExosuit(ExosuitPanel var0) {
       return var0.di;
    }
 }

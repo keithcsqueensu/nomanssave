@@ -16,7 +16,7 @@ class dP extends ValidatedTextField {
          double var3 = var2.ec();
 
          try {
-            double var5 = hf.AboutDialog(var1, 0.0D, 1000.0D);
+            double var5 = hf.parseDoubleClamped(var1, 0.0D, 1000.0D);
             if (var5 != var3) {
                var2.i(var5);
             }

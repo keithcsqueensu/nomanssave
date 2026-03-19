@@ -13,7 +13,7 @@ class ch extends ValidatedTextField {
          return "";
       } else {
          try {
-            int var2 = hf.AboutDialogCloseListener(var1, 0, 99999);
+            int var2 = hf.parseIntClamped(var1, 0, 99999);
             if (ItemDetailsDialog.AboutDialog(this.fF) != var2) {
                ItemDetailsDialog.AboutDialogCloseListener(this.fF).m(ItemDetailsDialog.AccountPanel(this.fF).M(var2));
                ItemDetailsDialog.AboutDialog(this.fF, new Integer(var2));

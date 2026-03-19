@@ -20,7 +20,7 @@ class bt implements ListSelectionListener {
    }
 
    // $FF: synthetic method
-   static FrigatesPanel AboutDialog(bt var0) {
+   static FrigatesPanel access$getFrigatesPanel(bt var0) {
       return var0.er;
    }
 }

@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public interface SaveLocation {
    int lz = 15;
 
-   static String AccountPanel(long var0) {
+   static String formatPlayTime(long var0) {
       int var2 = (int)(var0 % 60L);
       var0 /= 60L;
       int var3 = (int)(var0 % 60L);
@@ -125,7 +125,7 @@ public interface SaveLocation {
       return false;
    }
 
-   default String AboutDialog(int var1, JsonObject var2) {
+   default String createSaveSlot(int var1, JsonObject var2) {
       throw new IOException("cannot create slot " + (var1 + 1));
    }
 

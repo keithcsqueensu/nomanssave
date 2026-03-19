@@ -28,7 +28,7 @@ public class JsonParser {
    };
    static final String gc = "0123456789ABCDEFabcdef";
 
-   static boolean AboutDialog(Class var0) {
+   static boolean isSimpleValue(Class var0) {
       if (var0 == null) {
          return true;
       } else if (Boolean.class.isAssignableFrom(var0)) {
@@ -48,11 +48,11 @@ public class JsonParser {
       }
    }
 
-   public static String AboutDialogCloseListener(Object var0, boolean var1) {
-      return AboutDialog(var0, var1 ? 7 : 0, (Predicate)null);
+   public static String toJson(Object var0, boolean var1) {
+      return formatValue(var0, var1 ? 7 : 0, (Predicate)null);
    }
 
-   public static String AboutDialog(Object var0, int var1, Predicate var2) {
+   public static String formatValue(Object var0, int var1, Predicate var2) {
       String var3 = null;
       if ((var1 & 3) != 0) {
          switch(var1 & 3) {
@@ -68,14 +68,14 @@ public class JsonParser {
       }
 
       boolean var4 = (var1 & 4) != 0;
-      return AboutDialog(var0, var3, var4, var2);
+      return formatPathFiltered(var0, var3, var4, var2);
    }
 
-   static String AboutDialog(Object var0, String var1, boolean var2) {
-      return AboutDialog((Object)var0, var1, var2, (Predicate)null);
+   static String formatPath(Object var0, String var1, boolean var2) {
+      return formatPathFiltered((Object)var0, var1, var2, (Predicate)null);
    }
 
-   private static String AboutDialog(Object var0, String var1, boolean var2, Predicate var3) {
+   private static String formatPathFiltered(Object var0, String var1, boolean var2, Predicate var3) {
       if (var0 == null) {
          return "null";
       } else if (var0 instanceof Boolean) {
@@ -85,23 +85,23 @@ public class JsonParser {
       } else if (var0 instanceof Number) {
          return var0.toString();
       } else if (var0 instanceof String) {
-         return AboutDialogCloseListener((String)var0, var3);
+         return formatString((String)var0, var3);
       } else if (var0 instanceof JsonObject) {
-         return AboutDialog((JsonObject)var0, var1, var2, var3);
+         return toJsonObjectFiltered((JsonObject)var0, var1, var2, var3);
       } else if (var0 instanceof JsonArray) {
-         return AboutDialog((JsonArray)var0, var1, var2, var3);
+         return toJsonArrayFiltered((JsonArray)var0, var1, var2, var3);
       } else if (var0 instanceof fg) {
-         return AboutDialogCloseListener((fg)var0);
+         return formatJsonValue((fg)var0);
       } else {
          throw new RuntimeException("unsupported data type");
       }
    }
 
-   static String AboutDialog(JsonArray var0, String var1, boolean var2) {
-      return AboutDialog((JsonArray)var0, var1, var2, (Predicate)null);
+   static String toJsonArray(JsonArray var0, String var1, boolean var2) {
+      return toJsonArrayFiltered((JsonArray)var0, var1, var2, (Predicate)null);
    }
 
-   private static String AboutDialog(JsonArray var0, String var1, boolean var2, Predicate var3) {
+   private static String toJsonArrayFiltered(JsonArray var0, String var1, boolean var2, Predicate var3) {
       StringBuilder var4 = new StringBuilder();
       var4.append('[');
 
@@ -125,11 +125,11 @@ public class JsonParser {
       return var4.toString();
    }
 
-   static String AboutDialog(JsonObject var0, String var1, boolean var2) {
-      return AboutDialog((JsonObject)var0, var1, var2, (Predicate)null);
+   static String toJsonObject(JsonObject var0, String var1, boolean var2) {
+      return toJsonObjectFiltered((JsonObject)var0, var1, var2, (Predicate)null);
    }
 
-   private static String AboutDialog(JsonObject var0, String var1, boolean var2, Predicate var3) {
+   private static String toJsonObjectFiltered(JsonObject var0, String var1, boolean var2, Predicate var3) {
       StringBuilder var4 = new StringBuilder();
       var4.append('{');
 
@@ -142,7 +142,7 @@ public class JsonParser {
             var4.append(var1 + "\t");
          }
 
-         var4.append(AboutDialogCloseListener(var0.names[var5], var3));
+         var4.append(formatString(var0.names[var5], var3));
          var4.append(':');
          if (var2) {
             var4.append(' ');
@@ -159,7 +159,7 @@ public class JsonParser {
       return var4.toString();
    }
 
-   private static String AboutDialog(fg var0) {
+   private static String formatJsonKey(fg var0) {
       StringBuilder var1 = new StringBuilder();
       byte[] var5;
       int var4 = (var5 = var0.toByteArray()).length;
@@ -197,15 +197,15 @@ public class JsonParser {
       return var1.toString();
    }
 
-   private static String AboutDialogCloseListener(fg var0) {
+   private static String formatJsonValue(fg var0) {
       StringBuilder var1 = new StringBuilder();
       var1.append('"');
-      var1.append(AboutDialog(var0));
+      var1.append(formatJsonKey(var0));
       var1.append('"');
       return var1.toString();
    }
 
-   private static String AboutDialog(String var0, Predicate var1) {
+   private static String escapeString(String var0, Predicate var1) {
       StringBuilder var2 = new StringBuilder();
       char[] var6;
       int var5 = (var6 = var0.toCharArray()).length;
@@ -241,20 +241,20 @@ public class JsonParser {
    }
 
    static String O(String var0) {
-      return AboutDialogCloseListener(var0, (Predicate)null);
+      return formatString(var0, (Predicate)null);
    }
 
-   private static String AboutDialogCloseListener(String var0, Predicate var1) {
+   private static String formatString(String var0, Predicate var1) {
       StringBuilder var2 = new StringBuilder();
       var2.append('"');
-      var2.append(AboutDialog(var0, var1));
+      var2.append(escapeString(var0, var1));
       var2.append('"');
       return var2.toString();
    }
 
    public static Object P(String var0) {
       fi var1 = new fi(var0);
-      Object var2 = AboutDialog(var1, var1.bI());
+      Object var2 = readValue(var1, var1.bI());
       if (var1.bI() >= 0) {
          throw new JsonParseException("Invalid trailing data", var1.kF, var1.kG);
       } else {
@@ -262,13 +262,13 @@ public class JsonParser {
       }
    }
 
-   private static Object AboutDialog(fi var0, int var1) {
+   private static Object readValue(fi var0, int var1) {
       if (var1 < 0) {
          throw new JsonParseException("Short read", var0.kF, var0.kG);
       } else if (var1 == 123) {
-         return AboutDialog(var0);
+         return readJsonObject(var0);
       } else if (var1 == 91) {
-         return AboutDialogCloseListener(var0);
+         return readJsonArray(var0);
       } else if (var1 == 34) {
          return d(var0);
       } else if (var1 == 102) {
@@ -325,7 +325,7 @@ public class JsonParser {
       } else if (var1 != 45 && (var1 < 48 || var1 > 57)) {
          throw new JsonParseException("Invalid token", var0.kF, var0.kG);
       } else {
-         return AboutDialogCloseListener(var0, var1);
+         return readNumber(var0, var1);
       }
    }
 
@@ -345,7 +345,7 @@ public class JsonParser {
                   throw new JsonParseException("Invalid object string", var3.kF, var3.kG);
                }
 
-               JsonObject var4 = AboutDialog(var3);
+               JsonObject var4 = readJsonObject(var3);
                if (var3.bI() >= 0) {
                   throw new JsonParseException("Invalid trailing data", var3.kF, var3.kG);
                }
@@ -388,18 +388,18 @@ public class JsonParser {
       }
    }
 
-   private static JsonObject AboutDialog(fi var0) {
+   private static JsonObject readJsonObject(fi var0) {
       JsonObject var1 = new JsonObject();
       int var2 = var0.bI();
       if (var2 == 34) {
          while(true) {
-            String var3 = AccountPanel(var0);
+            String var3 = readKey(var0);
             if (var0.bI() != 58) {
                throw new JsonParseException("Invalid token", var0.kF, var0.kG);
             }
 
-            Object var4 = AboutDialog(var0, var0.bI());
-            var1.AboutDialog(var3, var4);
+            Object var4 = readValue(var0, var0.bI());
+            var1.putWithParent(var3, var4);
             var2 = var0.bI();
             if (var2 == 125) {
                break;
@@ -437,7 +437,7 @@ public class JsonParser {
                   throw new JsonParseException("Invalid array string", var3.kF, var3.kG);
                }
 
-               JsonArray var4 = AboutDialogCloseListener(var3);
+               JsonArray var4 = readJsonArray(var3);
                if (var3.bI() >= 0) {
                   throw new JsonParseException("Invalid trailing data", var3.kF, var3.kG);
                }
@@ -480,12 +480,12 @@ public class JsonParser {
       }
    }
 
-   private static JsonArray AboutDialogCloseListener(fi var0) {
+   private static JsonArray readJsonArray(fi var0) {
       JsonArray var1 = new JsonArray();
       int var2;
       if ((var2 = var0.bI()) != 93) {
          while(true) {
-            Object var3 = AboutDialog(var0, var2);
+            Object var3 = readValue(var0, var2);
             var1.e(var3);
             var2 = var0.bI();
             if (var2 == 93) {
@@ -520,7 +520,7 @@ public class JsonParser {
       }
    }
 
-   private static String AccountPanel(fi var0) {
+   private static String readKey(fi var0) {
       Object var1 = d(var0);
       if (var1 instanceof String) {
          return (String)var1;
@@ -657,10 +657,10 @@ public class JsonParser {
       }
    }
 
-   private static Number AboutDialogCloseListener(fi var0, int var1) {
+   private static Number readNumber(fi var0, int var1) {
       boolean var3 = false;
       if (var1 == 45) {
-         var1 = fi.AboutDialog(var0, kZ);
+         var1 = fi.access$readWhile(var0, kZ);
          if (var1 < 0) {
             throw new JsonParseException("Invalid token", var0.kF, var0.kG);
          }
@@ -670,15 +670,15 @@ public class JsonParser {
 
       BigDecimal var2 = new BigDecimal(var1 - 48);
       if (var1 != 48) {
-         while((var1 = fi.AboutDialog(var0, kZ)) >= 0) {
+         while((var1 = fi.access$readWhile(var0, kZ)) >= 0) {
             var2 = var2.multiply(BigDecimal.TEN).add(new BigDecimal(var1 - 48));
          }
       }
 
       boolean var4 = true;
-      if (fi.AboutDialog(var0, la) >= 0) {
+      if (fi.access$readWhile(var0, la) >= 0) {
          var4 = false;
-         var1 = fi.AboutDialog(var0, kZ);
+         var1 = fi.access$readWhile(var0, kZ);
          if (var1 < 0) {
             throw new JsonParseException("Invalid token", var0.kF, var0.kG);
          }
@@ -689,16 +689,16 @@ public class JsonParser {
             BigDecimal var10001 = new BigDecimal(var1 - 48);
             --var5;
             var2 = var2.add(var10001.scaleByPowerOfTen(var5));
-         } while((var1 = fi.AboutDialog(var0, kZ)) >= 0);
+         } while((var1 = fi.access$readWhile(var0, kZ)) >= 0);
       }
 
-      if (fi.AboutDialog(var0, lb) >= 0) {
+      if (fi.access$readWhile(var0, lb) >= 0) {
          var4 = false;
-         var1 = fi.AboutDialog(var0, lc);
+         var1 = fi.access$readWhile(var0, lc);
          boolean var9 = false;
          if (var1 == 43 || var1 == 45) {
             var9 = var1 == 45;
-            var1 = fi.AboutDialog(var0, kZ);
+            var1 = fi.access$readWhile(var0, kZ);
          }
 
          if (var1 < 0) {
@@ -710,7 +710,7 @@ public class JsonParser {
          do {
             var6 *= 10;
             var6 += var1 - 48;
-         } while((var1 = fi.AboutDialog(var0, kZ)) >= 0);
+         } while((var1 = fi.access$readWhile(var0, kZ)) >= 0);
 
          if (var9) {
             var6 = -var6;
@@ -748,7 +748,7 @@ public class JsonParser {
 
    }
 
-   static void AboutDialog(Object var0, Object var1) {
+   static void setParent(Object var0, Object var1) {
       if (var0 instanceof JsonObject) {
          ((JsonObject)var0).kD = var1;
       }

@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class gV {
-   private static double[] AboutDialog(JsonObject var0, String var1) {
+   private static double[] readCoords(JsonObject var0, String var1) {
       JsonArray var2 = var0.d(var1);
       if (var2.size() != 3) {
          throw new RuntimeException("Invalid " + var1 + " coordinates");
@@ -14,15 +14,15 @@ public class gV {
       }
    }
 
-   private static void AboutDialog(JsonObject var0, String var1, double[] var2) {
+   private static void writeCoords(JsonObject var0, String var1, double[] var2) {
       var0.AboutDialogCloseListener(var1, (Object)(new JsonArray(new Object[]{new Double(Double.isNaN(var2[0]) ? 0.0D : var2[0]), new Double(Double.isNaN(var2[1]) ? 0.0D : var2[1]), new Double(Double.isNaN(var2[2]) ? 0.0D : var2[2])})));
    }
 
    public static boolean InMemorySaveFile(JsonObject var0) {
-      return AboutDialogCloseListener(var0, "^BUILDSIGNAL");
+      return moveObject(var0, "^BUILDSIGNAL");
    }
 
-   public static boolean AboutDialogCloseListener(JsonObject var0, String var1) {
+   public static boolean moveObject(JsonObject var0, String var1) {
       JsonArray var2 = var0.d("Objects");
       JsonObject var3 = null;
       JsonObject var4 = null;
@@ -53,7 +53,7 @@ public class gV {
          Logger.warn("  no " + var1 + " object found");
          return false;
       } else {
-         AboutDialog(var0, var3, var4);
+         transferPosition(var0, var3, var4);
          return true;
       }
    }
@@ -80,7 +80,7 @@ public class gV {
       return (List)(var2 ? var1 : Collections.emptyList());
    }
 
-   public static boolean AboutDialog(JsonObject var0, JsonObject var1) {
+   public static boolean swapObject(JsonObject var0, JsonObject var1) {
       JsonArray var2 = var0.d("Objects");
       boolean var3 = false;
       JsonObject var4 = null;
@@ -106,37 +106,37 @@ public class gV {
          Logger.warn("  replacement object found");
          return false;
       } else {
-         AboutDialog(var0, var4, var1);
+         transferPosition(var0, var4, var1);
          return true;
       }
    }
 
-   private static void AboutDialog(JsonObject var0, JsonObject var1, JsonObject var2) {
-      double[] var3 = AboutDialog(var0, "Position");
-      double[] var4 = AboutDialog(var0, "Forward");
-      double[] var5 = AboutDialog(var2, "Position");
+   private static void transferPosition(JsonObject var0, JsonObject var1, JsonObject var2) {
+      double[] var3 = readCoords(var0, "Position");
+      double[] var4 = readCoords(var0, "Forward");
+      double[] var5 = readCoords(var2, "Position");
       CoordinateTransform var6 = new CoordinateTransform(var3, var4);
       double[] var7 = var6.AccountPanel(var5);
       var7[0] += var3[0];
       var7[1] += var3[1];
       var7[2] += var3[2];
-      AboutDialog(var0, "Position", var7);
-      var7 = AboutDialog(var1, "At");
-      double[] var8 = AboutDialog(var2, "At");
-      AboutDialog(var1, "At", var8);
-      AboutDialog(var2, "At", var7);
+      writeCoords(var0, "Position", var7);
+      var7 = readCoords(var1, "At");
+      double[] var8 = readCoords(var2, "At");
+      writeCoords(var1, "At", var8);
+      writeCoords(var2, "At", var7);
       var7 = new double[]{-var5[0], -var5[1], -var5[2]};
-      AboutDialog(var2, "Position", var7);
+      writeCoords(var2, "Position", var7);
       JsonArray var9 = var0.d("Objects");
 
       for(int var10 = 0; var10 < var9.size(); ++var10) {
          JsonObject var11 = var9.V(var10);
          if (var11 != var1 && var11 != var2) {
-            var7 = AboutDialog(var11, "Position");
+            var7 = readCoords(var11, "Position");
             var7[0] -= var5[0];
             var7[1] -= var5[1];
             var7[2] -= var5[2];
-            AboutDialog(var11, "Position", var7);
+            writeCoords(var11, "Position", var7);
          }
       }
 

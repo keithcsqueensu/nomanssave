@@ -32,7 +32,7 @@ class eA {
       this.description = var2;
    }
 
-   private String AboutDialog(String var1, Function var2) {
+   private String interpolate(String var1, Function var2) {
       StringBuilder var3 = new StringBuilder();
       int var4 = 0;
 
@@ -45,15 +45,15 @@ class eA {
       return var3.toString();
    }
 
-   String AboutDialog(Function var1) {
-      return this.AboutDialog(this.name, var1);
+   String getName(Function var1) {
+      return this.interpolate(this.name, var1);
    }
 
-   String AboutDialogCloseListener(Function var1) {
-      return this.AboutDialog(this.jM, var1);
+   String getSubtitle(Function var1) {
+      return this.interpolate(this.jM, var1);
    }
 
-   String AccountPanel(Function var1) {
-      return this.description == null ? null : this.AboutDialog(this.description, var1);
+   String getDescription(Function var1) {
+      return this.description == null ? null : this.interpolate(this.description, var1);
    }
 }

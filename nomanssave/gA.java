@@ -16,7 +16,7 @@ public class gA {
       return this.rd.getID();
    }
 
-   public boolean AccountPanel(Race var1) {
+   public boolean hasRecipeForRace(Race var1) {
       Iterator var3 = this.rd.bw().iterator();
 
       while(var3.hasNext()) {
@@ -29,7 +29,7 @@ public class gA {
       return false;
    }
 
-   public void AboutDialog(Race var1, boolean var2) {
+   public void setRecipeEnabled(Race var1, boolean var2) {
       Iterator var4 = this.rd.bw().iterator();
 
       while(var4.hasNext()) {

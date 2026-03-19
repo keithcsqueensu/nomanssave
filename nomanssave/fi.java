@@ -39,7 +39,7 @@ class fi extends StringReader {
       return var1;
    }
 
-   private int AboutDialog(Predicate var1) {
+   private int readWhile(Predicate var1) {
       try {
          this.mark(1);
          int var2 = super.read();
@@ -60,7 +60,7 @@ class fi extends StringReader {
    }
 
    // $FF: synthetic method
-   static int AboutDialog(fi var0, Predicate var1) {
-      return var0.AboutDialog(var1);
+   static int access$readWhile(fi var0, Predicate var1) {
+      return var0.readWhile(var1);
    }
 }

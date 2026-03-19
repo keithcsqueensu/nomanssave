@@ -1,7 +1,7 @@
 package nomanssave;
 
 public class hf {
-   public static int AboutDialogCloseListener(String var0, int var1, int var2) {
+   public static int parseIntClamped(String var0, int var1, int var2) {
       var0 = var0.trim();
       if (var0.length() == 0) {
          throw new RuntimeException("No digits found");
@@ -29,7 +29,7 @@ public class hf {
       }
    }
 
-   public static long AboutDialog(String var0, long var1, long var3) {
+   public static long parseLongClamped(String var0, long var1, long var3) {
       var0 = var0.trim();
       if (var0.length() == 0) {
          throw new RuntimeException("No digits found");
@@ -57,7 +57,7 @@ public class hf {
       }
    }
 
-   public static double AboutDialog(String var0, double var1, double var3) {
+   public static double parseDoubleClamped(String var0, double var1, double var3) {
       var0 = var0.trim();
       double var5 = Double.parseDouble(var0);
       if (var5 < var1) {

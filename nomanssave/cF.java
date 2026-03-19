@@ -15,6 +15,6 @@ class cF extends AbstractAction {
       int var2 = JsonEditorDialog.AccountPanel(this.gg).getSelectionStart();
       int var3 = JsonEditorDialog.AccountPanel(this.gg).getSelectionEnd();
       String var4 = var3 > var2 ? JsonEditorDialog.AccountPanel(this.gg).getText().substring(var2, var3) : null;
-      aW.AboutDialog(this.gg, var4);
+      aW.show(this.gg, var4);
    }
 }

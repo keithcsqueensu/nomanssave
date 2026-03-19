@@ -13,7 +13,7 @@ class aT implements ActionListener {
    }
 
    public void actionPerformed(ActionEvent var1) {
-      aQ.AboutDialog(this.dr, new Dimension(Integer.parseInt(aQ.AboutDialog(this.dr).getText()), Integer.parseInt(aQ.e(this.dr).getText())));
+      aQ.access$setDimension(this.dr, new Dimension(Integer.parseInt(aQ.access$getTextField(this.dr).getText()), Integer.parseInt(aQ.e(this.dr).getText())));
       this.dr.setVisible(false);
    }
 }

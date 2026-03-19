@@ -32,7 +32,7 @@ class f extends JTable {
       this.getColumnModel().getColumn(2).setCellRenderer(new d((d)null));
    }
 
-   void AboutDialog(JsonArray var1) {
+   void setData(JsonArray var1) {
       this.g = var1;
    }
 }

@@ -81,7 +81,7 @@ public class InventoryPanel extends JPanel implements eo {
       this.Race.setVisible(false);
       this.Race.addActionListener(new bR(this));
       var2.add(this.Race);
-      en.AboutDialog(this);
+      en.addListener(this);
       UIManager.addPropertyChangeListener((var1x) -> {
          if ("lookAndFeel".equals(var1x.getPropertyName())) {
             EventQueue.invokeLater(this::af);
@@ -90,7 +90,7 @@ public class InventoryPanel extends JPanel implements eo {
       });
    }
 
-   public void AboutDialog(boolean var1) {
+   public void setEditable(boolean var1) {
       this.Race.setVisible(this.eW == null ? false : var1 || this.eW.dk());
       boolean var2 = this.eW == null ? false : var1 || this.eW.dp();
       synchronized(this.slotsPanel.getTreeLock()) {
@@ -106,7 +106,7 @@ public class InventoryPanel extends JPanel implements eo {
       }
    }
 
-   void AboutDialog(Inventory var1) {
+   void updateInventory(Inventory var1) {
       if (this.eW == var1) {
          this.af();
       }
@@ -195,7 +195,7 @@ public class InventoryPanel extends JPanel implements eo {
       this.slotsPanel.updateUI();
    }
 
-   void AboutDialog(List var1) {
+   void updateTemplates(List var1) {
       this.slotPanelList = var1;
       this.eW = null;
       this.eT.updateUI();
@@ -211,7 +211,7 @@ public class InventoryPanel extends JPanel implements eo {
 
    }
 
-   private InventorySlotPanel AboutDialog(int var1, int var2) {
+   private InventorySlotPanel createSlotPanel(int var1, int var2) {
       synchronized(this.slotsPanel.getTreeLock()) {
          for(int var4 = 0; var4 < this.slotsPanel.getComponentCount(); ++var4) {
             Component var5 = this.slotsPanel.getComponent(var4);
@@ -227,8 +227,8 @@ public class InventoryPanel extends JPanel implements eo {
       }
    }
 
-   private void AboutDialog(InventorySlotPanel var1) {
-      ItemDefinition var2 = h.AboutDialog(this, this.eW.MultitoolPanel());
+   private void showItemDetails(InventorySlotPanel var1) {
+      ItemDefinition var2 = h.show(this, this.eW.MultitoolPanel());
       if (var2 != null) {
          this.eW.AboutDialog(InventorySlotPanel.h(var1), InventorySlotPanel.i(var1), var2);
          InventorySlotPanel.AccountPanel(var1);
@@ -236,7 +236,7 @@ public class InventoryPanel extends JPanel implements eo {
 
    }
 
-   private void AboutDialog(gu var1, InventorySlotPanel var2) {
+   private void moveItem(gu var1, InventorySlotPanel var2) {
       ItemDefinition var3 = ItemDefinition.d(var1.dz());
       int var4;
       if (var3 == null) {
@@ -256,7 +256,7 @@ public class InventoryPanel extends JPanel implements eo {
 
       List var5 = this.eR.g(var4);
       int var6 = var5.indexOf(this.eW);
-      int var7 = dd.AboutDialog(this, var5, var6);
+      int var7 = dd.show(this, var5, var6);
       if (var7 != var6) {
          Inventory var8 = (Inventory)var5.get(var7);
          if (this.eW.AboutDialog(InventorySlotPanel.h(var2), InventorySlotPanel.i(var2), var8)) {
@@ -267,38 +267,38 @@ public class InventoryPanel extends JPanel implements eo {
 
    }
 
-   private static String AboutDialog(Object var0) {
+   private static String formatItemId(Object var0) {
       return var0 instanceof fg ? "Archived Tech" : var0.toString();
    }
 
    // $FF: synthetic method
-   static Inventory AboutDialog(InventoryPanel var0) {
+   static Inventory access$getInventory(InventoryPanel var0) {
       return var0.eW;
    }
 
    // $FF: synthetic method
-   static Application AboutDialogCloseListener(InventoryPanel var0) {
+   static Application access$getApplication(InventoryPanel var0) {
       return var0.eR;
    }
 
    // $FF: synthetic method
-   static void AccountPanel(InventoryPanel var0) {
+   static void access$refresh(InventoryPanel var0) {
       var0.af();
    }
 
    // $FF: synthetic method
-   static void AboutDialog(InventoryPanel var0, InventorySlotPanel var1) {
-      var0.AboutDialog(var1);
+   static void access$showItemDetails(InventoryPanel var0, InventorySlotPanel var1) {
+      var0.showItemDetails(var1);
    }
 
    // $FF: synthetic method
-   static void AboutDialog(InventoryPanel var0, gu var1, InventorySlotPanel var2) {
-      var0.AboutDialog(var1, var2);
+   static void access$moveItem(InventoryPanel var0, gu var1, InventorySlotPanel var2) {
+      var0.moveItem(var1, var2);
    }
 
    // $FF: synthetic method
-   static InventorySlotPanel AboutDialog(InventoryPanel var0, int var1, int var2) {
-      return var0.AboutDialog(var1, var2);
+   static InventorySlotPanel access$createSlotPanel(InventoryPanel var0, int var1, int var2) {
+      return var0.createSlotPanel(var1, var2);
    }
 
    // $FF: synthetic method
@@ -317,8 +317,8 @@ public class InventoryPanel extends JPanel implements eo {
    }
 
    // $FF: synthetic method
-   static String AboutDialogCloseListener(Object var0) {
-      return AboutDialog(var0);
+   static String access$formatItemId(Object var0) {
+      return formatItemId(var0);
    }
 
    // $FF: synthetic method
@@ -352,7 +352,7 @@ public class InventoryPanel extends JPanel implements eo {
    }
 
    // $FF: synthetic method
-   static void AboutDialog(InventoryPanel var0, Inventory var1) {
+   static void access$updateInventory(InventoryPanel var0, Inventory var1) {
       var0.eW = var1;
    }
 

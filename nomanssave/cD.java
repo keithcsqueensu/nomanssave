@@ -12,6 +12,6 @@ class cD implements PropertyChangeListener {
    }
 
    public void propertyChange(PropertyChangeEvent var1) {
-      AppSettings.AboutDialogCloseListener("JSONEditor.Divider", (Integer)var1.getNewValue());
+      AppSettings.setValueByPath("JSONEditor.Divider", (Integer)var1.getNewValue());
    }
 }

@@ -104,7 +104,7 @@ public class Inventory {
       this.qx = var9;
       this.width = var2.J("Width");
       this.height = var2.J("Height");
-      ew var10 = eu.AboutDialogCloseListener(Application.getInstance().FileComboBoxModel(), var2.getValueAsString("StackSizeGroup.InventoryStackSizeGroup"));
+      ew var10 = eu.findByName(Application.getInstance().FileComboBoxModel(), var2.getValueAsString("StackSizeGroup.InventoryStackSizeGroup"));
       if (var10 != null) {
          this.MilestonesPanel = var10.aX();
          this.bF = var10.aY();
@@ -186,7 +186,7 @@ public class Inventory {
          var1 = "";
       }
 
-      this.qt.AboutDialogCloseListener("Name", (Object)var1);
+      this.qt.setValueByPath("Name", (Object)var1);
    }
 
    public int MultitoolPanel() {
@@ -251,7 +251,7 @@ public class Inventory {
          for(int var6 = 0; var6 < var4.size(); ++var6) {
             JsonObject var7 = var4.V(var6);
             if (var7.getValueAsString("BaseStatID").equals(var1)) {
-               var7.AboutDialogCloseListener("Value", (Object)var2);
+               var7.setValueByPath("Value", (Object)var2);
                var5 = true;
                break;
             }
@@ -259,8 +259,8 @@ public class Inventory {
 
          if (!var5) {
             JsonObject var8 = new JsonObject();
-            var8.AboutDialogCloseListener("BaseStatID", (Object)var1);
-            var8.AboutDialogCloseListener("Value", (Object)var2);
+            var8.setValueByPath("BaseStatID", (Object)var1);
+            var8.setValueByPath("Value", (Object)var2);
             var4.f(var8);
             var5 = true;
          }
@@ -347,13 +347,13 @@ public class Inventory {
          boolean var8 = false;
          if (this.width != var1.width) {
             this.width = var1.width;
-            this.qt.AboutDialogCloseListener("Width", (Object)(new Integer(this.width)));
+            this.qt.setValueByPath("Width", (Object)(new Integer(this.width)));
             var8 = true;
          }
 
          if (this.height != var1.height) {
             this.height = var1.height;
-            this.qt.AboutDialogCloseListener("Height", (Object)(new Integer(this.height)));
+            this.qt.setValueByPath("Height", (Object)(new Integer(this.height)));
             var8 = true;
          }
 
@@ -365,13 +365,13 @@ public class Inventory {
       boolean var1 = false;
       if (this.width < this.qz[0].length) {
          this.width = this.qz[0].length;
-         this.qt.AboutDialogCloseListener("Width", (Object)(new Integer(this.width)));
+         this.qt.setValueByPath("Width", (Object)(new Integer(this.width)));
          var1 = true;
       }
 
       if (this.height < this.qz.length) {
          this.height = this.qz.length;
-         this.qt.AboutDialogCloseListener("Height", (Object)(new Integer(this.height)));
+         this.qt.setValueByPath("Height", (Object)(new Integer(this.height)));
          var1 = true;
       }
 
@@ -413,8 +413,8 @@ public class Inventory {
             this.qy[var4][var3] = null;
          } else {
             JsonObject var6 = this.qy[var2][var1].MilestonesPanel();
-            var6.AboutDialogCloseListener("Index.X", (Object)var3);
-            var6.AboutDialogCloseListener("Index.Y", (Object)var4);
+            var6.setValueByPath("Index.X", (Object)var3);
+            var6.setValueByPath("Index.Y", (Object)var4);
             var5.f(var6);
             this.qy[var4][var3] = var6;
          }
@@ -434,21 +434,21 @@ public class Inventory {
             int var7 = var6.J("MaxAmount");
             int var8 = var5.J("Amount") + var6.J("Amount");
             if (var8 <= var7) {
-               var6.AboutDialogCloseListener("Amount", (Object)var8);
+               var6.setValueByPath("Amount", (Object)var8);
                this.g(var1, var2);
             } else {
-               var6.AboutDialogCloseListener("Amount", (Object)var7);
-               var5.AboutDialogCloseListener("Amount", (Object)(var8 - var7));
+               var6.setValueByPath("Amount", (Object)var7);
+               var5.setValueByPath("Amount", (Object)(var8 - var7));
             }
 
          } else {
             if (var5 != null) {
-               var5.AboutDialogCloseListener("Index", (new fa()).d("X", var3).d("Y", var4).bH());
+               var5.setValueByPath("Index", (new fa()).d("X", var3).d("Y", var4).bH());
             }
 
             this.qy[var4][var3] = var5;
             if (var6 != null) {
-               var6.AboutDialogCloseListener("Index", (new fa()).d("X", var1).d("Y", var2).bH());
+               var6.setValueByPath("Index", (new fa()).d("X", var1).d("Y", var2).bH());
             }
 
             this.qy[var2][var1] = var6;
@@ -465,12 +465,12 @@ public class Inventory {
          JsonObject var5 = this.qy[var2][var1];
          JsonObject var6 = this.qy[var4][var3];
          if (var5 != null) {
-            var5.AboutDialogCloseListener("Index", (new fa()).d("X", var3).d("Y", var4).bH());
+            var5.setValueByPath("Index", (new fa()).d("X", var3).d("Y", var4).bH());
          }
 
          this.qy[var4][var3] = var5;
          if (var6 != null) {
-            var6.AboutDialogCloseListener("Index", (new fa()).d("X", var1).d("Y", var2).bH());
+            var6.setValueByPath("Index", (new fa()).d("X", var1).d("Y", var2).bH());
          }
 
          this.qy[var2][var1] = var6;
@@ -563,7 +563,7 @@ public class Inventory {
                      if (var13 < var14) {
                         var15 = var6 > var14 - var13 ? var14 - var13 : var6;
                         Logger.info("  added to existing stack: " + var15);
-                        var3.qy[var11][var12].AboutDialogCloseListener("Amount", (Object)(new Integer(var13 + var15)));
+                        var3.qy[var11][var12].setValueByPath("Amount", (Object)(new Integer(var13 + var15)));
                         var6 -= var15;
                         var10 = true;
                         if (var6 == 0) {
@@ -635,7 +635,7 @@ public class Inventory {
                this.qy[var2][var1] = null;
             } else {
                Logger.info("  remainder: " + var6);
-               this.qy[var2][var1].AboutDialogCloseListener("Amount", (Object)(new Integer(var6)));
+               this.qy[var2][var1].setValueByPath("Amount", (Object)(new Integer(var6)));
             }
 
             return true;
@@ -677,7 +677,7 @@ public class Inventory {
                   if (var7 < var8) {
                      int var9 = var2 > var8 - var7 ? var8 - var7 : var2;
                      Logger.info("  added to existing stack: " + var9);
-                     this.qy[var5][var6].AboutDialogCloseListener("Amount", (Object)(new Integer(var7 + var9)));
+                     this.qy[var5][var6].setValueByPath("Amount", (Object)(new Integer(var7 + var9)));
                      var2 -= var9;
                      if (var2 == 0) {
                         break;
@@ -759,14 +759,14 @@ public class Inventory {
    private void setSlotData(int var1, int var2, String var3, Object var4, int var5, int var6, double var7, boolean var9) {
       JsonArray var10 = this.qt.d("Slots");
       JsonObject var11 = TemplateLoader.loadTemplate("slot");
-      var11.AboutDialogCloseListener("Type.InventoryType", (Object)var3);
-      var11.AboutDialogCloseListener("Id", var4);
-      var11.AboutDialogCloseListener("Amount", (Object)(new Integer(var5)));
-      var11.AboutDialogCloseListener("MaxAmount", (Object)(new Integer(var6)));
-      var11.AboutDialogCloseListener("DamageFactor", (Object)(new Double(var7)));
-      var11.AboutDialogCloseListener("FullyInstalled", (Object)(new Boolean(var9)));
-      var11.AboutDialogCloseListener("Index.X", (Object)var1);
-      var11.AboutDialogCloseListener("Index.Y", (Object)var2);
+      var11.setValueByPath("Type.InventoryType", (Object)var3);
+      var11.setValueByPath("Id", var4);
+      var11.setValueByPath("Amount", (Object)(new Integer(var5)));
+      var11.setValueByPath("MaxAmount", (Object)(new Integer(var6)));
+      var11.setValueByPath("DamageFactor", (Object)(new Double(var7)));
+      var11.setValueByPath("FullyInstalled", (Object)(new Boolean(var9)));
+      var11.setValueByPath("Index.X", (Object)var1);
+      var11.setValueByPath("Index.Y", (Object)var2);
       var10.f(var11);
       this.qy[var2][var1] = var11;
    }
@@ -790,8 +790,8 @@ public class Inventory {
    public void i(int var1, int var2) {
       if (!this.qz[var2][var1]) {
          JsonObject var3 = new JsonObject();
-         var3.AboutDialogCloseListener("X", (Object)var1);
-         var3.AboutDialogCloseListener("Y", (Object)var2);
+         var3.setValueByPath("X", (Object)var1);
+         var3.setValueByPath("Y", (Object)var2);
          this.qt.d("ValidSlotIndices").f(var3);
          this.qz[var2][var1] = true;
       }
@@ -852,7 +852,7 @@ public class Inventory {
             if (!var3) {
                var4.ac(var5);
             } else {
-               var6.AboutDialogCloseListener("Type.InventorySpecialSlotType", (Object)"TechBonus");
+               var6.setValueByPath("Type.InventorySpecialSlotType", (Object)"TechBonus");
             }
 
             return;
@@ -861,9 +861,9 @@ public class Inventory {
 
       if (var3) {
          JsonObject var7 = TemplateLoader.loadTemplate("specialSlot");
-         var7.AboutDialogCloseListener("Type.InventorySpecialSlotType", (Object)"TechBonus");
-         var7.AboutDialogCloseListener("Index.X", (Object)var1);
-         var7.AboutDialogCloseListener("Index.Y", (Object)var2);
+         var7.setValueByPath("Type.InventorySpecialSlotType", (Object)"TechBonus");
+         var7.setValueByPath("Index.X", (Object)var1);
+         var7.setValueByPath("Index.Y", (Object)var2);
          var4.f(var7);
       }
 
@@ -889,9 +889,9 @@ public class Inventory {
          for(var5 = 0; var5 < this.width; ++var5) {
             if (!var1[var8][var5]) {
                JsonObject var9 = TemplateLoader.loadTemplate("specialSlot");
-               var9.AboutDialogCloseListener("Type.InventorySpecialSlotType", (Object)"TechBonus");
-               var9.AboutDialogCloseListener("Index.X", (Object)var5);
-               var9.AboutDialogCloseListener("Index.Y", (Object)var8);
+               var9.setValueByPath("Type.InventorySpecialSlotType", (Object)"TechBonus");
+               var9.setValueByPath("Index.X", (Object)var5);
+               var9.setValueByPath("Index.Y", (Object)var8);
                var2.f(var9);
                var7 = true;
             }
@@ -971,8 +971,8 @@ public class Inventory {
       for(var4 = 0; var4 < this.qy.length; ++var4) {
          for(int var6 = 0; var6 < this.qy[var4].length; ++var6) {
             if (this.qy[var4][var6] != null && this.qy[var4][var6].L("DamageFactor") != 0.0D) {
-               this.qy[var4][var6].AboutDialogCloseListener("DamageFactor", (Object)(new Double(0.0D)));
-               this.qy[var4][var6].AboutDialogCloseListener("FullyInstalled", (Object)(new Boolean(true)));
+               this.qy[var4][var6].setValueByPath("DamageFactor", (Object)(new Double(0.0D)));
+               this.qy[var4][var6].setValueByPath("FullyInstalled", (Object)(new Boolean(true)));
                var1 = true;
             }
          }
@@ -1091,7 +1091,7 @@ public class Inventory {
          for(int var4 = 0; var4 < this.qy[var3].length; ++var4) {
             int var1;
             if (this.qy[var3][var4] != null && "Technology".equals(this.qy[var3][var4].getValueAsString("Type.InventoryType")) && this.qy[var3][var4].J("Amount") >= 0 && (var1 = this.qy[var3][var4].J("MaxAmount")) > 0) {
-               this.qy[var3][var4].AboutDialogCloseListener("Amount", (Object)(new Integer(var1)));
+               this.qy[var3][var4].setValueByPath("Amount", (Object)(new Integer(var1)));
                var2 = true;
             }
          }
@@ -1107,7 +1107,7 @@ public class Inventory {
          for(int var4 = 0; var4 < this.qy[var3].length; ++var4) {
             int var1;
             if (this.qy[var3][var4] != null && !"Technology".equals(this.qy[var3][var4].getValueAsString("Type.InventoryType")) && (var1 = this.qy[var3][var4].J("MaxAmount")) > 1) {
-               this.qy[var3][var4].AboutDialogCloseListener("Amount", (Object)(new Integer(var1)));
+               this.qy[var3][var4].setValueByPath("Amount", (Object)(new Integer(var1)));
                var2 = true;
             }
          }
@@ -1123,8 +1123,8 @@ public class Inventory {
          for(int var3 = 0; var3 < this.width; ++var3) {
             if (!this.qz[var2][var3]) {
                JsonObject var4 = new JsonObject();
-               var4.AboutDialogCloseListener("X", (Object)var3);
-               var4.AboutDialogCloseListener("Y", (Object)var2);
+               var4.setValueByPath("X", (Object)var3);
+               var4.setValueByPath("Y", (Object)var2);
                this.qt.d("ValidSlotIndices").f(var4);
                this.qz[var2][var3] = true;
                var1 = true;

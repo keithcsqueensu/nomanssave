@@ -204,7 +204,7 @@ public class Starship {
    }
 
    public void setName(String var1) {
-      this.rp.AboutDialogCloseListener("Name", (Object)var1);
+      this.rp.setValueByPath("Name", (Object)var1);
    }
 
    public boolean dZ() {
@@ -221,7 +221,7 @@ public class Starship {
    }
 
    public void ag(String var1) {
-      this.rp.AboutDialogCloseListener("Resource.Filename", (Object)var1);
+      this.rp.setValueByPath("Resource.Filename", (Object)var1);
       ShipType var2 = ShipType.aw(var1);
       this.CoordinateTransform.stream().forEach((var1x) -> {
          var1x.az(var2 == null ? 4 : var2.ea());
@@ -248,7 +248,7 @@ public class Starship {
    }
 
    public void cm() {
-      this.rp.AboutDialogCloseListener("Resource.Filename", (Object)"");
+      this.rp.setValueByPath("Resource.Filename", (Object)"");
       this.rp.d("Resource.Seed").AboutDialog(0, Boolean.FALSE);
       this.rp.d("Resource.Seed").AboutDialog(1, "0x0");
    }
@@ -258,15 +258,15 @@ public class Starship {
    }
 
    public void aj(String var1) {
-      this.rp.AboutDialogCloseListener("Inventory.Class.InventoryClass", (Object)var1);
+      this.rp.setValueByPath("Inventory.Class.InventoryClass", (Object)var1);
       JsonObject var2 = this.rp.H("Inventory_TechOnly.Class");
       if (var2 != null) {
-         var2.AboutDialogCloseListener("InventoryClass", (Object)var1);
+         var2.setValueByPath("InventoryClass", (Object)var1);
       }
 
       var2 = this.rp.H("Inventory_Cargo.Class");
       if (var2 != null) {
-         var2.AboutDialogCloseListener("InventoryClass", (Object)var1);
+         var2.setValueByPath("InventoryClass", (Object)var1);
       }
 
    }

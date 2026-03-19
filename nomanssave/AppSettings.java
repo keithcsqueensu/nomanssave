@@ -208,9 +208,9 @@ public class AppSettings {
                      String var9 = var3.getProperty(var7);
                      if (!var7.equals("InventoryFontScale")) {
                         if (var7.equals("InventoryScaling")) {
-                           cK.AboutDialogCloseListener("InventoryScaling", (Object)Double.parseDouble(var9));
+                           cK.setValueByPath("InventoryScaling", (Object)Double.parseDouble(var9));
                         } else if (var7.equals("FontScaling")) {
-                           cK.AboutDialogCloseListener("FontScaling", (Object)Double.parseDouble(var9));
+                           cK.setValueByPath("FontScaling", (Object)Double.parseDouble(var9));
                         } else {
                            int var5;
                            int var10;
@@ -248,7 +248,7 @@ public class AppSettings {
                }
 
                if (var6.size() > 0) {
-                  cK.AboutDialogCloseListener("SteamIDs", (Object)var6);
+                  cK.setValueByPath("SteamIDs", (Object)var6);
                }
 
                cL = true;
@@ -315,7 +315,7 @@ public class AppSettings {
          double var4 = cK.L("InventoryScaling");
          if (var4 <= 0.0D) {
             var4 = 1.0D;
-            cK.AboutDialogCloseListener("InventoryScaling", (Object)var4);
+            cK.setValueByPath("InventoryScaling", (Object)var4);
             cL = true;
          }
 

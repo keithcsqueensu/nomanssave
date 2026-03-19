@@ -41,7 +41,7 @@ public class Exosuit {
       JsonArray var7 = var1.d("KnownWordGroups");
       if (var7 == null) {
          var7 = new JsonArray();
-         var1.AboutDialogCloseListener("KnownWordGroups", (Object)var7);
+         var1.setValueByPath("KnownWordGroups", (Object)var7);
       }
 
       if (var6.size() > 0) {
@@ -67,10 +67,10 @@ public class Exosuit {
                      Race var13 = var10.ShowErrorRunnable(var11);
                      if (var13 != null) {
                         JsonObject var14 = new JsonObject();
-                        var14.AboutDialogCloseListener("Group", (Object)var11);
+                        var14.setValueByPath("Group", (Object)var11);
                         JsonArray var15 = new JsonArray(new Object[]{Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE});
                         var15.AboutDialog(var13.ordinal(), Boolean.TRUE);
-                        var14.AboutDialogCloseListener("Races", (Object)var15);
+                        var14.setValueByPath("Races", (Object)var15);
                         var7.f(var14);
                         Logger.debug("Creating word: " + var11 + "[" + var13.ordinal() + "] = true");
                      }
@@ -131,7 +131,7 @@ public class Exosuit {
    }
 
    public void e(long var1) {
-      this.oI.AboutDialogCloseListener("Units", (Object)(new Integer((int)var1)));
+      this.oI.setValueByPath("Units", (Object)(new Integer((int)var1)));
    }
 
    public long dK() {
@@ -139,7 +139,7 @@ public class Exosuit {
    }
 
    public void f(long var1) {
-      this.oI.AboutDialogCloseListener("Nanites", (Object)(new Integer((int)var1)));
+      this.oI.setValueByPath("Nanites", (Object)(new Integer((int)var1)));
    }
 
    public long dL() {
@@ -147,7 +147,7 @@ public class Exosuit {
    }
 
    public void g(long var1) {
-      this.oI.AboutDialogCloseListener("Specials", (Object)(new Integer((int)var1)));
+      this.oI.setValueByPath("Specials", (Object)(new Integer((int)var1)));
    }
 
    public int dM() {
@@ -155,7 +155,7 @@ public class Exosuit {
    }
 
    public void aB(int var1) {
-      this.oI.AboutDialogCloseListener("Health", (Object)(new Integer(var1)));
+      this.oI.setValueByPath("Health", (Object)(new Integer(var1)));
    }
 
    public int ShipsPanel() {
@@ -163,7 +163,7 @@ public class Exosuit {
    }
 
    public void aC(int var1) {
-      this.oI.AboutDialogCloseListener("Shield", (Object)(new Integer(var1)));
+      this.oI.setValueByPath("Shield", (Object)(new Integer(var1)));
    }
 
    public int dO() {
@@ -171,7 +171,7 @@ public class Exosuit {
    }
 
    public void aD(int var1) {
-      this.oI.AboutDialogCloseListener("Energy", (Object)(new Integer(var1)));
+      this.oI.setValueByPath("Energy", (Object)(new Integer(var1)));
    }
 
    public List cC() {
@@ -183,7 +183,7 @@ public class Exosuit {
    }
 
    public void aE(int var1) {
-      this.oI.AboutDialogCloseListener("KnownPortalRunes", (Object)(new Integer(var1)));
+      this.oI.setValueByPath("KnownPortalRunes", (Object)(new Integer(var1)));
    }
 
    public JsonArray dQ() {
@@ -271,7 +271,7 @@ public class Exosuit {
       if (var3) {
          Logger.debug("Creating word: " + var1 + "[" + var2 + "] = " + var3);
          var4 = new JsonObject();
-         var4.AboutDialogCloseListener("Group", (Object)var1);
+         var4.setValueByPath("Group", (Object)var1);
          JsonArray var8 = new JsonArray();
 
          while(var8.size() < Race.values().length) {
@@ -279,7 +279,7 @@ public class Exosuit {
          }
 
          var8.AboutDialog(var2, new Boolean(var3));
-         var4.AboutDialogCloseListener("Races", (Object)var8);
+         var4.setValueByPath("Races", (Object)var8);
          this.rc.f(var4);
       }
 
@@ -292,7 +292,7 @@ public class Exosuit {
    public void g(double var1) {
       long var3 = Math.round(var1 * 900.0D);
       if (var3 >= 0L && var3 <= 2147483647L) {
-         this.oI.AboutDialogCloseListener("HazardTimeAlive", (Object)(new Integer((int)var3)));
+         this.oI.setValueByPath("HazardTimeAlive", (Object)(new Integer((int)var3)));
       } else {
          throw new RuntimeException("Stat value out of range");
       }
@@ -317,18 +317,18 @@ public class Exosuit {
          for(int var4 = 0; var4 < this.rb.size(); ++var4) {
             var3 = this.rb.V(var4);
             if (var3.getValueAsString("Id").equals(var1.id)) {
-               var3.AboutDialogCloseListener("Value.IntValue", (Object)(new Integer(var2)));
+               var3.setValueByPath("Value.IntValue", (Object)(new Integer(var2)));
                return;
             }
          }
 
          var3 = new JsonObject();
-         var3.AboutDialogCloseListener("Id", (Object)var1.id);
+         var3.setValueByPath("Id", (Object)var1.id);
          JsonObject var5 = new JsonObject();
-         var5.AboutDialogCloseListener("IntValue", (Object)(new Integer(var2)));
-         var5.AboutDialogCloseListener("FloatValue", (Object)(new Double(0.0D)));
-         var5.AboutDialogCloseListener("Denominator", (Object)(new Double(0.0D)));
-         var3.AboutDialogCloseListener("Value", (Object)var5);
+         var5.setValueByPath("IntValue", (Object)(new Integer(var2)));
+         var5.setValueByPath("FloatValue", (Object)(new Double(0.0D)));
+         var5.setValueByPath("Denominator", (Object)(new Double(0.0D)));
+         var3.setValueByPath("Value", (Object)var5);
          this.rb.f(var3);
       }
    }
@@ -352,18 +352,18 @@ public class Exosuit {
          for(int var5 = 0; var5 < this.rb.size(); ++var5) {
             var4 = this.rb.V(var5);
             if (var4.getValueAsString("Id").equals(var1.id)) {
-               var4.AboutDialogCloseListener("Value.FloatValue", (Object)(new Double(var2)));
+               var4.setValueByPath("Value.FloatValue", (Object)(new Double(var2)));
                return;
             }
          }
 
          var4 = new JsonObject();
-         var4.AboutDialogCloseListener("Id", (Object)var1.id);
+         var4.setValueByPath("Id", (Object)var1.id);
          JsonObject var6 = new JsonObject();
-         var6.AboutDialogCloseListener("IntValue", (Object)(new Integer(0)));
-         var6.AboutDialogCloseListener("FloatValue", (Object)(new Double(var2)));
-         var6.AboutDialogCloseListener("Denominator", (Object)(new Double(0.0D)));
-         var4.AboutDialogCloseListener("Value", (Object)var6);
+         var6.setValueByPath("IntValue", (Object)(new Integer(0)));
+         var6.setValueByPath("FloatValue", (Object)(new Double(var2)));
+         var6.setValueByPath("Denominator", (Object)(new Double(0.0D)));
+         var4.setValueByPath("Value", (Object)var6);
          this.rb.f(var4);
       }
    }

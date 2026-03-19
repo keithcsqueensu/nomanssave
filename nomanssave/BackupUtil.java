@@ -162,7 +162,7 @@ public class BackupUtil {
                   throw new IOException("short read");
                }
 
-               var0.AboutDialogCloseListener("UserData", (Object)(var11 << 24 | var12 << 16 | var13 << 8 | var14));
+               var0.setValueByPath("UserData", (Object)(var11 << 24 | var12 << 16 | var13 << 8 | var14));
                ByteArrayOutputStream var15 = new ByteArrayOutputStream();
                byte[] var16 = new byte[8096];
 
@@ -173,7 +173,7 @@ public class BackupUtil {
 
                var5 = BinaryReader.AccountPanel(var15.toByteArray());
             } else {
-               var0.AboutDialogCloseListener("UserData", (Object)hk.readInt((InputStream)var4));
+               var0.setValueByPath("UserData", (Object)hk.readInt((InputStream)var4));
                var11 = hk.readInt((InputStream)var4);
                byte[] var26 = new byte[var11];
                hk.readFully((InputStream)var4, var26);
@@ -235,10 +235,10 @@ public class BackupUtil {
       }
 
       if (var3 < 5) {
-         var0.AboutDialogCloseListener("BaseVersion", (int)3);
+         var0.setValueByPath("BaseVersion", (int)3);
       }
 
-      var0.AboutDialogCloseListener("Objects", (Object)var5);
+      var0.setValueByPath("Objects", (Object)var5);
    }
 
    private static void normalizeDoubleArray(double[] var0) {

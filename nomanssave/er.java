@@ -106,7 +106,7 @@ public class er {
       return this.name + " (" + var1 + " " + this.iB + ")";
    }
 
-   public static er[] AboutDialog(FrigateClass var0) {
+   public static er[] getByPrimaryClass(FrigateClass var0) {
       return (er[])iG.stream().filter((var1) -> {
          return var1.iD == var0;
       }).toArray((var0x) -> {
@@ -114,7 +114,7 @@ public class er {
       });
    }
 
-   public static er[] AboutDialogCloseListener(FrigateClass var0) {
+   public static er[] getBySecondaryClass(FrigateClass var0) {
       return (er[])iG.stream().filter((var1) -> {
          return Arrays.stream(var1.iF).anyMatch((var1x) -> {
             return var1x == var0;

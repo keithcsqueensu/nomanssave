@@ -47,7 +47,7 @@ public class SettlementState {
    }
 
    public void setName(String var1) {
-      this.bf.AboutDialogCloseListener("Name", (Object)var1);
+      this.bf.setValueByPath("Name", (Object)var1);
    }
 
    public int aq(int var1) {
@@ -83,7 +83,7 @@ public class SettlementState {
    }
 
    public void aa(String var1) {
-      this.bf.AboutDialogCloseListener("SeedValue", (Object)var1);
+      this.bf.setValueByPath("SeedValue", (Object)var1);
    }
 
    public gF[] dX() {

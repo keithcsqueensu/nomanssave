@@ -166,6 +166,10 @@ public class JsonObject {
       }
    }
 
+   public void setValueByPath(String var1, Object var2) {
+      this.ValidatedTextField(var1).AboutDialog(var2, false);
+   }
+
    public Object InMemorySaveFile(String var1) {
       if (var1 == null) {
          throw new NullPointerException();

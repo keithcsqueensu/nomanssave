@@ -17,21 +17,21 @@ class fy implements SaveSlot {
    }
 
    public boolean isEmpty() {
-      return fu.AboutDialog(this.lJ)[this.lT * 2] == null && fu.AboutDialog(this.lJ)[this.lT * 2 + 1] == null;
+      return fu.access$getSaveFiles(this.lJ)[this.lT * 2] == null && fu.access$getSaveFiles(this.lJ)[this.lT * 2 + 1] == null;
    }
 
    public GameMode L() {
       long var1 = Long.MIN_VALUE;
       GameMode var3 = null;
-      if (fu.AboutDialog(this.lJ)[this.lT * 2] != null) {
-         var3 = fu.AboutDialog(this.lJ)[this.lT * 2].L();
-         var1 = fu.AboutDialog(this.lJ)[this.lT * 2].lastModified();
+      if (fu.access$getSaveFiles(this.lJ)[this.lT * 2] != null) {
+         var3 = fu.access$getSaveFiles(this.lJ)[this.lT * 2].L();
+         var1 = fu.access$getSaveFiles(this.lJ)[this.lT * 2].lastModified();
       }
 
-      if (fu.AboutDialog(this.lJ)[this.lT * 2 + 1] != null) {
-         long var4 = fu.AboutDialog(this.lJ)[this.lT * 2 + 1].lastModified();
+      if (fu.access$getSaveFiles(this.lJ)[this.lT * 2 + 1] != null) {
+         long var4 = fu.access$getSaveFiles(this.lJ)[this.lT * 2 + 1].lastModified();
          if (var4 > var1) {
-            var3 = fu.AboutDialog(this.lJ)[this.lT * 2 + 1].L();
+            var3 = fu.access$getSaveFiles(this.lJ)[this.lT * 2 + 1].L();
          }
       }
 
@@ -41,12 +41,12 @@ class fy implements SaveSlot {
    public SaveFile[] bX() {
       Logger.info("Loading saves for Slot " + (this.lT + 1) + "...");
       ArrayList var1 = new ArrayList();
-      if (fu.AboutDialog(this.lJ)[this.lT * 2] != null) {
-         var1.add(fu.AboutDialog(this.lJ)[this.lT * 2]);
+      if (fu.access$getSaveFiles(this.lJ)[this.lT * 2] != null) {
+         var1.add(fu.access$getSaveFiles(this.lJ)[this.lT * 2]);
       }
 
-      if (fu.AboutDialog(this.lJ)[this.lT * 2 + 1] != null) {
-         var1.add(fu.AboutDialog(this.lJ)[this.lT * 2 + 1]);
+      if (fu.access$getSaveFiles(this.lJ)[this.lT * 2 + 1] != null) {
+         var1.add(fu.access$getSaveFiles(this.lJ)[this.lT * 2 + 1]);
       }
 
       var1.sort(new fz(this));
@@ -58,15 +58,15 @@ class fy implements SaveSlot {
       var1.append("Slot " + (this.lT + 1) + " - ");
       long var2 = Long.MIN_VALUE;
       GameMode var4 = null;
-      if (fu.AboutDialog(this.lJ)[this.lT * 2] != null) {
-         var4 = fu.AboutDialog(this.lJ)[this.lT * 2].L();
-         var2 = fu.AboutDialog(this.lJ)[this.lT * 2].lastModified();
+      if (fu.access$getSaveFiles(this.lJ)[this.lT * 2] != null) {
+         var4 = fu.access$getSaveFiles(this.lJ)[this.lT * 2].L();
+         var2 = fu.access$getSaveFiles(this.lJ)[this.lT * 2].lastModified();
       }
 
-      if (fu.AboutDialog(this.lJ)[this.lT * 2 + 1] != null) {
-         long var5 = fu.AboutDialog(this.lJ)[this.lT * 2 + 1].lastModified();
+      if (fu.access$getSaveFiles(this.lJ)[this.lT * 2 + 1] != null) {
+         long var5 = fu.access$getSaveFiles(this.lJ)[this.lT * 2 + 1].lastModified();
          if (var5 > var2) {
-            var4 = fu.AboutDialog(this.lJ)[this.lT * 2 + 1].L();
+            var4 = fu.access$getSaveFiles(this.lJ)[this.lT * 2 + 1].L();
             var2 = var5;
          }
       }

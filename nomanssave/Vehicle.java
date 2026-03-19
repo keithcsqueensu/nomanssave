@@ -84,7 +84,7 @@ public class Vehicle {
       var2.AboutDialog((var1x, var2x, var3x) -> {
          if ("ValidSlotIndices".equals(var1x) && var3x instanceof JsonArray) {
             int var4 = ((JsonArray)var3x).size();
-            var1.AboutDialogCloseListener("Slots", (Object)var4);
+            var1.setValueByPath("Slots", (Object)var4);
          }
 
       });

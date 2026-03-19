@@ -42,7 +42,7 @@ public class dt extends FormPanel {
 
             Component var2 = var5[var3];
             du var6 = (du)var2;
-            du.AccountPanel(var6);
+            du.access$refreshUI(var6);
             ++var3;
          }
       }
@@ -81,7 +81,7 @@ public class dt extends FormPanel {
       if (var2 != null) {
          var1.hm.m(var2.aZ());
          var1.hm.aA(0);
-         du.AccountPanel(var1);
+         du.access$refreshUI(var1);
       }
 
    }
@@ -99,7 +99,7 @@ public class dt extends FormPanel {
             ItemDefinition var7 = ItemDefinition.d(var1.hm.dz());
             var6 = var5.AboutDialog(var7, var6);
             var1.hm.aA(var6);
-            du.AccountPanel(var1);
+            du.access$refreshUI(var1);
             this.eR.AboutDialog(var5);
          }
 

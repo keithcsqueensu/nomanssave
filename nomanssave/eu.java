@@ -38,7 +38,7 @@ public class eu {
 
    }
 
-   public static ew AboutDialogCloseListener(String var0, String var1) {
+   public static ew findByName(String var0, String var1) {
       Iterator var3 = iH.iterator();
 
       while(true) {

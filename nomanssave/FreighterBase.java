@@ -24,7 +24,7 @@ public class FreighterBase {
    }
 
    public void setName(String var1) {
-      this.nj.AboutDialogCloseListener("Name", (Object)var1);
+      this.nj.setValueByPath("Name", (Object)var1);
    }
 
    public int cG() {

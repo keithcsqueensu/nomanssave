@@ -154,7 +154,7 @@ public class Multitool {
    }
 
    public void setName(String var1) {
-      this.qF.AboutDialogCloseListener("Name", (Object)var1);
+      this.qF.setValueByPath("Name", (Object)var1);
    }
 
    public String cT() {
@@ -162,7 +162,7 @@ public class Multitool {
    }
 
    public void ag(String var1) {
-      this.qF.AboutDialogCloseListener("Resource.Filename", (Object)var1);
+      this.qF.setValueByPath("Resource.Filename", (Object)var1);
    }
 
    public String cK() {
@@ -178,7 +178,7 @@ public class Multitool {
    }
 
    public void aj(String var1) {
-      this.qF.AboutDialogCloseListener("Store.Class.InventoryClass", (Object)var1);
+      this.qF.setValueByPath("Store.Class.InventoryClass", (Object)var1);
    }
 
    public Inventory SettlementsPanel() {
@@ -218,7 +218,7 @@ public class Multitool {
    }
 
    public void cm() {
-      this.qF.AboutDialogCloseListener("Seed", (Object)(new JsonArray(new Object[]{Boolean.FALSE, "0x0"})));
+      this.qF.setValueByPath("Seed", (Object)(new JsonArray(new Object[]{Boolean.FALSE, "0x0"})));
    }
 
    public String toString() {

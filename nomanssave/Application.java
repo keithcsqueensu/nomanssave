@@ -313,11 +313,11 @@ public class Application {
             int var4 = this.currentSave.J("PlayerStateData.ActiveMultioolIndex");
             if (var1x.startsWith("PlayerStateData.Multitools[" + var4 + "].Store.")) {
                JsonObject var5 = this.currentSave.H("PlayerStateData.Multitools[" + var4 + "].Store");
-               this.currentSave.AboutDialogCloseListener("PlayerStateData.WeaponInventory", (Object)var5.MilestonesPanel());
+               this.currentSave.setValueByPath("PlayerStateData.WeaponInventory", (Object)var5.MilestonesPanel());
             } else if (var1x.equals("PlayerStateData.Multitools[" + var4 + "].Seed[1]")) {
-               this.currentSave.AboutDialogCloseListener("PlayerStateData.CurrentWeapon.GenerationSeed[1]", var3x);
+               this.currentSave.setValueByPath("PlayerStateData.CurrentWeapon.GenerationSeed[1]", var3x);
             } else if (var1x.equals("PlayerStateData.Multitools[" + var4 + "].Resource.Filename")) {
-               this.currentSave.AboutDialogCloseListener("PlayerStateData.CurrentWeapon.Filename", var3x);
+               this.currentSave.setValueByPath("PlayerStateData.CurrentWeapon.Filename", var3x);
             }
          }
 
@@ -745,17 +745,17 @@ public class Application {
                   }
 
                   if (((String)var9.getKey()).equals("Inventory")) {
-                     var7.AboutDialogCloseListener("FreighterInventory", (Object)((JsonObject)var9.getValue()));
+                     var7.setValueByPath("FreighterInventory", (Object)((JsonObject)var9.getValue()));
                      var8 = true;
                   }
 
                   if (((String)var9.getKey()).equals("InventoryTech")) {
-                     var7.AboutDialogCloseListener("FreighterInventory_TechOnly", (Object)((JsonObject)var9.getValue()));
+                     var7.setValueByPath("FreighterInventory_TechOnly", (Object)((JsonObject)var9.getValue()));
                      var8 = true;
                   }
 
                   if (((String)var9.getKey()).equals("InventoryCargo")) {
-                     var7.AboutDialogCloseListener("FreighterInventory_Cargo", (Object)((JsonObject)var9.getValue()));
+                     var7.setValueByPath("FreighterInventory_Cargo", (Object)((JsonObject)var9.getValue()));
                      var8 = true;
                   }
                }
@@ -1212,11 +1212,11 @@ public class Application {
    private void showCoordinateViewer() {
       JsonObject var1 = this.currentSave.H("PlayerStateData.UniverseAddress");
       GalacticAddress var2 = GalacticAddress.saveFile(var1);
-      if ((var2 = nomanssave.aj.AboutDialog((Container)this.mainWindow, var2)) != null) {
+      if ((var2 = aj.show((Container)this.mainWindow, var2)) != null) {
          var2.saveModified(0);
-         this.currentSave.AboutDialogCloseListener("PlayerStateData.UniverseAddress", (Object)var2.ew());
-         this.currentSave.AboutDialogCloseListener("PlayerStateData.PreviousUniverseAddress", (Object)var1);
-         this.currentSave.AboutDialogCloseListener("SpawnStateData.LastKnownPlayerState", (Object)"InShip");
+         this.currentSave.setValueByPath("PlayerStateData.UniverseAddress", (Object)var2.ew());
+         this.currentSave.setValueByPath("PlayerStateData.PreviousUniverseAddress", (Object)var1);
+         this.currentSave.setValueByPath("SpawnStateData.LastKnownPlayerState", (Object)"InShip");
          this.saveModified = true;
       }
 
@@ -1634,7 +1634,7 @@ public class Application {
       if (var3 != null && var1 < var3.size()) {
          JsonObject var4 = var3.descriptionLabel(var1).MilestonesPanel();
          var4.d("ResourceSeed").AboutDialog(1, var2);
-         var4.AboutDialogCloseListener("CustomName", (Object)"");
+         var4.setValueByPath("CustomName", (Object)"");
          var3.selectFile(var4);
          this.saveModified = true;
       }
@@ -1673,10 +1673,10 @@ public class Application {
             JsonObject var10 = var8.descriptionLabel(var9);
             if ("^MAINT_FARM5".equals(var10.getValueAsString("Id"))) {
                if ((var4 = var10.J("MaxAmount")) > 0 && var10.J("Amount") < var4) {
-                  var10.AboutDialogCloseListener("Amount", (Object)(new Integer(var4)));
+                  var10.setValueByPath("Amount", (Object)(new Integer(var4)));
                }
 
-               var11.AboutDialogCloseListener("LastUpdateTimestamp", (Object)(new Integer(var1)));
+               var11.setValueByPath("LastUpdateTimestamp", (Object)(new Integer(var1)));
                this.saveModified = true;
                --var2;
             }

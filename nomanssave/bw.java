@@ -28,8 +28,8 @@ class bw implements ComboBoxModel {
 
    public void setSelectedItem(Object var1) {
       this.et = (FrigateClass)var1;
-      FrigatesPanel.AboutDialog(this.er, FrigatesPanel.AboutDialogCloseListener(this.er) < 0 ? null : nomanssave.er.AboutDialog(this.et));
-      FrigatesPanel.AboutDialogCloseListener(this.er, FrigatesPanel.AboutDialogCloseListener(this.er) < 0 ? null : nomanssave.er.AboutDialogCloseListener(this.et));
+      FrigatesPanel.AboutDialog(this.er, FrigatesPanel.AboutDialogCloseListener(this.er) < 0 ? null : er.getByPrimaryClass(this.et));
+      FrigatesPanel.AboutDialogCloseListener(this.er, FrigatesPanel.AboutDialogCloseListener(this.er) < 0 ? null : er.getBySecondaryClass(this.et));
       if (FrigatesPanel.AboutDialogCloseListener(this.er) >= 0 && this.et != null && !this.et.equals(FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].da())) {
          FrigatesPanel.AccountPanel(this.er)[FrigatesPanel.AboutDialogCloseListener(this.er)].AccountPanel(this.et);
          if (FrigatesPanel.AboutDialog(this.er) != null && FrigatesPanel.AboutDialog(this.er).length > 0) {

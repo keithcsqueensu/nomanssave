@@ -54,12 +54,12 @@ class ec extends FormPanel {
    }
 
    // $FF: synthetic method
-   static JCheckBox AboutDialog(ec var0) {
+   static JCheckBox access$getCheckBox(ec var0) {
       return var0.if;
    }
 
    // $FF: synthetic method
-   static JComboBox AboutDialogCloseListener(ec var0) {
+   static JComboBox access$getComboBox(ec var0) {
       return var0.ig;
    }
 

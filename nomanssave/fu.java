@@ -135,7 +135,7 @@ public class fu implements SaveLocation {
       new fu(new File("D:\\Temp\\PS4_NEW"), (SaveChangeListener)null);
    }
 
-   private static boolean AboutDialog(byte[] var0, byte[] var1) {
+   private static boolean bytesEqual(byte[] var0, byte[] var1) {
       for(int var2 = 0; var2 < var0.length; ++var2) {
          if (var0[var2] != var1[var2]) {
             return false;
@@ -146,7 +146,7 @@ public class fu implements SaveLocation {
    }
 
    // $FF: synthetic method
-   static fx[] AboutDialog(fu var0) {
+   static fx[] access$getSaveFiles(fu var0) {
       return var0.lH;
    }
 
@@ -156,17 +156,17 @@ public class fu implements SaveLocation {
    }
 
    // $FF: synthetic method
-   static boolean AboutDialogCloseListener(byte[] var0, byte[] var1) {
-      return AboutDialog(var0, var1);
+   static boolean access$bytesEqual(byte[] var0, byte[] var1) {
+      return bytesEqual(var0, var1);
    }
 
    // $FF: synthetic method
-   static File AboutDialogCloseListener(fu var0) {
+   static File access$getFile(fu var0) {
       return var0.lD;
    }
 
    // $FF: synthetic method
-   static fw[] AccountPanel(fu var0) {
+   static fw[] access$getContainers(fu var0) {
       return var0.lF;
    }
 }

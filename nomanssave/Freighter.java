@@ -85,7 +85,7 @@ public class Freighter {
    }
 
    public void setName(String var1) {
-      this.oI.AboutDialogCloseListener("PlayerFreighterName", (Object)var1);
+      this.oI.setValueByPath("PlayerFreighterName", (Object)var1);
    }
 
    public String cT() {
@@ -93,7 +93,7 @@ public class Freighter {
    }
 
    public void ag(String var1) {
-      this.oI.AboutDialogCloseListener("CurrentFreighter.Filename", (Object)var1);
+      this.oI.setValueByPath("CurrentFreighter.Filename", (Object)var1);
    }
 
    public String cU() {
@@ -110,7 +110,7 @@ public class Freighter {
       JsonArray var2 = this.oI.d("CurrentFreighterHomeSystemSeed");
       if (var2 == null) {
          var2 = new JsonArray(new Object[]{Boolean.FALSE, "0x0"});
-         this.oI.AboutDialogCloseListener("CurrentFreighterHomeSystemSeed", (Object)var2);
+         this.oI.setValueByPath("CurrentFreighterHomeSystemSeed", (Object)var2);
       }
 
       var2.AboutDialog(0, Boolean.TRUE);
@@ -130,15 +130,15 @@ public class Freighter {
    }
 
    public void aj(String var1) {
-      this.oI.AboutDialogCloseListener("FreighterInventory.Class.InventoryClass", (Object)var1);
+      this.oI.setValueByPath("FreighterInventory.Class.InventoryClass", (Object)var1);
       JsonObject var2 = this.oI.H("FreighterInventory_TechOnly.Class");
       if (var2 != null) {
-         var2.AboutDialogCloseListener("InventoryClass", (Object)var1);
+         var2.setValueByPath("InventoryClass", (Object)var1);
       }
 
       var2 = this.oI.H("FreighterInventory_Cargo.Class");
       if (var2 != null) {
-         var2.AboutDialogCloseListener("InventoryClass", (Object)var1);
+         var2.setValueByPath("InventoryClass", (Object)var1);
       }
 
    }

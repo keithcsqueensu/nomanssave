@@ -124,7 +124,7 @@ public class Application {
       return var2.format(new Date(var0));
    }
 
-   private static String AboutDialog(String var0, String var1) {
+   private static String sanitizeFileName(String var0, String var1) {
       if (var0 == null) {
          return var1;
       } else {
@@ -382,14 +382,14 @@ public class Application {
       return this.mainWindow;
    }
 
-   public void AboutDialog(Starship var1) {
+   public void exportStarship(Starship var1) {
       File var2 = nomanssave.AppSettings.cF;
       if (!var2.exists() && !var2.mkdir()) {
          var2 = nomanssave.AppSettings.cD;
       }
 
       cT var3 = cT.discoveryPanel();
-      String var4 = AboutDialog(var1.getName(), "Ship");
+      String var4 = sanitizeFileName(var1.getName(), "Ship");
       var3.setCurrentDirectory(var2);
       var3.setSelectedFile(new File(var2, var4));
       if (var3.showSaveDialog(this.mainWindow) == 0) {
@@ -402,23 +402,23 @@ public class Application {
             var1.AboutDialog(var5, var3.freighterPanel());
          } catch (RuntimeException var6) {
             Logger.AboutDialog("Ship export error", var6);
-            this.AccountPanel("An error occured during export.");
+            this.showWarning("An error occured during export.");
          } catch (IOException var7) {
             Logger.AboutDialog("Ship export error", var7);
-            this.AccountPanel("An error occured during export.");
+            this.showWarning("An error occured during export.");
          }
       }
 
    }
 
-   public void AboutDialog(Multitool var1) {
+   public void exportMultitool(Multitool var1) {
       File var2 = nomanssave.AppSettings.cF;
       if (!var2.exists() && !var2.mkdir()) {
          var2 = nomanssave.AppSettings.cD;
       }
 
       cv var3 = cv.frigatesPanel();
-      String var4 = AboutDialog(var1.getName(), "Weapon");
+      String var4 = sanitizeFileName(var1.getName(), "Weapon");
       var3.setCurrentDirectory(var2);
       var3.setSelectedFile(new File(var2, var4));
       if (var3.showSaveDialog(this.mainWindow) == 0) {
@@ -431,16 +431,16 @@ public class Application {
             var1.isFrigateOnMission(var5);
          } catch (RuntimeException var6) {
             Logger.AboutDialog("Weapon export error", var6);
-            this.AccountPanel("An error occured during export.");
+            this.showWarning("An error occured during export.");
          } catch (IOException var7) {
             Logger.AboutDialog("Weapon export error", var7);
-            this.AccountPanel("An error occured during export.");
+            this.showWarning("An error occured during export.");
          }
       }
 
    }
 
-   public void AboutDialog(Companion var1) {
+   public void exportCompanion(Companion var1) {
       File var2 = nomanssave.AppSettings.cF;
       if (!var2.exists() && !var2.mkdir()) {
          var2 = nomanssave.AppSettings.cD;
@@ -448,7 +448,7 @@ public class Application {
 
       String var3 = "." + var1.cL().name().toLowerCase();
       cp var4 = cp.multitoolPanel();
-      String var5 = AboutDialog(var1.getName(), var1.cL().name());
+      String var5 = sanitizeFileName(var1.getName(), var1.cL().name());
       var4.setCurrentDirectory(var2);
       var4.setSelectedFile(new File(var2, var5));
       if (var4.showSaveDialog(this.mainWindow) == 0) {
@@ -461,10 +461,10 @@ public class Application {
             var1.isFrigateOnMission(var6);
          } catch (RuntimeException var7) {
             Logger.AboutDialog("Companion export error", var7);
-            this.AccountPanel("An error occured during export.");
+            this.showWarning("An error occured during export.");
          } catch (IOException var8) {
             Logger.AboutDialog("Companion export error", var8);
-            this.AccountPanel("An error occured during export.");
+            this.showWarning("An error occured during export.");
          }
       }
 
@@ -484,10 +484,10 @@ public class Application {
                return var5;
             } catch (RuntimeException var6) {
                Logger.AboutDialog("Ship import error", var6);
-               this.AccountPanel("An error occured during import.");
+               this.showWarning("An error occured during import.");
             } catch (IOException var7) {
                Logger.AboutDialog("Ship import error", var7);
-               this.AccountPanel("An error occured during import.");
+               this.showWarning("An error occured during import.");
             }
          }
 
@@ -511,10 +511,10 @@ public class Application {
                return var5;
             } catch (RuntimeException var6) {
                Logger.AboutDialog("Weapon import error", var6);
-               this.AccountPanel("An error occured during import.");
+               this.showWarning("An error occured during import.");
             } catch (IOException var7) {
                Logger.AboutDialog("Weapon import error", var7);
-               this.AccountPanel("An error occured during import.");
+               this.showWarning("An error occured during import.");
             }
          }
 
@@ -538,10 +538,10 @@ public class Application {
                return var5;
             } catch (RuntimeException var6) {
                Logger.AboutDialog("Companion import error", var6);
-               this.AccountPanel("An error occured during import.");
+               this.showWarning("An error occured during import.");
             } catch (IOException var7) {
                Logger.AboutDialog("Companion import error", var7);
-               this.AccountPanel("An error occured during import.");
+               this.showWarning("An error occured during import.");
             }
          }
 
@@ -551,14 +551,14 @@ public class Application {
       }
    }
 
-   public void AboutDialog(Base var1) {
+   public void backupBase(Base var1) {
       File var2 = nomanssave.AppSettings.cE;
       if (!var2.exists() && !var2.mkdir()) {
          var2 = nomanssave.AppSettings.cD;
       }
 
       cl var3 = cl.ar();
-      String var4 = AboutDialog(var1.getName(), "Base");
+      String var4 = sanitizeFileName(var1.getName(), "Base");
       var3.setCurrentDirectory(var2);
       var3.setSelectedFile(new File(var2, var4));
       if (var3.showSaveDialog(this.mainWindow) == 0) {
@@ -575,19 +575,19 @@ public class Application {
             BackupUtil.d(var1.cH(), var5);
          } catch (RuntimeException var6) {
             Logger.AboutDialog("Base backup error", var6);
-            this.AccountPanel("An error occured during backup.");
+            this.showWarning("An error occured during backup.");
          } catch (IOException var7) {
             Logger.AboutDialog("Base backup error", var7);
-            this.AccountPanel("An error occured during backup.");
+            this.showWarning("An error occured during backup.");
          } catch (GeneralSecurityException var8) {
             Logger.AboutDialog("Base backup error", var8);
-            this.AccountPanel("An error occured during backup.");
+            this.showWarning("An error occured during backup.");
          }
       }
 
    }
 
-   public boolean AboutDialogCloseListener(Base var1) {
+   public boolean restoreBase(Base var1) {
       File var2 = nomanssave.AppSettings.cE.exists() ? nomanssave.AppSettings.cE : nomanssave.AppSettings.cD;
       cl var3 = cl.ar();
       var3.setCurrentDirectory(var2);
@@ -603,17 +603,17 @@ public class Application {
             return true;
          } catch (IOException var5) {
             Logger.AboutDialog("Base restore error", var5);
-            this.AccountPanel("An error occured during backup.");
+            this.showWarning("An error occured during backup.");
          } catch (GeneralSecurityException var6) {
             Logger.AboutDialog("Base restore error", var6);
-            this.AccountPanel("An error occured during backup.");
+            this.showWarning("An error occured during backup.");
          }
       }
 
       return false;
    }
 
-   public void AboutDialog(Freighter var1) {
+   public void backupFreighter(Freighter var1) {
       FreighterBase var2 = var1.cZ();
       if (var2 != null) {
          File var3 = nomanssave.AppSettings.cE;
@@ -622,7 +622,7 @@ public class Application {
          }
 
          cs var4 = cs.squadronPanel();
-         String var5 = AboutDialog(var2.getName(), "Freighter");
+         String var5 = sanitizeFileName(var2.getName(), "Freighter");
          var4.setCurrentDirectory(var3);
          var4.setSelectedFile(new File(var3, var5));
          if (var4.showSaveDialog(this.mainWindow) == 0) {
@@ -676,20 +676,20 @@ public class Application {
                BackupUtil.AboutDialog(var2.cH(), (Map)var7, (File)var6);
             } catch (RuntimeException var15) {
                Logger.AboutDialog("Freighter backup error", var15);
-               this.AccountPanel("An error occured during backup.");
+               this.showWarning("An error occured during backup.");
             } catch (IOException var16) {
                Logger.AboutDialog("Freighter backup error", var16);
-               this.AccountPanel("An error occured during backup.");
+               this.showWarning("An error occured during backup.");
             } catch (GeneralSecurityException var17) {
                Logger.AboutDialog("Freighter backup error", var17);
-               this.AccountPanel("An error occured during backup.");
+               this.showWarning("An error occured during backup.");
             }
          }
 
       }
    }
 
-   public boolean AboutDialogCloseListener(Freighter var1) {
+   public boolean restoreFreighter(Freighter var1) {
       FreighterBase var2 = var1.cZ();
       if (var2 == null) {
          return false;
@@ -769,10 +769,10 @@ public class Application {
                return true;
             } catch (IOException var11) {
                Logger.AboutDialog("Freighter restore error", var11);
-               this.AccountPanel("An error occured during restore.");
+               this.showWarning("An error occured during restore.");
             } catch (GeneralSecurityException var12) {
                Logger.AboutDialog("Freighter restore error", var12);
-               this.AccountPanel("An error occured during restore.");
+               this.showWarning("An error occured during restore.");
             }
          }
 
@@ -878,7 +878,7 @@ public class Application {
          this.slotComboBox.setEnabled(true);
          this.fileComboBox.setEnabled(true);
          if (this.ExosuitPanel > 0) {
-            this.AccountPanel("The save file you have selected is not the most recent.");
+            this.showWarning("The save file you have selected is not the most recent.");
          }
 
          this.loadSave();
@@ -908,7 +908,7 @@ public class Application {
       EventQueue.invokeLater(new ShowErrorRunnable(this, var1));
    }
 
-   public void AccountPanel(String var1) {
+   public void showWarning(String var1) {
       EventQueue.invokeLater(new ShowWarningRunnable(this, var1));
    }
 
@@ -967,29 +967,29 @@ public class Application {
          Companion[] var14 = Companion.saveFileAs(var1);
          Settlement var15 = Settlement.saveAccountData(var1);
          this.tabbedPane.setEnabledAt(1, var21 != null);
-         this.exosuitPanel.AboutDialog(var21);
+         this.exosuitPanel.updateComponentTreeUI(var21);
          this.tabbedPane.setEnabledAt(2, var4.length > 0);
          this.multitoolPanel.AboutDialog(var4, var5);
          this.tabbedPane.setEnabledAt(3, var6.length > 0);
          this.shipsPanel.AboutDialog(var6, var7);
          this.tabbedPane.setEnabledAt(4, var8.length > 0);
-         this.squadronPanel.AboutDialog(var8);
+         this.squadronPanel.updateComponentTreeUI(var8);
          this.tabbedPane.setEnabledAt(5, var9 != null);
          this.freighterPanel.AccountPanel(var9);
          this.tabbedPane.setEnabledAt(6, var9 != null);
-         this.frigatesPanel.AboutDialog(var10);
+         this.frigatesPanel.updateComponentTreeUI(var10);
          this.tabbedPane.setEnabledAt(7, var11.length > 0);
-         this.vehiclesPanel.AboutDialog(var11);
+         this.vehiclesPanel.updateComponentTreeUI(var11);
          this.tabbedPane.setEnabledAt(8, var13);
-         this.companionsPanel.AboutDialog(var14);
+         this.companionsPanel.updateComponentTreeUI(var14);
          this.tabbedPane.setEnabledAt(9, var15 != null);
-         this.basesStoragePanel.AboutDialog(var15);
+         this.basesStoragePanel.updateComponentTreeUI(var15);
          this.tabbedPane.setEnabledAt(10, var12.length > 0);
-         this.settlementsPanel.AboutDialog(var12);
+         this.settlementsPanel.updateComponentTreeUI(var12);
          this.tabbedPane.setEnabledAt(11, var21 != null);
-         this.discoveryPanel.AboutDialog(var21);
+         this.discoveryPanel.updateComponentTreeUI(var21);
          this.tabbedPane.setEnabledAt(12, var21 != null);
-         this.milestonesPanel.AboutDialog(var21);
+         this.milestonesPanel.updateComponentTreeUI(var21);
          this.reloadButton.setEnabled(!(this.saveFiles[this.ExosuitPanel] instanceof InMemorySaveFile));
          this.CompanionsPanel.setEnabled(true);
          this.saveAsButton.setEnabled(var20);
@@ -1056,7 +1056,7 @@ public class Application {
          this.accountModified = false;
       } catch (Exception var2) {
          Logger.AboutDialog("Error saving account data", var2);
-         this.AccountPanel("An error occured saving the account data.");
+         this.showWarning("An error occured saving the account data.");
       }
 
    }
@@ -1237,20 +1237,20 @@ public class Application {
             this.accountData.k(this.accountJson);
          } catch (IOException var2) {
             Logger.AboutDialog("JSON Save error", var2);
-            this.AccountPanel("An error occured saving the account data.");
+            this.showWarning("An error occured saving the account data.");
          }
       }
 
    }
 
-   private static void AboutDialog(Window var0) {
+   private static void updateComponentTreeUI(Window var0) {
       SwingUtilities.updateComponentTreeUI(var0);
       Window[] var4;
       int var3 = (var4 = var0.getOwnedWindows()).length;
 
       for(int var2 = 0; var2 < var3; ++var2) {
          Window var1 = var4[var2];
-         AboutDialog(var1);
+         updateComponentTreeUI(var1);
       }
 
    }
@@ -1258,7 +1258,7 @@ public class Application {
    private void changeTheme() {
       if (nomanssave.milestonesPanel.d(this.mainWindow)) {
          nomanssave.AppSettings.descriptionLabel();
-         AboutDialog((Window)this.mainWindow);
+         updateComponentTreeUI((Window)this.mainWindow);
       }
 
    }
@@ -1280,29 +1280,29 @@ public class Application {
       Companion[] var13 = Companion.saveFileAs(var1);
       Settlement var14 = Settlement.saveAccountData(var1);
       this.tabbedPane.setEnabledAt(1, var2 != null);
-      this.exosuitPanel.AboutDialog(var2);
+      this.exosuitPanel.updateComponentTreeUI(var2);
       this.tabbedPane.setEnabledAt(2, var3.length > 0);
       this.multitoolPanel.AboutDialog(var3, var4);
       this.tabbedPane.setEnabledAt(3, var5.length > 0);
       this.shipsPanel.AboutDialog(var5, var7);
       this.tabbedPane.setEnabledAt(4, var6.length > 0);
-      this.squadronPanel.AboutDialog(var6);
+      this.squadronPanel.updateComponentTreeUI(var6);
       this.tabbedPane.setEnabledAt(5, var8 != null);
       this.freighterPanel.AccountPanel(var8);
       this.tabbedPane.setEnabledAt(6, var8 != null);
-      this.frigatesPanel.AboutDialog(var9);
+      this.frigatesPanel.updateComponentTreeUI(var9);
       this.tabbedPane.setEnabledAt(7, var10.length > 0);
-      this.vehiclesPanel.AboutDialog(var10);
+      this.vehiclesPanel.updateComponentTreeUI(var10);
       this.tabbedPane.setEnabledAt(8, var12);
-      this.companionsPanel.AboutDialog(var13);
+      this.companionsPanel.updateComponentTreeUI(var13);
       this.tabbedPane.setEnabledAt(9, var14 != null);
-      this.basesStoragePanel.AboutDialog(var14);
+      this.basesStoragePanel.updateComponentTreeUI(var14);
       this.tabbedPane.setEnabledAt(10, var11.length > 0);
-      this.settlementsPanel.AboutDialog(var11);
+      this.settlementsPanel.updateComponentTreeUI(var11);
       this.tabbedPane.setEnabledAt(11, var2 != null);
-      this.discoveryPanel.AboutDialog(var2);
+      this.discoveryPanel.updateComponentTreeUI(var2);
       this.tabbedPane.setEnabledAt(12, var2 != null);
-      this.milestonesPanel.AboutDialog(var2);
+      this.milestonesPanel.updateComponentTreeUI(var2);
    }
 
    private void exportJson() {
@@ -1325,7 +1325,7 @@ public class Application {
             this.currentSave.AccountPanel(var3);
          } catch (IOException var4) {
             Logger.AboutDialog("JSON Export error", var4);
-            this.AccountPanel("An error occured exporting the save data.");
+            this.showWarning("An error occured exporting the save data.");
          }
       }
 
@@ -1346,7 +1346,7 @@ public class Application {
             this.refreshPanels();
          } catch (IOException var3) {
             Logger.AboutDialog("JSON Import error", var3);
-            this.AccountPanel("An error occured importing the save data.");
+            this.showWarning("An error occured importing the save data.");
          }
       }
 
@@ -1393,13 +1393,13 @@ public class Application {
       this.basesStoragePanel.expandAllInventories();
    }
 
-   public void AboutDialog(Inventory var1) {
-      this.exosuitPanel.AboutDialog(var1);
-      this.multitoolPanel.AboutDialog(var1);
-      this.shipsPanel.AboutDialog(var1);
-      this.freighterPanel.AboutDialog(var1);
-      this.vehiclesPanel.AboutDialog(var1);
-      this.basesStoragePanel.AboutDialog(var1);
+   public void updateInventory(Inventory var1) {
+      this.exosuitPanel.updateComponentTreeUI(var1);
+      this.multitoolPanel.updateComponentTreeUI(var1);
+      this.shipsPanel.updateComponentTreeUI(var1);
+      this.freighterPanel.updateComponentTreeUI(var1);
+      this.vehiclesPanel.updateComponentTreeUI(var1);
+      this.basesStoragePanel.updateComponentTreeUI(var1);
    }
 
    public void WindowCloseListener() {
@@ -1504,7 +1504,7 @@ public class Application {
       }
    }
 
-   public void AboutDialog(gl var1, int var2) {
+   public void deleteCompanion(gl var1, int var2) {
       JsonObject var3 = this.currentSave.H("PlayerStateData");
       JsonArray var4;
       switch(BasesStoragePanel()[var1.ordinal()]) {
@@ -1549,7 +1549,7 @@ public class Application {
       for(var4 = 0; var4 < var3.size(); ++var4) {
          JsonArray var5 = var3.descriptionLabel(var4).d("AllFrigateIndices");
          if (var5.hasValue(new Integer(var1))) {
-            this.AccountPanel("This frigate is currently on a mission and cannot be deleted!");
+            this.showWarning("This frigate is currently on a mission and cannot be deleted!");
             return Frigate.d(var2);
          }
       }
@@ -1629,7 +1629,7 @@ public class Application {
       return Frigate.d(var2);
    }
 
-   public Frigate[] AboutDialog(int var1, String var2) {
+   public Frigate[] renameFrigate(int var1, String var2) {
       JsonArray var3 = this.currentSave.d("PlayerStateData.FleetFrigates");
       if (var3 != null && var1 < var3.size()) {
          JsonObject var4 = var3.descriptionLabel(var1).MilestonesPanel();
@@ -1990,7 +1990,7 @@ public class Application {
    }
 
    // $FF: synthetic method
-   static boolean AboutDialog(Application var0) {
+   static boolean access$isFileLoading(Application var0) {
       return var0.aQ;
    }
 
@@ -2000,7 +2000,7 @@ public class Application {
    }
 
    // $FF: synthetic method
-   static void AboutDialog(Application var0, boolean var1) {
+   static void access$setSlotChanged(Application var0, boolean var1) {
       var0.aR = var1;
    }
 
@@ -2123,7 +2123,7 @@ public class Application {
    }
 
    // $FF: synthetic method
-   static void AboutDialog(Application var0, int var1) {
+   static void access$selectSlot(Application var0, int var1) {
       var0.e(var1);
    }
 
@@ -2133,7 +2133,7 @@ public class Application {
    }
 
    // $FF: synthetic method
-   static void AboutDialog(Application var0, SaveFile[] var1) {
+   static void access$setSaveFiles(Application var0, SaveFile[] var1) {
       var0.saveFiles = var1;
    }
 

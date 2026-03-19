@@ -59,7 +59,7 @@ public class AccountPanel extends JPanel {
       this.add(var10);
    }
 
-   void AboutDialog(JsonObject var1) {
+   void loadAccountData(JsonObject var1) {
       if (var1 == null) {
          this.accountTable.AboutDialog((JsonArray)null);
          this.d.AboutDialog((JsonArray)null);

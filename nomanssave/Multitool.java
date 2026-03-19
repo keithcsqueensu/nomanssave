@@ -29,7 +29,7 @@ public class Multitool {
       }
    }
 
-   public static Multitool AboutDialogCloseListener(JsonObject var0, File var1) {
+   public static Multitool importFromFile(JsonObject var0, File var1) {
       JsonArray var2 = var0.d("Multitools");
       if (var2 != null && var2.size() != 0) {
          int var3 = -1;
@@ -93,7 +93,7 @@ public class Multitool {
       }
    }
 
-   private static Function AboutDialogCloseListener(Multitool var0) {
+   private static Function buildFieldAccessor(Multitool var0) {
       return (var1) -> {
          String var2 = var0.getName();
          if (var2 == null || var2.length() == 0) {
@@ -114,7 +114,7 @@ public class Multitool {
          var5 = 10;
       }
 
-      this.qG = new Inventory(AboutDialogCloseListener(this), var3, 2, var4, var5, true, true);
+      this.qG = new Inventory(buildFieldAccessor(this), var3, 2, var4, var5, true, true);
    }
 
    public void j(File var1) {

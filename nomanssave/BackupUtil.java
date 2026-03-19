@@ -22,7 +22,7 @@ public class BackupUtil {
    private static byte[] lA = new byte[]{78, 77, 83, 66};
    private static byte[] rS = new byte[]{50, -99, -78, -55, 92, 88, -34, 74, -57, 17, 57, -108, -94, 127, 97, -79};
 
-   private static double[] AboutDialog(JsonObject var0, String var1) {
+   private static double[] readDoubleArray(JsonObject var0, String var1) {
       JsonArray var2 = var0.d(var1);
       if (var2.size() != 3) {
          throw new RuntimeException("Invalid " + var1 + " coordinates");
@@ -31,30 +31,30 @@ public class BackupUtil {
       }
    }
 
-   private static void AboutDialog(JsonObject var0, String var1, double[] var2) {
+   private static void writeDoubleArray(JsonObject var0, String var1, double[] var2) {
       var0.AboutDialogCloseListener(var1, (Object)(new JsonArray(new Object[]{new Double(Double.isNaN(var2[0]) ? 0.0D : var2[0]), new Double(Double.isNaN(var2[1]) ? 0.0D : var2[1]), new Double(Double.isNaN(var2[2]) ? 0.0D : var2[2])})));
    }
 
    public static void d(JsonObject var0, File var1) {
-      AboutDialog(var0, Collections.emptyMap(), var1);
+      saveBackup(var0, Collections.emptyMap(), var1);
    }
 
-   public static void AboutDialog(JsonObject var0, Map var1, File var2) {
+   public static void saveBackup(JsonObject var0, Map var1, File var2) {
       int var3 = var0.J("BaseVersion");
       JsonArray var4 = var0.d("Objects").bA();
       if (var3 < 3) {
-         double[] var5 = AboutDialog(var0, "Position");
-         double[] var6 = AboutDialog(var0, "Forward");
+         double[] var5 = readDoubleArray(var0, "Position");
+         double[] var6 = readDoubleArray(var0, "Forward");
          CoordinateTransform var7 = new CoordinateTransform(var5, var6);
 
          for(int var8 = 0; var8 < var4.size(); ++var8) {
             JsonObject var9 = var4.V(var8);
-            double[] var10 = AboutDialog(var9, "Position");
-            double[] var11 = AboutDialog(var9, "Up");
-            double[] var12 = AboutDialog(var9, "At");
-            AboutDialog(var9, "Position", var7.d(var10));
-            AboutDialog(var9, "Up", var7.d(var11));
-            AboutDialog(var9, "At", var7.d(var12));
+            double[] var10 = readDoubleArray(var9, "Position");
+            double[] var11 = readDoubleArray(var9, "Up");
+            double[] var12 = readDoubleArray(var9, "At");
+            writeDoubleArray(var9, "Position", var7.d(var10));
+            writeDoubleArray(var9, "Up", var7.d(var11));
+            writeDoubleArray(var9, "At", var7.d(var12));
          }
       }
 
@@ -98,10 +98,10 @@ public class BackupUtil {
    }
 
    public static void e(JsonObject var0, File var1) {
-      AboutDialogCloseListener(var0, Collections.emptyMap(), var1);
+      loadBackup(var0, Collections.emptyMap(), var1);
    }
 
-   public static void AboutDialogCloseListener(JsonObject var0, Map var1, File var2) {
+   public static void loadBackup(JsonObject var0, Map var1, File var2) {
       Object var4 = new FileInputStream(var2);
 
       int var3;
@@ -210,28 +210,28 @@ public class BackupUtil {
       if (var3 == 3) {
          for(var22 = 0; var22 < var5.size(); ++var22) {
             var23 = var5.V(var22);
-            double[] var24 = AboutDialog(var23, "Position");
+            double[] var24 = readDoubleArray(var23, "Position");
             var24[0] += 3.0D;
             var24[2] += 3.0D;
-            AboutDialog(var24);
-            AboutDialog(var23, "Position", var24);
-            double[] var25 = AboutDialog(var23, "Up");
-            AboutDialog(var25);
-            AboutDialog(var23, "Up", var25);
-            double[] var27 = AboutDialog(var23, "At");
-            AboutDialog(var27);
-            AboutDialog(var23, "At", var27);
+            normalizeDoubleArray(var24);
+            writeDoubleArray(var23, "Position", var24);
+            double[] var25 = readDoubleArray(var23, "Up");
+            normalizeDoubleArray(var25);
+            writeDoubleArray(var23, "Up", var25);
+            double[] var27 = readDoubleArray(var23, "At");
+            normalizeDoubleArray(var27);
+            writeDoubleArray(var23, "At", var27);
          }
 
          var22 = var0.J("UserData");
-         var5.add(0, AboutDialog("^BASE_FLAG", var21, var22, new double[]{0.0D, 0.0D, 0.0D}, new double[]{0.0D, 1.0D, 0.0D}, new double[]{0.0D, 0.0D, 1.0D}));
-         var5.add(1, AboutDialog("^MAINROOM", var21, var22, new double[]{-3.0D, 0.0D, 3.0D}, new double[]{0.0D, 1.0D, 0.0D}, new double[]{0.0D, 0.0D, -1.0D}));
-         var5.add(2, AboutDialog("^TELEPORTER", var21, var22, new double[]{0.0D, 0.0D, 6.0D}, new double[]{0.0D, 1.0D, 0.0D}, new double[]{-0.7071069478988647D, 0.0D, -0.7071067094802856D}));
-         var5.add(3, AboutDialog("^BUILDDOOR", var21, var22, new double[]{-9.005859375D, 0.2421875D, 2.98828125D}, new double[]{0.0D, 1.0D, 0.0D}, new double[]{-1.0D, 0.0D, 0.0D}));
-         var5.add(4, AboutDialog("^BUILDRAMP", var21, var22, new double[]{-10.724609375D, 0.296875D, 2.98828125D}, new double[]{-0.2588191032409668D, 0.9659259915351868D, 2.9802322387695312E-8D}, new double[]{-0.9659258127212524D, -0.2588191628456116D, -3.2782554626464844E-7D}));
-         var5.add(5, AboutDialog("^BUILDWINDOW", var21, var22, new double[]{-7.248046875D, 0.5D, -1.25D}, new double[]{0.0D, 1.0D, 0.0D}, new double[]{-0.7071069478988647D, 0.0D, -0.7071067094802856D}));
-         var5.add(6, AboutDialog("^BUILDWINDOW", var21, var22, new double[]{-7.248046875D, 0.5D, 7.25D}, new double[]{0.0D, 1.0D, 0.0D}, new double[]{-0.7071069478988647D, 0.0D, 0.7071067094802856D}));
-         var5.add(7, AboutDialog("^BUILDWINDOW", var21, var22, new double[]{1.248046875D, 0.5D, -1.25D}, new double[]{0.0D, 1.0D, 0.0D}, new double[]{0.7071069478988647D, 0.0D, -0.7071067094802856D}));
+         var5.add(0, buildBackupJson("^BASE_FLAG", var21, var22, new double[]{0.0D, 0.0D, 0.0D}, new double[]{0.0D, 1.0D, 0.0D}, new double[]{0.0D, 0.0D, 1.0D}));
+         var5.add(1, buildBackupJson("^MAINROOM", var21, var22, new double[]{-3.0D, 0.0D, 3.0D}, new double[]{0.0D, 1.0D, 0.0D}, new double[]{0.0D, 0.0D, -1.0D}));
+         var5.add(2, buildBackupJson("^TELEPORTER", var21, var22, new double[]{0.0D, 0.0D, 6.0D}, new double[]{0.0D, 1.0D, 0.0D}, new double[]{-0.7071069478988647D, 0.0D, -0.7071067094802856D}));
+         var5.add(3, buildBackupJson("^BUILDDOOR", var21, var22, new double[]{-9.005859375D, 0.2421875D, 2.98828125D}, new double[]{0.0D, 1.0D, 0.0D}, new double[]{-1.0D, 0.0D, 0.0D}));
+         var5.add(4, buildBackupJson("^BUILDRAMP", var21, var22, new double[]{-10.724609375D, 0.296875D, 2.98828125D}, new double[]{-0.2588191032409668D, 0.9659259915351868D, 2.9802322387695312E-8D}, new double[]{-0.9659258127212524D, -0.2588191628456116D, -3.2782554626464844E-7D}));
+         var5.add(5, buildBackupJson("^BUILDWINDOW", var21, var22, new double[]{-7.248046875D, 0.5D, -1.25D}, new double[]{0.0D, 1.0D, 0.0D}, new double[]{-0.7071069478988647D, 0.0D, -0.7071067094802856D}));
+         var5.add(6, buildBackupJson("^BUILDWINDOW", var21, var22, new double[]{-7.248046875D, 0.5D, 7.25D}, new double[]{0.0D, 1.0D, 0.0D}, new double[]{-0.7071069478988647D, 0.0D, 0.7071067094802856D}));
+         var5.add(7, buildBackupJson("^BUILDWINDOW", var21, var22, new double[]{1.248046875D, 0.5D, -1.25D}, new double[]{0.0D, 1.0D, 0.0D}, new double[]{0.7071069478988647D, 0.0D, -0.7071067094802856D}));
       }
 
       if (var3 < 5) {
@@ -241,13 +241,13 @@ public class BackupUtil {
       var0.AboutDialogCloseListener("Objects", (Object)var5);
    }
 
-   private static void AboutDialog(double[] var0) {
+   private static void normalizeDoubleArray(double[] var0) {
       double var1 = var0[0];
       var0[0] = -var0[2];
       var0[2] = var1;
    }
 
-   private static JsonObject AboutDialog(String var0, long var1, int var3, double[] var4, double[] var5, double[] var6) {
+   private static JsonObject buildBackupJson(String var0, long var1, int var3, double[] var4, double[] var5, double[] var6) {
       JsonObject var7 = new JsonObject();
       var7.put("Timestamp", new Long(var1));
       var7.put("ObjectID", var0);

@@ -31,7 +31,7 @@ public class Starship {
       }
    }
 
-   public static Starship AccountPanel(JsonObject var0, File var1) {
+   public static Starship importFromFile(JsonObject var0, File var1) {
       JsonArray var2 = var0.d("ShipOwnership");
       if (var2 != null && var2.size() != 0) {
          int var3 = -1;
@@ -95,7 +95,7 @@ public class Starship {
       }
    }
 
-   private static Function AboutDialog(Starship var0, String[] var1) {
+   private static Function buildFieldAccessor(Starship var0, String[] var1) {
       return (var2) -> {
          String var3 = var0.getName();
          if (var3 == null || var3.length() == 0) {
@@ -133,19 +133,19 @@ public class Starship {
       }
 
       ArrayList var15 = new ArrayList();
-      var15.add(new gI(this, AboutDialog(this, var6), var3, 0, var10, var11, false, true, var14, var1));
+      var15.add(new gI(this, buildFieldAccessor(this, var6), var3, 0, var10, var11, false, true, var14, var1));
       if (var4 != null) {
-         var15.add(new gJ(this, AboutDialog(this, var7), var4, 0, var12, var13, true, true, var1));
+         var15.add(new gJ(this, buildFieldAccessor(this, var7), var4, 0, var12, var13, true, true, var1));
       }
 
       if (var5 != null) {
-         var15.add(new gK(this, AboutDialog(this, var8), var5, var9, 8, 6, false, true, var1));
+         var15.add(new gK(this, buildFieldAccessor(this, var8), var5, var9, 8, 6, false, true, var1));
       }
 
       this.CoordinateTransform = Collections.unmodifiableList(var15);
    }
 
-   public void AboutDialog(File var1, boolean var2) {
+   public void exportToFile(File var1, boolean var2) {
       Throwable var3 = null;
       Object var4 = null;
 
@@ -311,7 +311,7 @@ public class Starship {
       return this.ak("^SHIP_HYPERDRIVE");
    }
 
-   public void AboutDialog(double var1) {
+   public void setHyperdrive(double var1) {
       this.d("^SHIP_HYPERDRIVE", var1);
    }
 
@@ -334,7 +334,7 @@ public class Starship {
    }
 
    // $FF: synthetic method
-   static int AboutDialogCloseListener(Starship var0) {
+   static int access$getIndex(Starship var0) {
       return var0.ea();
    }
 }

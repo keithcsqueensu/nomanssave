@@ -8,13 +8,13 @@ class u implements SaveChangeListener {
       this.aZ = var1;
    }
 
-   public void AboutDialog(SaveLocation var1) {
+   public void onSaveLocationChanged(SaveLocation var1) {
       if (Application.loadIcon(this.aZ) && Application.AboutDialogCloseListener(this.aZ) == var1) {
          Application.AboutDialog(this.aZ, true);
       }
    }
 
-   public void AboutDialog(SaveLocation var1, int var2, String var3) {
+   public void onFileChanged(SaveLocation var1, int var2, String var3) {
       if (Application.loadIcon(this.aZ) && Application.AboutDialogCloseListener(this.aZ) == var1) {
          Application.AboutDialogCloseListener(this.aZ, true);
          if (Application.AccountPanel(this.aZ) >= 0 && Application.d(this.aZ)[Application.AccountPanel(this.aZ)].getIndex() == var2) {

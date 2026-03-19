@@ -47,7 +47,7 @@ public class Inventory {
    // $FF: synthetic field
    private static int[] qC;
 
-   public static int AboutDialog(ex var0) {
+   public static int getSlotIndex(ex var0) {
       switch(dw()[var0.ordinal()]) {
       case 18:
          return 3584;
@@ -289,7 +289,7 @@ public class Inventory {
       return new Dimension(this.width, this.height);
    }
 
-   public boolean AboutDialog(Dimension var1) {
+   public boolean resize(Dimension var1) {
       int var2 = 1;
       int var3 = 1;
 
@@ -398,7 +398,7 @@ public class Inventory {
       return new Dimension(this.qz[0].length, this.qz.length);
    }
 
-   public void AboutDialog(int var1, int var2, int var3, int var4) {
+   public void setSlot(int var1, int var2, int var3, int var4) {
       if (!this.qz[var2][var1]) {
          throw new RuntimeException("Old slot not enabled");
       } else if (!this.qz[var4][var3]) {
@@ -422,7 +422,7 @@ public class Inventory {
       }
    }
 
-   public void AboutDialogCloseListener(int var1, int var2, int var3, int var4) {
+   public void clearSlot(int var1, int var2, int var3, int var4) {
       if (!this.qz[var2][var1]) {
          throw new RuntimeException("Old slot not enabled");
       } else if (!this.qz[var4][var3]) {
@@ -456,7 +456,7 @@ public class Inventory {
       }
    }
 
-   public void AccountPanel(int var1, int var2, int var3, int var4) {
+   public void enableSlot(int var1, int var2, int var3, int var4) {
       if (!this.qz[var2][var1]) {
          throw new RuntimeException("Old slot not enabled");
       } else if (!this.qz[var4][var3]) {
@@ -488,7 +488,7 @@ public class Inventory {
          JsonObject var4 = var2.V(var3);
          if (var4.getValueAsString("Type.InventoryType").equals("Technology")) {
             ItemDefinition var5 = ItemDefinition.d(var4.getValue("Id"));
-            if (var5 == null || (AboutDialog(var5.bc()) & var1) == 0) {
+            if (var5 == null || (getSlotIndex(var5.bc()) & var1) == 0) {
                int var6 = var4.J("Index.X");
                int var7 = var4.J("Index.Y");
                if (var7 < this.qy.length && var6 < this.qy[var7].length) {
@@ -520,7 +520,7 @@ public class Inventory {
       }
    }
 
-   public boolean AboutDialog(int var1, int var2, Inventory var3) {
+   public boolean moveItem(int var1, int var2, Inventory var3) {
       if (this.qy[var2][var1] == null) {
          return false;
       } else {
@@ -539,7 +539,7 @@ public class Inventory {
             for(var12 = 0; var12 < var3.qy.length; ++var12) {
                for(var13 = 0; var13 < var3.qy[var12].length; ++var13) {
                   if (var3.qy[var12][var13] == null && var3.qz[var12][var13] && !var3.l(var13, var12)) {
-                     var3.AboutDialog(var13, var12, var4, var5, var6, var11, var7, var9);
+                     var3.setSlotData(var13, var12, var4, var5, var6, var11, var7, var9);
                      var6 = 0;
                      var10 = true;
                      break;
@@ -604,7 +604,7 @@ public class Inventory {
                   if (var3.qy[var13][var14] == null && var3.qz[var13][var14] && !var3.l(var14, var13)) {
                      var15 = var6 > var12 ? var12 : var6;
                      Logger.info("  new stack: " + var15);
-                     var3.AboutDialog(var14, var13, var4, var5, var15, var12, var7, var9);
+                     var3.setSlotData(var14, var13, var4, var5, var15, var12, var7, var9);
                      var6 -= var15;
                      var10 = true;
                      if (var6 == 0) {
@@ -643,7 +643,7 @@ public class Inventory {
       }
    }
 
-   public int AboutDialog(ItemDefinition var1, int var2) {
+   public int addItem(ItemDefinition var1, int var2) {
       int var3;
       String var4;
       switch(dy()[var1.FormPanel().ordinal()]) {
@@ -700,7 +700,7 @@ public class Inventory {
                if (this.qy[var6][var7] == null && this.qz[var6][var7] && !this.l(var7, var6)) {
                   var8 = var2 > var3 ? var3 : var2;
                   Logger.info("  new stack: " + var8);
-                  this.AboutDialog(var7, var6, var4, var10, var8, var3, 0.0D, true);
+                  this.setSlotData(var7, var6, var4, var10, var8, var3, 0.0D, true);
                   var2 -= var8;
                   if (var2 == 0) {
                      break;
@@ -717,7 +717,7 @@ public class Inventory {
       return var2;
    }
 
-   public boolean AboutDialog(int var1, int var2, ItemDefinition var3) {
+   public boolean setItem(int var1, int var2, ItemDefinition var3) {
       if (this.qy[var2][var1] != null) {
          return false;
       } else {
@@ -751,12 +751,12 @@ public class Inventory {
          }
 
          Object var7 = var3.aZ();
-         this.AboutDialog(var1, var2, var3.FormPanel().toString(), var7, var4, var5, 0.0D, true);
+         this.setSlotData(var1, var2, var3.FormPanel().toString(), var7, var4, var5, 0.0D, true);
          return true;
       }
    }
 
-   private void AboutDialog(int var1, int var2, String var3, Object var4, int var5, int var6, double var7, boolean var9) {
+   private void setSlotData(int var1, int var2, String var3, Object var4, int var5, int var6, double var7, boolean var9) {
       JsonArray var10 = this.qt.d("Slots");
       JsonObject var11 = TemplateLoader.loadTemplate("slot");
       var11.AboutDialogCloseListener("Type.InventoryType", (Object)var3);
@@ -843,7 +843,7 @@ public class Inventory {
       return false;
    }
 
-   public void AboutDialog(int var1, int var2, boolean var3) {
+   public void setSlotEnabled(int var1, int var2, boolean var3) {
       JsonArray var4 = this.qt.d("SpecialSlots");
 
       for(int var5 = 0; var5 < var4.size(); ++var5) {
@@ -1001,7 +1001,7 @@ public class Inventory {
       return var1.toString();
    }
 
-   public void AboutDialog(PrintStream var1) {
+   public void print(PrintStream var1) {
       var1.print("\t|");
 
       int var2;

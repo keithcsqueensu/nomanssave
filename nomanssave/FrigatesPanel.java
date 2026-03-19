@@ -154,14 +154,14 @@ public class FrigatesPanel extends JPanel implements eo {
       nomanssave.en.AboutDialog(this);
    }
 
-   public void AboutDialog(boolean var1) {
+   public void setEditable(boolean var1) {
       if (this.dR.getSelectedRow() >= 0) {
          this.dS.setEnabled(this.VehiclesPanel.length < 30 || nomanssave.en.aS());
       }
 
    }
 
-   void AboutDialog(Frigate[] var1) {
+   void updateFrigates(Frigate[] var1) {
       this.VehiclesPanel = var1;
       this.en = null;
       this.eo = null;
@@ -174,17 +174,17 @@ public class FrigatesPanel extends JPanel implements eo {
    }
 
    // $FF: synthetic method
-   static er[] AboutDialog(FrigatesPanel var0) {
+   static er[] access$getStatLabels(FrigatesPanel var0) {
       return var0.en;
    }
 
    // $FF: synthetic method
-   static int AboutDialogCloseListener(FrigatesPanel var0) {
+   static int access$getSelectedIndex(FrigatesPanel var0) {
       return var0.eq;
    }
 
    // $FF: synthetic method
-   static Frigate[] AccountPanel(FrigatesPanel var0) {
+   static Frigate[] access$getFrigates(FrigatesPanel var0) {
       return var0.VehiclesPanel;
    }
 
@@ -204,7 +204,7 @@ public class FrigatesPanel extends JPanel implements eo {
    }
 
    // $FF: synthetic method
-   static void AboutDialog(FrigatesPanel var0, Frigate[] var1) {
+   static void access$setFrigates(FrigatesPanel var0, Frigate[] var1) {
       var0.VehiclesPanel = var1;
    }
 
@@ -214,17 +214,17 @@ public class FrigatesPanel extends JPanel implements eo {
    }
 
    // $FF: synthetic method
-   static void AboutDialog(FrigatesPanel var0, int var1) {
+   static void access$setSelectedIndex(FrigatesPanel var0, int var1) {
       var0.eq = var1;
    }
 
    // $FF: synthetic method
-   static void AboutDialog(FrigatesPanel var0, er[] var1) {
+   static void access$setStatLabels(FrigatesPanel var0, er[] var1) {
       var0.en = var1;
    }
 
    // $FF: synthetic method
-   static void AboutDialogCloseListener(FrigatesPanel var0, er[] var1) {
+   static void access$initStatLabels(FrigatesPanel var0, er[] var1) {
       var0.eo = var1;
    }
 
